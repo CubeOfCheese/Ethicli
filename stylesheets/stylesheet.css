@@ -1,0 +1,133 @@
+body {
+  font-family: sans-serif;
+}
+
+#extension {
+  position: fixed;
+  right: 100px;
+  width: 260px;
+  padding: 36px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
+}
+
+/****/
+
+#rating{
+  margin-bottom: 24px;
+  background: #aaa;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  text-align: center;
+}
+
+#overallScore{
+  padding-top: 30px;
+  padding-bottom: 4px;
+  font-size: 3em;
+}
+
+#menu{
+  position: absolute;
+  right: 36px;
+  top: 36px;
+}
+
+/** Specific Section **/
+
+#scores{
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.label{
+  margin-bottom: 16px;
+}
+
+.label:last-child{
+  margin-bottom: 0;
+}
+
+.label p{
+  margin-bottom: 8px;
+  font-size: 0.8em;
+}
+
+.label p:last-child{
+  margin-bottom: 0;
+}
+
+.label div{
+  display: flex;
+}
+
+.label div .scorebar, .label div .scorebarFill{
+  display: block;
+  width: 200px;
+  height: 8px;
+  background: #ddd;
+}
+
+
+.label div .scorebarFill{
+  position: relative;
+  top: -8px;
+  width: 50%;
+  background: #aaa;
+}
+
+.label div p{
+  margin-left: 24px;
+}
+
+
+button#detailsButton{
+  align-self: flex-end;
+  margin-bottom: 24px;
+  padding: 8px;
+}
+
+
+/** Sponsored **/
+
+#sponsor{
+  width: 100%;
+}
+
+#sponsor div{
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ width: 100%;
+}
+
+#sponsoredImg{
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+
+/** Typography **/
+
+h3{
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+button{
+  border-radius: 100px;
+  border: none;
+}
+
+#left p, #right p, button#detailsButton a{
+  padding: 5px;
+  text-decoration: none;
+  color: #000;
+}
