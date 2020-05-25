@@ -1,0 +1,187 @@
+body {
+  font-family: sans-serif;
+}
+
+#extension {
+  position: fixed;
+  right: 100px;
+  width: 260px;
+  padding: 36px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
+}
+
+/****/
+
+#rating{
+  margin-bottom: 24px;
+  background: #aaa;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  text-align: center;
+}
+
+#overallScore{
+  padding-top: 30px;
+  padding-bottom: 4px;
+  font-size: 3em;
+}
+
+#menu{
+  position: absolute;
+  right: 36px;
+  top: 36px;
+}
+
+/** Specific Section **/
+
+#scores{
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.label{
+  margin-bottom: 16px;
+}
+
+.label:last-child{
+  margin-bottom: 0;
+}
+
+.label p{
+  margin-bottom: 8px;
+  font-size: 0.8em;
+}
+
+.label p:last-child{
+  margin-bottom: 0;
+}
+
+.label div{
+  display: flex;
+}
+
+.label div .scorebar, .label div .scorebarFill{
+  display: block;
+  width: 200px;
+  height: 8px;
+  background: #c6d4c5;
+}
+
+
+.label div .scorebarFill{
+  position: relative;
+  top: -8px;
+  width: 50%;
+  background: #89a387;
+}
+
+.label div p{
+  margin-left: 24px;
+}
+
+
+button#detailsButton{
+  align-self: flex-end;
+  padding: 8px;
+}
+
+
+/** Sponsored **/
+
+#sponsor{
+  width: 100%;
+  margin-top: 24px;
+  display: none;
+}
+
+#sponsor div{
+  position: relative;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ width: 100%;
+}
+
+#sponsoredImg{
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+
+.sponsorRating{
+  position: absolute;
+  right: 50px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  margin: 8px;
+  padding: 4px;
+  border-radius: 100px;
+  background: #aaa;
+  color: #fff;
+  text-align: center;
+  z-index: 1;
+}
+
+#sponsoredBy{
+  position: absolute;
+  top: 0;
+  width: 160px;
+  height: 160px;
+  line-height: 160px;
+  font-size: 0.8em;
+  text-align: center;
+  background: rgba(0, 0, 0, 0);
+  color: rgba(255, 255, 255, 0);
+
+  -webkit-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  -moz-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  -o-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750); /* custom */
+  -webkit-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  -moz-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  -o-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750); /* custom */
+}
+
+#sponsor div:hover #sponsoredBy{
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 1);
+
+  -webkit-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  -moz-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  -o-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750); /* custom */
+  -webkit-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  -moz-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  -o-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
+  transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750); /* custom */
+}
+
+
+/** Typography **/
+
+h3{
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+button{
+  border-radius: 100px;
+  border: none;
+}
+
+#left p, #right p, button#detailsButton a{
+  padding: 5px;
+  text-decoration: none;
+  color: #000;
+}
