@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener(
 
       var companyName = sender.tab.title.split(' ')[0];
       var blueSignRequest = new XMLHttpRequest()
-      var url = 'http://localhost:8080/score/' + companyName;
+      var url = 'http://ethicli.com/score/' + companyName;
       blueSignRequest.open('GET', url, true)
       blueSignRequest.onload = function() {
         console.log(this.response);
