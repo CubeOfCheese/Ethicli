@@ -19,13 +19,17 @@ package com.example.appengine.springboot;
 // [START gae_java11_helloworld]
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 @SpringBootApplication
 @RestController
@@ -36,14 +40,15 @@ public class SpringbootApplication {
   }
 
   @GetMapping("/score/{company}")
-  public boolean isBlueSignPartner(@PathVariable("company") String companyName) {
-        String csvFile = "src/main/java/com/example/appengine/springboot/bluesign-reference-list.csv";
+  public boolean isBlueSignPartner(@PathVariable("company") String companyName) throws IOException {
+        Resource resource = new ClassPathResource("bluesign-reference-list.txt");
+        InputStream file = resource.getInputStream();
         BufferedReader br = null;
         String line = "";
         String csvSplitBy = ",";
 
         try {
-            br = new BufferedReader(new FileReader(csvFile));
+            br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
             while ((line = br.readLine()) != null) {
                 // use comma as separator
                 String[] company = line.split(csvSplitBy);
@@ -68,4 +73,3 @@ public class SpringbootApplication {
   }
 
 }
-// [END gae_java11_helloworld]
