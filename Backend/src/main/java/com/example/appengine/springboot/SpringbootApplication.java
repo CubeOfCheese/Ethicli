@@ -27,9 +27,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 @SpringBootApplication
 @RestController
@@ -43,13 +43,12 @@ public class SpringbootApplication {
   public boolean isBlueSignPartner(@PathVariable("company") String companyName) throws IOException {
         Resource resource = new ClassPathResource("bluesign-reference-list.txt");
         InputStream file = resource.getInputStream();
-        String csvFile = "src/main/java/com/example/appengine/springboot/bluesign-reference-list.txt";
         BufferedReader br = null;
         String line = "";
         String csvSplitBy = ",";
 
         try {
-            br = new BufferedReader(new InputStreamReader(file));
+            br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
             while ((line = br.readLine()) != null) {
                 // use comma as separator
                 String[] company = line.split(csvSplitBy);
