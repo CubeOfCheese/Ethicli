@@ -1,10 +1,13 @@
+- <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="script.js"></script>
 <link rel="stylesheet" href="style.css">
 <title>Ethicli</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -21,8 +24,6 @@
 </div>
 
 <!-- Load icon library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <!-- The form -->
 <form class="example" action="action_page.php">
   <input type="text" placeholder="Search.." name="search">
@@ -40,13 +41,13 @@
     <div class="fakeimg"  style="height:60px;">Image</div>
   </div>
   <div class="main">
-    <h2>WHO WE ARE</h2>
+    <h2>WHO ARE WE?</h2>
     <h5>Title description, May 27, 2020</h5>
     <div class="fakeimg" style="height:200px;">Image</div>
     <p>Some text..</p>
     <p>More text.</p>
     <br>
-    <h2>WHY SHOP "ETHICLI?"</h2>
+    <h2>WHY SHOP <i>ETHICLI?</i></h2>
     <h5>Title description, MAY 26, 2020</h5>
     <div class="fakeimg" style="height:200px;">Image</div>
     <p>Some text..</p>
@@ -63,83 +64,20 @@
         <li><a href="https://www.instagram.com/buy.ethicli/" class="social-icon"> <i class="fa fa-instagram"></i></a></li>
         <li><a href="" class="social-icon"> <i class="fa fa-github"></i></a></li>
     </ul>
-</div>
+  </div>
 
 </div>
 
 <div class="footer">
-  <a href="ethicli.com/team">Team</a>
-  <a href="ethicli.com/contact">Contact Us</a>
+  <a href="ethicli.com/about">About</a>
   <a href="ethicli.com/download">Download</a>
-  <a href="ethicli.com/faq">FAQ</a>
-  <a href="ethicli.com/blog">Blog</a>
+  <a href="ethicli.com/updates">Updates</a>
   <a href="ethicli.com/terms">Terms of Use</a>
-  <a href="ethicli.com/sp">Español</a>
+  <a href="ethicli.com/es">Español</a>
   <a href="ethicli.com/privacy">Privacy Policy</a>
-  <a href="ethicli.com/api">API</a>
-  <a href="ethicli.com/news">News!</a>
 </div>
-</div>
-</body>
-</html>
 
-
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-body {
-  font-family: Roboto, Helvetica, sans-serif;
-  font-size: 20px;
-}
-
-#myBtn {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: #FFFCF2;
-  color: #0A2342;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
-}
-
-#myBtn:hover {
-  background-color: #555;
-}
-</style>
-</head>
-
-<body>
+<script src="script.js"></script>
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
 </body>
 </html>
-
-
-<script>
-var mybutton = document.getElementById("myBtn");
-
-// When scrolled down 20px from the top, show button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
-</script>
