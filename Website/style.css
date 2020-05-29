@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
 
 * {
   box-sizing: border-box;
@@ -134,8 +136,6 @@ form.example::after {
   padding: 0px 10px;
   text-decoration: none;
 }
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
 {
     font-family: 'Roboto', sans-serif;
     color: #0A2342;
