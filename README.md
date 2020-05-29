@@ -2,10 +2,10 @@
 Browser extension for ethical online shopping
 
 # Social media accounts
-Instagram: @buy.ethicli
+Instagram: @shop.ethicli
 
 Facebook: @Ethicli
 
-Twitter: @Buy_Ethicli 
+Twitter: @Shop_Ethicli 
 
 LinkedIn: https://www.linkedin.com/company/ethicli
