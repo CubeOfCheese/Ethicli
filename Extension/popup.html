@@ -6,62 +6,67 @@
     <title>Ethicli</title>
     <link href="stylesheets/reset.css" rel="stylesheet">
     <link href="stylesheets/stylesheet.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="stylesheets/script.js"></script>
+
+    <script src="content.js"></script>
 </head>
 
 <body>
     <div id="extension">
         <img src="images/menu.svg" alt="Menu" height="24" width="24" id="menu" />
-        <div id="rating">
-            <h2 id="overallScore">8.5</h2>
-            <p>/10</p>
+        <div id="notShopMessage">
+            <h2>This page is<br>not a shop.</h2>
+            <p>Please visit a shop page to check their rating.</p>
         </div>
 
-        <div id="scores">
-            <div class="label">
-                <p>Label 1</p>
-                <div>
-                    <span>
-                        <span class="scorebar"></span>
-                    <span class="scorebarFill"></span>
-                    </span>
-                    <p id="score1">8.5/10</p>
-                </div>
+        <div id="shopping">
+            <div id="rating">
+                <h2 id="overallScore">8.5</h2>
+                <p>/10</p>
             </div>
-            <div class="label">
-                <p>Label 2</p>
-                <div>
-                    <span>
+            <div id="scores">
+                <div class="label">
+                    <p>Sustainable Production</p>
+                    <div>
+                        <span>
                         <span class="scorebar"></span>
-                    <span class="scorebarFill"></span>
-                    </span>
-                    <p id="score2">8.5/10</p>
+                        <span class="scorebarFill"></span>
+                        </span>
+                        <p id="score1">8.5/10</p>
+                    </div>
                 </div>
-            </div>
-            <div class="label">
-                <p>Label 3</p>
-                <div>
-                    <span>
-                        <span class="scorebar"></span>
-                    <span class="scorebarFill"></span>
-                    </span>
-                    <p id="score3">8.5/10</p>
+                <div class="label">
+                    <p>Environmental Impact</p>
+                    <div>
+                        <span>
+                            <span class="scorebar"></span>
+                            <span class="scorebarFill"></span>
+                        </span>
+                        <p id="score2">8.5/10</p>
+                    </div>
+                <div class="label">
+                    <p>Labor Practices</p>
+                        <div>
+                        <span>
+                            <span class="scorebar"></span>
+                            <span class="scorebarFill"></span>
+                        </span>
+                        <p id="score3">8.5/10</p>
+                    </div>
+                <div class="label">
+                    <p>Animal Rights</p>
+                        <div>
+                        <span>
+                            <span class="scorebar"></span>
+                            <span class="scorebarFill"></span>
+                        </span>
+                        <p id="score4">8.5/10</p>
+                    </div>
                 </div>
-            </div>
-            <div class="label">
-                <p>Label 4</p>
-                <div>
-                    <span>
-                        <span class="scorebar"></span>
-                    <span class="scorebarFill"></span>
-                    </span>
-                    <p id="score4">8.5/10</p>
-                </div>
-            </div>
+            <button id="detailsButton"><a href="#">View Details</a></button>
         </div>
-
-        <button id="detailsButton"><a href="#">View Details</a></button>
 
         <div id="sponsor">
             <h3>Sponsored</h3>
