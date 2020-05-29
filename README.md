@@ -6,6 +6,6 @@ Instagram: @buy.ethicli
 
 Facebook: @Ethicli
 
-Twitter: @Buy_Ethicli 
+Twitter: @Shop_Ethicli
 
 LinkedIn: https://www.linkedin.com/company/ethicli
