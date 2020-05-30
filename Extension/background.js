@@ -26,4 +26,5 @@ chrome.runtime.onMessage.addListener(
             chrome.browserAction.setBadgeText({ text: "" });
         }
         sendResponse({ acknowledge: "okay" });
-    });
+    }
+);
