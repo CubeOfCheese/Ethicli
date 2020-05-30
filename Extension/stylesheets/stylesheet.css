@@ -36,7 +36,7 @@ body {
 }
 
 
-/****/
+/** General scoring and popup, confirmed that it's a shop **/
 
 #shopping {
     display: flex;
@@ -67,7 +67,7 @@ body {
 }
 
 
-/** Specific Section **/
+/** Specific scores **/
 
 #scores {
     margin-bottom: 24px;
