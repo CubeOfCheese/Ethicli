@@ -13,17 +13,17 @@ chrome.runtime.onMessage.addListener(
                 console.log(this.response);
                 if (this.response == "true") {
                     chrome.browserAction.setBadgeText({ text: "Yay" });
-                    chrome.runtime.sendMessage({ shoppingPage: true }, function(response) {});
                 } else {
                     chrome.browserAction.setBadgeText({ text: "Poo" });
-                    chrome.runtime.sendMessage({ shoppingPage: false }, function(response) {});
                 }
             }
             blueSignRequest.send()
+            chrome.runtime.sendMessage({ shoppingPage: true }, function(response) {});
         } else {
             console.log(request.shoppingPage);
             chrome.browserAction.setIcon({ path: { "16": "icons/gray_icon16.png" } })
             chrome.browserAction.setBadgeText({ text: "" });
+            chrome.runtime.sendMessage({ shoppingPage: false }, function(response) {});
         }
         sendResponse({ acknowledge: "okay" });
     }
