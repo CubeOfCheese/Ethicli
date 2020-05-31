@@ -99,11 +99,8 @@ window.onload = function() {
         var present = dom.search(shopWords[i]);
         if (present > -1) { // if words are present, add values.
             wordTracker += 1;
-            console.log(shopWords[i]);
         }
     }
-
-    console.log(wordTracker);
 
     if (wordTracker > 0) { //if there's at least one shopWord present
         chrome.runtime.sendMessage({ shoppingPage: true }, function(response) {});
