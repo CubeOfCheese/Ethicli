@@ -1,6 +1,2 @@
-.gitignore
-.venv
 Backend/target
-demo
-goodonyou
 *.DS_Store
