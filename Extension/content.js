@@ -1,6 +1,5 @@
 window.onload = function() {
-    var dom = document.getElementsByTagName('html')[0].innerHTML;
-
+    let dom = document.getElementsByTagName('html')[0].innerHTML;
     var shopWords = [
         "content=\"product\"",
         "gl-product-card-container",
@@ -25,8 +24,8 @@ window.onload = function() {
     }
 
     if (wordTracker > 0) { //if there's at least one shopWord present
-        chrome.runtime.sendMessage({ shoppingPage: true }, function(response) {});
+        chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: true }, function(response) {});
     } else {
-        chrome.runtime.sendMessage({ shoppingPage: false }, function(response) {});
+        chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: false }, function(response) {});
     }
 };
