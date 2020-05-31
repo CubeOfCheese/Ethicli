@@ -6,76 +6,80 @@
     <title>Ethicli</title>
     <link href="stylesheets/reset.css" rel="stylesheet">
     <link href="stylesheets/stylesheet.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="stylesheets/script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="popup.js"></script>
 </head>
 
 <body>
     <div id="extension">
         <img src="images/menu.svg" alt="Menu" height="24" width="24" id="menu" />
-        <div id="rating">
-            <h2 id="overallScore">8.5</h2>
-            <p>/10</p>
+        <div id="notShopMessage">
+            <h2>This page is<br>not a shop.</h2>
+            <p>Please visit a shop page to check their rating.</p>
         </div>
 
-        <div id="scores">
-            <div class="label">
-                <p>Label 1</p>
-                <div>
-                    <span>
-                        <span class="scorebar"></span>
-                    <span class="scorebarFill"></span>
-                    </span>
-                    <p id="score1">8.5/10</p>
-                </div>
+        <div id="shopping">
+            <div id="rating">
+                <h2 id="overallScore">8.5</h2>
+                <p>/10</p>
             </div>
-            <div class="label">
-                <p>Label 2</p>
-                <div>
-                    <span>
+            <div id="scores">
+                <div class="label">
+                    <p>Sustainable Production</p>
+                    <div>
+                        <span>
                         <span class="scorebar"></span>
                         <span class="scorebarFill"></span>
-                    </span>
-                    <p id="score2">8.5/10</p>
+                        </span>
+                        <p id="score1">8.5/10</p>
+                    </div>
                 </div>
-            </div>
-            <div class="label">
-                <p>Label 3</p>
-                <div>
-                    <span>
+                <div class="label">
+                    <p>Environmental Impact</p>
+                    <div>
+                        <span>
                         <span class="scorebar"></span>
                         <span class="scorebarFill"></span>
-                    </span>
-                    <p id="score3">8.5/10</p>
+                        </span>
+                        <p id="score2">8.5/10</p>
+                    </div>
                 </div>
-            </div>
-            <div class="label">
-                <p>Label 4</p>
-                <div>
-                    <span>
+                <div class="label">
+                    <p>Labor Practices</p>
+                    <div>
+                        <span>
                         <span class="scorebar"></span>
                         <span class="scorebarFill"></span>
-                    </span>
-                    <p id="score4">8.5/10</p>
+                        </span>
+                        <p id="score3">8.5/10</p>
+                    </div>
+                </div>
+                <div class="label">
+                    <p>Animal Rights</p>
+                    <div>
+                        <span>
+                        <span class="scorebar"></span>
+                        <span class="scorebarFill"></span>
+                        </span>
+                        <p id="score4">8.5/10</p>
+                    </div>
+                </div>
+                <button id="detailsButton"><a href="#">View Details</a></button>
+            </div>
+
+            <div id="sponsor">
+                <h3>Sponsored</h3>
+                <div>
+                    <button id="left"><p>&lt;</p></button>
+                    <a href="#" id="sponsoredImg">
+                        <p class="sponsorRating"> 9.5</p>
+                        <img src="https://images.unsplash.com/photo-1490885578174-acda8905c2c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2500&q=80" alt="Sponsored Image" id="sponsoredImg">
+                        <p id="sponsoredBy">Sponsoring Company</p>
+                    </a>
+                    <button id="right"><p>&gt;</p></button>
                 </div>
             </div>
         </div>
-
-        <button id="detailsButton"><a href="#">View Details</a></button>
-
-        <div id="sponsor">
-            <h3>Sponsored</h3>
-            <div>
-                <button id="left"><p>&lt;</p></button>
-                <a href="#" id="sponsoredImg">
-                    <p class="sponsorRating"> 9.5</p>
-                    <img src="https://images.unsplash.com/photo-1490885578174-acda8905c2c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2500&q=80" alt="Sponsored Image" id="sponsoredImg">
-                    <p id="sponsoredBy">Sponsoring Company</p>
-                </a>
-                <button id="right"><p>&gt;</p></button>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>
