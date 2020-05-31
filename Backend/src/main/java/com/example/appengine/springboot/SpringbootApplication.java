@@ -31,6 +31,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+import java.io.*;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 @SpringBootApplication
 @RestController
 public class SpringbootApplication {
@@ -69,7 +73,144 @@ public class SpringbootApplication {
                 }
             }
         }
+        Business business = new Business();
+        business = buildSearch(companyName, companyName);
+        if (business.getName() != null && business.isCertified() == true)
+        	return true;
     return false;
   }
+  
+  public static Business searchBCorp(String searchTerm, int searchType) throws FileNotFoundException {
+        final int nameCollumn = 0;
+        final int certifiedCollumn = 3;
+        final int bCorpProfileCollumn = 13;
+        final int websiteCollumn = 14;
+        final int yearCollumn = 15;
+        final int overallScoreCollumn = 16;
+        final int collumnCount = 115;
+        int collumn = 0;
+        Business busTemp = new Business();
+        Business business = new Business();
+        Scanner scan = new Scanner(new File("src/BCorp.csv"));
+        scan.useDelimiter(Pattern.compile(","));
+
+        while (scan.hasNext()) {
+            if (collumn == collumnCount - 1) {
+                scan.useDelimiter(Pattern.compile("\n"));
+            }
+            String logicalLine = scan.next();
+            if (logicalLine.contains("\"")) {
+                while (logicalLine.charAt(logicalLine.length() - 1) != '\"') {
+                    logicalLine = logicalLine + "," + scan.next();
+                }
+                logicalLine.replaceAll("\"", "");
+            }
+            if (logicalLine.contains("\n"))
+                logicalLine.replaceAll(" \n", "");
+            if (logicalLine.contains("bcorporation.net/dir") ){
+                    collumn = bCorpProfileCollumn;
+            }
+            switch (collumn) {
+                case nameCollumn:
+                    if (scan.hasNext()){
+                        while (logicalLine.charAt(0) == '\uFEFF' ||
+                                logicalLine.charAt(0) == '\n' ||
+                                logicalLine.charAt(0) == '"') {
+                            logicalLine = logicalLine.substring(1);
+                        }
+                    } else {
+                        return business;
+                    }
+                    if (logicalLine.charAt(logicalLine.length() - 1) == '"') {
+                        logicalLine = logicalLine.substring(0, logicalLine.length() - 1);
+                    }
+                    busTemp.setName(logicalLine);
+                    break;
+                case certifiedCollumn:
+                    if (logicalLine == "certified")
+                        busTemp.isCertified();
+                    break;
+                case bCorpProfileCollumn:
+                    while (!logicalLine.contains("bcorporation.net/dir") ){
+                        logicalLine = scan.next();
+                    }
+                    busTemp.setBcorpProfile(logicalLine);
+                    break;
+                case websiteCollumn:
+                    busTemp.setWebsite(logicalLine);
+                    break;
+                case yearCollumn:
+                    try {
+                        busTemp.setYear(Integer.parseInt(logicalLine));
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case overallScoreCollumn:
+                    try {
+                        busTemp.setOverallScore(Double.parseDouble(logicalLine));
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+            }
+            if (collumn == collumnCount - 1) {
+                scan.useDelimiter(Pattern.compile(","));
+            }
+            collumn++;
+            if (collumn == collumnCount) {
+                collumn = 0;
+                switch (searchType){
+                    case 0:
+                        if (busTemp.getWebsite().contains(searchTerm.toLowerCase())) {
+
+                            if (busTemp.getYear() > business.getYear()) {
+                                business = new Business(busTemp.getName(), busTemp.isCertified(),
+                                        busTemp.getBcorpProfile(), busTemp.getWebsite(), busTemp.getYear(),
+                                        busTemp.getOverallScore());
+                            }
+                        }
+                        break;
+                    case 1:
+                        if (busTemp.getName().toLowerCase().contains(searchTerm.toLowerCase())) {
+                            if (busTemp.getYear() > business.getYear()) {
+                                business = new Business(busTemp.getName(), busTemp.isCertified(),
+                                        busTemp.getBcorpProfile(), busTemp.getWebsite(), busTemp.getYear(),
+                                        busTemp.getOverallScore());
+                            }
+                        }
+                        break;
+                    default:
+                }
+                busTemp = new Business();
+            }
+        }
+        return business;
+    }
+
+    public static Business buildSearch(String url, String metaTag) throws FileNotFoundException {
+        Business bus = new Business();
+        String searchTerm;
+        if (url.contains("http"))
+            url = url.substring(8);
+        if (url.contains("www"))
+            url = url.substring(4);
+        for (int a = 0; a < url.length(); ++a)
+            if (url.charAt(a) == '.')
+                url = url.substring(0, a);
+        bus = searchBCorp(url, 0);
+        if (bus.getName() != null)
+            return bus;
+
+        if (metaTag.toLowerCase().contains("llc"))
+            metaTag = metaTag.substring(0, metaTag.length() - 3);
+        if (metaTag.toLowerCase().contains("inc."))
+            metaTag = metaTag.substring(0, metaTag.length() - 4);
+        bus = searchBCorp(metaTag, 1);
+        if (bus.getName() != null)
+            return bus;
+        return bus;
+    }
 
 }
