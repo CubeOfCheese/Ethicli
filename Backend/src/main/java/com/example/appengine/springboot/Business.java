@@ -1,3 +1,5 @@
+package com.example.appengine.springboot;
+
 public class Business {
     String name;
     boolean certified;
@@ -83,4 +85,3 @@ public class Business {
         System.out.println("Score:     " + this.overallScore);
     }
 }
-

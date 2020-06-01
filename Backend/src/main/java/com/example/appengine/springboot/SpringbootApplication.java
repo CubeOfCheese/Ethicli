@@ -44,7 +44,7 @@ public class SpringbootApplication {
   }
 
   @GetMapping("/score/{company}")
-  public boolean isBlueSignPartner(@PathVariable("company") String companyName) throws IOException {
+  public boolean isBlueSignPartner(@PathVariable("company") String companyName) throws IOException, FileNotFoundException {
         Resource resource = new ClassPathResource("bluesign-reference-list.txt");
         InputStream file = resource.getInputStream();
         BufferedReader br = null;
@@ -73,13 +73,12 @@ public class SpringbootApplication {
                 }
             }
         }
-        Business business = new Business();
-        business = buildSearch(companyName, companyName);
-        if (business.getName() != null && business.isCertified() == true)
+        Business business = buildSearch(companyName, companyName);
+        if (business.getName() != null && business.isCertified())
         	return true;
     return false;
   }
-  
+
   public static Business searchBCorp(String searchTerm, int searchType) throws FileNotFoundException {
         final int nameCollumn = 0;
         final int certifiedCollumn = 3;
@@ -91,10 +90,12 @@ public class SpringbootApplication {
         int collumn = 0;
         Business busTemp = new Business();
         Business business = new Business();
-        Scanner scan = new Scanner(new File("src/BCorp.csv"));
+
+        Scanner scan = new Scanner(new File("src/main/resources/bcorp.txt"));
         scan.useDelimiter(Pattern.compile(","));
 
         while (scan.hasNext()) {
+
             if (collumn == collumnCount - 1) {
                 scan.useDelimiter(Pattern.compile("\n"));
             }
@@ -127,8 +128,8 @@ public class SpringbootApplication {
                     busTemp.setName(logicalLine);
                     break;
                 case certifiedCollumn:
-                    if (logicalLine == "certified")
-                        busTemp.isCertified();
+                    if (!logicalLine.contains("de-certified"))
+                        busTemp.setCertified(true);
                     break;
                 case bCorpProfileCollumn:
                     while (!logicalLine.contains("bcorporation.net/dir") ){
@@ -212,5 +213,4 @@ public class SpringbootApplication {
             return bus;
         return bus;
     }
-
 }
