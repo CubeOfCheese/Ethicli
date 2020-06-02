@@ -21,7 +21,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.web.bind.annotation.*;
+
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -29,6 +29,9 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -43,7 +46,7 @@ public class SpringbootApplication {
 
     @GetMapping("/score/{company}")
     public Business isBlueSignPartner(@PathVariable("company") String companyName) throws IOException, FileNotFoundException {
-        boolean bsPart = false;
+        boolean bluesignPartner = false;
         Resource resource = new ClassPathResource("bluesign-reference-list.txt");
         InputStream file = resource.getInputStream();
         BufferedReader br = null;
@@ -55,7 +58,7 @@ public class SpringbootApplication {
                 // use comma as separator
                 String[] company = line.split(csvSplitBy);
                 if (company[0].equals(companyName)) {
-                    bsPart = true;
+                    bluesignPartner = true;
                 }
             }
         } catch (FileNotFoundException e) {
@@ -72,7 +75,7 @@ public class SpringbootApplication {
             }
         }
         Business business = buildSearch(companyName, companyName);
-        business.setBluesignPartner(bsPart);
+        business.setBluesignPartner(bluesignPartner);
         if (business.getName() != null && business.isBcorpCertified()){
             return (business);
         }
@@ -98,7 +101,6 @@ public class SpringbootApplication {
         String line = "";
         String dataToken = "";
         boolean doubleQuoteRecognizer = false;
-System.out.println("Running");
         try {
             br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
             while ((line = br.readLine()) != null) {
@@ -117,7 +119,7 @@ System.out.println("Running");
                         dataToken = dataToken + "," + brLine[brCount]; // Merges double quote data
                         if (brLine[brCount].contains("\"")) { // End of qouble quote
                             if (brLine[brCount].contains("\"\"")){
-;
+                                ;
                             } else {
                                 doubleQuoteRecognizer = false;
                             }
@@ -213,14 +215,6 @@ System.out.println("Running");
         bus = searchBCorp(url, 0);
         if (bus.getName() != null)
             return bus;
-
-//        if (metaTag.toLowerCase().contains("llc"))
-//            metaTag = metaTag.substring(0, metaTag.length() - 3);
-//        if (metaTag.toLowerCase().contains("inc."))
-//            metaTag = metaTag.substring(0, metaTag.length() - 4);
-//        bus = searchBCorp(metaTag, 1);
-//        if (bus.getName() != null)
-//            return bus;
         return bus;
     }
 }

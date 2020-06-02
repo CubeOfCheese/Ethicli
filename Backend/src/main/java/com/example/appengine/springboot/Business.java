@@ -22,8 +22,8 @@ public class Business {
     }
 
     public Business(@JsonProperty("name") String name, @JsonProperty("certified") boolean certified,
-                    @JsonProperty("bcorpProfile")String bcorpProfile, @JsonProperty("website") String website,
-                    @JsonProperty("year")int year, @JsonProperty("overallScore") double overallScore,
+                    @JsonProperty("bcorpProfile") String bcorpProfile, @JsonProperty("website") String website,
+                    @JsonProperty("year") int year, @JsonProperty("overallScore") double overallScore,
                     @JsonProperty("bluesign_partner") boolean bluesign_partner) {
         this.name = name;
         this.bcorpCertified = certified;
@@ -58,7 +58,9 @@ public class Business {
         return overallScore;
     }
 
-    public boolean isBluesignPartner() { return bluesignPartner; }
+    public boolean isBluesignPartner() {
+        return bluesignPartner;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -84,7 +86,9 @@ public class Business {
         this.overallScore = overallScore;
     }
 
-    public void setBluesignPartner(boolean bluesignPartner) { this.bluesignPartner = bluesignPartner; }
+    public void setBluesignPartner(boolean bluesignPartner) {
+        this.bluesignPartner = bluesignPartner;
+    }
 
     public void display() {
         System.out.println("Name:      " + this.name);
