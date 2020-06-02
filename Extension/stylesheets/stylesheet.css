@@ -3,6 +3,10 @@ body {
     width: 260px;
     height: 400px;
     padding: 36px;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    background: #FFFCF2;
+    color: #0A2342;
 }
 
 #extension {
@@ -10,14 +14,40 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 80%;
+}
+
+#shopping.notShop, #notShopMessage {
+    display: none;
+}
+
+#notShopMessage.notShop {
+    display: block;
+}
+
+#notShopMessage h2 {
+    font-size: 1.8em;
+    line-height: 1.4em;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+#notShopMessage p {
+    line-height: 1.4em;
 }
 
 
-/****/
+/** General scoring and popup, confirmed that it's a shop **/
+
+#shopping {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
 #rating {
     margin-bottom: 24px;
-    background: #aaa;
+    background: #89a387;
     width: 120px;
     height: 120px;
     border-radius: 100%;
@@ -26,8 +56,9 @@ body {
 
 #overallScore {
     padding-top: 30px;
-    padding-bottom: 4px;
-    font-size: 3em;
+    padding-bottom: 8px;
+    font-size: 2.8em;
+    color: #fff;
 }
 
 #menu {
@@ -37,7 +68,7 @@ body {
 }
 
 
-/** Specific Section **/
+/** Specific scores **/
 
 #scores {
     margin-bottom: 24px;
@@ -78,7 +109,7 @@ body {
 .label div .scorebarFill {
     position: relative;
     top: -8px;
-    width: 50%;
+    width: 85%;
     background: #89a387;
 }
 
@@ -88,6 +119,7 @@ body {
 
 button#detailsButton {
     align-self: flex-end;
+    margin-top: 16px;
     padding: 8px;
 }
 
@@ -174,9 +206,19 @@ h3 {
 button {
     border-radius: 100px;
     border: none;
+    background: #05668D;
 }
 
-#left p, #right p, button#detailsButton a {
+button a {
+    color: #FFFCF2;
+}
+
+button#detailsButton a {
+    padding: 5px;
+    text-decoration: none;
+}
+
+#left p, #right p {
     padding: 5px;
     text-decoration: none;
     color: #000;

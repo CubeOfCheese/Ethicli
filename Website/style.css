@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
 
 * {
   box-sizing: border-box;
@@ -5,7 +7,7 @@
 
 /* Style the body */
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
 }
 
@@ -13,8 +15,8 @@ body {
 .header {
   padding: 80px;
   text-align: center;
-  background: #1abc9c;
-  color: white;
+  background: #FFFCF2;
+  color: #0A2342;
 }
 
 /* Increase the font size of the heading */
@@ -25,14 +27,29 @@ body {
 /* Style the top navigation bar */
 .navbar {
   overflow: hidden;
-  background-color: #333;
+  background-color: #0A2342;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example button:hover {
+  background: #0A2342;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 /* Style the navigation bar links */
 .navbar a {
   float: left;
   display: block;
-  color: white;
+  color: #FFFCF2;
   text-align: center;
   padding: 14px 20px;
   text-decoration: none;
@@ -46,7 +63,7 @@ body {
 /* Change color on hover */
 .navbar a:hover {
   background-color: #ddd;
-  color: black;
+  color: #0A2342;
 }
 
 /* Column container */
@@ -62,7 +79,7 @@ body {
 .side {
   -ms-flex: 30%; /* IE10 */
   flex: 30%;
-  background-color: #f1f1f1;
+  background-color: #89A387;
   padding: 20px;
 }
 
@@ -70,23 +87,91 @@ body {
 .main {
   -ms-flex: 70%; /* IE10 */
   flex: 70%;
-  background-color: white;
-  padding: 20px;
-}
-
-/* Fake image, just for this example */
-.fakeimg {
-  background-color: #aaa;
-  width: 100%;
+  background-color: #C6D4C5;
   padding: 20px;
 }
 
 /* Footer */
 .footer {
-  padding: 20px;
+  padding: 45px;
   text-align: center;
-  background: #ddd;
+  background: #0A2342;
 }
+/* Style the footer links */
+.footer a {
+  float: left;
+  display: block;
+  color: #FFFCF2;
+  text-align: center;
+  padding: 0px 10px;
+  text-decoration: none;
+}
+{
+    font-family: 'Roboto', sans-serif;
+    color: #0A2342;
+    background: #FFFCF2;
+    -webkit-font-smoothing: antialiased;
+}
+a {
+    text-decoration: none;
+    color: #fff;
+}
+p > a:hover{
+    color: #d9d9d9;
+    text-decoration:  underline;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin:  1% 0 1% 0;
+}
+._12 {
+    font-size: 1.2em;
+}
+._14 {
+    font-size: 1.4em;
+}
+ul {
+    padding:0;
+    list-style: none;
+}
+.footer-social-icons {
+    width: 350px;
+    display:block;
+    margin: 0 auto;
+}
+.social-icon {
+    color: #0A2342;
+}
+ul.social-icons {
+    margin-top: 10px;
+}
+.social-icons li {
+    vertical-align: top;
+    display: inline;
+    height: 100px;
+}
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+}
+.fa-facebook, .fa-twitter, .fa-linkedin, .fa-instagram, .fa-github {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #0A2342;
+}
+.fa-facebook:hover, .fa-twitter:hover, .fa-linkedin:hover, .fa-instagram:hover, .fa-github:hover {
+    background-color: #89A387;
+
+}
+
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
@@ -102,39 +187,27 @@ body {
     width: 100%;
   }
 }
-
-.fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 50px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
+body {
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-size: 20px;
 }
 
-.fa:hover {
-    opacity: 0.7;
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #FFFCF2;
+  color: #0A2342;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
 }
 
-.fa-facebook {
-  background: #3B5998;
-  color: white;
-}
-
-.fa-twitter {
-  background: #55ACEE;
-  color: white;
-
-}
-
-.fa-linkedin {
-  background: #007bb5;
-  color: white;
-
-}
-
-.fa-instagram {
-  background: #125688;
-  color: white;
-
+#myBtn:hover {
+  background-color: #555;
 }
