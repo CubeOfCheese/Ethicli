@@ -1,2 +1,3 @@
 Backend/target
 *.DS_Store
+Extension/env.js
