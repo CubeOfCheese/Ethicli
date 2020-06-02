@@ -8,18 +8,24 @@ chrome.runtime.onMessage.addListener(
         if (request.shoppingPage == true) {
             chrome.browserAction.setIcon({ path: { "16": "icons/get_started16.png" } })
             isShoppingPage = true;
-            var companyName = sender.tab.title.split(' ')[0];
-            var blueSignRequest = new XMLHttpRequest()
-            var url = 'http://ethicli.com/score/' + companyName;
-            blueSignRequest.open('GET', url, true)
-            blueSignRequest.onload = function() {
-                if (this.response == "true") {
-                    chrome.browserAction.setBadgeText({ text: "Yay" });
-                } else {
-                    chrome.browserAction.setBadgeText({ text: "Poo" });
-                }
-            }
-            blueSignRequest.send()
+            var companyNamePromise = getCompanyName(sender.tab.url)
+            companyNamePromise.then(companyName=>{
+              if (companyName == null) {
+                var companyName = sender.tab.title.split(' ')[0];
+              }
+              var blueSignRequest = new XMLHttpRequest()
+              var url = 'http://ethicli.com/score/' + companyName;
+              blueSignRequest.open('GET', url, true)
+              blueSignRequest.onload = function() {
+                  if (this.response == "true") {
+                      chrome.browserAction.setBadgeText({ text: "Yay" });
+                  } else {
+                      chrome.browserAction.setBadgeText({ text: "Poo" });
+                  }
+              }
+              blueSignRequest.send()
+            });
+
         } else {
             isShoppingPage = false;
             chrome.browserAction.setIcon({ path: { "16": "icons/gray_icon16.png" } })
@@ -35,3 +41,16 @@ chrome.runtime.onMessage.addListener(
       sendResponse({shoppingPage: isShoppingPage});
     }
 });
+function getCompanyName(companyUrl) {
+  if (companyUrl.substring(0, 8) == "https://") companyUrl = companyUrl.substring(8);
+  else if (companyUrl.substring(0, 7) == "http://") companyUrl = companyUrl.substring(7);
+  if (companyUrl.substring(companyUrl.length-1) == "/") companyUrl = companyUrl.substring(0, companyUrl.length-1);
+  var fetchUrl = "https://company.bigpicture.io/v1/companies/find?domain=" + companyUrl;
+  var fetchParams = {headers: {
+                        'Authorization': env.COMPANY_NAME_API_KEY // hidden from github bots
+                      }
+                    }
+  return fetch(fetchUrl, fetchParams)
+  .then(data=>{return data.json()})
+  .then(res=>{return res.name})
+}
