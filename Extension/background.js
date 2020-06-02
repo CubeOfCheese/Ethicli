@@ -42,7 +42,7 @@ chrome.runtime.onMessage.addListener(
             sendResponse({ shoppingPage: isShoppingPage });
         }
         if (request.msgName == "whatsMainRating?") {
-            sendResponse({ mr: mainRating });
+            sendResponse({ mainRate: mainRating });
         }
     }
 );

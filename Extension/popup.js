@@ -11,7 +11,7 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
 
 window.onload = function() {
     chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(response) {
-        document.getElementById("overallScore").innerHTML = response.mr;
-        console.log(response.mr);
+        document.getElementById("overallScore").innerHTML = response.mainRate;
+        console.log(response.mainRate);
     });
 }
