@@ -1,6 +1,7 @@
 chrome.browserAction.setIcon({ path: { "16": "icons/gray_icon16.png" } })
 
 var isShoppingPage;
+var mainRating = 5.0;
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
@@ -31,14 +32,17 @@ chrome.runtime.onMessage.addListener(
             chrome.browserAction.setIcon({ path: { "16": "icons/gray_icon16.png" } })
             chrome.browserAction.setBadgeText({ text: "" });
         }
-      }
     }
 );
 
 chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    if (request.msgName == "isShoppingPage?") {
-      sendResponse({shoppingPage: isShoppingPage});
+    function(request, sender, sendResponse) {
+        if (request.msgName == "isShoppingPage?") {
+            sendResponse({ shoppingPage: isShoppingPage });
+        }
+        if (request.msgName == "whatsMainRating?") {
+            sendResponse({ mainRate: mainRating });
+        }
     }
 });
 function getCompanyName(companyUrl) {
