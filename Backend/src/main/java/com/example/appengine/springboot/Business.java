@@ -4,38 +4,42 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Business {
     String name;
-    boolean certified;
+    boolean bcorpCertified;
     String bcorpProfile;
     String website;
     int year;
     double overallScore;
+    boolean bluesignPartner;
 
     public Business() {
         this.name = null;
-        this.certified = false;
+        this.bcorpCertified = false;
         this.bcorpProfile = null;
         this.website = null;
         this.year = 0;
         this.overallScore = 0;
+        this.bluesignPartner = false;
     }
 
     public Business(@JsonProperty("name") String name, @JsonProperty("certified") boolean certified,
                     @JsonProperty("bcorpProfile")String bcorpProfile, @JsonProperty("website") String website,
-                    @JsonProperty("year")int year, @JsonProperty("overallScore") double overallScore) {
+                    @JsonProperty("year")int year, @JsonProperty("overallScore") double overallScore,
+                    @JsonProperty("bluesign_partner") boolean bluesign_partner) {
         this.name = name;
-        this.certified = certified;
+        this.bcorpCertified = certified;
         this.bcorpProfile = bcorpProfile;
         this.website = website;
         this.year = year;
         this.overallScore = overallScore;
+        this.bluesignPartner = bluesignPartner;
     }
 
     public String getName() {
         return name;
     }
 
-    public boolean isCertified() {
-        return certified;
+    public boolean isBcorpCertified() {
+        return bcorpCertified;
     }
 
     public String getBcorpProfile() {
@@ -54,12 +58,14 @@ public class Business {
         return overallScore;
     }
 
+    public boolean isBluesignPartner() { return bluesignPartner; }
+
     public void setName(String name) {
         this.name = name;
     }
 
     public void setCertified(boolean certified) {
-        this.certified = certified;
+        this.bcorpCertified = certified;
     }
 
     public void setBcorpProfile(String bcorpProfile) {
@@ -78,12 +84,15 @@ public class Business {
         this.overallScore = overallScore;
     }
 
+    public void setBluesignPartner(boolean bluesignPartner) { this.bluesignPartner = bluesignPartner; }
+
     public void display() {
         System.out.println("Name:      " + this.name);
-        System.out.println("Certified: " + this.certified);
+        System.out.println("Certified: " + this.bcorpCertified);
         System.out.println("BCProfile: " + this.bcorpProfile);
         System.out.println("Website:   " + this.website);
         System.out.println("Year:      " + this.year);
         System.out.println("Score:     " + this.overallScore);
+        System.out.println("Bluesign:  " + this.bluesignPartner);
     }
 }

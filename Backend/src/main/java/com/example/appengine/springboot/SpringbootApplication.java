@@ -17,37 +17,19 @@
 package com.example.appengine.springboot;
 
 // [START gae_java11_helloworld]
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.parser.Entity;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-
-
-
-
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @SpringBootApplication
@@ -59,29 +41,14 @@ public class SpringbootApplication {
     }
 
 
-
-//        @RequestMapping("/score/")
-        public String sendJSON(Business business, boolean bsPart) {
-        String temp =
-                  "Name: " + business.getName() +
-                "\nOverall Score: " + business.getOverallScore() +
-                "\nWebsite: " + business.getWebsite() +
-                "\nBlueSign Partner: " + bsPart;
-            return temp;
-        }
-
-
-
-
     @GetMapping("/score/{company}")
-    public String isBlueSignPartner(@PathVariable("company") String companyName) throws IOException, FileNotFoundException {
+    public Business isBlueSignPartner(@PathVariable("company") String companyName) throws IOException, FileNotFoundException {
         boolean bsPart = false;
         Resource resource = new ClassPathResource("bluesign-reference-list.txt");
         InputStream file = resource.getInputStream();
         BufferedReader br = null;
         String line = "";
         String csvSplitBy = ",";
-
         try {
             br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
             while ((line = br.readLine()) != null) {
@@ -89,8 +56,6 @@ public class SpringbootApplication {
                 String[] company = line.split(csvSplitBy);
                 if (company[0].equals(companyName)) {
                     bsPart = true;
-//                    return true;
-//                    return;
                 }
             }
         } catch (FileNotFoundException e) {
@@ -107,21 +72,12 @@ public class SpringbootApplication {
             }
         }
         Business business = buildSearch(companyName, companyName);
-        if (business.getName() != null && business.isCertified()){
-            sendJSON(business, bsPart);
-            return sendJSON(business, bsPart);
+        business.setBluesignPartner(bsPart);
+        if (business.getName() != null && business.isBcorpCertified()){
+            return (business);
         }
-//            return true;
-
-//        return false;
-
-        return "BCorp Certified: False\nBlueSign Partner: " + bsPart;
+        return business;
     }
-
-
-
-
-
 
     public static Business searchBCorp(String searchTerm, int searchType) throws IOException, FileNotFoundException {
         final int nameCollumn = 0;
@@ -133,7 +89,6 @@ public class SpringbootApplication {
         final int collumnCount = 6;
         int collumn = 0;
 
-        int busCount = 0;
         Business busTemp = new Business();
         Business business = new Business();
 
@@ -149,79 +104,50 @@ System.out.println("Running");
             while ((line = br.readLine()) != null) {
                 String[] brLine = line.split(",");
                 for (int brCount = 0; brCount < brLine.length; ++brCount) {
-//                    System.out.println(collumn);
-//                    if (brLine[brCount].contains("\"\""))
-//                    {
-//                        brLine[brCount].replace("", " ");
-//
-//                    }
-//                    if (brLine[brCount].contains("\"\"")){
-//                        brLine[brCount] = brLine[brCount].replace("\"\"\n", " ");
-//                        System.out.println("WHHHYYYYY");
-//                    }
                     if (!doubleQuoteRecognizer) {
 
                         if (brLine[brCount].contains("\"")) { // Start of double quote
                             doubleQuoteRecognizer = true;
                             dataToken = brLine[brCount];
-
                             --collumn;
                         } else {
                             dataToken = brLine[brCount];
-//                            System.out.println(collumn + " " + dataToken);
-
                         }
                     } else {
                         dataToken = dataToken + "," + brLine[brCount]; // Merges double quote data
                         if (brLine[brCount].contains("\"")) { // End of qouble quote
                             if (brLine[brCount].contains("\"\"")){
-//                                brLine[brCount] = brLine[brCount].replace("\"\"\n", " ");
-//                                System.out.println("WHHHYYYYY");
+;
                             } else {
                                 doubleQuoteRecognizer = false;
                             }
-
-//                            System.out.println(collumn + " " + dataToken);
                         } else{
                             --collumn;
                         }
-
                     }
                     if (!doubleQuoteRecognizer) {
                         if (dataToken.contains("bcorporation.net/dir") ){
                             collumn = bCorpProfileCollumn;
-//                            System.out.println("01");
                         }
-
-//                        System.out.println("" + dataToken);
                         switch (collumn) {
 
                             case nameCollumn:
-//                                if (dataToken == null) collumn--;
-//                                System.out.println("02 " + dataToken);
                                 if (dataToken.contains("\"")){
-//                                    System.out.println("----------------------------");
                                     dataToken = dataToken.substring(1, dataToken.length() - 1);
                                 }
-                                if (dataToken.toLowerCase().contains("llc"))
-                                {
+                                if (dataToken.toLowerCase().contains("llc")) {
                                     dataToken = dataToken.substring(0, dataToken.length() - 4);
                                 }
-                                if (dataToken.toLowerCase().contains("inc"))
-                                {
+                                if (dataToken.toLowerCase().contains("inc")) {
                                     dataToken = dataToken.substring(0, dataToken.length() - 5);
                                 }
-
-//                                System.out.println(dataToken);
                                 busTemp.setName(dataToken);
                                 break;
                             case certifiedCollumn:
-//                                System.out.println("03 " + dataToken);
                                 if (!dataToken.contains("de-certified"))
                                     busTemp.setCertified(true);
                                 break;
                             case bCorpProfileCollumn:
-//                                System.out.println(dataToken);
                                 if (!dataToken.contains("bcorporation.net/dir") ){
                                     --collumn;
                                 } else {
@@ -229,7 +155,6 @@ System.out.println("Running");
                                 }
                                 break;
                             case websiteCollumn:
-//                                System.out.println("05 " + dataToken);
                                 busTemp.setWebsite(dataToken);
                                 break;
                             case yearCollumn:
@@ -248,30 +173,16 @@ System.out.println("Running");
                                 break;
                             default:
                         }
-
-
-
                     }
-
-
-
-
                     ++collumn;
                     if (collumn == collumnCount) {
-//                        System.out.println(busCount++);
                         collumn = 0;
-//                        busTemp.display();
-//                        System.out.println();
                         if (busTemp.getName().toLowerCase().contains(searchTerm.toLowerCase()) || busTemp.getWebsite().toLowerCase().contains(searchTerm.toLowerCase()) )
                             if (busTemp.getYear() > business.getYear())
                                 business = busTemp;
-
                         busTemp = new Business();
                     }
                 }
-
-
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -286,121 +197,6 @@ System.out.println("Running");
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// HEREEEEEEEEE
-//        Scanner scan = new Scanner(new File("bcorp.txt"));
-//        scan.useDelimiter(Pattern.compile(","));
-//        while (scan.hasNext()) {
-//            if (collumn == collumnCount - 1) {
-//                scan.useDelimiter(Pattern.compile("\n"));
-//            }
-//            String logicalLine = scan.next();
-//            if (logicalLine.contains("\"")) {
-//                while (logicalLine.charAt(logicalLine.length() - 1) != '\"') {
-//                    logicalLine = logicalLine + "," + scan.next();
-//                }
-//                logicalLine.replaceAll("\"", "");
-//            }
-//            if (logicalLine.contains("\n"))
-//                logicalLine.replaceAll(" \n", "");
-//            if (logicalLine.contains("bcorporation.net/dir")) {
-//                    collumn = bCorpProfileCollumn;
-//            }
-//            switch (collumn) {
-//                case nameCollumn:
-//                    if (scan.hasNext()){
-//                        while (logicalLine.charAt(0) == '\uFEFF' ||
-//                                logicalLine.charAt(0) == '\n' ||
-//                                logicalLine.charAt(0) == '"') {
-//                            logicalLine = logicalLine.substring(1);
-//                        }
-//                    } else {
-//                        return business;
-//                    }
-//                    if (logicalLine.charAt(logicalLine.length() - 1) == '"') {
-//                        logicalLine = logicalLine.substring(0, logicalLine.length() - 1);
-//                    }
-//                    busTemp.setName(logicalLine);
-//                    break;
-//                case certifiedCollumn:
-//                    if (!logicalLine.contains("de-certified"))
-//                        busTemp.setCertified(true);
-//                    break;
-//                case bCorpProfileCollumn:
-//                    while (!logicalLine.contains("bcorporation.net/dir") ){
-//                        logicalLine = scan.next();
-//                    }
-//                    busTemp.setBcorpProfile(logicalLine);
-//                    break;
-//                case websiteCollumn:
-//                    busTemp.setWebsite(logicalLine);
-//                    break;
-//                case yearCollumn:
-//                    try {
-//                        busTemp.setYear(Integer.parseInt(logicalLine));
-//                    } catch (NumberFormatException e) {
-//                        e.printStackTrace();
-//                    }
-//                    break;
-//                case overallScoreCollumn:
-//                    try {
-//                        busTemp.setOverallScore(Double.parseDouble(logicalLine));
-//                    } catch (NumberFormatException e) {
-//                        e.printStackTrace();
-//                    }
-//                    break;
-//                default:
-//            }
-//            if (collumn == collumnCount - 1) {
-//                scan.useDelimiter(Pattern.compile(","));
-//            }
-//            collumn++;
-//            if (collumn == collumnCount) {
-//                collumn = 0;
-//                switch (searchType){
-//                    case 0:
-//                        if (busTemp.getWebsite().contains(searchTerm.toLowerCase())) {
-//
-//                            if (busTemp.getYear() > business.getYear()) {
-//                                business = new Business(busTemp.getName(), busTemp.isCertified(),
-//                                        busTemp.getBcorpProfile(), busTemp.getWebsite(), busTemp.getYear(),
-//                                        busTemp.getOverallScore());
-//                            }
-//                        }
-//                        break;
-//                    case 1:
-//                        if (busTemp.getName().toLowerCase().contains(searchTerm.toLowerCase())) {
-//                            if (busTemp.getYear() > business.getYear()) {
-//                                business = new Business(busTemp.getName(), busTemp.isCertified(),
-//                                        busTemp.getBcorpProfile(), busTemp.getWebsite(), busTemp.getYear(),
-//                                        busTemp.getOverallScore());
-//                            }
-//                        }
-//                        break;
-//                    default:
-//                }
-//                busTemp = new Business();
-//            }
-//        }
         return business;
     }
 
