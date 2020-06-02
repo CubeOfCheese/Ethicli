@@ -1,5 +1,7 @@
 package com.example.appengine.springboot;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Business {
     String name;
     boolean certified;
@@ -17,9 +19,9 @@ public class Business {
         this.overallScore = 0;
     }
 
-    public Business(String name, boolean certified,
-                    String bcorpProfile, String website,
-                    int year, double overallScore) {
+    public Business(@JsonProperty("name") String name, @JsonProperty("certified") boolean certified,
+                    @JsonProperty("bcorpProfile")String bcorpProfile, @JsonProperty("website") String website,
+                    @JsonProperty("year")int year, @JsonProperty("overallScore") double overallScore) {
         this.name = name;
         this.certified = certified;
         this.bcorpProfile = bcorpProfile;
