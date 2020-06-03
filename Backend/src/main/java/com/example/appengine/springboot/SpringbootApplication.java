@@ -56,7 +56,7 @@ public class SpringbootApplication {
             while ((line = br.readLine()) != null) {
                 // use comma as separator
                 String[] company = line.split(csvSplitBy);
-                if (company[0].contains(companyName)) {
+                if ((company[0].toLowerCase()).contains(companyName.toLowerCase())) {
                     bluesignPartner = true;
                 }
             }
