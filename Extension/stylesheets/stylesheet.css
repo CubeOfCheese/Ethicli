@@ -17,22 +17,23 @@ body {
     width: 80%;
 }
 
-#shopping.notShop, #notShopMessage {
+#shopping.noShopData, #notShopMessage, #shopDataUnavailable {
     display: none;
 }
 
-#notShopMessage.notShop {
+#notShopMessage.noShopData, #shopDataUnavailable.noShopData {
     display: block;
 }
 
-#notShopMessage h2 {
+#notShopMessage h2, #shopDataUnavailable h2 {
     font-size: 1.8em;
     line-height: 1.4em;
     margin-bottom: 16px;
     font-weight: 700;
+    color: #E07A5F;
 }
 
-#notShopMessage p {
+#notShopMessage p, #shopDataUnavailable p {
     line-height: 1.4em;
 }
 
