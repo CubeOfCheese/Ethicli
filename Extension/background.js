@@ -1,7 +1,7 @@
 chrome.browserAction.setIcon({ path: { "16": "icons/gray_icon16.png" } })
 
 var isShoppingPage;
-var mainRating = 5.0;
+var ethicliStats;
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
@@ -18,13 +18,20 @@ chrome.runtime.onMessage.addListener(
               var url = 'http://ethicli.com/score/' + companyName;
               blueSignRequest.open('GET', url, true)
               blueSignRequest.onload = function() {
-                  if (this.response == "true") {
-                      chrome.browserAction.setBadgeText({ text: "Yay" });
-                  } else {
-                      chrome.browserAction.setBadgeText({ text: "Poo" });
+                  var jsonResponse = JSON.parse(this.response);
+                  ethicliStats = jsonResponse;
+
+                  ethicliBadgeScore = Math.round(jsonResponse.overallScore/20);
+                  if(jsonResponse.bcorpCertified){
+                    if(jsonResponse.bluesignPartner){
+                      ethicliBadgeScore += 1;
+                    }
+                  }else{
+                    if(jsonResponse.bluesignPartner){
+                      ethicliBadgeScore = 7.5;
+                    }
                   }
-                  console.log(this.response);
-                  console.log(JSON.parse(this.response).bluesignPartner);
+                  chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString() });
               }
               blueSignRequest.send()
             });
@@ -43,7 +50,7 @@ chrome.runtime.onMessage.addListener(
             sendResponse({ shoppingPage: isShoppingPage });
         }
         if (request.msgName == "whatsMainRating?") {
-            sendResponse({ mainRate: mainRating });
+            sendResponse({ ethicliStats: ethicliStats });
         }
     }
 );
