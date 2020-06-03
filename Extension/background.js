@@ -23,7 +23,7 @@ chrome.runtime.onMessage.addListener(
 
                   ethicliBadgeScore = Math.round(jsonResponse.overallScore/20);
                   if(isNaN(jsonResponse.overallScore)){
-                    ethicliBadgeScore = 0;
+                    ethicliBadgeScore = "";
                   }
                   if(jsonResponse.bcorpCertified && jsonResponse.bluesignPartner){
                       ethicliBadgeScore += 1;
