@@ -12,14 +12,10 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
 window.onload = function() {
     chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(response) {
         var ethicliScore = (response.ethicliStats.overallScore/20).toFixed(1);
-        if(response.ethicliStats.bcorpCertified){
-            if(response.ethicliStats.bluesignPartner){
-                ethicliScore = (response.ethicliStats.overallScore/20).toFixed(1)+1;
-            }
-        }else{
-            if(response.ethicliStats.bluesignPartner){
-                ethicliScore = 7.5;
-            }
+        if(response.ethicliStats.bcorpCertified && response.ethicliStats.bluesignPartner){
+            ethicliScore = (response.ethicliStats.overallScore/20).toFixed(1)+1;
+        }else if(response.ethicliStats.bluesignPartner){
+            ethicliScore = 7.5;
         }
         document.getElementById("overallScore").innerHTML = ethicliScore;
         if(response.ethicliStats.bcorpCertified){
