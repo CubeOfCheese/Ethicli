@@ -22,7 +22,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
@@ -119,7 +118,7 @@ public class SpringbootApplication {
                         dataToken = dataToken + "," + brLine[brCount]; // Merges double quote data
                         if (brLine[brCount].contains("\"")) { // End of qouble quote
                             if (brLine[brCount].contains("\"\"")){
-                                ;
+
                             } else {
                                 doubleQuoteRecognizer = false;
                             }
