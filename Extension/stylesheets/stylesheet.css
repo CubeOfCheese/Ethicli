@@ -17,11 +17,11 @@ body {
     width: 80%;
 }
 
-#shopping.noShop, #notShopMessage, #shopDataUnavailable {
+#shopping.noShopData, #notShopMessage, #shopDataUnavailable {
     display: none;
 }
 
-#notShopMessage.noShop, #shopDataUnavailable.noShop {
+#notShopMessage.noShopData, #shopDataUnavailable.noShopData {
     display: block;
 }
 

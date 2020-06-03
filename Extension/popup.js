@@ -1,10 +1,10 @@
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
     if (response.shoppingPage == true) {
-        document.getElementById("shopping").classList.remove("noShop");
-        document.getElementById("notShopMessage").classList.remove("noShop");
+        document.getElementById("shopping").classList.remove("noShopData");
+        document.getElementById("notShopMessage").classList.remove("noShopData");
     } else {
-        document.getElementById("shopping").classList.add("noShop");
-        document.getElementById("notShopMessage").classList.add("noShop");
+        document.getElementById("shopping").classList.add("noShopData");
+        document.getElementById("notShopMessage").classList.add("noShopData");
         document.body.style.height = "140px";
     }
 });
@@ -26,8 +26,8 @@ window.onload = function() {
             document.getElementById("bluesign").classList.add("trueForPage");
         }
         if((ethicliScore==0.0)||isNaN(ethicliScore)){
-            document.getElementById("shopping").classList.add("noShop");
-            document.getElementById("shopDataUnavailable").classList.add("noShop");
+            document.getElementById("shopping").classList.add("noShopData");
+            document.getElementById("shopDataUnavailable").classList.add("noShopData");
             document.body.style.height = "140px";
         }
     });
