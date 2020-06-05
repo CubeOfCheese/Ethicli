@@ -1,6 +1,4 @@
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
-    console.log("isShopPage");
-    console.log(response.shoppingPage);
     if (response.shoppingPage == true) {
         loadExtension();
     }
