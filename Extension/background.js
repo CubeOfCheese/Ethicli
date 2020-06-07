@@ -59,10 +59,6 @@ function reloadExt(request, sender, sendResponse) {
     return true;
 }
 
-// chrome.tabs.onActiveChanged.addListener(function(tabId, selectInfo) {
-// });
-
-
 chrome.tabs.onActivated.addListener(
     function() {
         var query = { active: true, currentWindow: true };
@@ -83,7 +79,6 @@ chrome.tabs.onActivated.addListener(
 
 chrome.tabs.onCreated.addListener(
     function() {
-        console.log("OnCreated is Running");
         var query = { active: true, currentWindow: true };
         chrome.tabs.query(query, function callback(tabs) {
             var currentTab = tabs[0];
