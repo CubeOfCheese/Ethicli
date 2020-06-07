@@ -70,7 +70,8 @@ chrome.tabs.onActivated.addListener(
             var currentTab = tabs[0];
             console.log(currentTab.url);
             console.log(currentTab.url != "chrome://newtab/");
-            if (isShoppingPage && currentTab.url && (currentTab.url != "chrome://newtab/")) {
+            if (isShoppingPage && currentTab.url && (currentTab.url != "chrome://newtab/")) { // currentTab.url is null for new tab pages when first opened and equal to "chrome://newtab/" when navigated to from another tab.
+            // data should only be retrieved for actual pages that are shopping pages 
                 var request = { msgName: "PageEvaluated", shoppingPage: true };
                 var sender = { tab: { url: "" } };
                 sender.tab.url = currentTab.url;
