@@ -1,4 +1,5 @@
-window.onload = function() {
+window.onload = function pageEval() {
+    this.console.log("content.js is running");
     let dom = document.getElementsByTagName('html')[0].innerHTML;
     var shopWords = [
         "content=\"product\"",
@@ -107,3 +108,12 @@ window.onload = function() {
         chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: false }, function(response) {});
     }
 };
+
+chrome.runtime.onMessage.addListener(
+    function(request) {
+        if (request.msgName == "tabSwitched") {
+            pageEval();
+        }
+        return true;
+    }
+);

@@ -1,7 +1,6 @@
 body {
     font-family: sans-serif;
     width: 260px;
-    height: 400px;
     padding: 36px;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-weight: 400;
@@ -17,11 +16,7 @@ body {
     width: 80%;
 }
 
-#shopping.noShopData, #notShopMessage, #shopDataUnavailable {
-    display: none;
-}
-
-#notShopMessage.noShopData, #shopDataUnavailable.noShopData {
+#shopping, #notShopMessage, #shopDataUnavailable {
     display: block;
 }
 
@@ -62,7 +57,7 @@ body {
     color: #fff;
 }
 
-#badges{
+#badges {
     position: absolute;
     top: 16px;
     left: 56px;
@@ -71,7 +66,7 @@ body {
     align-items: center;
 }
 
-#bcorp, #bluesign{
+#bcorp, #bluesign {
     display: none;
     width: 50px;
     font-size: 0.5em;
@@ -82,12 +77,12 @@ body {
     color: #fff;
 }
 
-#bcorp.trueForPage{
+#bcorp.trueForPage {
     display: block;
     width: 30px;
 }
 
-#bluesign.trueForPage{
+#bluesign.trueForPage {
     display: block;
     width: 40px;
 }
@@ -140,7 +135,7 @@ body {
 .label div .scorebarFill {
     position: relative;
     top: -8px;
-    width: 85%;
+    width: 50%;
     background: #89a387;
 }
 
@@ -244,7 +239,7 @@ button a {
     color: #FFFCF2;
 }
 
-h6 a{
+h6 a {
     color: #FFFCF2;
     text-decoration: none;
 }
