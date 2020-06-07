@@ -32,6 +32,11 @@ import java.nio.charset.StandardCharsets;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 
 
 @SpringBootApplication
@@ -41,7 +46,14 @@ public class SpringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringbootApplication.class, args);
     }
+    private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
+    @GetMapping("/feedback/")
+    public void storeBadUrls(@RequestParam(value = "url", defaultValue = "New tab") String requestUrl) {
+      Entity referralEntity = new Entity("BadUrl");
+      referralEntity.setProperty("url", requestUrl);
+      datastore.put(referralEntity);
+    }
 
     @GetMapping("/score/{company}")
     public Business isBlueSignPartner(@PathVariable("company") String companyName) throws IOException, FileNotFoundException {
