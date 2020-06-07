@@ -90,6 +90,23 @@ public class Business {
         this.bluesignPartner = bluesignPartner;
     }
 
+    public void update(Business business){
+        if (this.name == null)
+            this.name = business.getName();
+        if (this.bcorpCertified == false)
+            this.bcorpCertified = business.isBcorpCertified();
+        if (this.bcorpProfile == null)
+            this.bcorpProfile = business.getBcorpProfile();
+        if (this.website == null)
+            this.website = business.getWebsite();
+        if (this.year == 0)
+            this.year = business.getYear();
+        if (this.overallScore == 0)
+            this.overallScore = business.getOverallScore();
+        if (this.bluesignPartner == false)
+            this.bluesignPartner = business.isBluesignPartner();
+    }
+
     public void display() {
         System.out.println("Name:      " + this.name);
         System.out.println("Certified: " + this.bcorpCertified);
