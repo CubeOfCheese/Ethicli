@@ -10,22 +10,12 @@
     <script src="popup.js"></script>
 </head>
 
-<body>
+<body style="height:400px;">
     <div id="extension">
         <img src="images/menu.svg" alt="Menu" height="24" width="24" id="menu" />
-        <div id="notShopMessage">
-            <h2>This page is<br>not a shop.</h2>
-            <p>Please visit a shop page to check their rating.</p>
-        </div>
-
-        <div id="shopDataUnavailable">
-            <h2>Shop rating<br>unavailable.</h2>
-            <p>Please visit another shop page to check their rating.</p>
-        </div>
-
         <div id="shopping">
             <div id="rating">
-                <h2 id="overallScore">8.5</h2>
+                <h2 id="overallScore"></h2>
                 <p>/10</p>
                 <div id="badges">
                     <h6 id="bluesign"><a href="https://www.bluesign.com" target="_blank">BlueSign</a></h6>
@@ -40,7 +30,7 @@
                         <span class="scorebar"></span>
                         <span class="scorebarFill"></span>
                         </span>
-                        <p id="score1">8.5/10</p>
+                        <p id="score1">- /10</p>
                     </div>
                 </div>
                 <div class="label">
@@ -50,7 +40,7 @@
                         <span class="scorebar"></span>
                         <span class="scorebarFill"></span>
                         </span>
-                        <p id="score2">8.5/10</p>
+                        <p id="score2">- /10</p>
                     </div>
                 </div>
                 <div class="label">
@@ -60,7 +50,7 @@
                         <span class="scorebar"></span>
                         <span class="scorebarFill"></span>
                         </span>
-                        <p id="score3">8.5/10</p>
+                        <p id="score3">- /10</p>
                     </div>
                 </div>
                 <div class="label">
@@ -70,7 +60,7 @@
                         <span class="scorebar"></span>
                         <span class="scorebarFill"></span>
                         </span>
-                        <p id="score4">8.5/10</p>
+                        <p id="score4">- /10</p>
                     </div>
                 </div>
                 <button id="detailsButton"><a href="#">View Details</a></button>
