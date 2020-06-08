@@ -22,7 +22,19 @@ function loadExtension() {
     });
 }
 
-somethingWrong()
+window.onload = function() {
+    document.getElementById("menu").addEventListener("click", function() {
+        document.getElementById("menuPanel").classList.toggle("menuClicked");
+    });
+
+    document.getElementById("menuBacking").addEventListener("click", function() {
+        document.getElementById("menuPanel").classList.remove("menuClicked");
+    });
+
+    document.getElementById("somethingWrong").addEventListener("click", function() {
+        somethingWrong();
+    });
+}
 
 function somethingWrong() {
     var query = { active: true, currentWindow: true };
