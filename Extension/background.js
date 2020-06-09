@@ -1,4 +1,4 @@
-chrome.browserAction.setIcon({ path: { "16": "icons/gray_icon16.png" } })
+chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } })
 
 var isShoppingPage;
 var ethicliStats;
@@ -15,7 +15,7 @@ function reloadExt(request, sender, sendResponse) {
         chrome.tabs.query(query, function callback(tabs) {
             var currentTab = tabs[0];
             if (request.shoppingPage == true) {
-                chrome.browserAction.setIcon({ path: { "16": "icons/get_started16.png" }, tabId: currentTab.id })
+                chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTab.id })
                 isShoppingPage = true;
                 var companyNamePromise = getCompanyName(sender.tab.url)
                 companyNamePromise.then(companyName => {
@@ -51,7 +51,7 @@ function reloadExt(request, sender, sendResponse) {
             } else {
                 isShoppingPage = false;
                 chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id })
-                chrome.browserAction.setIcon({ path: { "16": "icons/gray_icon16.png" }, tabId: currentTab.id })
+                chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id })
                 chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
             }
         })
@@ -84,7 +84,7 @@ chrome.tabs.onCreated.addListener(
             var currentTab = tabs[0];
             console.log(currentTab.id);
             chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id })
-            chrome.browserAction.setIcon({ path: { "16": "icons/gray_icon16.png" }, tabId: currentTab.id })
+            chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id })
             chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
         })
     }
