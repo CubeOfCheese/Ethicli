@@ -16,7 +16,6 @@
 
 package com.example.appengine.springboot;
 
-// [START gae_java11_helloworld]
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
@@ -38,7 +37,6 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 
-
 @SpringBootApplication
 @RestController
 public class SpringbootApplication {
@@ -55,8 +53,17 @@ public class SpringbootApplication {
       datastore.put(referralEntity);
     }
 
+    // Controls Searches of all data Sources
     @GetMapping("/score/{company}")
-    public Business isBlueSignPartner(@PathVariable("company") String companyName) throws IOException, FileNotFoundException {
+    public Business masterController(@PathVariable("company") String companyName) throws IOException {
+        Business business = new Business();
+        business.update(isBlueSignPartner(companyName));
+        business.update(searchBCorp(companyName));
+        return business;
+    }
+
+    // Searches bluesign-reference-list.txt
+    public Business isBlueSignPartner(String companyName) throws IOException {
         boolean bluesignPartner = false;
         Resource resource = new ClassPathResource("bluesign-reference-list.txt");
         InputStream file = resource.getInputStream();
@@ -68,7 +75,7 @@ public class SpringbootApplication {
             while ((line = br.readLine()) != null) {
                 // use comma as separator
                 String[] company = line.split(csvSplitBy);
-                if ((company[0].toLowerCase()).contains(companyName.toLowerCase())) {
+                if (company[0].contains(companyName)) {
                     bluesignPartner = true;
                 }
             }
@@ -85,15 +92,14 @@ public class SpringbootApplication {
                 }
             }
         }
-        Business business = buildSearch(companyName, companyName);
+        Business business = new Business();
         business.setBluesignPartner(bluesignPartner);
-        if (business.getName() != null && business.isBcorpCertified()){
-            return (business);
-        }
         return business;
     }
 
-    public static Business searchBCorp(String searchTerm, int searchType) throws IOException, FileNotFoundException {
+    // Searches bcorp.csv
+    public static Business searchBCorp(String searchTerm) throws IOException {
+        // bcorp.csv collumn headers in order
         final int nameCollumn = 0;
         final int certifiedCollumn = 1;
         final int bCorpProfileCollumn = 2;
@@ -101,24 +107,23 @@ public class SpringbootApplication {
         final int yearCollumn = 4;
         final int overallScoreCollumn = 5;
         final int collumnCount = 6;
-        int collumn = 0;
 
-        Business busTemp = new Business();
-        Business business = new Business();
+        Business busTemp = new Business(); // Business temp obj for search and compare
+        Business business = new Business(); // Business obj for matching data of most recent .year
 
         Resource resource = new ClassPathResource("bcorp.csv");
         InputStream file = resource.getInputStream();
         BufferedReader br = null;
         String line = "";
-        String dataToken = "";
-        boolean doubleQuoteRecognizer = false;
+        String dataToken = ""; // Data that is eventually sent to specified business values
+        int collumn = 0; // bcorp.csv collumn index for cycling through data
+        boolean doubleQuoteRecognizer = false; // To resolve .csv 'double quote when comma is present' issue
         try {
             br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) { // cycles through line by line
                 String[] brLine = line.split(",");
-                for (int brCount = 0; brCount < brLine.length; ++brCount) {
+                for (int brCount = 0; brCount < brLine.length; ++brCount) { // cycles through line split by ","
                     if (!doubleQuoteRecognizer) {
-
                         if (brLine[brCount].contains("\"")) { // Start of double quote
                             doubleQuoteRecognizer = true;
                             dataToken = brLine[brCount];
@@ -129,55 +134,50 @@ public class SpringbootApplication {
                     } else {
                         dataToken = dataToken + "," + brLine[brCount]; // Merges double quote data
                         if (brLine[brCount].contains("\"")) { // End of qouble quote
-                            if (brLine[brCount].contains("\"\"")){
-
-                            } else {
-                                doubleQuoteRecognizer = false;
-                            }
+                            doubleQuoteRecognizer = false;
                         } else{
                             --collumn;
                         }
                     }
-                    if (!doubleQuoteRecognizer) {
-                        if (dataToken.contains("bcorporation.net/dir") ){
+                    if (!doubleQuoteRecognizer) { // Allows incomplete dataTokens to pass through unnassigned
+                        if (dataToken.contains("bcorporation.net/dir")) { // Ensures correct location for prolife data
                             collumn = bCorpProfileCollumn;
                         }
-                        switch (collumn) {
-
-                            case nameCollumn:
-                                if (dataToken.contains("\"")){
+                        switch (collumn) { // Determines dataToken finds correct Business obj variable
+                            case nameCollumn: // .setName
+                                if (dataToken.contains("\"")) { // Removes leading and trailing "\""
                                     dataToken = dataToken.substring(1, dataToken.length() - 1);
                                 }
-                                if (dataToken.toLowerCase().contains("llc")) {
+                                if (dataToken.toLowerCase().contains("llc")) { // Removes " llc"
                                     dataToken = dataToken.substring(0, dataToken.length() - 4);
                                 }
-                                if (dataToken.toLowerCase().contains("inc")) {
+                                if (dataToken.toLowerCase().contains("inc")) {// Removes " inc."
                                     dataToken = dataToken.substring(0, dataToken.length() - 5);
                                 }
                                 busTemp.setName(dataToken);
                                 break;
-                            case certifiedCollumn:
+                            case certifiedCollumn: // .setCertified
                                 if (!dataToken.contains("de-certified"))
                                     busTemp.setCertified(true);
                                 break;
-                            case bCorpProfileCollumn:
+                            case bCorpProfileCollumn:  // .setBcorpProfile
                                 if (!dataToken.contains("bcorporation.net/dir") ){
-                                    --collumn;
+                                    --collumn; // allows profile data to catch up with correct collumn
                                 } else {
                                     busTemp.setBcorpProfile(dataToken);
                                 }
                                 break;
-                            case websiteCollumn:
+                            case websiteCollumn: // .setWebsite
                                 busTemp.setWebsite(dataToken);
                                 break;
-                            case yearCollumn:
+                            case yearCollumn: // .setYear
                                 try {
                                     busTemp.setYear(Integer.parseInt(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
                                 break;
-                            case overallScoreCollumn:
+                            case overallScoreCollumn: // .serOverallScore
                                 try {
                                     busTemp.setOverallScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
@@ -188,10 +188,11 @@ public class SpringbootApplication {
                         }
                     }
                     ++collumn;
-                    if (collumn == collumnCount) {
-                        collumn = 0;
+                    if (collumn == collumnCount) { // End of Cycle indicator
+                        collumn = 0; // Restarts Cycle
+                        // compares searchTerm with name and website
                         if (busTemp.getName().toLowerCase().contains(searchTerm.toLowerCase()) || busTemp.getWebsite().toLowerCase().contains(searchTerm.toLowerCase()) )
-                            if (busTemp.getYear() > business.getYear())
+                            if (busTemp.getYear() > business.getYear()) // only updates data if the .year is the most recent
                                 business = busTemp;
                         busTemp = new Business();
                     }
@@ -211,21 +212,5 @@ public class SpringbootApplication {
             }
         }
         return business;
-    }
-
-    public static Business buildSearch(String url, String metaTag) throws IOException, FileNotFoundException {
-        Business bus = new Business();
-        String searchTerm;
-        if (url.contains("http"))
-            url = url.substring(8);
-        if (url.contains("www"))
-            url = url.substring(4);
-        for (int a = 0; a < url.length(); ++a)
-            if (url.charAt(a) == '.')
-                url = url.substring(0, a);
-        bus = searchBCorp(url, 0);
-        if (bus.getName() != null)
-            return bus;
-        return bus;
     }
 }
