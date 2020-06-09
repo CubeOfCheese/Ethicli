@@ -1,65 +1,161 @@
-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<link rel="stylesheet" href="style.css">
-<title>Ethicli</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ethicli</title>
+    <!-- [if lt IE 9]>
+    <script src="stylesheets/html5shiv.js"></script>
+    <![endif]-->
+    <link href="stylescripts/reset.css" rel="stylesheet">
+    <link href="stylescripts/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-<div class="header">
-  <h1>Ethicli</h1>
-  <p>A browser extension to help you make better shopping choices</p>
-</div>
+    <button id="tryEthicli"><a href="#">Try Ethicli</a></button>
+    <nav>
+        <div class="container">
+            <a href="#" id="logo"><img src="images/ethicli-logo.png" alt="Extension image in Header"></a>
+            <div id="navlinks">
+                <img src="images/menu.svg" alt="triplebar" height="50" width="50" id="triplebar">
+                <a href="https://chrome.google.com/webstore/category/extensions" target="_blank">Extension</a>
+                <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#116;&#104;&#105;&#099;&#108;&#105;&#046;&#099;&#111;&#109;?subject=Ethicli Inquiry" target="_blank">Contact</a>
+                <a href="https://profiles.wordpress.org/ethicli" target="_blank">Blog</a>
+            </div>
+        </div>
+    </nav>
 
-<div class="navbar">
-  <a href="mailto: hello@ethicli.com">Contact</a>
-  <a href="https://profiles.wordpress.org/ethicli/" target="_blank">Blog</a>
-</div>
+    <header id="top">
+        <div class="container">
+            <h1><span class="colorBlue">Shop</span> <span class="colorDark">Ethicli</span></h1>
+            <div id="headerInfo">
+                <h3>Ethicli helps you choose better products.</h3>
+                <p>"As consumers, we have so much power to change the world by just being careful in what we buy."
+                    <span id="quote">- Emma Watson</span></p>
+            </div>
+            <img src="images/extension-bluesign.png" alt="Extension image in Header" id="headerExtension">
+        </div>
+    </header>
 
-<div class="row">
-  <div class="side">
-      <p>"As consumers, we have so much power to change the world by just being careful in what we buy."</p>
-      <p> - Emma Watson
-  </div>
-  <div class="main">
-    <h2>WHO ARE WE?</h2>
-    <p>We are a team of developers who want to change the world by bringing you greater consumer power!</p>
-    <br>
-    <h2>WHY SHOP <i>ETHICLI?</i></h2>
-    <p>One of the best ways to vote for what you believe in is with your dollar. Many of us
-      can feel lost when it comes to knowing how our purchases affect others downstream, and we're here to help!</p>
-      <p> <i>Ethicli</i> suggests better products while you shop by ranking how the product affects our
-      workers, planet, and community. Use our free browser extension to effortlessly shop from
-      more ethical, green, and smaller businesses! </p>
-  </div>
+    <div id="intro">
+        <div class="container">
+            <h2><span class="colorLGreen">About</span> <span class="colorCream">Ethicli</span></h2>
+            <section class="half">
+                <article>
+                    <p>We are a team of developers who want to change the world by bringing you greater 
+                        consumer power! One of the best ways to vote for what you believe in is with your dollars. 
+                        Many of us can feel lost when it comes to knowing how our purchases
+                        affect others downstream, and we're here to help!</p>
+                </article>
+                <article>
+                    <p>Ethicli suggests better products while you shop by ranking how the product affects our workers, 
+                        planet, and community. Use our free browser extension to effortlessly shop from more ethical, 
+                        green, and smaller businesses!</p>
+                </article>
+            </section>
+        </div>
+    </div>
 
+    <div id="howToUse">
+        <div class="container">
+            <h2><span class="colorLGreen">How to use</span> <span class="colorCream">Ethicli</span></h2>
+            <div class="threes">
+                <article class="gallery">
+                    <img src="images/extension-notshop.png" alt="Full Extension">
+                    <img src="images/extension-bluesign.png" alt="Full Extension">
+                </article>
+                <article class="imageDesc">
+                    <h3>How it Works</h3>
+                    <p>Add some content for our curious users. Add some content for our curious users. 
+                        Add some content for our curious users. Add some content for our curious users.</p>
+                </article>
+            </div>
+            <div class="threes">
+                <article class="imageDesc">
+                    <h3>About Ratings</h3>
+                    <p>Add some content for our curious users. Add some content for our curious users. 
+                        Add some content for our curious users. Add some content for our curious users.</p>
+                </article>
+                <article class="gallery">
+                    <img src="images/extension-notshop.png" alt="Full Extension">
+                </article>
+            </div>
+        </div>
+    </div>
 
-  <div class="footer-social-icons">
-    <ul class="social-icons">
-        <li><a href="https://www.facebook.com/Ethicli-103112784758042/?view_public_for=103112784758042"  target="_blank" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
-        <li><a href="https://twitter.com/Shop_Ethicli"  target="_blank" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
-        <li><a href="https://www.linkedin.com/company/53190571/"  target="_blank" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
-        <li><a href="https://www.instagram.com/shop.ethicli/"  target="_blank" class="social-icon"> <i class="fa fa-instagram"></i></a></li>
-        <li><a href="" class="social-icon"> <i class="fa fa-github"></i></a></li>
-    </ul>
-  </div>
+    <div id="news">
+        <div class="container">
+            <h2><span class="colorCream">Ethicli</span> <span class="colorLGreen">in the News</span></h2>
+            <section>
+                <article>
+                    <h3>Article 1</h3>
+                    <p>Some info about Ethicli in the news.</p>
+                    <p class="readmore"><a href="#">Read More</a></p>
+                </article>
+                <article>
+                    <h3>Article 2</h3>
+                    <p>Some info about Ethicli in the news.</p>
+                    <p class="readmore"><a href="#">Read More</a></p>
+                </article>
+                <article>
+                    <h3>Article 3</h3>
+                    <p>Some info about Ethicli in the news.</p>
+                    <p class="readmore"><a href="#">Read More</a></p>
+                </article>
+            </section>
+        </div>
+    </div>
 
-</div>
+    <div id="featured">
+        <div class="container">
+            <h2><span class="colorBlue">Featured</span> <span class="colorDark">Articles</span></h2>
+            <section>
+                <article>
+                    <h3>Article 1</h3>
+                    <p>Some article about featured social good/ sustainability news.</p>
+                    <p class="readmore"><a href="#">Read More</a></p>
+                </article>
+                <article>
+                    <h3>Article 2</h3>
+                    <p>Some article about featured social good/ sustainability news.</p>
+                    <p class="readmore"><a href="#">Read More</a></p>
+                </article>
+                <article>
+                    <h3>Article 3</h3>
+                    <p>Some article about featured social good/ sustainability news.</p>
+                    <p class="readmore"><a href="#">Read More</a></p>
+                </article>
+            </section>
+        </div>
+    </div>
 
-<div class="footer">
-  <a href="http://www.ethicli.com/about" target="_blank">About</a>
-  <a href="http://www.ethicli.com/download" target="_blank">Download</a>
-  <a href="http://www.ethicli.com/updates" target="_blank">Updates</a>
-  <a href="http://ethicli.com/terms" target="_blank">Terms of Use</a>
-  <a href="http://ethicli.com/es" target="_blank">Español</a>
-  <a href="http://ethicli.com/privacy" target="_blank">Privacy Policy</a>
-  <html>
-</div>
-
-<script src="script.js"></script>
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="https://www.facebook.com/Ethicli-103112784758042/?view_public_for=103112784758042" target="_blank" class="social-icon"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/Shop_Ethicli" target="_blank" class="social-icon"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com/company/53190571/" target="_blank" class="social-icon"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://www.instagram.com/shop.ethicli/" target="_blank" class="social-icon"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="" class="social-icon"><i class="fa fa-github"></i></a></li>
+            </ul>
+            <aside>
+                <a href="http://www.ethicli.com/about" target="_blank">About</a>
+                <a href="http://www.ethicli.com/download" target="_blank">Download</a>
+                <a href="http://www.ethicli.com/updates" target="_blank">Updates</a>
+                <a href="http://ethicli.com/es" target="_blank">Español</a>
+                <a href="http://ethicli.com/privacy" target="_blank">Privacy Policy</a>
+            </aside>
+            <div>
+                <button id="backToTop"><a href="#top">Back to Top</a></button>
+                <p><a href="http://ethicli.com/terms" target="_blank">Terms of Use</a> | Copyright 2020</p>
+            </div>
+        </div>
+    </footer>
+    <script src="stylescripts/script.js" rel="text/javascript"></script>
 </body>
+
 </html>
