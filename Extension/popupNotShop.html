@@ -7,11 +7,20 @@
     <link href="stylesheets/reset.css" rel="stylesheet">
     <link href="stylesheets/stylesheet.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="popup.js"></script>
 </head>
 
 <body style="height:140px;">
-    <div id="extension">
+    <div>
+        <div id="menuPanel">
+            <div id="menuBacking"></div>
+            <button id="somethingWrong"><a>Something Looks Wrong</a></button>
+            <button><a>Settings</a></button>
+        </div>
         <img src="images/menu.svg" alt="Menu" height="24" width="24" id="menu" />
+    </div>
+
+    <div id="extension">
         <div id="notShopMessage">
             <h2>This page is<br>not a shop.</h2>
             <p>Please visit a shop page to check their rating.</p>
