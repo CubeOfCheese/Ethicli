@@ -74,42 +74,6 @@ chrome.tabs.onActivated.addListener(
                 reloadExt(request, sender);
             }
         })
-      if (request.msgName == "PageEvaluated") {
-        if (request.shoppingPage == true) {
-            chrome.browserAction.setIcon({ path: { "16": "icons/get_started16.png" } })
-            isShoppingPage = true;
-            var companyNamePromise = getCompanyName(sender.tab.url)
-            companyNamePromise.then(companyName=>{
-              if (companyName == null) {
-                var companyName = sender.tab.title.split(' ')[0];
-              }
-              var blueSignRequest = new XMLHttpRequest()
-              var url = 'http://ethicli.com/score/' + companyName;
-              console.log(url);
-              blueSignRequest.open('GET', url, true)
-              blueSignRequest.onload = function() {
-                  var jsonResponse = JSON.parse(this.response);
-                  ethicliStats = jsonResponse;
-                  console.log(jsonResponse);
-                  ethicliBadgeScore = Math.round(jsonResponse.overallScore/20);
-                  if((isNaN(jsonResponse.overallScore))||(ethicliBadgeScore==0)){
-                    ethicliBadgeScore = "";
-                  }
-                  if(jsonResponse.bcorpCertified && jsonResponse.bluesignPartner){
-                      ethicliBadgeScore += 1;
-                  }else if(jsonResponse.bluesignPartner){
-                      ethicliBadgeScore = 7.5;
-                  }
-                  chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString() });
-              }
-              blueSignRequest.send()
-            });
-        } else {
-            isShoppingPage = false;
-            chrome.browserAction.setIcon({ path: { "16": "icons/gray_icon16.png" } })
-            chrome.browserAction.setBadgeText({ text: "" });
-        }
-      }
     }
 );
 
