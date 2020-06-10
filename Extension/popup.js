@@ -38,6 +38,7 @@ window.onload = function() {
 }
 
 function somethingWrong() {
+    alert("We've received your alert that there's something off with this page's scoring. Site recorded!");
     var query = { active: true, currentWindow: true };
     chrome.tabs.query(query, function callback(tabs) {
         var currentTab = tabs[0];
