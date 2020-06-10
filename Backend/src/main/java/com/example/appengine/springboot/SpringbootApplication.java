@@ -24,7 +24,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 @SpringBootApplication
@@ -35,21 +39,20 @@ public class SpringbootApplication {
         SpringApplication.run(SpringbootApplication.class, args);
     }
 
-
     // Controls Searches of all data Sources
     @GetMapping("/score/{company}")
     public Business masterController(@PathVariable("company") String companyName) throws IOException {
-        int searchWordMax = 3;
+        final int searchWordMax = 3;
         companyName = prepareSearchTerm(companyName);
         String companyNameArray [] = companyName.split("_");
         String searchWordsArray [] =
                 new String[((companyNameArray.length < searchWordMax) ? companyNameArray.length : searchWordMax)];
         for (int a = 0; a < searchWordsArray.length; ++a) {
             searchWordsArray[a] = companyNameArray[a];
-        }Business business = new Business();
-        String searchWord = "";
+        }
+        Business business = new Business();
         for (int a = searchWordsArray.length; a > 0; --a) {
-            searchWord = searchWordsArray[0];
+            String searchWord = searchWordsArray[0];
             for (int b = 1; b < a; ++b) {
                 searchWord += " " + searchWordsArray[b];
             }
