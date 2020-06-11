@@ -35,7 +35,6 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 @SpringBootApplication
-// @ComponentScan({"com.example.appengine.springboot"});
 @RestController
 public class SpringbootApplication {
 
