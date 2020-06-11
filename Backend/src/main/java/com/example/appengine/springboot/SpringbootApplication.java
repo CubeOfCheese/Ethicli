@@ -23,10 +23,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -37,7 +38,6 @@ import java.nio.charset.StandardCharsets;
 public class SpringbootApplication {
 
     public static void main(String[] args) {
-      // ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
       SpringApplication.run(SpringbootApplication.class, args);
     }
     @Autowired
@@ -52,15 +52,33 @@ public class SpringbootApplication {
     // Controls Searches of all data Sources
     @GetMapping("/score/{company}")
     public Business masterController(@PathVariable("company") String companyName) throws IOException {
+        final int searchWordMax = 3;
+        companyName = prepareSearchTerm(companyName);
+        String companyNameArray [] = companyName.split("_");
+        String searchWordsArray [] =
+                new String[((companyNameArray.length < searchWordMax) ? companyNameArray.length : searchWordMax)];
+        for (int a = 0; a < searchWordsArray.length; ++a) {
+            searchWordsArray[a] = companyNameArray[a];
+        }
         Business business = new Business();
-        business.update(isBlueSignPartner(companyName));
-        business.update(searchBCorp(companyName));
+        for (int a = searchWordsArray.length; a > 0; --a) {
+            String searchWord = searchWordsArray[0];
+            for (int b = 1; b < a; ++b) {
+                searchWord += " " + searchWordsArray[b];
+            }
+            business.update(searchBCorp(searchWord));
+            business.update(isBlueSignPartner(searchWord));
+            if (business.getName() != null) {
+                a = 0;
+            }
+        }
         return business;
     }
 
     // Searches bluesign-reference-list.txt
     public Business isBlueSignPartner(String companyName) throws IOException {
         boolean bluesignPartner = false;
+        String name = "";
         Resource resource = new ClassPathResource("bluesign-reference-list.txt");
         InputStream file = resource.getInputStream();
         BufferedReader br = null;
@@ -70,9 +88,11 @@ public class SpringbootApplication {
             br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
             while ((line = br.readLine()) != null) {
                 // use comma as separator
+                line = prepareSearchTerm(line);
                 String[] company = line.split(csvSplitBy);
-                if (company[0].contains(companyName)) {
+                if (company[0].toLowerCase().contains(companyName)) {
                     bluesignPartner = true;
+                    name = company[0];
                 }
             }
         } catch (FileNotFoundException e) {
@@ -89,6 +109,8 @@ public class SpringbootApplication {
             }
         }
         Business business = new Business();
+        if (name != "")
+            business.setName(name);
         business.setBluesignPartner(bluesignPartner);
         return business;
     }
@@ -187,9 +209,11 @@ public class SpringbootApplication {
                     if (collumn == collumnCount) { // End of Cycle indicator
                         collumn = 0; // Restarts Cycle
                         // compares searchTerm with name and website
-                        if (busTemp.getName().toLowerCase().contains(searchTerm.toLowerCase()) || busTemp.getWebsite().toLowerCase().contains(searchTerm.toLowerCase()) )
-                            if (busTemp.getYear() > business.getYear()) // only updates data if the .year is the most recent
-                                business = busTemp;
+                        if ( compareTerms(searchTerm, busTemp.getName().toLowerCase())) {
+                            if (busTemp.getYear() > business.getYear()) { // only updates data if the .year is the most recent
+                                        business = busTemp;
+                            }
+                        }
                         busTemp = new Business();
                     }
                 }
@@ -208,5 +232,71 @@ public class SpringbootApplication {
             }
         }
         return business;
+    }
+
+    public String charRemove(String name, char target) {
+        char tempArray [] = name.toCharArray();
+        String output = "";
+        for (int a = 0;  a < name.length(); ++a) {
+            if (tempArray[a] != target)
+                output += tempArray[a];
+        }
+        return output;
+    }
+
+    public String prepareSearchTerm(String searchTerm) {
+        searchTerm = searchTerm.toLowerCase();
+        searchTerm = charRemove(searchTerm, ',');
+        searchTerm = charRemove(searchTerm, ':');
+        searchTerm = charRemove(searchTerm, ';');
+        searchTerm = charRemove(searchTerm, '.');
+
+        String output = "";
+        String flaggedWords[] = {"llc", "limited", "ltd", "inc", "the",  "&", "and",
+                "co", "company", "co-op", "of", "is", "a", "an", "from"};
+        String tempArray[] = searchTerm.split("_");
+        boolean flagged = false;
+        for (int a = 0; a < tempArray.length; ++a) {
+
+            for (int b = 0; b < flaggedWords.length; ++b) {
+                if (tempArray[a].equals(flaggedWords[b])) {
+                    flagged = true;
+                    System.out.println("test");
+                }
+            }
+            if (flagged == false) {
+                output += tempArray[a] + "_";
+            }
+            flagged = false;
+        }
+        output = output.substring(0, output.length() - 1);
+        return output;
+    }
+
+    public static boolean compareTerms(String searchTerm, String dataTerm) {
+        String searchTermArray [] = searchTerm.split("_");
+        String dataTermArray [] = dataTerm.split("_");
+        String searchToken = "";
+        int searchDepth = 5;
+        for (int a = searchTermArray.length; a > 0; --a) {
+            searchToken = searchTermArray[0];
+            for (int b = 1; b < a; ++b) {
+                searchToken += "_" + searchTermArray[b];
+            }
+            if (dataTerm.contains(searchToken)) {
+                if (searchToken.length() > searchDepth) {
+                    return true;
+                } else {
+                    for (int c = 0; c  < searchTermArray.length; ++c) {
+                        for (int d = 0; d < dataTermArray.length; ++d) {
+                            if (searchTermArray[c] == dataTermArray[d]) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
