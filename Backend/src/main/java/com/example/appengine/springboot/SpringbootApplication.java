@@ -24,26 +24,29 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 @SpringBootApplication
+// @ComponentScan({"com.example.appengine.springboot"});
 @RestController
 public class SpringbootApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootApplication.class, args);
+      // ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+      SpringApplication.run(SpringbootApplication.class, args);
     }
-    private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    @Autowired
+    BadUrlRepository BadUrlRepository;
 
-    // public boolean storeBadUrls(@RequestParam(name = "url", defaultValue = "New tab") String requestUrl) {
     @PostMapping("/feedback")
-    public boolean storeBadUrls(@RequestBody BadUrl requestUrl) {
-      Entity referralEntity = new Entity("BadUrl");
-      referralEntity.setProperty("url", requestUrl.getUrl());
-      datastore.put(referralEntity);
-      return true;
+    public String storeBadUrls(@RequestBody BadUrl requestUrl) {
+      BadUrlRepository.save(requestUrl);
+      return requestUrl.toString();
     }
 
     // Controls Searches of all data Sources

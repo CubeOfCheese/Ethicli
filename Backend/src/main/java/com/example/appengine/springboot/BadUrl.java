@@ -1,7 +1,13 @@
 package com.example.appengine.springboot;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.cloud.gcp.data.datastore.core.mapping.Entity;
+import org.springframework.data.annotation.Id;
+
+@Entity(name = "BadUrls")
 public class BadUrl {
+
+  @Id
   private String url;
 
   public BadUrl() {
@@ -19,4 +25,9 @@ public class BadUrl {
   public void setUrl(String aUrl) {
     url = aUrl;
   }
+
+  @Override
+  public String toString() {
+        return "BadUrl{" + "url=" + this.url + '}';
+    }
 }
