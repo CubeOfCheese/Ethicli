@@ -42,12 +42,10 @@ function somethingWrong() {
     var query = { active: true, currentWindow: true };
     chrome.tabs.query(query, function callback(tabs) {
         var currentTab = tabs[0];
-        console.log(currentTab.url);
         var fetchUrl = "http://ethicli.com/feedback";
         let fetchData = {
             url: currentTab.url
         };
-        console.log(JSON.stringify(fetchData));
         let fetchParams = {
             method: 'POST',
             headers: {
