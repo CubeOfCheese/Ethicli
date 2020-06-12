@@ -234,6 +234,7 @@ form {
     border-radius: 20px;
     background: #102340;
     display: flex;
+    display: none;
 }
 
 input {
