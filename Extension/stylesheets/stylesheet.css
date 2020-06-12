@@ -14,7 +14,51 @@ body {
     align-items: center;
     flex-direction: column;
     width: 80%;
+    z-index: 0;
 }
+
+#menuPanel {
+    display: none;
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    z-index: 1;
+}
+
+#menuBacking {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 252, 242, 0.6);
+    z-index: 1;
+}
+
+#menuPanel.menuClicked {
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#menu {
+    position: absolute;
+    right: 36px;
+    top: 36px;
+    z-index: 1;
+}
+
+#menuPanel button#somethingWrong {
+    margin-top: 44px;
+    background: #E07A5F;
+}
+
+#menuPanel button {
+    margin-top: 16px;
+    z-index: 2;
+}
+
+
+/** Not a Shop **/
 
 #shopping, #notShopMessage, #shopDataUnavailable {
     display: block;
@@ -85,12 +129,6 @@ body {
 #bluesign.trueForPage {
     display: block;
     width: 40px;
-}
-
-#menu {
-    position: absolute;
-    right: 0px;
-    top: 0px;
 }
 
 
@@ -233,19 +271,26 @@ button {
     border-radius: 100px;
     border: none;
     background: #05668D;
+    outline: none;
+    padding: 5px;
+}
+
+button:hover {
+    background: rgba(12, 123, 167, 0.8)
+}
+
+#menuPanel button#somethingWrong:hover {
+    background: rgba(224, 122, 95, 0.8);
 }
 
 button a {
     color: #FFFCF2;
+    text-decoration: none;
+    padding: 5px;
 }
 
 h6 a {
     color: #FFFCF2;
-    text-decoration: none;
-}
-
-button#detailsButton a {
-    padding: 5px;
     text-decoration: none;
 }
 
