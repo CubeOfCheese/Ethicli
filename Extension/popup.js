@@ -13,7 +13,6 @@ function loadExtension() {
         } else if (!response.ethicliStats.bcorpCertified && response.ethicliStats.bluesignPartner) {
             ethicliScore = 7.5;
         }
-
         document.getElementById("overallScore").innerHTML = ethicliScore;
         if (response.ethicliStats.bcorpCertified) {
             document.getElementById("bcorp").classList.add("trueForPage");
@@ -21,5 +20,39 @@ function loadExtension() {
         if (response.ethicliStats.bluesignPartner) {
             document.getElementById("bluesign").classList.add("trueForPage");
         }
+    });
+}
+
+window.onload = function() {
+    document.getElementById("menu").addEventListener("click", function() {
+        document.getElementById("menuPanel").classList.toggle("menuClicked");
+    });
+
+    document.getElementById("menuBacking").addEventListener("click", function() {
+        document.getElementById("menuPanel").classList.remove("menuClicked");
+    });
+
+    document.getElementById("somethingWrong").addEventListener("click", function() {
+        somethingWrong();
+    });
+}
+
+function somethingWrong() {
+    alert("We've received your alert that there's something off with this page's scoring. Site recorded!");
+    var query = { active: true, currentWindow: true };
+    chrome.tabs.query(query, function callback(tabs) {
+        var currentTab = tabs[0];
+        var fetchUrl = "http://ethicli.com/feedback";
+        let fetchData = {
+            url: currentTab.url
+        };
+        let fetchParams = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(fetchData)
+        }
+        fetch(fetchUrl, fetchParams)
     });
 }

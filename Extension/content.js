@@ -1,5 +1,4 @@
 window.onload = function pageEval() {
-    this.console.log("content.js is running");
     let dom = document.getElementsByTagName('html')[0].innerHTML;
     var shopWords = [
         "content=\"product\"",
