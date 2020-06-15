@@ -101,10 +101,11 @@ body {
     color: #fff;
 }
 
-#badges, #badges2 {
+#badges {
     position: absolute;
+    width: 60px;
     top: 16px;
-    left: 24px;
+    left: 32px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -112,7 +113,6 @@ body {
 
 #bcorp, #bluesign, #blackowned, #blmsupport {
     display: none;
-    width: 50px;
     font-size: 0.5em;
     padding: 4px;
     margin-bottom: 4px;
@@ -139,7 +139,6 @@ body {
 #blmsupport.trueForPage{
     display: block;
     width: 20px;
-    left: 20px;
 }
 
 
