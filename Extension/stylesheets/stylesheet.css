@@ -101,16 +101,16 @@ body {
     color: #fff;
 }
 
-#badges {
+#badges, #badges2 {
     position: absolute;
     top: 16px;
-    left: 56px;
+    left: 24px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
 }
 
-#bcorp, #bluesign {
+#bcorp, #bluesign, #blackowned, #blmsupport {
     display: none;
     width: 50px;
     font-size: 0.5em;
@@ -129,6 +129,17 @@ body {
 #bluesign.trueForPage {
     display: block;
     width: 40px;
+}
+
+#blackowned.trueForPage{
+    display: block;
+    width: 60px;
+}
+
+#blmsupport.trueForPage{
+    display: block;
+    width: 20px;
+    left: 20px;
 }
 
 
@@ -300,11 +311,26 @@ h6 a {
     color: #000;
 }
 
-/** Images **/
+/** Images and ToolTip **/
 
 #shoppingBagImg{
     display: block;
     margin: 16px auto 0 auto;
     width: 120px;
     height: 120px;
+}
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background: #0A2342;
+    color: #c6d4c5;
+    padding: 8px;
+    border-radius:8px;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
