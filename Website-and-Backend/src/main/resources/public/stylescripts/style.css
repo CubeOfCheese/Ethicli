@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     color: #102340;
@@ -50,7 +54,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
 
 /*** Ethicli Button *****************************************************/
 
-#tryEthicli {
+#mainCTA {
     position: fixed;
     bottom: 36px;
     right: 30px;
@@ -60,11 +64,11 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     filter: drop-shadow(0px 1px 10px rgba(16, 35, 64, 0.3));
 }
 
-#tryEthicli:hover {
+#mainCTA:hover {
     background-color: #f0a38c;
 }
 
-#tryEthicli a {
+#mainCTA a {
     padding: 10px;
     line-height: 2em;
     font-size: 1.8em;
@@ -173,6 +177,7 @@ footer .container div:last-of-type {
     position: absolute;
     margin: auto;
     right: 30px;
+    text-align: right;
 }
 
 footer .container div:last-of-type a {
@@ -226,6 +231,8 @@ footer p {
     color: #FFFCF2;
     font-size: 0.8em;
 }
+
+/*** Mailing List *****************************************************/
 
 form {
     width: 100%;
@@ -296,6 +303,15 @@ p {
 
 a {
     text-decoration: none;
+    cursor: pointer;
+}
+
+.readmore:hover, #backToTop:hover{
+    opacity: 0.8;
+}
+
+#copyrightBreak{
+    display: none;
 }
 
 #quote {
@@ -388,6 +404,9 @@ button {
     #news article:last-child, #featured article:last-child {
         margin-bottom: 0;
     }
+    .gallery {
+        margin: 24px 0;
+    }
     #headerExtension, #headerInfo {
         position: relative;
         padding: 0;
@@ -396,5 +415,20 @@ button {
         display: block;
         margin: 81px auto 0 auto;
         width: 300px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #mainCTA{
+        font-size: 0.7em;
+    }
+    footer{
+        padding-bottom: 54px;
+    }
+    #termsBar{
+        display: none;
+    }
+    #copyrightBreak{
+        display: inline;
     }
 }
