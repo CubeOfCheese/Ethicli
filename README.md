@@ -9,3 +9,5 @@ Facebook: @Ethicli
 Twitter: @Shop_Ethicli 
 
 LinkedIn: https://www.linkedin.com/company/ethicli
+
+Reddit: u/Ethicli
