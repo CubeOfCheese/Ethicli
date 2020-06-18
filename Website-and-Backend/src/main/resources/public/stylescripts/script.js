@@ -56,7 +56,7 @@ $(document).ready(function() {
         }
     });
 
-    function mobileNav(){
+    function mobileNav(){ //create mobile menu toggle to show navigation links
         if ($(window).width() <= 768) {
             $("#triplebar").click(function(){
                 $("#navlinks").toggleClass("navClicked");
@@ -66,10 +66,10 @@ $(document).ready(function() {
         }
     }
 
-    $(window).resize(function(){
+    $(window).resize(function(){ //after window is resized, allow menu toggle
         mobileNav();
     })
-    mobileNav();
+    mobileNav(); //allows menu to toggle when starting at a mobile size
 
     $("#mailingListSubmit").click(function(){
         alert("Our mailing list isn't available yet, but thank you for considering to subscribe!");
