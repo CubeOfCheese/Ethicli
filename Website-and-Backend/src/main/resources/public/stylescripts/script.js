@@ -56,6 +56,17 @@ $(document).ready(function() {
         }
     });
 
+    if ($(window).width() <= 768) {
+        $("#triplebar").click(function(){
+            $("#navlinks").toggleClass("navClicked");
+        })
+    }
+    $(window).resize(function(){
+        if ($(window).width() > 768) {
+            $("#navlinks").removeClass("navClicked");
+        }
+    })
+
     $("#mailingListSubmit").click(function(){
         alert("Our mailing list isn't available yet, but thank you for considering to subscribe!");
     });

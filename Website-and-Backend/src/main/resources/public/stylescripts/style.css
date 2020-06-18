@@ -1,5 +1,8 @@
 html {
     scroll-behavior: smooth;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 
 body {
@@ -292,6 +295,10 @@ h3 {
     margin-bottom: 16px;
 }
 
+article h3{
+    font-size: 1.6em;
+}
+
 form h3 {
     margin-bottom: 0;
 }
@@ -389,7 +396,7 @@ button {
         display: none;
         margin-top: 16px;
     }
-    #navlinks:hover a {
+    #navlinks.navClicked a {
         display: block;
     }
     .half, .threes, #news section, #featured section {
