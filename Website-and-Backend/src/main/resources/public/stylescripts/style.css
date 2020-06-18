@@ -212,8 +212,9 @@ footer p {
 }
 
 #news article, #featured article {
+    position: relative;
     background: #FFFCF2;
-    padding: 24px;
+    padding: 24px 24px 48px 24px;
     border-radius: 20px;
     width: 31%;
 }
@@ -223,7 +224,9 @@ footer p {
 }
 
 .readmore {
-    text-align: right;
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
     margin-bottom: 0;
 }
 
