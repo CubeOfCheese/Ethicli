@@ -60,7 +60,10 @@ $(document).ready(function() {
         $("#triplebar").click(function(){
             $("#navlinks").toggleClass("navClicked");
         })
+    }else{
+        $("#navlinks").removeClass("navClicked");
     }
+    
     $(window).resize(function(){
         if ($(window).width() > 768) {
             $("#navlinks").removeClass("navClicked");
