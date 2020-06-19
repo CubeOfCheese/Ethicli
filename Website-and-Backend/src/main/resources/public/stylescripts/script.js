@@ -56,19 +56,20 @@ $(document).ready(function() {
         }
     });
 
-    if ($(window).width() <= 768) {
-        $("#triplebar").click(function(){
-            $("#navlinks").toggleClass("navClicked");
-        })
-    }else{
-        $("#navlinks").removeClass("navClicked");
-    }
-    
-    $(window).resize(function(){
-        if ($(window).width() > 768) {
+    function mobileNav(){ //create mobile menu toggle to show navigation links
+        if ($(window).width() <= 768) {
+            $("#triplebar").click(function(){
+                $("#navlinks").toggleClass("navClicked");
+            })
+        }else{
             $("#navlinks").removeClass("navClicked");
         }
+    }
+
+    $(window).resize(function(){ //after window is resized, allow menu toggle
+        mobileNav();
     })
+    mobileNav(); //allows menu to toggle when starting at a mobile size
 
     $("#mailingListSubmit").click(function(){
         alert("Our mailing list isn't available yet, but thank you for considering to subscribe!");
