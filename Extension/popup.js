@@ -42,7 +42,7 @@ function somethingWrong() {
     var query = { active: true, currentWindow: true };
     chrome.tabs.query(query, function callback(tabs) {
         var currentTab = tabs[0];
-        var fetchUrlDataStore = "http://localhost:8080/feedback";
+        var fetchUrlFeedback = "http://ethicli.com/feedback";
         let fetchData = {
             url: currentTab.url
         };
@@ -53,6 +53,6 @@ function somethingWrong() {
             },
             body: JSON.stringify(fetchData)
         }
-        fetch(fetchUrlDataStore, fetchParams)
+        fetch(fetchUrlFeedback, fetchParams)
     });
 }
