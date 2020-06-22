@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -36,15 +35,6 @@ public class SpringbootApplication {
 
     public static void main(String[] args) {
       SpringApplication.run(SpringbootApplication.class, args);
-    }
-
-    @Autowired
-    private BadUrlRepository BadUrlRepository;
-
-    @PostMapping("/feedback")
-    public String storeBadUrls(@RequestBody BadUrl requestUrl) {
-      BadUrlRepository.save(requestUrl);
-      return requestUrl.toString();
     }
 
     // Controls Searches of all data Sources

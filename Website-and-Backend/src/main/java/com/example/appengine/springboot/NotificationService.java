@@ -17,16 +17,21 @@ public class NotificationService {
     public NotificationService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
+    @Autowired
+    private BadUrlRepository BadUrlRepository;
 
     // Controls Feedback Service: If you need to change sender information (email/password)
     // make sure tochange it in resources/application.properties as well
-    @PostMapping("/feedbackEmailer/")
-    public void sendNotification(@RequestBody BadUrl url) throws MailException {
+    @PostMapping("/feedback")
+    public String sendNotification(@RequestBody BadUrl url) throws MailException {
         SimpleMailMessage mail = new SimpleMailMessage();
         mail.setTo("team.ethicli@gmail.com");
         mail.setFrom("feedback.ethicli@gmail.com");
         mail.setSubject("Bad URL");
         mail.setText("Bad URL: " + url.toString());
         javaMailSender.send(mail);
+        System.out.println("storeBadUrls triggered");
+        BadUrlRepository.save(url);
+        return url.toString();
     }
 }
