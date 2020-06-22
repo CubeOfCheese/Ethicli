@@ -468,7 +468,6 @@ public class SpringbootApplication {
                     for (int c = 0; c  < searchTermArray.length; ++c) {
                         for (int d = 0; d < dataTermArray.length; ++d) {
                             if (searchTermArray[c] == dataTermArray[d]) {
-                                System.out.println(searchTermArray[c] + " " + dataTermArray[d]);
                                 return true;
                             }
                         }
