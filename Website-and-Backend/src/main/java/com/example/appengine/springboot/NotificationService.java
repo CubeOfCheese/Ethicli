@@ -30,7 +30,6 @@ public class NotificationService {
         mail.setSubject("Bad URL");
         mail.setText("Bad URL: " + url.toString());
         javaMailSender.send(mail);
-        System.out.println("storeBadUrls triggered");
         BadUrlRepository.save(url);
         return url.toString();
     }
