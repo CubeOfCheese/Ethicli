@@ -288,7 +288,12 @@ h1 {
 h2 {
     font-size: 3.375em;
     font-weight: 500;
+    line-height: 1.2em;
     margin-bottom: 48px;
+}
+
+header h2{
+    margin: 48px 0;
 }
 
 h3 {
@@ -316,11 +321,23 @@ a {
     cursor: pointer;
 }
 
+#top a{
+    color:#2B6589;
+}
+
+#top a:hover{
+    color: #D27F65;
+}
+
+.emphasis{
+    font-weight: 700;
+}
+
 .readmore:hover, #backToTop:hover{
     opacity: 0.8;
 }
 
-#copyrightBreak{
+.break{
     display: none;
 }
 
@@ -442,7 +459,7 @@ button {
     #termsBar{
         display: none;
     }
-    #copyrightBreak{
+    .break{
         display: inline;
     }
 }
