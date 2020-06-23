@@ -148,7 +148,7 @@ body {
     align-items: flex-start;
     position: absolute;
     left: 0;
-    top: 180px;
+    top: 165px;
 }
 
 #shopDataUnavailable #hasBadge h2{
@@ -328,8 +328,8 @@ h6 a {
 #shoppingBagImg{
     display: block;
     margin: 16px auto 0 auto;
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
 }
   
 .tooltip .tooltiptext {

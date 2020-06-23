@@ -39,7 +39,7 @@ function loadExtension() {
         if(bt>0){
             document.getElementById("noBadge").style.display = "none";
             document.getElementById("hasBadge").style.display = "block";
-            document.style.height = "100px;"
+            document.body.style = "height:190px;"
         }
     });
 }
