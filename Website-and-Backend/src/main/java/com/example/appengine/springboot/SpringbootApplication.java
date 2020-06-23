@@ -52,6 +52,7 @@ public class SpringbootApplication {
             for (int b = 1; b < a; ++b) {
                 searchWord += " " + searchWordsArray[b];
             }
+            business.update(searchManualScores(searchWord));
             business.update(searchBCorp(searchWord));
             business.update(isBlueSignPartner(searchWord));
             business.update(searchSupportsBLM(searchWord));
@@ -185,7 +186,7 @@ public class SpringbootApplication {
                                 break;
                             case overallScoreCollumn: // .serOverallScore
                                 try {
-                                    busTemp.setOverallScore(Double.parseDouble(dataToken));
+                                    busTemp.setBcorpScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
@@ -419,6 +420,149 @@ public class SpringbootApplication {
                                 busTemp.setWebsite(dataToken);
                                 break;
                             default:
+                        }
+                    }
+                    ++collumn;
+                    if (collumn == collumnCount) { // End of Cycle indicator
+                        collumn = 0; // Restarts Cycle
+                        // compares searchTerm with name and website
+                        if ( compareTerms(searchTerm, busTemp.getName().toLowerCase())) {
+                            business = busTemp;
+                        }
+                        busTemp = new Business();
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return business;
+    }
+
+    // Searches Top 50 Online Retailers & Manual Scores - Sheet1.csv
+    public static Business searchManualScores(String searchTerm) throws IOException {
+        // Top 50 Online Retailers & Manual Scores - Sheet1.csv collumn headers in order
+        final int nameCollumn = 1;
+        final int bbbCollumn = 2;
+        final int ccrCollumn = 4;
+        final int goyCollumn = 5;
+        final int environmentCollumn = 6;
+        final int textileCollumn = 7;
+        final int animalCollumn = 8;
+        final int laborCollumn = 9;
+        final int averageCollumn = 10;
+        final int collumnCount = 11;
+
+        Business busTemp = new Business(); // Business temp obj for search and compare
+        Business business = new Business(); // Business obj for matching data of most recent .year
+
+        Resource resource = new ClassPathResource("Top 50 Online Retailers & Manual Scores - Sheet1.csv");
+        InputStream file = resource.getInputStream();
+        BufferedReader br = null;
+        String line = "";
+        String dataToken = ""; // Data that is eventually sent to specified business values
+        int collumn = 0; // Collumn index for cycling through data
+        boolean doubleQuoteRecognizer = false; // To resolve .csv 'double quote when comma is present' issue
+        try {
+            br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
+            while ((line = br.readLine()) != null) { // cycles through line by line
+                String[] brLine = line.split(",");
+                for (int brCount = 0; brCount < brLine.length; ++brCount) { // cycles through line split by ","
+                    if (!doubleQuoteRecognizer) {
+                        if (brLine[brCount].contains("\"")) { // Start of double quote
+                            doubleQuoteRecognizer = true;
+                            dataToken = brLine[brCount];
+                            --collumn;
+                        } else {
+                            dataToken = brLine[brCount];
+                        }
+                    } else {
+                        dataToken = dataToken + "," + brLine[brCount]; // Merges double quote data
+                        if (brLine[brCount].contains("\"")) { // End of qouble quote
+                            doubleQuoteRecognizer = false;
+                        } else{
+                            --collumn;
+                        }
+                    }
+                    if (!doubleQuoteRecognizer) { // Allows incomplete dataTokens to pass through unnassigned
+                        if (!dataToken.isEmpty()) {
+                            switch (collumn) { // Determines dataToken finds correct Business obj variable
+                                case nameCollumn:
+                                    if (dataToken.contains("\"")) { // Removes leading and trailing "\""
+                                        dataToken = dataToken.substring(1, dataToken.length() - 1);
+                                    }
+                                    if (dataToken.toLowerCase().contains("llc")) { // Removes " llc"
+                                        dataToken = dataToken.substring(0, dataToken.length() - 4);
+                                    }
+                                    if (dataToken.toLowerCase().contains("inc")) {// Removes " inc."
+                                        dataToken = dataToken.substring(0, dataToken.length() - 5);
+                                    }
+                                    busTemp.setName(dataToken);
+                                    break;
+                                case bbbCollumn:
+                                    busTemp.setBetterBusinessBureau(dataToken);
+                                    break;
+                                case ccrCollumn:
+                                    try {
+                                        busTemp.setCorporateCriticScore(Double.parseDouble(dataToken));
+                                    } catch (NumberFormatException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case goyCollumn:
+                                    try {
+                                        busTemp.setGoodOnYouScore(Double.parseDouble(dataToken));
+                                    } catch (NumberFormatException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case environmentCollumn:
+                                    try {
+                                        busTemp.setEnvironmentScore(Double.parseDouble(dataToken));
+                                    } catch (NumberFormatException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case textileCollumn:
+                                    try {
+                                        busTemp.setTextilesScore(Double.parseDouble(dataToken));
+                                    } catch (NumberFormatException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case animalCollumn:
+                                    try {
+                                        busTemp.setAnimalsScore(Double.parseDouble(dataToken));
+                                    } catch (NumberFormatException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case laborCollumn:
+                                    try {
+                                        busTemp.setLaborScore(Double.parseDouble(dataToken));
+                                    } catch (NumberFormatException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case averageCollumn:
+                                    try {
+                                        busTemp.setAverageScore(Double.parseDouble(dataToken));
+                                    } catch (NumberFormatException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                default:
+                            }
                         }
                     }
                     ++collumn;
