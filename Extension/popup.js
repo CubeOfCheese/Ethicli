@@ -1,5 +1,5 @@
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
-    if (response.shoppingPage == true) {
+    if (response.shoppingPage) {
         loadExtension();
     }
 });
@@ -13,12 +13,33 @@ function loadExtension() {
         } else if (!response.ethicliStats.bcorpCertified && response.ethicliStats.bluesignPartner) {
             ethicliScore = 7.5;
         }
-        document.getElementById("overallScore").innerHTML = ethicliScore;
+        if(document.getElementById("overallScore")!== null){ //checks to see if ID even appears on page
+            document.getElementById("overallScore").innerHTML = ethicliScore;
+        }
+
+        var bt = 0;
+        console.log("BOB: "+response.ethicliStats.blackOwnedBusiness);
+        console.log("BLM: "+response.ethicliStats.supportsBLM);
         if (response.ethicliStats.bcorpCertified) {
             document.getElementById("bcorp").classList.add("trueForPage");
+            bt++;
         }
         if (response.ethicliStats.bluesignPartner) {
             document.getElementById("bluesign").classList.add("trueForPage");
+            bt++;
+        }
+        if (response.ethicliStats.blackOwnedBusiness) {
+            document.getElementById("blackowned").classList.add("trueForPage");
+            bt++;
+        }
+        if (response.ethicliStats.supportsBLM) {
+            document.getElementById("blmsupport").classList.add("trueForPage");
+            bt++;
+        }
+        if(bt>0){
+            document.getElementById("noBadge").style.display = "none";
+            document.getElementById("hasBadge").style.display = "block";
+            document.body.style = "height:190px;"
         }
     });
 }

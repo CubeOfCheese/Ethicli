@@ -40,7 +40,7 @@ function reloadExt(request, sender, sendResponse) {
 
                         if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore == 0)) {
                             ethicliBadgeScore = "";
-                            chrome.browserAction.setPopup({ popup: "popupNoData.html", tabId: currentTab.id })
+                            chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id })
                         } else {
                             chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id })
                         }
