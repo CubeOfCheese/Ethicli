@@ -35,100 +35,76 @@ public class SpringbootApplication {
         SpringApplication.run(SpringbootApplication.class, args);
     }
 
-    // Controls Searches of all data Sources
+    // Controls Searches of all Data Sources
     @GetMapping("/score/{company}")
     public Business masterController(@PathVariable("company") String companyName) throws IOException {
-        final int searchWordMax = 3;
-        companyName = prepareSearchTerm(companyName);
-        String companyNameArray [] = companyName.split("_");
-        String searchWordsArray [] =
-                new String[((companyNameArray.length < searchWordMax) ? companyNameArray.length : searchWordMax)];
-        for (int a = 0; a < searchWordsArray.length; ++a) {
-            searchWordsArray[a] = companyNameArray[a];
-        }
         Business business = new Business();
-        for (int a = searchWordsArray.length; a > 0; --a) {
-            String searchWord = searchWordsArray[0];
-            for (int b = 1; b < a; ++b) {
-                searchWord += " " + searchWordsArray[b];
-            }
-            business.update(searchManualScores(searchWord));
-            business.update(searchBCorp(searchWord));
-            business.update(isBlueSignPartner(searchWord));
-            business.update(searchSupportsBLM(searchWord));
-            business.update(searchBlackOwnedBusiness(searchWord));
-            if (business.getName() != null) {
-                a = 0;
-            }
-        }
+        business.update(searchDataSource(companyName, "Top 50 Online Retailers & Manual Scores - Sheet1.csv", 11, 1, -1, -1, -1, -1, -1, -1, 2, 4, 5, 6, 7, 8, 9, 10, -1, -1, -1, false, false, false));
+        business.update(searchDataSource(companyName, "bcorp.csv", 6, 0, 2, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 5, 4, false, false, false));
+        business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, true, false));
+        business.update(searchDataSource(companyName, "Black-Owned Businesses-Black-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, true));
+        business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, true, false, false));
         return business;
     }
 
-    // Searches bluesign-reference-list.txt
-    public Business isBlueSignPartner(String companyName) throws IOException {
-        boolean bluesignPartner = false;
-        String name = "";
-        Resource resource = new ClassPathResource("bluesign-reference-list.txt");
-        InputStream file = resource.getInputStream();
-        BufferedReader br = null;
-        String line = "";
-        String csvSplitBy = ",";
-        try {
-            br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
-            while ((line = br.readLine()) != null) {
-                // use comma as separator
-                line = prepareSearchTerm(line);
-                String[] company = line.split(csvSplitBy);
-                if (company[0].toLowerCase().contains(companyName)) {
-                    bluesignPartner = true;
-                    name = company[0];
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+    // Removes all occurences of char target from String name
+    public String charRemove(String name, char target) {
+        char tempArray [] = name.toCharArray();
+        String output = "";
+        for (int a = 0;  a < name.length(); ++a) {
+            if (tempArray[a] != target)
+                output += tempArray[a];
         }
-        Business business = new Business();
-        if (name != "")
-            business.setName(name);
-        business.setBluesignPartner(bluesignPartner);
-        return business;
+        return output;
     }
 
-    // Searches bcorp.csv
-    public static Business searchBCorp(String searchTerm) throws IOException {
-        // bcorp.csv collumn headers in order
-        final int nameCollumn = 0;
-        final int certifiedCollumn = 1;
-        final int bCorpProfileCollumn = 2;
-        final int websiteCollumn = 3;
-        final int yearCollumn = 4;
-        final int overallScoreCollumn = 5;
-        final int collumnCount = 6;
+    // Compares terms with and without unnecessary characters
+    public boolean compare(String searchTerm, String dataTerm) {
+        if (dataTerm.toLowerCase().contains(searchTerm.toLowerCase()))
+            return true;
+        if (prepareSearchTerm(dataTerm).toLowerCase().contains(prepareSearchTerm(searchTerm).toLowerCase()))
+            return true;
+        return false;
+    }
 
+    // Removes unnecessary characters from searchTerm
+    public String prepareSearchTerm(String searchTerm) {
+        searchTerm = searchTerm.toLowerCase();
+        searchTerm = charRemove(searchTerm, ',');
+        searchTerm = charRemove(searchTerm, ':');
+        searchTerm = charRemove(searchTerm, ';');
+        searchTerm = charRemove(searchTerm, '.');
+        searchTerm = charRemove(searchTerm, '-');
+        searchTerm = charRemove(searchTerm, '_');
+        searchTerm = charRemove(searchTerm, ' ');
+        return searchTerm;
+    }
+
+    // Searches Data Source: Collumns of data source should be specified by order 0, 1, 2,.. If collumn is not present in Data Source write -1.
+    public Business searchDataSource(String searchTerm, String filename, final int collumnCount, final int nameCollumn, int bcorpProfileCollumn,
+                                            int websiteCollumn, int supportsBLMSourceCollumn, int supportsBLMEntityCollumn, int supportsBLMContributionCollumn,
+                                            int companyTypeCollumn, int betterBusinessBureauCollumn, int corporateCriticScoreCollumn, int goodOnYouScoreCollumn,
+                                            int environmentScoreCollumn, int textilesScoreCollumn, int animalsScoreCollumn, int laborScoreCollumn,
+                                            int averageScoreCollumn, int bcorpCertifiedCollumn, int bcorpScoreCollumn, int bcorpCertYearCollumn,
+                                            boolean bluesignPartnerCollumn, boolean supportsBLMCollumn, boolean blackOwnedBusinessCollumn) throws IOException {
         Business busTemp = new Business(); // Business temp obj for search and compare
         Business business = new Business(); // Business obj for matching data of most recent .year
-
-        Resource resource = new ClassPathResource("bcorp.csv");
+        Resource resource = new ClassPathResource(filename);
         InputStream file = resource.getInputStream();
         BufferedReader br = null;
         String line = "";
         String dataToken = ""; // Data that is eventually sent to specified business values
-        int collumn = 0; // bcorp.csv collumn index for cycling through data
+        int collumn = 0; // Collumn index for cycling through data
         boolean doubleQuoteRecognizer = false; // To resolve .csv 'double quote when comma is present' issue
+        String[] brLine;
         try {
             br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
             while ((line = br.readLine()) != null) { // cycles through line by line
-                String[] brLine = line.split(",");
+                if (bluesignPartnerCollumn){
+                    brLine = line.split("\n");
+                } else {
+                    brLine = line.split(",");
+                }
                 for (int brCount = 0; brCount < brLine.length; ++brCount) { // cycles through line split by ","
                     if (!doubleQuoteRecognizer) {
                         if (brLine[brCount].contains("\"")) { // Start of double quote
@@ -147,59 +123,103 @@ public class SpringbootApplication {
                         }
                     }
                     if (!doubleQuoteRecognizer) { // Allows incomplete dataTokens to pass through unnassigned
-                        if (dataToken.contains("bcorporation.net/dir")) { // Ensures correct location for prolife data
-                            collumn = bCorpProfileCollumn;
-                        }
-                        switch (collumn) { // Determines dataToken finds correct Business obj variable
-                            case nameCollumn: // .setName
+                        if (!dataToken.isEmpty()) {
+                            if (collumn == nameCollumn) {
+                                if (bluesignPartnerCollumn) {
+                                    String nameTemp [] = dataToken.split(",");
+                                    dataToken = nameTemp[0];
+                                }
                                 if (dataToken.contains("\"")) { // Removes leading and trailing "\""
                                     dataToken = dataToken.substring(1, dataToken.length() - 1);
                                 }
-                                if (dataToken.toLowerCase().contains("llc")) { // Removes " llc"
-                                    dataToken = dataToken.substring(0, dataToken.length() - 4);
-                                }
-                                if (dataToken.toLowerCase().contains("inc")) {// Removes " inc."
-                                    dataToken = dataToken.substring(0, dataToken.length() - 5);
-                                }
                                 busTemp.setName(dataToken);
-                                break;
-                            case certifiedCollumn: // .setCertified
-                                if (!dataToken.contains("de-certified"))
-                                    busTemp.setCertified(true);
-                                break;
-                            case bCorpProfileCollumn:  // .setBcorpProfile
-                                if (!dataToken.contains("bcorporation.net/dir") ){
-                                    --collumn; // allows profile data to catch up with correct collumn
-                                } else {
-                                    busTemp.setBcorpProfile(dataToken);
-                                }
-                                break;
-                            case websiteCollumn: // .setWebsite
+                                busTemp.setBlackOwnedBusiness(blackOwnedBusinessCollumn);
+                                busTemp.setSupportsBLM(supportsBLMCollumn);
+                                busTemp.setBluesignPartner(bluesignPartnerCollumn);
+                            } else if (collumn == bcorpProfileCollumn) {
+                                busTemp.setBcorpProfile(dataToken);
+                            } else if (collumn == websiteCollumn) {
                                 busTemp.setWebsite(dataToken);
-                                break;
-                            case yearCollumn: // .setYear
+                            } else if (collumn == supportsBLMSourceCollumn) {
+                                busTemp.setSupportsBLMSource(dataToken);
+                            } else if (collumn == supportsBLMEntityCollumn) {
+                                busTemp.setSupportsBLMEntity(dataToken);
+                            } else if (collumn == supportsBLMContributionCollumn) {
+                                busTemp.setSupportsBLMContribution(dataToken);
+                            } else if (collumn == companyTypeCollumn) {
+                                busTemp.setCompanyType(dataToken);
+                            } else if (collumn == betterBusinessBureauCollumn) {
+                                busTemp.setBetterBusinessBureau(dataToken);
+                            } else if (collumn == corporateCriticScoreCollumn) {
                                 try {
-                                    busTemp.setBcorpCertYear(Integer.parseInt(dataToken));
+                                    busTemp.setCorporateCriticScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
-                                break;
-                            case overallScoreCollumn: // .serOverallScore
+                            } else if (collumn == goodOnYouScoreCollumn) {
+                                try {
+                                    busTemp.setGoodOnYouScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (collumn == environmentScoreCollumn) {
+                                try {
+                                    busTemp.setEnvironmentScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (collumn == textilesScoreCollumn) {
+                                try {
+                                    busTemp.setTextilesScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (collumn == animalsScoreCollumn) {
+                                try {
+                                    busTemp.setAnimalsScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (collumn == laborScoreCollumn) {
+                                try {
+                                    busTemp.setLaborScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (collumn == averageScoreCollumn) {
+                                try {
+                                    busTemp.setAverageScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (collumn == bcorpCertifiedCollumn) {
+                                if (!dataToken.contains("de-certified"))
+                                    busTemp.setBcorpCertified(true);
+                            } else if (collumn == bcorpScoreCollumn) {
                                 try {
                                     busTemp.setBcorpScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
-                                break;
-                            default:
+                            } else if (collumn == bcorpCertYearCollumn) {
+                                try {
+                                    busTemp.setBcorpCertYear(Integer.parseInt(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
                     }
                     ++collumn;
                     if (collumn == collumnCount) { // End of Cycle indicator
                         collumn = 0; // Restarts Cycle
-                        // compares searchTerm with name and website
-                        if ( compareTerms(searchTerm, busTemp.getName().toLowerCase())) {
-                            if (busTemp.getBcorpCertYear() > business.getBcorpCertYear()) { // only updates data if the .year is the most recent
+                        if (busTemp.getWebsite() != null) {
+                            if (compare(searchTerm, busTemp.getWebsite())) {
+                                business = busTemp;
+                            }
+                        }
+                        if (busTemp.getName() != null) {
+                            if (compare(searchTerm, busTemp.getName())) {
                                 business = busTemp;
                             }
                         }
@@ -221,404 +241,5 @@ public class SpringbootApplication {
             }
         }
         return business;
-    }
-
-    public String charRemove(String name, char target) {
-        char tempArray [] = name.toCharArray();
-        String output = "";
-        for (int a = 0;  a < name.length(); ++a) {
-            if (tempArray[a] != target)
-                output += tempArray[a];
-        }
-        return output;
-    }
-
-    public String prepareSearchTerm(String searchTerm) {
-        searchTerm = searchTerm.toLowerCase();
-        searchTerm = charRemove(searchTerm, ',');
-        searchTerm = charRemove(searchTerm, ':');
-        searchTerm = charRemove(searchTerm, ';');
-        searchTerm = charRemove(searchTerm, '.');
-
-        String output = "";
-        String flaggedWords[] = {"llc", "limited", "ltd", "inc", "the",  "&", "and",
-                "co", "company", "co-op", "of", "is", "a", "an", "from"};
-        String tempArray[] = searchTerm.split("_");
-        boolean flagged = false;
-        for (int a = 0; a < tempArray.length; ++a) {
-
-            for (int b = 0; b < flaggedWords.length; ++b) {
-                if (tempArray[a].equals(flaggedWords[b])) {
-                    flagged = true;
-                    System.out.println("test");
-                }
-            }
-            if (flagged == false) {
-                output += tempArray[a] + "_";
-            }
-            flagged = false;
-        }
-        output = output.substring(0, output.length() - 1);
-        return output;
-    }
-
-    // Searches Financial Contributions-Companies Supporting Black Lives.csv
-    public static Business searchSupportsBLM(String searchTerm) throws IOException {
-        // Financial Contributions-Companies Supporting Black Lives.csv collumn headers in order
-        final int nameCollumn = 0;
-        final int entityCollumn = 1;
-        final int contributionCollumn = 2;
-        final int dateAccessedCollumn = 3;
-        final int sourceCollumn = 4;
-        final int collumnCount = 5;
-
-        Business busTemp = new Business(); // Business temp obj for search and compare
-        Business business = new Business(); // Business obj for matching data of most recent .year
-
-        Resource resource = new ClassPathResource("Financial Contributions-Companies Supporting Black Lives.csv");
-        InputStream file = resource.getInputStream();
-        BufferedReader br = null;
-        String line = "";
-        String dataToken = ""; // Data that is eventually sent to specified business values
-        int collumn = 0; // Collumn index for cycling through data
-        boolean doubleQuoteRecognizer = false; // To resolve .csv 'double quote when comma is present' issue
-        try {
-            br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
-            while ((line = br.readLine()) != null) { // cycles through line by line
-                String[] brLine = line.split(",");
-                for (int brCount = 0; brCount < brLine.length; ++brCount) { // cycles through line split by ","
-                    if (!doubleQuoteRecognizer) {
-                        if (brLine[brCount].contains("\"")) { // Start of double quote
-                            doubleQuoteRecognizer = true;
-                            dataToken = brLine[brCount];
-                            --collumn;
-                        } else {
-                            dataToken = brLine[brCount];
-                        }
-                    } else {
-                        dataToken = dataToken + "," + brLine[brCount]; // Merges double quote data
-                        if (brLine[brCount].contains("\"")) { // End of qouble quote
-                            doubleQuoteRecognizer = false;
-                        } else{
-                            --collumn;
-                        }
-                    }
-                    if (!doubleQuoteRecognizer) { // Allows incomplete dataTokens to pass through unnassigned
-                        switch (collumn) { // Determines dataToken finds correct Business obj variable
-                            case nameCollumn:
-                                if (dataToken.contains("\"")) { // Removes leading and trailing "\""
-                                    dataToken = dataToken.substring(1, dataToken.length() - 1);
-                                }
-                                if (dataToken.toLowerCase().contains("llc")) { // Removes " llc"
-                                    dataToken = dataToken.substring(0, dataToken.length() - 4);
-                                }
-                                if (dataToken.toLowerCase().contains("inc")) {// Removes " inc."
-                                    dataToken = dataToken.substring(0, dataToken.length() - 5);
-                                }
-                                busTemp.setName(dataToken);
-                                busTemp.setSupportsBLM(true);
-                                break;
-                            case entityCollumn:
-                                busTemp.setSupportsBLMEntity(dataToken);
-                                break;
-                            case contributionCollumn:
-                                busTemp.setSupportsBLMEntity(dataToken + " " + busTemp.getSupportsBLMEntity());
-                                break;
-                            case dateAccessedCollumn: // Currently unused data
-                                break;
-                            case sourceCollumn:
-                                busTemp.setSupportsBLMSource(dataToken);
-                                break;
-                            default:
-                        }
-                    }
-                    ++collumn;
-                    if (collumn == collumnCount) { // End of Cycle indicator
-                        collumn = 0; // Restarts Cycle
-                        // compares searchTerm with name and website
-                        if ( compareTerms(searchTerm, busTemp.getName().toLowerCase())) {
-                            business = busTemp;
-                        }
-                        busTemp = new Business();
-                    }
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return business;
-    }
-
-    // Searches Financial Contributions-Companies Supporting Black Lives.csv
-    public static Business searchBlackOwnedBusiness(String searchTerm) throws IOException {
-        // Financial Contributions-Companies Supporting Black Lives.csv collumn headers in order
-        final int nameCollumn = 0;
-        final int companyTypeCollumn = 1;
-        final int websiteCollumn = 2;
-        final int collumnCount = 3;
-
-        Business busTemp = new Business(); // Business temp obj for search and compare
-        Business business = new Business(); // Business obj for matching data of most recent .year
-
-        Resource resource = new ClassPathResource("Black-Owned Businesses-Black-Owned Online Businesses.csv");
-        InputStream file = resource.getInputStream();
-        BufferedReader br = null;
-        String line = "";
-        String dataToken = ""; // Data that is eventually sent to specified business values
-        int collumn = 0; // Collumn index for cycling through data
-        boolean doubleQuoteRecognizer = false; // To resolve .csv 'double quote when comma is present' issue
-        try {
-            br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
-            while ((line = br.readLine()) != null) { // cycles through line by line
-                String[] brLine = line.split(",");
-                for (int brCount = 0; brCount < brLine.length; ++brCount) { // cycles through line split by ","
-                    if (!doubleQuoteRecognizer) {
-                        if (brLine[brCount].contains("\"")) { // Start of double quote
-                            doubleQuoteRecognizer = true;
-                            dataToken = brLine[brCount];
-                            --collumn;
-                        } else {
-                            dataToken = brLine[brCount];
-                        }
-                    } else {
-                        dataToken = dataToken + "," + brLine[brCount]; // Merges double quote data
-                        if (brLine[brCount].contains("\"")) { // End of qouble quote
-                            doubleQuoteRecognizer = false;
-                        } else{
-                            --collumn;
-                        }
-                    }
-                    if (!doubleQuoteRecognizer) { // Allows incomplete dataTokens to pass through unnassigned
-                        switch (collumn) { // Determines dataToken finds correct Business obj variable
-                            case nameCollumn:
-                                if (dataToken.contains("\"")) { // Removes leading and trailing "\""
-                                    dataToken = dataToken.substring(1, dataToken.length() - 1);
-                                }
-                                if (dataToken.toLowerCase().contains("llc")) { // Removes " llc"
-                                    dataToken = dataToken.substring(0, dataToken.length() - 4);
-                                }
-                                if (dataToken.toLowerCase().contains("inc")) {// Removes " inc."
-                                    dataToken = dataToken.substring(0, dataToken.length() - 5);
-                                }
-                                busTemp.setName(dataToken);
-                                busTemp.setBlackOwnedBusiness(true);
-                                break;
-                            case companyTypeCollumn:
-                                busTemp.setCompanyType(dataToken);
-                                break;
-                            case websiteCollumn:
-                                busTemp.setWebsite(dataToken);
-                                break;
-                            default:
-                        }
-                    }
-                    ++collumn;
-                    if (collumn == collumnCount) { // End of Cycle indicator
-                        collumn = 0; // Restarts Cycle
-                        // compares searchTerm with name and website
-                        if ( compareTerms(searchTerm, busTemp.getName().toLowerCase())) {
-                            business = busTemp;
-                        }
-                        busTemp = new Business();
-                    }
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return business;
-    }
-
-    // Searches Top 50 Online Retailers & Manual Scores - Sheet1.csv
-    public static Business searchManualScores(String searchTerm) throws IOException {
-        // Top 50 Online Retailers & Manual Scores - Sheet1.csv collumn headers in order
-        final int nameCollumn = 1;
-        final int bbbCollumn = 2;
-        final int ccrCollumn = 4;
-        final int goyCollumn = 5;
-        final int environmentCollumn = 6;
-        final int textileCollumn = 7;
-        final int animalCollumn = 8;
-        final int laborCollumn = 9;
-        final int averageCollumn = 10;
-        final int collumnCount = 11;
-
-        Business busTemp = new Business(); // Business temp obj for search and compare
-        Business business = new Business(); // Business obj for matching data of most recent .year
-
-        Resource resource = new ClassPathResource("Top 50 Online Retailers & Manual Scores - Sheet1.csv");
-        InputStream file = resource.getInputStream();
-        BufferedReader br = null;
-        String line = "";
-        String dataToken = ""; // Data that is eventually sent to specified business values
-        int collumn = 0; // Collumn index for cycling through data
-        boolean doubleQuoteRecognizer = false; // To resolve .csv 'double quote when comma is present' issue
-        try {
-            br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
-            while ((line = br.readLine()) != null) { // cycles through line by line
-                String[] brLine = line.split(",");
-                for (int brCount = 0; brCount < brLine.length; ++brCount) { // cycles through line split by ","
-                    if (!doubleQuoteRecognizer) {
-                        if (brLine[brCount].contains("\"")) { // Start of double quote
-                            doubleQuoteRecognizer = true;
-                            dataToken = brLine[brCount];
-                            --collumn;
-                        } else {
-                            dataToken = brLine[brCount];
-                        }
-                    } else {
-                        dataToken = dataToken + "," + brLine[brCount]; // Merges double quote data
-                        if (brLine[brCount].contains("\"")) { // End of qouble quote
-                            doubleQuoteRecognizer = false;
-                        } else{
-                            --collumn;
-                        }
-                    }
-                    if (!doubleQuoteRecognizer) { // Allows incomplete dataTokens to pass through unnassigned
-                        if (!dataToken.isEmpty()) {
-                            switch (collumn) { // Determines dataToken finds correct Business obj variable
-                                case nameCollumn:
-                                    if (dataToken.contains("\"")) { // Removes leading and trailing "\""
-                                        dataToken = dataToken.substring(1, dataToken.length() - 1);
-                                    }
-                                    if (dataToken.toLowerCase().contains("llc")) { // Removes " llc"
-                                        dataToken = dataToken.substring(0, dataToken.length() - 4);
-                                    }
-                                    if (dataToken.toLowerCase().contains("inc")) {// Removes " inc."
-                                        dataToken = dataToken.substring(0, dataToken.length() - 5);
-                                    }
-                                    busTemp.setName(dataToken);
-                                    break;
-                                case bbbCollumn:
-                                    busTemp.setBetterBusinessBureau(dataToken);
-                                    break;
-                                case ccrCollumn:
-                                    try {
-                                        busTemp.setCorporateCriticScore(Double.parseDouble(dataToken));
-                                    } catch (NumberFormatException e) {
-                                        e.printStackTrace();
-                                    }
-                                    break;
-                                case goyCollumn:
-                                    try {
-                                        busTemp.setGoodOnYouScore(Double.parseDouble(dataToken));
-                                    } catch (NumberFormatException e) {
-                                        e.printStackTrace();
-                                    }
-                                    break;
-                                case environmentCollumn:
-                                    try {
-                                        busTemp.setEnvironmentScore(Double.parseDouble(dataToken));
-                                    } catch (NumberFormatException e) {
-                                        e.printStackTrace();
-                                    }
-                                    break;
-                                case textileCollumn:
-                                    try {
-                                        busTemp.setTextilesScore(Double.parseDouble(dataToken));
-                                    } catch (NumberFormatException e) {
-                                        e.printStackTrace();
-                                    }
-                                    break;
-                                case animalCollumn:
-                                    try {
-                                        busTemp.setAnimalsScore(Double.parseDouble(dataToken));
-                                    } catch (NumberFormatException e) {
-                                        e.printStackTrace();
-                                    }
-                                    break;
-                                case laborCollumn:
-                                    try {
-                                        busTemp.setLaborScore(Double.parseDouble(dataToken));
-                                    } catch (NumberFormatException e) {
-                                        e.printStackTrace();
-                                    }
-                                    break;
-                                case averageCollumn:
-                                    try {
-                                        busTemp.setAverageScore(Double.parseDouble(dataToken));
-                                    } catch (NumberFormatException e) {
-                                        e.printStackTrace();
-                                    }
-                                    break;
-                                default:
-                            }
-                        }
-                    }
-                    ++collumn;
-                    if (collumn == collumnCount) { // End of Cycle indicator
-                        collumn = 0; // Restarts Cycle
-                        // compares searchTerm with name and website
-                        if ( compareTerms(searchTerm, busTemp.getName().toLowerCase())) {
-                            business = busTemp;
-                        }
-                        busTemp = new Business();
-                    }
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return business;
-    }
-
-    public static boolean compareTerms(String searchTerm, String dataTerm) {
-        String searchTermArray [] = searchTerm.split("_");
-        String dataTermArray [] = dataTerm.split("_");
-        String searchToken = "";
-        int searchDepth = 3;
-        if (searchTerm.equals(dataTerm)) {
-            return true;
-        }
-        for (int a = searchTermArray.length; a > 0; --a) {
-            searchToken = searchTermArray[0];
-            for (int b = 1; b < a; ++b) {
-                searchToken += "_" + searchTermArray[b];
-            }
-            if (dataTerm.contains(searchToken)) {
-                if (searchToken.length() > searchDepth) {
-                    return true;
-                } else {
-                    for (int c = 0; c  < searchTermArray.length; ++c) {
-                        for (int d = 0; d < dataTermArray.length; ++d) {
-                            if (searchTermArray[c] == dataTermArray[d]) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return false;
     }
 }
