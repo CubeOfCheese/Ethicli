@@ -1,7 +1,6 @@
 window.onload = function pageEval() {
     let dom = document.getElementsByTagName('html')[0].innerHTML;
     var shopWords = [
-        "content=\"product\"",
         /"add-to-basket"/i,
         /"addtocartBtn"/i,
         /"gl-product-card-container"/i,
@@ -92,9 +91,11 @@ window.onload = function pageEval() {
         /"browse products*"/i,
         /"buy it now"/i,
         /"buy this now"/i,
+        /"buy now"/i,
         /"checkout"/i,
         /"coupons & deals"/i,
         /"coupons &amp; deals"/i,
+        /"featured products"/i,
         /"free shipping"/i,
         /"get free shipping"/i,
         /"get free shipping*"/i,
@@ -106,9 +107,14 @@ window.onload = function pageEval() {
         /"order cancellation policy"/i,
         /"order now"/i,
         /"order pickup"/i,
+        /"order policy"/i,
+        /"order policies"/i,
         /"order status"/i,
         /"our stores"/i,
+        /"pre-order"/i,
+        /"preorder"/i,
         /"product catalog"/i,
+        /"refund policy"/i,
         /"return policy"/i,
         /"returns & exchanges"/i,
         /"returns &amp; exchanges"/i,
@@ -116,42 +122,59 @@ window.onload = function pageEval() {
         /"returns &amp; refunds"/i,
         /"same day delivery"/i,
         /"secure checkout"/i,
+        /"shipping & returns"/i,
+        /"shipping &amp; returns"/i,
         /"shipping info"/i,
         /"shipping information"/i,
+        /"shipping policy"/i,
+        /"shop all"/i,
         /"shop by *"/i,
+        /"shop bestsellers"/i,
         /"shop by category"/i,
         /"shop by categories"/i,
+        /"shop by collection"/i,
+        /"shop by collections"/i,
         /"shop by department"/i,
+        /"shop category"/i,
+        /"shop categories"/i,
+        /"shop collection"/i,
+        /"shop collections"/i,
         /"shop now"/i,
         /"shop now*"/i,
+        /"shop our bestsellers"/i,
         /"shop popular"/i,
         /"shop popular categories"/i,
         /"shop product"/i,
         /"shop product*"/i,
         /"shop product range"/i,
+        /"shop the collection"/i,
         /"shopping options"/i,
         /"ssl secure checkout"/i,
         /"track order"/i,
         /"track your order"/i,
-        "&#36;",
-        "€",
-        "&#128;",
-        "&euro;",
-        "£",
-        "&#163;",
-        "&pound;",
-        "¥",
-        "&#165;",
-        "&yen;",
-        "₹",
-        "&#x20B9;",
+        /"upcoming sales"/i
     ];
 
+    function matchInArray(string, expressions) {
+        var len = expressions.length,
+            i = 0;
+        for (; i < len; i++) {
+            if (string.match(expressions[i])) {
+                return true;
+            }
+        }
+        return false;
+    };
+    
     var wordTracker = 0;
     for (i = 0; i < shopWords.length; i++) {
         var present = dom.search(shopWords[i]);
-        if (present > -1) { // if words are present, add values.
+        var inArray = matchInArray(dom, shopWords[i]);
+        if ((present > -1)||(inArray)) { // if words are present, add values.
             wordTracker += 1;
+            console.log(shopWords[i] + " is in RegEx!");
+        }else{
+            console.log("no shop words");
         }
     }
 
