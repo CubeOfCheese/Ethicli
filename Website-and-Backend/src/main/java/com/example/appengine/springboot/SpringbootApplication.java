@@ -58,12 +58,44 @@ public class SpringbootApplication {
         return output;
     }
 
-    // Compares terms with and without unnecessary characters
-    public boolean compare(String searchTerm, String dataTerm) {
-        if (dataTerm.toLowerCase().contains(searchTerm.toLowerCase()))
-            return true;
-        if (prepareSearchTerm(dataTerm).toLowerCase().contains(prepareSearchTerm(searchTerm).toLowerCase()))
-            return true;
+    // Compares searchTerm with business.website if it exists, if no match is found, it compares with business.name
+    public boolean compare(String searchTerm, Business business) {
+        searchTerm = searchTerm.toLowerCase();
+        if (business.getWebsite() != null) {  // Compares searchTerm with business.website
+            String websiteTemp = business.getWebsite().toLowerCase();
+            if (websiteTemp.contains("http://")) {
+                websiteTemp = websiteTemp.substring(7, websiteTemp.length());
+            } else if (websiteTemp.contains("https://")) {
+                websiteTemp = websiteTemp.substring(8, websiteTemp.length());
+            }
+            if (websiteTemp.contains("www.")) {
+                websiteTemp = websiteTemp.substring(4, websiteTemp.length());
+            }
+            if (websiteTemp.length() > searchTerm.length()) {
+                if (searchTerm.equals(websiteTemp.substring(0, searchTerm.length()))
+                        && websiteTemp.charAt(searchTerm.length()) == '.') {
+                    return true;
+                }
+            }
+        }
+        // Compare searchTerm with business.name
+        String nameArray[] = prepareSearchTerm(business.getName().toLowerCase()).split(" ");
+        for (int a = 0; a < nameArray.length; ++a) { // Compares with each word individually
+            if (searchTerm.equals(nameArray[a]))
+                return true;
+        }
+        if (nameArray.length > 1) { // Compares with each 2 word combo (eg. Home Depot -> homedepot)
+            for (int a = 0; a < nameArray.length - 1; ++a) {
+                if (searchTerm.equals(nameArray[a] +  nameArray[a + 1]))
+                    return true;
+            }
+        }
+        if (nameArray.length > 2) { // Compares with each 3 word combo (eg. L. L. Bean -> llbean)
+            for (int a = 0; a < nameArray.length - 2; ++a) {
+                if (searchTerm.equals(nameArray[a] +  nameArray[a + 1] + nameArray[a + 2]))
+                    return true;
+            }
+        }
         return false;
     }
 
@@ -76,17 +108,17 @@ public class SpringbootApplication {
         searchTerm = charRemove(searchTerm, '.');
         searchTerm = charRemove(searchTerm, '-');
         searchTerm = charRemove(searchTerm, '_');
-        searchTerm = charRemove(searchTerm, ' ');
+        searchTerm = charRemove(searchTerm, '&');
         return searchTerm;
     }
 
-    // Searches Data Source: Collumns of data source should be specified by order 0, 1, 2,.. If collumn is not present in Data Source write -1.
-    public Business searchDataSource(String searchTerm, String filename, final int collumnCount, final int nameCollumn, int bcorpProfileCollumn,
-                                            int websiteCollumn, int supportsBLMSourceCollumn, int supportsBLMEntityCollumn, int supportsBLMContributionCollumn,
-                                            int companyTypeCollumn, int betterBusinessBureauCollumn, int corporateCriticScoreCollumn, int goodOnYouScoreCollumn,
-                                            int environmentScoreCollumn, int textilesScoreCollumn, int animalsScoreCollumn, int laborScoreCollumn,
-                                            int averageScoreCollumn, int bcorpCertifiedCollumn, int bcorpScoreCollumn, int bcorpCertYearCollumn,
-                                            boolean bluesignPartnerCollumn, boolean supportsBLMCollumn, boolean blackOwnedBusinessCollumn) throws IOException {
+    // Searches Data Source: Columns of data source should be specified by order 0, 1, 2,.. If column is not present in Data Source write -1.
+    public Business searchDataSource(String searchTerm, String filename, final int columnCount, final int nameColumn, int bcorpProfileColumn,
+                                            int websiteColumn, int supportsBLMSourceColumn, int supportsBLMEntityColumn, int supportsBLMContributionColumn,
+                                            int companyTypeColumn, int betterBusinessBureauColumn, int corporateCriticScoreColumn, int goodOnYouScoreColumn,
+                                            int environmentScoreColumn, int textilesScoreColumn, int animalsScoreColumn, int laborScoreColumn,
+                                            int averageScoreColumn, int bcorpCertifiedColumn, int bcorpScoreColumn, int bcorpCertYearColumn,
+                                            boolean bluesignPartnerColumn, boolean supportsBLMColumn, boolean blackOwnedBusinessColumn) throws IOException {
         Business busTemp = new Business(); // Business temp obj for search and compare
         Business business = new Business(); // Business obj for matching data of most recent .year
         Resource resource = new ClassPathResource(filename);
@@ -94,13 +126,13 @@ public class SpringbootApplication {
         BufferedReader br = null;
         String line = "";
         String dataToken = ""; // Data that is eventually sent to specified business values
-        int collumn = 0; // Collumn index for cycling through data
+        int column = 0; // Column index for cycling through data
         boolean doubleQuoteRecognizer = false; // To resolve .csv 'double quote when comma is present' issue
         String[] brLine;
         try {
             br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
             while ((line = br.readLine()) != null) { // cycles through line by line
-                if (bluesignPartnerCollumn){
+                if (bluesignPartnerColumn){
                     brLine = line.split("\n");
                 } else {
                     brLine = line.split(",");
@@ -110,7 +142,7 @@ public class SpringbootApplication {
                         if (brLine[brCount].contains("\"")) { // Start of double quote
                             doubleQuoteRecognizer = true;
                             dataToken = brLine[brCount];
-                            --collumn;
+                            --column;
                         } else {
                             dataToken = brLine[brCount];
                         }
@@ -119,13 +151,13 @@ public class SpringbootApplication {
                         if (brLine[brCount].contains("\"")) { // End of qouble quote
                             doubleQuoteRecognizer = false;
                         } else{
-                            --collumn;
+                            --column;
                         }
                     }
                     if (!doubleQuoteRecognizer) { // Allows incomplete dataTokens to pass through unnassigned
                         if (!dataToken.isEmpty()) {
-                            if (collumn == nameCollumn) {
-                                if (bluesignPartnerCollumn) {
+                            if (column == nameColumn) {
+                                if (bluesignPartnerColumn) {
                                     String nameTemp [] = dataToken.split(",");
                                     dataToken = nameTemp[0];
                                 }
@@ -133,75 +165,75 @@ public class SpringbootApplication {
                                     dataToken = dataToken.substring(1, dataToken.length() - 1);
                                 }
                                 busTemp.setName(dataToken);
-                                busTemp.setBlackOwnedBusiness(blackOwnedBusinessCollumn);
-                                busTemp.setSupportsBLM(supportsBLMCollumn);
-                                busTemp.setBluesignPartner(bluesignPartnerCollumn);
-                            } else if (collumn == bcorpProfileCollumn) {
+                                busTemp.setBlackOwnedBusiness(blackOwnedBusinessColumn);
+                                busTemp.setSupportsBLM(supportsBLMColumn);
+                                busTemp.setBluesignPartner(bluesignPartnerColumn);
+                            } else if (column == bcorpProfileColumn) {
                                 busTemp.setBcorpProfile(dataToken);
-                            } else if (collumn == websiteCollumn) {
+                            } else if (column == websiteColumn) {
                                 busTemp.setWebsite(dataToken);
-                            } else if (collumn == supportsBLMSourceCollumn) {
+                            } else if (column == supportsBLMSourceColumn) {
                                 busTemp.setSupportsBLMSource(dataToken);
-                            } else if (collumn == supportsBLMEntityCollumn) {
+                            } else if (column == supportsBLMEntityColumn) {
                                 busTemp.setSupportsBLMEntity(dataToken);
-                            } else if (collumn == supportsBLMContributionCollumn) {
+                            } else if (column == supportsBLMContributionColumn) {
                                 busTemp.setSupportsBLMContribution(dataToken);
-                            } else if (collumn == companyTypeCollumn) {
+                            } else if (column == companyTypeColumn) {
                                 busTemp.setCompanyType(dataToken);
-                            } else if (collumn == betterBusinessBureauCollumn) {
+                            } else if (column == betterBusinessBureauColumn) {
                                 busTemp.setBetterBusinessBureau(dataToken);
-                            } else if (collumn == corporateCriticScoreCollumn) {
+                            } else if (column == corporateCriticScoreColumn) {
                                 try {
                                     busTemp.setCorporateCriticScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
-                            } else if (collumn == goodOnYouScoreCollumn) {
+                            } else if (column == goodOnYouScoreColumn) {
                                 try {
                                     busTemp.setGoodOnYouScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
-                            } else if (collumn == environmentScoreCollumn) {
+                            } else if (column == environmentScoreColumn) {
                                 try {
                                     busTemp.setEnvironmentScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
-                            } else if (collumn == textilesScoreCollumn) {
+                            } else if (column == textilesScoreColumn) {
                                 try {
                                     busTemp.setTextilesScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
-                            } else if (collumn == animalsScoreCollumn) {
+                            } else if (column == animalsScoreColumn) {
                                 try {
                                     busTemp.setAnimalsScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
-                            } else if (collumn == laborScoreCollumn) {
+                            } else if (column == laborScoreColumn) {
                                 try {
                                     busTemp.setLaborScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
-                            } else if (collumn == averageScoreCollumn) {
+                            } else if (column == averageScoreColumn) {
                                 try {
                                     busTemp.setAverageScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
-                            } else if (collumn == bcorpCertifiedCollumn) {
+                            } else if (column == bcorpCertifiedColumn) {
                                 if (!dataToken.contains("de-certified"))
                                     busTemp.setBcorpCertified(true);
-                            } else if (collumn == bcorpScoreCollumn) {
+                            } else if (column == bcorpScoreColumn) {
                                 try {
                                     busTemp.setBcorpScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
-                            } else if (collumn == bcorpCertYearCollumn) {
+                            } else if (column == bcorpCertYearColumn) {
                                 try {
                                     busTemp.setBcorpCertYear(Integer.parseInt(dataToken));
                                 } catch (NumberFormatException e) {
@@ -210,19 +242,12 @@ public class SpringbootApplication {
                             }
                         }
                     }
-                    ++collumn;
-                    if (collumn == collumnCount) { // End of Cycle indicator
-                        collumn = 0; // Restarts Cycle
-                        if (busTemp.getWebsite() != null) {
-                            if (compare(searchTerm, busTemp.getWebsite())) {
+                    ++column;
+                    if (column == columnCount) { // End of Cycle indicator
+                        column = 0; // Restarts Cycle
+                            if (compare(searchTerm, busTemp)) {
                                 business = busTemp;
                             }
-                        }
-                        if (busTemp.getName() != null) {
-                            if (compare(searchTerm, busTemp.getName())) {
-                                business = busTemp;
-                            }
-                        }
                         busTemp = new Business();
                     }
                 }
