@@ -155,26 +155,12 @@ window.onload = function pageEval() {
         /"upcoming sales"/i
     ];
 
-    function matchInArray(string, expressions) {
-        var len = expressions.length,
-            i = 0;
-        for (; i < len; i++) {
-            if (string.match(expressions[i])) {
-                return true;
-            }
-        }
-        return false;
-    };
-    
     var wordTracker = 0;
     for (i = 0; i < shopWords.length; i++) {
-        var present = dom.search(shopWords[i]);
-        var inArray = matchInArray(dom, shopWords[i]);
-        if ((present > -1)||(inArray)) { // if words are present, add values.
+        var inArray = dom.match(shopWords[i]);
+        if (inArray) { // if words are present, add values.
             wordTracker += 1;
-            console.log(shopWords[i] + " is in RegEx!");
-        }else{
-            console.log("no shop words");
+            console.log(shopWords[i]);
         }
     }
 
