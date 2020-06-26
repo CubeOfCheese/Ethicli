@@ -341,6 +341,10 @@ a {
     display: none;
 }
 
+.break2{
+    display: block;
+}
+
 #quote {
     position: absolute;
     right: 30px;
@@ -446,6 +450,9 @@ button {
         display: block;
         margin: 81px auto 0 auto;
         width: 300px;
+    }
+    .break2{
+        display: none;
     }
 }
 
