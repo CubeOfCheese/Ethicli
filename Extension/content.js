@@ -160,7 +160,6 @@ window.onload = function pageEval() {
         var inArray = dom.match(shopWords[i]);
         if (inArray) { // if words are present, add values.
             wordTracker += 1;
-            console.log(shopWords[i]);
         }
     }
 
