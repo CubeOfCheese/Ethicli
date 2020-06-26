@@ -268,12 +268,21 @@ public class Business {
             this.bluesignPartner = business.isBluesignPartner();
         if (this.supportsBLM == false)
             this.supportsBLM = business.getSupportsBLM();
-        if (this.supportsBLMSource == null)
+        if (this.supportsBLMSource == null) {
             this.supportsBLMSource = business.getSupportsBLMSource();
-        if (this.supportsBLMEntity == null)
+        } else if (business.getSupportsBLMSource() != null) {
+            this.supportsBLMSource += " + " + business.getSupportsBLMSource();
+        }
+        if (this.supportsBLMEntity == null) {
             this.supportsBLMEntity = business.getSupportsBLMEntity();
-        if (this.supportsBLMContribution == null)
+        } else if (business.getSupportsBLMEntity() != null) {
+            this.supportsBLMEntity += " + " + business.getSupportsBLMEntity();
+        }
+        if (this.supportsBLMContribution == null) {
             this.supportsBLMContribution = business.getSupportsBLMContribution();
+        } else if (business.getSupportsBLMContribution() != null) {
+            this.supportsBLMContribution += " + " + business.getSupportsBLMContribution();
+        }
         if (this.companyType == null)
             this.companyType = business.getCompanyType();
         if (this.blackOwnedBusiness == false)

@@ -170,7 +170,7 @@ public class SpringbootApplication {
                             } else if (column == supportsBLMEntityColumn) {
                                 busTemp.setSupportsBLMEntity(dataToken);
                             } else if (column == supportsBLMContributionColumn) {
-                                busTemp.setSupportsBLMContribution(dataToken);
+                                busTemp.setSupportsBLMContribution(charRemove(dataToken, '"'));
                             } else if (column == companyTypeColumn) {
                                 busTemp.setCompanyType(dataToken);
                             } else if (column == betterBusinessBureauColumn) {
@@ -239,7 +239,7 @@ public class SpringbootApplication {
                     if (column == columnCount) { // End of Cycle indicator
                         column = 0; // Restarts Cycle
                             if (compare(searchTerm, busTemp)) {
-                                business = busTemp;
+                                business.update(busTemp);
                             }
                         busTemp = new Business();
                     }
