@@ -62,37 +62,30 @@ public class SpringbootApplication {
     public boolean compare(String searchTerm, Business business) {
         searchTerm = searchTerm.toLowerCase();
         if (business.getWebsite() != null) {  // Compares searchTerm with business.website
-            String websiteTemp = business.getWebsite().toLowerCase();
-            if (websiteTemp.contains("http://")) {
-                websiteTemp = websiteTemp.substring(7, websiteTemp.length());
-            } else if (websiteTemp.contains("https://")) {
-                websiteTemp = websiteTemp.substring(8, websiteTemp.length());
+            String website = business.getWebsite().toLowerCase();
+            if (website.contains("http://")) {
+                website = website.substring(7, website.length());
+            } else if (website.contains("https://")) {
+                website = website.substring(8, website.length());
             }
-            if (websiteTemp.contains("www.")) {
-                websiteTemp = websiteTemp.substring(4, websiteTemp.length());
+            if (website.contains("www.")) {
+                website = website.substring(4, website.length());
             }
-            if (websiteTemp.length() > searchTerm.length()) {
-                if (searchTerm.equals(websiteTemp.substring(0, searchTerm.length()))
-                        && websiteTemp.charAt(searchTerm.length()) == '.') {
+            if (website.length() > searchTerm.length()) {
+                if (searchTerm.equals(website.substring(0, searchTerm.length()))
+                        && website.charAt(searchTerm.length()) == '.') {
                     return true;
                 }
             }
         }
-        // Compare searchTerm with business.name
+        // Compare searchTerm with business.name - Checks matches of words in business.name individually and together
         String nameArray[] = prepareSearchTerm(business.getName().toLowerCase()).split(" ");
-        for (int a = 0; a < nameArray.length; ++a) { // Compares with each word individually
-            if (searchTerm.equals(nameArray[a]))
-                return true;
-        }
-        if (nameArray.length > 1) { // Compares with each 2 word combo (eg. Home Depot -> homedepot)
-            for (int a = 0; a < nameArray.length - 1; ++a) {
-                if (searchTerm.equals(nameArray[a] +  nameArray[a + 1]))
-                    return true;
-            }
-        }
-        if (nameArray.length > 2) { // Compares with each 3 word combo (eg. L. L. Bean -> llbean)
-            for (int a = 0; a < nameArray.length - 2; ++a) {
-                if (searchTerm.equals(nameArray[a] +  nameArray[a + 1] + nameArray[a + 2]))
+        String nameToken;
+        for (int a = 0; a < nameArray.length; ++a) {
+            nameToken ="";
+            for (int b = a; b < nameArray.length; ++b) {
+                nameToken += nameArray[b];
+                if (searchTerm.equals(nameToken))
                     return true;
             }
         }
