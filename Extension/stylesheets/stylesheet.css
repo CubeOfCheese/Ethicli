@@ -151,6 +151,10 @@ body {
     top: 165px;
 }
 
+#shopDataUnavailable #badges h6{
+    margin-right: 8px;
+}
+
 #shopDataUnavailable #hasBadge h2{
     color: #89a387;
 }
