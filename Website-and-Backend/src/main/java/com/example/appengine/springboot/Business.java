@@ -3,84 +3,91 @@ package com.example.appengine.springboot;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Business {
-    String name;
-    String bcorpProfile;
-    String website;
-    String supportsBLMSource;
-    String supportsBLMEntity;
-    String supportsBLMContribution;
-    String companyType;
-    String betterBusinessBureau;
-    double corporateCriticScore;
-    double goodOnYouScore;
-    double environmentScore;
-    double textilesScore;
-    double animalsScore;
-    double laborScore;
-    double averageScore;
-    double bcorpScore;
-    int bcorpCertYear;
-    boolean bluesignPartner;
-    boolean bcorpCertified;
-    boolean supportsBLM;
-    boolean blackOwnedBusiness;
+    private boolean bcorpCertified;
+    private boolean blackOwnedBusiness;
+    private boolean bluesignPartner;
+    private boolean nativeOwnedBusiness;
+    private boolean pocOwnedBusiness;
+    private boolean supportsBLM;
+    private double animalsScore;
+    private double averageScore;
+    private double bcorpScore;
+    private double corporateCriticScore;
+    private double environmentScore;
+    private double goodOnYouScore;
+    private double laborScore;
+    private double textileScore;
+    private int bcorpCertYear;
+    private String bcorpProfile;
+    private String betterBusinessBureau;
+    private String companyType;
+    private String name;
+    private String supportsBLMContribution;
+    private String supportsBLMEntity;
+    private String supportsBLMSource;
+    private String website;
 
     public Business() {
-        this.name = null;
         this.bcorpCertified = false;
-        this.bcorpProfile = null;
-        this.website = null;
-        this.bcorpCertYear = 0;
-        this.bcorpScore = 0;
-        this.bluesignPartner = false;
-        this.supportsBLM = false;
-        this.supportsBLMSource = null;
-        this.supportsBLMEntity = null;
-        this.supportsBLMContribution = null;
-        this.companyType = null;
         this.blackOwnedBusiness = false;
-        this.betterBusinessBureau = null;
-        this.corporateCriticScore = 0;
-        this.goodOnYouScore = 0;
-        this.environmentScore = 0;
-        this.textilesScore = 0;
+        this.bluesignPartner = false;
+        this.nativeOwnedBusiness = false;
+        this.pocOwnedBusiness = false;
+        this.supportsBLM = false;
         this.animalsScore = 0;
-        this.laborScore = 0;
         this.averageScore = 0;
+        this.bcorpScore = 0;
+        this.corporateCriticScore = 0;
+        this.environmentScore = 0;
+        this.goodOnYouScore = 0;
+        this.laborScore = 0;
+        this.textileScore = 0;
+        this.bcorpCertYear = 0;
+        this.bcorpProfile = null;
+        this.betterBusinessBureau = null;
+        this.companyType = null;
+        this.name = null;
+        this.supportsBLMContribution = null;
+        this.supportsBLMEntity = null;
+        this.supportsBLMSource = null;
+        this.website = null;
     }
 
     public Business(@JsonProperty("name") String name, @JsonProperty("bcorpCertified") boolean bcorpCertified,
                     @JsonProperty("bcorpProfile") String bcorpProfile, @JsonProperty("website") String website,
                     @JsonProperty("bcorpCertYear") int bcorpCertYear, @JsonProperty("bcorpScore") double bcorpScore,
-                    @JsonProperty("bluesign_partner") boolean bluesignPartner, @JsonProperty("supportsBLM") boolean supportsBLM,
+                    @JsonProperty("bluesignPartner") boolean bluesignPartner, @JsonProperty("supportsBLM") boolean supportsBLM,
                     @JsonProperty("supportsBLMSource") String supportsBLMSource, @JsonProperty("supportsBLMEntity") String supportsBLMEntity,
                     @JsonProperty("supportsBLMContribution") String supportsBLMContribution, @JsonProperty("companyType") String companyType,
                     @JsonProperty("blackOwnedBusiness") boolean blackOwnedBusiness, @JsonProperty("betterBusinessBureau") String betterBusinessBureau,
                     @JsonProperty("corporateCriticScore") double corporateCriticScore, @JsonProperty("goodOnYouScore") double goodOnYouScore,
-                    @JsonProperty("environmentScore") double environmentScore, @JsonProperty("textilesScore") double textilesScore,
+                    @JsonProperty("environmentScore") double environmentScore, @JsonProperty("textileScore") double textileScore,
                     @JsonProperty("animalsScore") double animalsScore, @JsonProperty("laborScore") double laborScore,
-                    @JsonProperty("averageScore") double averageScore) {
-        this.name = name;
+                    @JsonProperty("averageScore") double averageScore, @JsonProperty("pocOwnedBusiness") boolean pocOwnedBusiness,
+                    @JsonProperty("nativeOwnedBusiness") boolean nativeOwnedBusiness) {
         this.bcorpCertified = bcorpCertified;
-        this.bcorpProfile = bcorpProfile;
-        this.website = website;
-        this.bcorpCertYear = bcorpCertYear;
-        this.bcorpScore = bcorpScore;
-        this.bluesignPartner = bluesignPartner;
-        this.supportsBLM = supportsBLM;
-        this.supportsBLMSource = supportsBLMSource;
-        this.supportsBLMEntity = supportsBLMEntity;
-        this.supportsBLMContribution = supportsBLMContribution;
-        this.companyType = companyType;
         this.blackOwnedBusiness = blackOwnedBusiness;
-        this.betterBusinessBureau = betterBusinessBureau;
-        this.corporateCriticScore = corporateCriticScore;
-        this.goodOnYouScore = goodOnYouScore;
-        this.environmentScore = environmentScore;
-        this.textilesScore = textilesScore;
+        this.bluesignPartner = bluesignPartner;
+        this.nativeOwnedBusiness = nativeOwnedBusiness;
+        this.pocOwnedBusiness = pocOwnedBusiness;
+        this.supportsBLM = supportsBLM;
         this.animalsScore = animalsScore;
-        this.laborScore = laborScore;
         this.averageScore = averageScore;
+        this.bcorpScore = bcorpScore;
+        this.corporateCriticScore = corporateCriticScore;
+        this.environmentScore = environmentScore;
+        this.goodOnYouScore = goodOnYouScore;
+        this.laborScore = laborScore;
+        this.textileScore = textileScore;
+        this.bcorpCertYear = bcorpCertYear;
+        this.bcorpProfile = bcorpProfile;
+        this.betterBusinessBureau = betterBusinessBureau;
+        this.companyType = companyType;
+        this.name = name;
+        this.supportsBLMContribution = supportsBLMContribution;
+        this.supportsBLMEntity = supportsBLMEntity;
+        this.supportsBLMSource = supportsBLMSource;
+        this.website = website;
     }
 
     public String getName() {
@@ -89,6 +96,10 @@ public class Business {
 
     public boolean isBcorpCertified() {
         return bcorpCertified;
+    }
+
+    public boolean isPocOwnedBusiness() {
+        return pocOwnedBusiness;
     }
 
     public String getBcorpProfile() {
@@ -159,12 +170,16 @@ public class Business {
         return laborScore;
     }
 
-    public double getTextilesScore() {
-        return textilesScore;
+    public double getTextileScore() {
+        return textileScore;
     }
 
     public String getBetterBusinessBureau() {
         return betterBusinessBureau;
+    }
+
+    public boolean isNativeOwnedBusiness() {
+        return nativeOwnedBusiness;
     }
 
     public void setName(String name) {
@@ -243,12 +258,20 @@ public class Business {
         this.laborScore = laborScore;
     }
 
-    public void setTextilesScore(double textilesScore) {
-        this.textilesScore = textilesScore;
+    public void setTextileScore(double textileScore) {
+        this.textileScore = textileScore;
     }
 
     public void setSupportsBLMContribution(String supportsBLMContribution) {
         this.supportsBLMContribution = supportsBLMContribution;
+    }
+
+    public void setNativeOwnedBusiness(boolean nativeOwnedBusiness) {
+        this.nativeOwnedBusiness = nativeOwnedBusiness;
+    }
+
+    public void setPocOwnedBusiness(boolean pocOwnedBusiness) {
+        this.pocOwnedBusiness = pocOwnedBusiness;
     }
 
     public void update(Business business){
@@ -268,12 +291,21 @@ public class Business {
             this.bluesignPartner = business.isBluesignPartner();
         if (this.supportsBLM == false)
             this.supportsBLM = business.getSupportsBLM();
-        if (this.supportsBLMSource == null)
+        if (this.supportsBLMSource == null) {
             this.supportsBLMSource = business.getSupportsBLMSource();
-        if (this.supportsBLMEntity == null)
+        } else if (business.getSupportsBLMSource() != null) {
+            this.supportsBLMSource += " + " + business.getSupportsBLMSource();
+        }
+        if (this.supportsBLMEntity == null) {
             this.supportsBLMEntity = business.getSupportsBLMEntity();
-        if (this.supportsBLMContribution == null)
+        } else if (business.getSupportsBLMEntity() != null) {
+            this.supportsBLMEntity += " + " + business.getSupportsBLMEntity();
+        }
+        if (this.supportsBLMContribution == null) {
             this.supportsBLMContribution = business.getSupportsBLMContribution();
+        } else if (business.getSupportsBLMContribution() != null) {
+            this.supportsBLMContribution += " + " + business.getSupportsBLMContribution();
+        }
         if (this.companyType == null)
             this.companyType = business.getCompanyType();
         if (this.blackOwnedBusiness == false)
@@ -286,14 +318,18 @@ public class Business {
             this.goodOnYouScore = business.getGoodOnYouScore();
         if (this.environmentScore == 0)
             this.environmentScore = business.getEnvironmentScore();
-        if (this.textilesScore == 0)
-            this.textilesScore = business.getTextilesScore();
+        if (this.textileScore == 0)
+            this.textileScore = business.getTextileScore();
         if (this.animalsScore == 0)
             this.animalsScore = business.getAnimalsScore();
         if (this.laborScore == 0)
             this.laborScore = business.getLaborScore();
         if (this.averageScore == 0)
             this.averageScore = business.getAverageScore();
+        if (this.pocOwnedBusiness == false)
+            this.pocOwnedBusiness = business.isPocOwnedBusiness();
+        if (this.nativeOwnedBusiness == false)
+            this.nativeOwnedBusiness = business.isNativeOwnedBusiness();
     }
 
     public void display() {
@@ -302,10 +338,12 @@ public class Business {
         System.out.println("Business Type:          " + this.companyType);
         System.out.println("Bcorp Score:            " + this.bcorpScore);
         System.out.println("Black Owned Business:   " + this.blackOwnedBusiness);
+        System.out.println("Native Owned Business:  " + this.nativeOwnedBusiness);
         System.out.println("BCorp Certified:        " + this.bcorpCertified);
         System.out.println("BCorp Profile:          " + this.bcorpProfile);
         System.out.println("BCorp Cert Year:        " + this.bcorpCertYear);
         System.out.println("Bluesign Partner:       " + this.bluesignPartner);
+        System.out.println("POC Owned Business:     " + this.pocOwnedBusiness);
         System.out.println("Supports BLM:           " + this.supportsBLM);
         System.out.println("Supports BLMSource:     " + this.supportsBLMSource);
         System.out.println("Supports BLMEntity:     " + this.supportsBLMEntity);
@@ -314,7 +352,7 @@ public class Business {
         System.out.println("CCR Score:              " + this.corporateCriticScore);
         System.out.println("GoY Score:              " + this.goodOnYouScore);
         System.out.println("Environment Score:      " + this.environmentScore);
-        System.out.println("Textile Score:          " + this.textilesScore);
+        System.out.println("Textile Score:          " + this.textileScore);
         System.out.println("Animal Score:           " + this.animalsScore);
         System.out.println("Labor Score:            " + this.laborScore);
         System.out.println("Average Score:          " + this.averageScore);
