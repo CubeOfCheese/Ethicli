@@ -10,12 +10,12 @@ public class Business {
     private boolean pocOwnedBusiness;
     private boolean supportsBLM;
     private double animalsScore;
-    private double averageScore;
     private double bcorpScore;
     private double corporateCriticScore;
     private double environmentScore;
     private double goodOnYouScore;
     private double laborScore;
+    private double overallScore;
     private double textileScore;
     private int bcorpCertYear;
     private String bcorpProfile;
@@ -35,12 +35,12 @@ public class Business {
         this.pocOwnedBusiness = false;
         this.supportsBLM = false;
         this.animalsScore = 0;
-        this.averageScore = 0;
         this.bcorpScore = 0;
         this.corporateCriticScore = 0;
         this.environmentScore = 0;
         this.goodOnYouScore = 0;
         this.laborScore = 0;
+        this.overallScore = 0;
         this.textileScore = 0;
         this.bcorpCertYear = 0;
         this.bcorpProfile = null;
@@ -63,7 +63,7 @@ public class Business {
                     @JsonProperty("corporateCriticScore") double corporateCriticScore, @JsonProperty("goodOnYouScore") double goodOnYouScore,
                     @JsonProperty("environmentScore") double environmentScore, @JsonProperty("textileScore") double textileScore,
                     @JsonProperty("animalsScore") double animalsScore, @JsonProperty("laborScore") double laborScore,
-                    @JsonProperty("averageScore") double averageScore, @JsonProperty("pocOwnedBusiness") boolean pocOwnedBusiness,
+                    @JsonProperty("overallScore") double overallScore, @JsonProperty("pocOwnedBusiness") boolean pocOwnedBusiness,
                     @JsonProperty("nativeOwnedBusiness") boolean nativeOwnedBusiness) {
         this.bcorpCertified = bcorpCertified;
         this.blackOwnedBusiness = blackOwnedBusiness;
@@ -72,7 +72,7 @@ public class Business {
         this.pocOwnedBusiness = pocOwnedBusiness;
         this.supportsBLM = supportsBLM;
         this.animalsScore = animalsScore;
-        this.averageScore = averageScore;
+        this.overallScore = overallScore;
         this.bcorpScore = bcorpScore;
         this.corporateCriticScore = corporateCriticScore;
         this.environmentScore = environmentScore;
@@ -150,8 +150,8 @@ public class Business {
         return animalsScore;
     }
 
-    public double getAverageScore() {
-        return averageScore;
+    public double getOverallScore() {
+        return overallScore;
     }
 
     public double getCorporateCriticScore() {
@@ -250,8 +250,8 @@ public class Business {
         this.environmentScore = environmentScore;
     }
 
-    public void setAverageScore(double averageScore) {
-        this.averageScore = averageScore;
+    public void setOverallScore(double overallScore) {
+        this.overallScore = overallScore;
     }
 
     public void setLaborScore(double laborScore) {
@@ -275,61 +275,69 @@ public class Business {
     }
 
     public void update(Business business){
-        if (this.name == null)
-            this.name = business.getName();
-        if (this.bcorpCertified == false)
-            this.bcorpCertified = business.isBcorpCertified();
-        if (this.bcorpProfile == null)
-            this.bcorpProfile = business.getBcorpProfile();
-        if (this.website == null)
-            this.website = business.getWebsite();
-        if (this.bcorpCertYear == 0)
-            this.bcorpCertYear = business.getBcorpCertYear();
-        if (this.bcorpScore == 0)
-            this.bcorpScore = business.getBcorpScore();
-        if (this.bluesignPartner == false)
-            this.bluesignPartner = business.isBluesignPartner();
-        if (this.supportsBLM == false)
-            this.supportsBLM = business.getSupportsBLM();
-        if (this.supportsBLMSource == null) {
-            this.supportsBLMSource = business.getSupportsBLMSource();
-        } else if (business.getSupportsBLMSource() != null) {
-            this.supportsBLMSource += " + " + business.getSupportsBLMSource();
+        boolean update = true;
+        if (business.getWebsite() != null && this.website != null) {
+            if (!(business.getWebsite().contains(this.website) || this.website.contains(business.getWebsite()))) {
+                update = false;
+            }
         }
-        if (this.supportsBLMEntity == null) {
-            this.supportsBLMEntity = business.getSupportsBLMEntity();
-        } else if (business.getSupportsBLMEntity() != null) {
-            this.supportsBLMEntity += " + " + business.getSupportsBLMEntity();
+        if (update) {
+            if (this.name == null)
+                this.name = business.getName();
+            if (this.bcorpCertified == false)
+                this.bcorpCertified = business.isBcorpCertified();
+            if (this.bcorpProfile == null)
+                this.bcorpProfile = business.getBcorpProfile();
+            if (this.website == null)
+                this.website = business.getWebsite();
+            if (this.bcorpCertYear == 0)
+                this.bcorpCertYear = business.getBcorpCertYear();
+            if (this.bcorpScore == 0)
+                this.bcorpScore = business.getBcorpScore();
+            if (this.bluesignPartner == false)
+                this.bluesignPartner = business.isBluesignPartner();
+            if (this.supportsBLM == false)
+                this.supportsBLM = business.getSupportsBLM();
+            if (this.supportsBLMSource == null) {
+                this.supportsBLMSource = business.getSupportsBLMSource();
+            } else if (business.getSupportsBLMSource() != null) {
+                this.supportsBLMSource += " + " + business.getSupportsBLMSource();
+            }
+            if (this.supportsBLMEntity == null) {
+                this.supportsBLMEntity = business.getSupportsBLMEntity();
+            } else if (business.getSupportsBLMEntity() != null) {
+                this.supportsBLMEntity += " + " + business.getSupportsBLMEntity();
+            }
+            if (this.supportsBLMContribution == null) {
+                this.supportsBLMContribution = business.getSupportsBLMContribution();
+            } else if (business.getSupportsBLMContribution() != null) {
+                this.supportsBLMContribution += " + " + business.getSupportsBLMContribution();
+            }
+            if (this.companyType == null)
+                this.companyType = business.getCompanyType();
+            if (this.blackOwnedBusiness == false)
+                this.blackOwnedBusiness = business.isBlackOwnedBusiness();
+            if (this.betterBusinessBureau == null)
+                this.betterBusinessBureau = business.getBetterBusinessBureau();
+            if (this.corporateCriticScore == 0)
+                this.corporateCriticScore = business.getCorporateCriticScore();
+            if (this.goodOnYouScore == 0)
+                this.goodOnYouScore = business.getGoodOnYouScore();
+            if (this.environmentScore == 0)
+                this.environmentScore = business.getEnvironmentScore();
+            if (this.textileScore == 0)
+                this.textileScore = business.getTextileScore();
+            if (this.animalsScore == 0)
+                this.animalsScore = business.getAnimalsScore();
+            if (this.laborScore == 0)
+                this.laborScore = business.getLaborScore();
+            if (this.overallScore == 0)
+                this.overallScore = business.getOverallScore();
+            if (this.pocOwnedBusiness == false)
+                this.pocOwnedBusiness = business.isPocOwnedBusiness();
+            if (this.nativeOwnedBusiness == false)
+                this.nativeOwnedBusiness = business.isNativeOwnedBusiness();
         }
-        if (this.supportsBLMContribution == null) {
-            this.supportsBLMContribution = business.getSupportsBLMContribution();
-        } else if (business.getSupportsBLMContribution() != null) {
-            this.supportsBLMContribution += " + " + business.getSupportsBLMContribution();
-        }
-        if (this.companyType == null)
-            this.companyType = business.getCompanyType();
-        if (this.blackOwnedBusiness == false)
-            this.blackOwnedBusiness = business.isBlackOwnedBusiness();
-        if (this.betterBusinessBureau == null)
-            this.betterBusinessBureau = business.getBetterBusinessBureau();
-        if (this.corporateCriticScore == 0)
-            this.corporateCriticScore = business.getCorporateCriticScore();
-        if (this.goodOnYouScore == 0)
-            this.goodOnYouScore = business.getGoodOnYouScore();
-        if (this.environmentScore == 0)
-            this.environmentScore = business.getEnvironmentScore();
-        if (this.textileScore == 0)
-            this.textileScore = business.getTextileScore();
-        if (this.animalsScore == 0)
-            this.animalsScore = business.getAnimalsScore();
-        if (this.laborScore == 0)
-            this.laborScore = business.getLaborScore();
-        if (this.averageScore == 0)
-            this.averageScore = business.getAverageScore();
-        if (this.pocOwnedBusiness == false)
-            this.pocOwnedBusiness = business.isPocOwnedBusiness();
-        if (this.nativeOwnedBusiness == false)
-            this.nativeOwnedBusiness = business.isNativeOwnedBusiness();
     }
 
     public void display() {
@@ -355,6 +363,6 @@ public class Business {
         System.out.println("Textile Score:          " + this.textileScore);
         System.out.println("Animal Score:           " + this.animalsScore);
         System.out.println("Labor Score:            " + this.laborScore);
-        System.out.println("Average Score:          " + this.averageScore);
+        System.out.println("Overall Score:          " + this.overallScore);
     }
 }
