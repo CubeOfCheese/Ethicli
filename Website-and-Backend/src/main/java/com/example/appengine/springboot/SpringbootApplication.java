@@ -39,14 +39,35 @@ public class SpringbootApplication {
     @GetMapping("/score/{company}")
     public Business masterController(@PathVariable("company") String companyName) throws IOException {
         Business business = new Business();
-        business.update(searchDataSource(companyName, "Top 50 Online Retailers & Manual Scores - Sheet1.csv", 11, 1, -1, -1, -1, -1, -1, -1, 2, 4, 5, 6, 7, 8, 9, 10, -1, -1, -1, false, false, false, false, false));
-        business.update(searchDataSource(companyName, "bcorp.csv", 6, 0, 2, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 5, 4, false, false, false, false, false));
-        business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, true, false, false, false));
-        business.update(searchDataSource(companyName, "Black-OwnedOnlineBusinesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, true, false, false));
-        business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, true, false, false, false, false));
-        business.update(searchDataSource(companyName, "POC-Owned Businesses (1).csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, true, false));
-        business.update(searchDataSource(companyName, "Native-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, true));
+        if (validateURL(companyName)) {
+            business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Top 50 Online Retailers & Manual Scores - Sheet1.csv", 11, 1, -1, -1, -1, -1, -1, -1, 2, 4, 5, 6, 7, 8, 9, 10, -1, -1, -1, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "bcorp.csv", 6, 0, 2, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 5, 4, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, true, false, false, false));
+            business.update(searchDataSource(companyName, "Black-OwnedOnlineBusinesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, true, false, false));
+            business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, true, false, false, false, false));
+            business.update(searchDataSource(companyName, "POC-Owned Businesses (1).csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, true, false));
+            business.update(searchDataSource(companyName, "Native-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, true));
+        }
         return business;
+    }
+
+    // Compares companyName to Blocked URLS - Sheet.csv
+    public boolean validateURL(String companyName) throws IOException {
+        Resource resource = new ClassPathResource("Blocked URLS - Sheet1.csv");
+        InputStream file = resource.getInputStream();
+        BufferedReader br = null;
+        String line = "";
+        try {
+            br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
+            while ((line = br.readLine()) != null) { // cycles through line by line
+                if (companyName.equals(line))
+                    return false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     // Removes all occurences of char target from String name
@@ -112,7 +133,7 @@ public class SpringbootApplication {
                                      int websiteColumn, int supportsBLMSourceColumn, int supportsBLMEntityColumn, int supportsBLMContributionColumn,
                                      int companyTypeColumn, int betterBusinessBureauColumn, int corporateCriticScoreColumn, int goodOnYouScoreColumn,
                                      int environmentScoreColumn, int textilesScoreColumn, int animalsScoreColumn, int laborScoreColumn,
-                                     int averageScoreColumn, int bcorpCertifiedColumn, int bcorpScoreColumn, int bcorpCertYearColumn,
+                                     int overallScoreColumn, int bcorpCertifiedColumn, int bcorpScoreColumn, int bcorpCertYearColumn,
                                      boolean bluesignPartnerColumn, boolean supportsBLMColumn, boolean blackOwnedBusinessColumn,
                                      boolean pocOwnedBusiness, boolean nativeOwnedBusiness) throws IOException {
         Business busTemp = new Business(); // Business temp obj for search and compare
@@ -173,7 +194,7 @@ public class SpringbootApplication {
                             } else if (column == supportsBLMSourceColumn) {
                                 busTemp.setSupportsBLMSource(dataToken);
                             } else if (column == supportsBLMEntityColumn) {
-                                busTemp.setSupportsBLMEntity(dataToken);
+                                busTemp.setSupportsBLMEntity(charRemove(dataToken, '"'));
                             } else if (column == supportsBLMContributionColumn) {
                                 busTemp.setSupportsBLMContribution(charRemove(dataToken, '"'));
                             } else if (column == companyTypeColumn) {
@@ -216,9 +237,9 @@ public class SpringbootApplication {
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
-                            } else if (column == averageScoreColumn) {
+                            } else if (column == overallScoreColumn) {
                                 try {
-                                    busTemp.setAverageScore(Double.parseDouble(dataToken));
+                                    busTemp.setOverallScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
