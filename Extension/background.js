@@ -31,11 +31,15 @@ function reloadExt(request, sender, sendResponse) {
                         var jsonResponse = JSON.parse(this.response);
                         ethicliStats = jsonResponse;
 
-                        ethicliBadgeScore = Math.round(jsonResponse.overallScore / 20);
-                        if (jsonResponse.bcorpCertified && jsonResponse.bluesignPartner) {
-                            ethicliBadgeScore += 1;
-                        } else if (jsonResponse.bluesignPartner) {
-                            ethicliBadgeScore = 7.5;
+                        if(jsonResponse.overallScore > 0){
+                            ethicliBadgeScore = Math.round(jsonResponse.overallScore / 20);
+                        }else{
+                            ethicliBadgeScore = Math.round(jsonResponse.bcorpScore / 20);
+                            if (jsonResponse.bcorpCertified && jsonResponse.bluesignPartner) {
+                                ethicliBadgeScore += 1;
+                            } else if (jsonResponse.bluesignPartner) {
+                                ethicliBadgeScore = 7.5;
+                            }
                         }
 
                         if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore == 0)) {
