@@ -41,6 +41,7 @@ function reloadExt(request, sender, sendResponse) {
                                 ethicliBadgeScore = 7.5;
                             }
                         }
+
                         if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore == 0)) {
                             ethicliBadgeScore = "";
                             chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id })
@@ -48,10 +49,25 @@ function reloadExt(request, sender, sendResponse) {
                             chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id })
                         }
                         chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
+
+                        console.log("Enter blacklist.");
+                        var blacklist = ["google", "facebook", "instagram"];
+                        for(b=0; b<blacklist.length; b++){
+                            if(companyName == blacklist[b]){
+                                ethicliBadgeScore = "";
+                                notShop();
+                                console.log("Blacklisted: "+blacklist[b]);
+                                break;
+                            }
+                        }
                     }
-                    companyRequest.send()
+                    companyRequest.send();
                 });
             } else {
+                notShop();
+            }
+
+            function notShop(){
                 isShoppingPage = false;
                 chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id })
                 chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id })
