@@ -24,16 +24,16 @@ function reloadExt(request, sender, sendResponse) {
                     }
                     companyName = companyName.split(' ')[0];
 
-                    var blueSignRequest = new XMLHttpRequest()
+                    var companyRequest = new XMLHttpRequest()
                     var url = 'http://ethicli.com/score/' + companyName;
-                    blueSignRequest.open('GET', url, true)
-                    blueSignRequest.onload = function() {
+                    companyRequest.open('GET', url, true)
+                    companyRequest.onload = function() {
                         var jsonResponse = JSON.parse(this.response);
                         ethicliStats = jsonResponse;
-
-                        if(jsonResponse.overallScore > 0){
-                            ethicliBadgeScore = Math.round(jsonResponse.overallScore / 20);
-                        }else{
+                        var ethicliBadgeScore;
+                        if (jsonResponse.overallScore > 0) {
+                            ethicliBadgeScore = Math.round(jsonResponse.overallScore);
+                        } else {
                             ethicliBadgeScore = Math.round(jsonResponse.bcorpScore / 20);
                             if (jsonResponse.bcorpCertified && jsonResponse.bluesignPartner) {
                                 ethicliBadgeScore += 1;
@@ -41,7 +41,6 @@ function reloadExt(request, sender, sendResponse) {
                                 ethicliBadgeScore = 7.5;
                             }
                         }
-
                         if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore == 0)) {
                             ethicliBadgeScore = "";
                             chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id })
@@ -50,7 +49,7 @@ function reloadExt(request, sender, sendResponse) {
                         }
                         chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
                     }
-                    blueSignRequest.send()
+                    companyRequest.send()
                 });
             } else {
                 isShoppingPage = false;
