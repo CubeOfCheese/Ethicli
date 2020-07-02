@@ -165,7 +165,6 @@ window.onload = function pageEval() {
         var inArray = shopWords[i].test(dom);
         if (inArray) { // if words are present, add values.
             wordTracker += 1;
-            console.log(shopWords[i]);
         }
     }
 

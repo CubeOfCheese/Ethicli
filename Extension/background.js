@@ -24,42 +24,48 @@ function reloadExt(request, sender, sendResponse) {
                     }
                     companyName = companyName.split(' ')[0];
 
-                    var companyRequest = new XMLHttpRequest()
-                    var url = 'http://ethicli.com/score/' + companyName;
-                    companyRequest.open('GET', url, true)
-                    companyRequest.onload = function() {
-                        var jsonResponse = JSON.parse(this.response);
-                        ethicliStats = jsonResponse;
-                        var ethicliBadgeScore;
-                        if (jsonResponse.overallScore > 0) {
-                            ethicliBadgeScore = Math.round(jsonResponse.overallScore);
-                        } else {
-                            ethicliBadgeScore = Math.round(jsonResponse.bcorpScore / 20);
-                            if (jsonResponse.bcorpCertified && jsonResponse.bluesignPartner) {
-                                ethicliBadgeScore += 1;
-                            } else if (jsonResponse.bluesignPartner) {
-                                ethicliBadgeScore = 7.5;
-                            }
-                        }
-
-                        if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore == 0)) {
+                    var blacklist = ["google", "bing", "yahoo",  "baidu", "aol", "duckduckgo", "yandex", "ecosia"];
+                    var notBlacklisted;
+                    var ethicliBadgeScore;
+                    for(b=0; b<blacklist.length; b++){
+                        if(companyName == blacklist[b]){
                             ethicliBadgeScore = "";
-                            chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id })
-                        } else {
-                            chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id })
-                        }
-                        chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
-
-                        var blacklist = ["google", "bing", "yahoo",  "baidu", "aol", "duckduckgo", "yandex", "ecosia"];
-                        for(b=0; b<blacklist.length; b++){
-                            if(companyName == blacklist[b]){
-                                ethicliBadgeScore = "";
-                                notShop();
-                                break;
-                            }
+                            notBlacklisted = false;
+                            notShop();
+                            break;
+                        }else{
+                            notBlacklisted = true;
                         }
                     }
-                    companyRequest.send();
+
+                    if(notBlacklisted){
+                        var companyRequest = new XMLHttpRequest()
+                        var url = 'http://ethicli.com/score/' + companyName;
+                        companyRequest.open('GET', url, true)
+                        companyRequest.onload = function() {
+                            var jsonResponse = JSON.parse(this.response);
+                            ethicliStats = jsonResponse;
+                            if (jsonResponse.overallScore > 0) {
+                                ethicliBadgeScore = Math.round(jsonResponse.overallScore);
+                            } else {
+                                ethicliBadgeScore = Math.round(jsonResponse.bcorpScore / 20);
+                                if (jsonResponse.bcorpCertified && jsonResponse.bluesignPartner) {
+                                    ethicliBadgeScore += 1;
+                                } else if (jsonResponse.bluesignPartner) {
+                                    ethicliBadgeScore = 7.5;
+                                }
+                            }
+
+                            if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore == 0)) {
+                                ethicliBadgeScore = "";
+                                chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id })
+                            } else {
+                                chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id })
+                            }
+                            chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
+                        }
+                        companyRequest.send();
+                    }
                 });
             } else {
                 notShop();
