@@ -1,3 +1,5 @@
+var isShoppingPage;
+
 window.onload = function pageEval() {
     let dom = document.getElementsByTagName('html')[0].innerHTML;
     var shopWords = [
@@ -164,16 +166,28 @@ window.onload = function pageEval() {
     for (i = 0; i < shopWords.length; i++) {
         var inArray = shopWords[i].test(dom);
         if (inArray) { // if words are present, add values.
+            console.log(shopWords[i]);
             wordTracker += 1;
         }
     }
 
     if (wordTracker > 0) { //if there's at least one shopWord present
         chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: true }, function(response) {});
+        isShoppingPage = true;
     } else {
         chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: false }, function(response) {});
+        isShoppingPage = false;
     }
 };
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if (request.msgName == "isShoppingPage?") {
+            console.log(isShoppingPage);
+            sendResponse({ isShoppingPage: isShoppingPage });
+        }
+    }
+);
 
 chrome.runtime.onMessage.addListener(
     function(request) {
