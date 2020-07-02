@@ -52,7 +52,7 @@ function reloadExt(request, sender, sendResponse) {
                                 if (jsonResponse.bcorpCertified && jsonResponse.bluesignPartner) {
                                     ethicliBadgeScore += 1;
                                 } else if (jsonResponse.bluesignPartner) {
-                                    ethicliBadgeScore = 7.5;
+                                    ethicliBadgeScore = 8;
                                 }
                             }
 
