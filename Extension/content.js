@@ -166,7 +166,6 @@ window.onload = function pageEval() {
     for (i = 0; i < shopWords.length; i++) {
         var inArray = shopWords[i].test(dom);
         if (inArray) { // if words are present, add values.
-            console.log(shopWords[i]);
             wordTracker += 1;
         }
     }
@@ -183,7 +182,6 @@ window.onload = function pageEval() {
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request.msgName == "isShoppingPage?") {
-            console.log(isShoppingPage);
             sendResponse({ isShoppingPage: isShoppingPage });
         }
     }
