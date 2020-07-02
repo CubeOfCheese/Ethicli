@@ -40,7 +40,7 @@ function reloadExt(request, sender, sendResponse) {
 
                     if(notBlacklisted){
                         var companyRequest = new XMLHttpRequest()
-                        var url = 'http://ethicli.com/score/' + companyName;
+                        var url = 'shop-ethicli.wl.r.appspot.com/score/' + companyName;
                         companyRequest.open('GET', url, true)
                         companyRequest.onload = function() {
                             var jsonResponse = JSON.parse(this.response);
