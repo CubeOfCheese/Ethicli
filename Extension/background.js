@@ -50,13 +50,11 @@ function reloadExt(request, sender, sendResponse) {
                         }
                         chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
 
-                        console.log("Enter blacklist.");
                         var blacklist = ["google", "bing", "yahoo",  "baidu", "aol", "duckduckgo", "yandex", "ecosia"];
                         for(b=0; b<blacklist.length; b++){
                             if(companyName == blacklist[b]){
                                 ethicliBadgeScore = "";
                                 notShop();
-                                console.log("Blacklisted: "+blacklist[b]);
                                 break;
                             }
                         }
