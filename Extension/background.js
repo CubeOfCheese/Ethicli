@@ -67,13 +67,16 @@ chrome.tabs.onActivated.addListener(
         var query = { active: true, currentWindow: true };
         chrome.tabs.query(query, function callback(tabs) {
             var currentTab = tabs[0];
-            if (isShoppingPage && currentTab.url && (currentTab.url != "chrome://newtab/")) { // currentTab.url is null for new tab pages when first opened and equal to "chrome://newtab/" when navigated to from another tab.
-            // data should only be retrieved for actual pages that are shopping pages
-                var request = { msgName: "PageEvaluated", shoppingPage: true };
-                var sender = { tab: { url: "" } };
-                sender.tab.url = currentTab.url;
-                reloadExt(request, sender);
-            }
+            chrome.tabs.sendMessage(tabs[0].id, { msgName: "isShoppingPage?" }, function(response) {
+                isShoppingPage = response.isShoppingPage;
+                if (isShoppingPage && currentTab.url && (currentTab.url != "chrome://newtab/")) { // currentTab.url is null for new tab pages when first opened and equal to "chrome://newtab/" when navigated to from another tab.
+                // data should only be retrieved for actual pages that are shopping pages
+                    var request = { msgName: "PageEvaluated", shoppingPage: true };
+                    var sender = { tab: { url: "" } };
+                    sender.tab.url = currentTab.url;
+                    reloadExt(request, sender);
+                }
+            });
         })
     }
 );
