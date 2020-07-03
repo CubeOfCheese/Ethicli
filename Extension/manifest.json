@@ -28,8 +28,5 @@
         "48": "icons/ethicli-48.png",
         "128": "icons/ethicli-128.png"
     },
-    "permissions": [
-        "tabs"
-    ],
     "manifest_version": 2
 }
