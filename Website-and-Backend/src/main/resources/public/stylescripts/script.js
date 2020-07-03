@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $(window).scroll(function() {
         if ($(window).width() > 768) {
-            if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 2600)) {
+            if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 2800)) {
                 $("#navlinks a").css({
                     "background": "#102340",
                     "color": "#FEFCF3"
