@@ -198,9 +198,9 @@ body {
 }
 
 .label div .scorebarFill {
+    display: block;
     position: relative;
     top: -8px;
-    width: 50%;
     background: #89a387;
 }
 
