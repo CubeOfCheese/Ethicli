@@ -48,6 +48,7 @@ public class SpringbootApplication {
             business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, true, false, false, false, false));
             business.update(searchDataSource(companyName, "POC-Owned Businesses (1).csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, true, false));
             business.update(searchDataSource(companyName, "Native-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, true));
+            business.calculate();
         }
         return business;
     }

@@ -340,6 +340,26 @@ public class Business {
         }
     }
 
+    public void calculate() {
+        if (this.overallScore == 0) {
+            if (this.bcorpScore != 0) {
+                this.overallScore = (this.bcorpScore / 14);
+                if (this.bcorpCertified == true) {
+                    this.overallScore += .5;
+                }
+            }
+            if (this.bluesignPartner == true) {
+                if (this.bcorpScore == 0) {
+                    this.overallScore = 7.5;
+                } else {
+                    this.overallScore += 1;
+                }
+            }
+            if (this.overallScore > 10)
+                this.overallScore = 10;
+        }
+    }
+
     public void display() {
         System.out.println("Name:                   " + this.name);
         System.out.println("Website:                " + this.website);
