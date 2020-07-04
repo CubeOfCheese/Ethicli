@@ -86,17 +86,17 @@ body {
 }
 
 #rating {
-    margin-bottom: 24px;
+    margin-bottom: 30px;
     background: #89a387;
-    width: 120px;
-    height: 120px;
+    width: 116px;
+    height: 116px;
     border-radius: 100%;
     text-align: center;
 }
 
 #overallScore {
-    padding-top: 30px;
-    padding-bottom: 8px;
+    padding-top: 28px;
+    padding-bottom: 6px;
     font-size: 2.8em;
     color: #fff;
 }
@@ -169,7 +169,7 @@ body {
 }
 
 .label {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .label:last-child {
@@ -210,7 +210,7 @@ body {
 
 button#detailsButton {
     align-self: flex-end;
-    margin-top: 16px;
+    margin: 8px 0;
     padding: 8px;
 }
 
@@ -219,27 +219,27 @@ button#detailsButton {
 
 #sponsor {
     width: 100%;
-    margin-top: 24px;
-    display: none;
+    margin-top: 0px;
 }
 
 #sponsor div {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
 }
 
 #sponsoredImg {
     width: 160px;
     height: 160px;
+    border-radius: 8px;
     object-fit: cover;
 }
 
 .sponsorRating {
     position: absolute;
-    right: 50px;
+    right: 16px;
     display: block;
     width: 30px;
     height: 30px;
@@ -247,7 +247,7 @@ button#detailsButton {
     margin: 8px;
     padding: 4px;
     border-radius: 100px;
-    background: #aaa;
+    background: #89a387;
     color: #fff;
     text-align: center;
     z-index: 1;
@@ -261,8 +261,9 @@ button#detailsButton {
     line-height: 160px;
     font-size: 0.8em;
     text-align: center;
-    background: rgba(0, 0, 0, 0);
-    color: rgba(255, 255, 255, 0);
+    background: rgba(10, 35, 66, 0);
+    border-radius: 8px;
+    color: rgba(10, 35, 66, 0);
     -webkit-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
     -moz-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
     -o-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
@@ -273,8 +274,8 @@ button#detailsButton {
     transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
 }
 
-#sponsor div:hover #sponsoredBy {
-    background: rgba(0, 0, 0, 0.5);
+#sponsor div #sponsoredBy:hover {
+    background: rgba(10, 35, 66, 0.6);
     color: rgba(255, 255, 255, 1);
     -webkit-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
     -moz-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
@@ -299,7 +300,6 @@ button {
     border: none;
     background: #05668D;
     outline: none;
-    padding: 5px;
 }
 
 button:hover {
@@ -313,7 +313,7 @@ button:hover {
 button a {
     color: #FFFCF2;
     text-decoration: none;
-    padding: 5px;
+    padding: 4px;
 }
 
 h6 a {
@@ -322,9 +322,11 @@ h6 a {
 }
 
 #left p, #right p {
-    padding: 5px;
+    padding: 4px;
     text-decoration: none;
-    color: #000;
+    color: #c6d4c5;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 /** Images and ToolTip **/
