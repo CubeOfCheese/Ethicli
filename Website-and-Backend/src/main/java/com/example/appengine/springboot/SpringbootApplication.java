@@ -120,6 +120,7 @@ public class SpringbootApplication {
     public String prepareSearchTerm(String searchTerm) {
         searchTerm = searchTerm.toLowerCase();
         searchTerm = charRemove(searchTerm, ',');
+        searchTerm = charRemove(searchTerm, '\'');
         searchTerm = charRemove(searchTerm, ':');
         searchTerm = charRemove(searchTerm, ';');
         searchTerm = charRemove(searchTerm, '.');
@@ -173,7 +174,7 @@ public class SpringbootApplication {
                         }
                     }
                     if (!doubleQuoteRecognizer) { // Allows incomplete dataTokens to pass through unnassigned
-                        if (!dataToken.isEmpty()) {
+                        if (!dataToken.isEmpty() && !dataToken.equals("ND")) {
                             if (column == nameColumn) {
                                 if (bluesignPartnerColumn) {
                                     String nameTemp [] = dataToken.split(",");
