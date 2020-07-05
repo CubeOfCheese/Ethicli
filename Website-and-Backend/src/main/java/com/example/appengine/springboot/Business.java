@@ -343,10 +343,7 @@ public class Business {
     public void calculate() {
         if (this.overallScore == 0) {
             if (this.bcorpScore != 0) {
-                this.overallScore = (this.bcorpScore / 14);
-                if (this.bcorpCertified == true) {
-                    this.overallScore += .5;
-                }
+                this.overallScore = (this.bcorpScore / 13);
             }
             if (this.bluesignPartner == true) {
                 if (this.bcorpScore == 0) {
@@ -355,8 +352,8 @@ public class Business {
                     this.overallScore += 1;
                 }
             }
-            if (this.overallScore > 10)
-                this.overallScore = 10;
+            if (this.overallScore > 9)
+                this.overallScore = 9;
         }
     }
 
