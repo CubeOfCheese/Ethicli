@@ -352,7 +352,7 @@ h6 a {
 
 #subscoreTip{
     position: absolute;
-    max-width: 100px;
+    width: 100px;
     font-size: 12px;
     cursor: default;
 }
