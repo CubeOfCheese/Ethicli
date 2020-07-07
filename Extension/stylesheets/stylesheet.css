@@ -309,7 +309,7 @@ button:hover {
     background: rgba(224, 122, 95, 0.8);
 }
 
-button a {
+button, button a {
     color: #FFFCF2;
     text-decoration: none;
     padding: 5px;
@@ -352,7 +352,7 @@ h6 a {
 
 #subscoreTip{
     position: absolute;
-    max-width: 100px;
+    width: 100px;
     font-size: 12px;
     cursor: default;
 }
