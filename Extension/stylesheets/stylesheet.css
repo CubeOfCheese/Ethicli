@@ -309,7 +309,7 @@ button:hover {
     background: rgba(224, 122, 95, 0.8);
 }
 
-button a {
+button, button a {
     color: #FFFCF2;
     text-decoration: none;
     padding: 5px;

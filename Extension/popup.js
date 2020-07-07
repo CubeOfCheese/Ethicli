@@ -79,6 +79,10 @@ window.onload = function() {
         document.getElementById("subscoreTip").style.left = (event.clientX-30)+"px";
         document.getElementById("subscoreTip").style.top = (event.clientY-30)+"px";
     };
+
+    document.getElementById("detailsButton").addEventListener("click", function() {
+        this.innerHTML = "Details unavailable";
+    });
 }
 
 function somethingWrong() {
