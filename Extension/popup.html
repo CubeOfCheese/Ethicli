@@ -43,15 +43,15 @@
                     </h6>
                 </div>
             </div>
-            <div id="scores">
+            <div id="scores" class="tooltip">
                 <div class="label">
                     <p>Environmental Impact</p>
                     <div>
                         <span>
                         <span class="scorebar"></span>
-                        <span class="scorebarFill"></span>
+                        <span class="scorebarFill" id="envScoreBar"></span>
                         </span>
-                        <p id="score1">- /10</p>
+                        <p><span id="envScore"></span>/10</p>
                     </div>
                 </div>
                 <div class="label">
@@ -59,9 +59,9 @@
                     <div>
                         <span>
                         <span class="scorebar"></span>
-                        <span class="scorebarFill"></span>
+                        <span class="scorebarFill" id="laborScoreBar"></span>
                         </span>
-                        <p id="score2">- /10</p>
+                        <p><span id="laborScore"></span>/10</p>
                     </div>
                 </div>
                 <div class="label">
@@ -69,13 +69,17 @@
                     <div>
                         <span>
                         <span class="scorebar"></span>
-                        <span class="scorebarFill"></span>
+                        <span class="scorebarFill" id="animalScoreBar"></span>
                         </span>
-                        <p id="score3">- /10</p>
+                        <p><span id="animalScore"></span>/10</p>
                     </div>
                 </div>
-                <button id="detailsButton"><a href="http://www.ethicli.com/">View Details</a></button>
+                <span class="tooltiptext" id="subscoreTip">Scores calculated in these sectors contribute to 
+                    the Overall Score, but may not average out to the Overall Score since we are also factoring in 
+                    other datasets.
+                </span>
             </div>
+            <button id="detailsButton"><a href="http://www.ethicli.com/">View Details</a></button>
 
             <div id="sponsor">
                 <h3>Sponsored</h3>

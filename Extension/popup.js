@@ -19,6 +19,20 @@ function loadExtension() {
             }
         }
 
+        //Changes subratings
+        document.getElementById("envScore").innerHTML = response.ethicliStats.environmentScore;
+        document.getElementById("laborScore").innerHTML = response.ethicliStats.laborScore;
+        document.getElementById("animalScore").innerHTML = response.ethicliStats.animalsScore;
+
+        //Changes subratings scorebar
+        var envScore = response.ethicliStats.environmentScore*20
+        document.getElementById("envScoreBar").style.width = envScore + "px";
+        var laborScore = response.ethicliStats.laborScore*20
+        document.getElementById("laborScoreBar").style.width = laborScore + "px";
+        var animalScore = response.ethicliStats.animalsScore*20
+        document.getElementById("animalScoreBar").style.width = animalScore + "px";
+
+
         if(document.getElementById("overallScore")!== null){ //checks to see if ID even appears on page
             document.getElementById("overallScore").innerHTML = ethicliScore;
         }
@@ -60,6 +74,11 @@ window.onload = function() {
     document.getElementById("somethingWrong").addEventListener("click", function() {
         somethingWrong();
     });
+
+    document.getElementById("scores").onmouseover = function() {
+        document.getElementById("subscoreTip").style.left = (event.clientX-30)+"px";
+        document.getElementById("subscoreTip").style.top = (event.clientY-30)+"px";
+    };
 }
 
 function somethingWrong() {
