@@ -74,6 +74,11 @@ window.onload = function() {
     document.getElementById("somethingWrong").addEventListener("click", function() {
         somethingWrong();
     });
+
+    document.getElementById("scores").onmouseover = function() {
+        document.getElementById("subscoreTip").style.left = (event.clientX-30)+"px";
+        document.getElementById("subscoreTip").style.top = (event.clientY-30)+"px";
+    };
 }
 
 function somethingWrong() {
