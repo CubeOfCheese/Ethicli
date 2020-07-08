@@ -150,6 +150,7 @@ header{
     background-image: url("../images/background-news.png");
     background-position: center;
     background-size: cover;
+    display: none;
 }
 
 #featured {
