@@ -40,14 +40,15 @@ public class SpringbootApplication {
     public Business masterController(@PathVariable("company") String companyName) throws IOException {
         Business business = new Business();
         if (validateURL(companyName)) {
-            business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "Top 50 Online Retailers & Manual Scores - Sheet1.csv", 11, 1, -1, -1, -1, -1, -1, -1, 2, 4, 5, 6, 7, 8, 9, 10, -1, -1, -1, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "bcorp.csv", 6, 0, 2, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 5, 4, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, true, false, false, false));
-            business.update(searchDataSource(companyName, "Black-OwnedOnlineBusinesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, true, false, false));
-            business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, true, false, false, false, false));
-            business.update(searchDataSource(companyName, "POC-Owned Businesses (1).csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, true, false));
-            business.update(searchDataSource(companyName, "Native-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, true));
+            business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Top 50 Online Retailers & Manual Scores - Sheet1.csv", 11, 1, -1, -1, -1, -1, -1, -1, 2, 4, 5, -1, 6, 7, 8, 9, 10, -1, -1, -1, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "EPA's Green Power Partners - Sheet1.csv", 5, 0, -1, -1, -1, -1, -1, 1, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "bcorp.csv", 6, 0, 2, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 5, 4, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, false, true, false, false, false));
+            business.update(searchDataSource(companyName, "Black-OwnedOnlineBusinesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, true, false, false));
+            business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, true, false, false, false, false));
+            business.update(searchDataSource(companyName, "POC-Owned Businesses (1).csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, true, false));
+            business.update(searchDataSource(companyName, "Native-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, true));
             business.calculate();
         }
         return business;
@@ -134,8 +135,8 @@ public class SpringbootApplication {
     public Business searchDataSource(String searchTerm, String filename, final int columnCount, final int nameColumn, int bcorpProfileColumn,
                                      int websiteColumn, int supportsBLMSourceColumn, int supportsBLMEntityColumn, int supportsBLMContributionColumn,
                                      int companyTypeColumn, int betterBusinessBureauColumn, int corporateCriticScoreColumn, int goodOnYouScoreColumn,
-                                     int environmentScoreColumn, int textilesScoreColumn, int animalsScoreColumn, int laborScoreColumn,
-                                     int overallScoreColumn, int bcorpCertifiedColumn, int bcorpScoreColumn, int bcorpCertYearColumn,
+                                     int greenPowerPercentageColumn, int environmentScoreColumn, int textilesScoreColumn, int animalsScoreColumn,
+                                     int laborScoreColumn, int overallScoreColumn, int bcorpCertifiedColumn, int bcorpScoreColumn, int bcorpCertYearColumn,
                                      boolean bluesignPartnerColumn, boolean supportsBLMColumn, boolean blackOwnedBusinessColumn,
                                      boolean pocOwnedBusiness, boolean nativeOwnedBusiness) throws IOException {
         Business busTemp = new Business(); // Business temp obj for search and compare
@@ -212,6 +213,13 @@ public class SpringbootApplication {
                             } else if (column == goodOnYouScoreColumn) {
                                 try {
                                     busTemp.setGoodOnYouScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (column == greenPowerPercentageColumn) {
+                                dataToken = charRemove(dataToken, '%');
+                                try {
+                                    busTemp.setGreenPowerPercentage(Double.parseDouble(dataToken) / 100);
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }

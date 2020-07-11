@@ -14,6 +14,7 @@ public class Business {
     private double corporateCriticScore;
     private double environmentScore;
     private double goodOnYouScore;
+    private double greenPowerPercentage;
     private double laborScore;
     private double overallScore;
     private double textileScore;
@@ -39,6 +40,7 @@ public class Business {
         this.corporateCriticScore = 0;
         this.environmentScore = 0;
         this.goodOnYouScore = 0;
+        this.greenPowerPercentage = 0;
         this.laborScore = 0;
         this.overallScore = 0;
         this.textileScore = 0;
@@ -64,7 +66,7 @@ public class Business {
                     @JsonProperty("environmentScore") double environmentScore, @JsonProperty("textileScore") double textileScore,
                     @JsonProperty("animalsScore") double animalsScore, @JsonProperty("laborScore") double laborScore,
                     @JsonProperty("overallScore") double overallScore, @JsonProperty("pocOwnedBusiness") boolean pocOwnedBusiness,
-                    @JsonProperty("nativeOwnedBusiness") boolean nativeOwnedBusiness) {
+                    @JsonProperty("nativeOwnedBusiness") boolean nativeOwnedBusiness, @JsonProperty("greenPowerPercentage") double greenPowerPercentage) {
         this.bcorpCertified = bcorpCertified;
         this.blackOwnedBusiness = blackOwnedBusiness;
         this.bluesignPartner = bluesignPartner;
@@ -77,6 +79,7 @@ public class Business {
         this.corporateCriticScore = corporateCriticScore;
         this.environmentScore = environmentScore;
         this.goodOnYouScore = goodOnYouScore;
+        this.greenPowerPercentage = greenPowerPercentage;
         this.laborScore = laborScore;
         this.textileScore = textileScore;
         this.bcorpCertYear = bcorpCertYear;
@@ -178,6 +181,10 @@ public class Business {
         return betterBusinessBureau;
     }
 
+    public double getGreenPowerPercentage() {
+        return greenPowerPercentage;
+    }
+
     public boolean isNativeOwnedBusiness() {
         return nativeOwnedBusiness;
     }
@@ -254,6 +261,10 @@ public class Business {
         this.overallScore = overallScore;
     }
 
+    public void setGreenPowerPercentage(double greenPowerPercentage) {
+        this.greenPowerPercentage = greenPowerPercentage;
+    }
+
     public void setLaborScore(double laborScore) {
         this.laborScore = laborScore;
     }
@@ -323,6 +334,8 @@ public class Business {
                 this.corporateCriticScore = business.getCorporateCriticScore();
             if (this.goodOnYouScore == 0)
                 this.goodOnYouScore = business.getGoodOnYouScore();
+            if (this.greenPowerPercentage == 0)
+                this.greenPowerPercentage = business.getGreenPowerPercentage();
             if (this.environmentScore == 0)
                 this.environmentScore = business.getEnvironmentScore();
             if (this.textileScore == 0)
@@ -342,6 +355,16 @@ public class Business {
 
     public void calculate() {
         if (this.overallScore == 0) {
+            // Environmental Impact Score
+            if (this.greenPowerPercentage != 0) {
+                this.environmentScore = 4 + (this.greenPowerPercentage * 2.5);
+            }
+            if (this.environmentScore > 9) {
+                this.environmentScore = 9;
+            }
+            // Labor Practice Score
+            // Animal Welfare Score
+            // Overall Score
             if (this.bcorpScore != 0) {
                 this.overallScore = (this.bcorpScore / 13);
             }
@@ -376,6 +399,7 @@ public class Business {
         System.out.println("BBB Score:              " + this.betterBusinessBureau);
         System.out.println("CCR Score:              " + this.corporateCriticScore);
         System.out.println("GoY Score:              " + this.goodOnYouScore);
+        System.out.println("Green Power %:          " + this.greenPowerPercentage);
         System.out.println("Environment Score:      " + this.environmentScore);
         System.out.println("Textile Score:          " + this.textileScore);
         System.out.println("Animal Score:           " + this.animalsScore);
