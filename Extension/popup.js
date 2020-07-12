@@ -105,7 +105,7 @@ function somethingWrong() {
         //Pulls and sets email
         document.getElementById("sendEmail").href = sendEmail();
         function sendEmail() {
-            var emailUrl = "mailto:team.ethicli@gmail.com?subject=Error%20With%20Current%20Website%20&body=Error%20with%20the%20following%20page:%20"+currentTab.url+"%0d%0aPlease%20let%20us%20know%20what%20is%20wrong%20below.";
+            var emailUrl = "mailto:hello@ethicli.com?subject=Error%20With%20Current%20Website%20&body=Error%20with%20the%20following%20page:%20"+currentTab.url+"%0d%0aPlease%20let%20us%20know%20what%20is%20wrong%20below.";
             chrome.tabs.create({ url: emailUrl }, function(tab) {
                 setTimeout(function() {
                     chrome.tabs.remove(tab.id);
