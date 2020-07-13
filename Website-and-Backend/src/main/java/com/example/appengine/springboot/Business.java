@@ -10,6 +10,10 @@ public class Business {
     private boolean pocOwnedBusiness;
     private boolean supportsBLM;
     private double animalsScore;
+    private double bcorpCommunityScore;
+    private double bcorpEnvironmentScore;
+    private double bcorpGovernanceScore;
+    private double bcorpWorkerScore;
     private double bcorpScore;
     private double corporateCriticScore;
     private double environmentScore;
@@ -36,6 +40,10 @@ public class Business {
         this.pocOwnedBusiness = false;
         this.supportsBLM = false;
         this.animalsScore = 0;
+        this.bcorpCommunityScore = 0;
+        this.bcorpEnvironmentScore = 0;
+        this.bcorpGovernanceScore = 0;
+        this.bcorpWorkerScore = 0;
         this.bcorpScore = 0;
         this.corporateCriticScore = 0;
         this.environmentScore = 0;
@@ -58,6 +66,8 @@ public class Business {
     public Business(@JsonProperty("name") String name, @JsonProperty("bcorpCertified") boolean bcorpCertified,
                     @JsonProperty("bcorpProfile") String bcorpProfile, @JsonProperty("website") String website,
                     @JsonProperty("bcorpCertYear") int bcorpCertYear, @JsonProperty("bcorpScore") double bcorpScore,
+                    @JsonProperty("bcorpCommunityScore") double bcorpCommunityScore, @JsonProperty("bcorpEnvironmentScore") double bcorpEnvironmentScore,
+                    @JsonProperty("bcorpGovernanceScore") double bcorpGovernanceScore, @JsonProperty("bcorpWorkerScore") double bcorpWorkerScore,
                     @JsonProperty("bluesignPartner") boolean bluesignPartner, @JsonProperty("supportsBLM") boolean supportsBLM,
                     @JsonProperty("supportsBLMSource") String supportsBLMSource, @JsonProperty("supportsBLMEntity") String supportsBLMEntity,
                     @JsonProperty("supportsBLMContribution") String supportsBLMContribution, @JsonProperty("companyType") String companyType,
@@ -75,6 +85,10 @@ public class Business {
         this.supportsBLM = supportsBLM;
         this.animalsScore = animalsScore;
         this.overallScore = overallScore;
+        this.bcorpCommunityScore = bcorpCommunityScore;
+        this.bcorpEnvironmentScore = bcorpEnvironmentScore;
+        this.bcorpGovernanceScore = bcorpGovernanceScore;
+        this.bcorpWorkerScore = bcorpWorkerScore;
         this.bcorpScore = bcorpScore;
         this.corporateCriticScore = corporateCriticScore;
         this.environmentScore = environmentScore;
@@ -115,6 +129,22 @@ public class Business {
 
     public int getBcorpCertYear() {
         return bcorpCertYear;
+    }
+
+    public double getBcorpCommunityScore() {
+        return bcorpCommunityScore;
+    }
+
+    public double getBcorpEnvironmentScore() {
+        return bcorpEnvironmentScore;
+    }
+
+    public double getBcorpGovernanceScore() {
+        return bcorpGovernanceScore;
+    }
+
+    public double getBcorpWorkerScore() {
+        return bcorpWorkerScore;
     }
 
     public double getBcorpScore() {
@@ -207,6 +237,22 @@ public class Business {
 
     public void setBcorpCertYear(int bcorpCertYear) {
         this.bcorpCertYear = bcorpCertYear;
+    }
+
+    public void setBcorpCommunityScore(double bcorpCommunityScore) {
+        this.bcorpCommunityScore = bcorpCommunityScore;
+    }
+
+    public void setBcorpEnvironmentScore(double bcorpEnvironmentScore) {
+        this.bcorpEnvironmentScore = bcorpEnvironmentScore;
+    }
+
+    public void setBcorpGovernanceScore(double bcorpGovernanceScore) {
+        this.bcorpGovernanceScore = bcorpGovernanceScore;
+    }
+
+    public void setBcorpWorkerScore(double bcorpWorkerScore) {
+        this.bcorpWorkerScore = bcorpWorkerScore;
     }
 
     public void setBcorpScore(double bcorpScore) {
@@ -303,6 +349,14 @@ public class Business {
                 this.website = business.getWebsite();
             if (this.bcorpCertYear == 0)
                 this.bcorpCertYear = business.getBcorpCertYear();
+            if (this.bcorpCommunityScore == 0)
+                this.bcorpCommunityScore = business.getBcorpCommunityScore();
+            if (this.bcorpEnvironmentScore == 0)
+                this.bcorpEnvironmentScore = business.getBcorpEnvironmentScore();
+            if (this.bcorpGovernanceScore == 0)
+                this.bcorpGovernanceScore= business.getBcorpGovernanceScore();
+            if (this.bcorpWorkerScore == 0)
+                this.bcorpWorkerScore = business.getBcorpWorkerScore();
             if (this.bcorpScore == 0)
                 this.bcorpScore = business.getBcorpScore();
             if (this.bluesignPartner == false)
@@ -356,27 +410,101 @@ public class Business {
     public void calculate() {
         if (this.overallScore == 0) {
             // Environmental Impact Score
+            double environmentalImpactScore = 0;
+            int environmentalImpactFactors = 0;
             if (this.greenPowerPercentage != 0) {
-                this.environmentScore = 4 + (this.greenPowerPercentage * 2.5);
+                ++environmentalImpactFactors;
+                environmentalImpactScore += (4 + ((this.greenPowerPercentage / 100) * 2.5));
             }
-            if (this.environmentScore > 9) {
-                this.environmentScore = 9;
+            if (this.bcorpEnvironmentScore != 0) {
+                ++environmentalImpactFactors;
+                environmentalImpactScore += (this.bcorpEnvironmentScore / 2.4);
+            }
+            if (bluesignPartner) {
+                ++environmentalImpactFactors;
+                environmentalImpactScore += 10;
+            }
+            if (environmentalImpactScore != 0 && environmentalImpactFactors != 0) {
+                this.environmentScore = environmentalImpactScore / environmentalImpactFactors;
+            }
+            switch (environmentalImpactFactors) {
+                case 1:
+                    if (this.environmentScore > 7) {
+                        this.environmentScore = 7;
+                    }
+                    break;
+                case 2:
+                    if (this.environmentScore > 8) {
+                        this.environmentScore = 8;
+                    }
+                    break;
+                default:
+                    if (this.environmentScore > 9) {
+                        this.environmentScore = 9;
+                    }
             }
             // Labor Practice Score
+            double laborImpactScore = 0;
+            int laborImpactFactors = 0;
+
+            if (this.bcorpWorkerScore != 0) {
+                ++laborImpactFactors;
+                laborImpactScore += (this.bcorpWorkerScore / 2.7);
+            }
+            if (laborImpactScore != 0 && laborImpactFactors != 0) {
+                this.laborScore = laborImpactScore / laborImpactFactors;
+            }
+            switch (laborImpactFactors) {
+                case 1:
+                    if (this.laborScore > 7) {
+                        this.laborScore = 7;
+                    }
+                    break;
+                case 2:
+                    if (this.laborScore > 8) {
+                        this.laborScore = 8;
+                    }
+                    break;
+                default:
+                    if (this.laborScore > 9) {
+                        this.laborScore = 9;
+                    }
+            }
             // Animal Welfare Score
             // Overall Score
-            if (this.bcorpScore != 0) {
-                this.overallScore = (this.bcorpScore / 13);
+            double overallImpactScore = 0;
+            int overallImpactFactors = 0;
+            if (this.environmentScore != 0) {
+                ++overallImpactFactors;
+                overallImpactScore += this.environmentScore;
             }
-            if (this.bluesignPartner == true) {
-                if (this.bcorpScore == 0) {
-                    this.overallScore = 7.5;
-                } else {
-                    this.overallScore += 1;
-                }
+            if (this.laborScore != 0) {
+                ++overallImpactFactors;
+                overallImpactScore += this.laborScore;
             }
-            if (this.overallScore > 9)
-                this.overallScore = 9;
+            if (this.animalsScore != 0) {
+                ++overallImpactFactors;
+                overallImpactScore += this.animalsScore;
+            }
+            if (overallImpactScore != 0 && overallImpactFactors != 0) {
+                this.overallScore = overallImpactScore / overallImpactFactors;
+            }
+            switch (overallImpactFactors) {
+                case 1:
+                    if (this.laborScore > 7) {
+                        this.laborScore = 7;
+                    }
+                    break;
+                case 2:
+                    if (this.laborScore > 8) {
+                        this.laborScore = 8;
+                    }
+                    break;
+                default:
+                    if (this.laborScore > 9) {
+                        this.laborScore = 9;
+                    }
+            }
         }
     }
 
@@ -384,6 +512,10 @@ public class Business {
         System.out.println("Name:                   " + this.name);
         System.out.println("Website:                " + this.website);
         System.out.println("Business Type:          " + this.companyType);
+        System.out.println("Bcorp Community:        " + this.bcorpCommunityScore);
+        System.out.println("Bcorp Environment:      " + this.bcorpEnvironmentScore);
+        System.out.println("Bcorp Governance:       " + this.bcorpGovernanceScore);
+        System.out.println("Bcorp Workers:          " + this.bcorpWorkerScore);
         System.out.println("Bcorp Score:            " + this.bcorpScore);
         System.out.println("Black Owned Business:   " + this.blackOwnedBusiness);
         System.out.println("Native Owned Business:  " + this.nativeOwnedBusiness);

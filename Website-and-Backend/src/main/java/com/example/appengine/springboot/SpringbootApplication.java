@@ -40,15 +40,15 @@ public class SpringbootApplication {
     public Business masterController(@PathVariable("company") String companyName) throws IOException {
         Business business = new Business();
         if (validateURL(companyName)) {
-            business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "Top 50 Online Retailers & Manual Scores - Sheet1.csv", 11, 1, -1, -1, -1, -1, -1, -1, 2, 4, 5, -1, 6, 7, 8, 9, 10, -1, -1, -1, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "EPA's Green Power Partners - Sheet1.csv", 5, 0, -1, -1, -1, -1, -1, 1, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "bcorp.csv", 6, 0, 2, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 5, 4, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, false, true, false, false, false));
-            business.update(searchDataSource(companyName, "Black-OwnedOnlineBusinesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, true, false, false));
-            business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, true, false, false, false, false));
-            business.update(searchDataSource(companyName, "POC-Owned Businesses (1).csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, true, false));
-            business.update(searchDataSource(companyName, "Native-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, true));
+            business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Top 50 Online Retailers & Manual Scores - Sheet1.csv", 11, 1, -1, -1, -1, -1, -1, -1, 2, 4, 5, -1, 6, 7, 8, 9, 10, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "EPA's Green Power Partners - Sheet1.csv", 5, 0, -1, -1, -1, -1, -1, 1, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "B Corp Impact Data.csv", 11, 0, 3, 4, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 6, 7,8,9,10, 5, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, true, false, false, false));
+            business.update(searchDataSource(companyName, "Black-OwnedOnlineBusinesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, true, false, false));
+            business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, true, false, false, false, false));
+            business.update(searchDataSource(companyName, "POC-Owned Businesses (1).csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, true, false));
+            business.update(searchDataSource(companyName, "Native-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, true));
             business.calculate();
         }
         return business;
@@ -136,7 +136,8 @@ public class SpringbootApplication {
                                      int websiteColumn, int supportsBLMSourceColumn, int supportsBLMEntityColumn, int supportsBLMContributionColumn,
                                      int companyTypeColumn, int betterBusinessBureauColumn, int corporateCriticScoreColumn, int goodOnYouScoreColumn,
                                      int greenPowerPercentageColumn, int environmentScoreColumn, int textilesScoreColumn, int animalsScoreColumn,
-                                     int laborScoreColumn, int overallScoreColumn, int bcorpCertifiedColumn, int bcorpScoreColumn, int bcorpCertYearColumn,
+                                     int laborScoreColumn, int overallScoreColumn, int bcorpCertifiedColumn, int bcorpScoreColumn, int bcorpCommunityScoreColumn,
+                                     int bcorpEnvironmentsScoreColumn, int bcorpGovernanceScoreColumn, int bcorpWorkersScoreColumn, int bcorpCertYearColumn,
                                      boolean bluesignPartnerColumn, boolean supportsBLMColumn, boolean blackOwnedBusinessColumn,
                                      boolean pocOwnedBusiness, boolean nativeOwnedBusiness) throws IOException {
         Business busTemp = new Business(); // Business temp obj for search and compare
@@ -152,6 +153,9 @@ public class SpringbootApplication {
         try {
             br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
             while ((line = br.readLine()) != null) { // cycles through line by line
+                if (line.charAt(line.length() - 1) == ',') {
+                    line += "0";
+                }
                 if (bluesignPartnerColumn){
                     brLine = line.split("\n");
                 } else {
@@ -190,8 +194,6 @@ public class SpringbootApplication {
                                 busTemp.setBluesignPartner(bluesignPartnerColumn);
                                 busTemp.setPocOwnedBusiness(pocOwnedBusiness);
                                 busTemp.setNativeOwnedBusiness(nativeOwnedBusiness);
-                            } else if (column == bcorpProfileColumn) {
-                                busTemp.setBcorpProfile(dataToken);
                             } else if (column == websiteColumn) {
                                 busTemp.setWebsite(dataToken);
                             } else if (column == supportsBLMSourceColumn) {
@@ -219,7 +221,7 @@ public class SpringbootApplication {
                             } else if (column == greenPowerPercentageColumn) {
                                 dataToken = charRemove(dataToken, '%');
                                 try {
-                                    busTemp.setGreenPowerPercentage(Double.parseDouble(dataToken) / 100);
+                                    busTemp.setGreenPowerPercentage(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
@@ -256,6 +258,31 @@ public class SpringbootApplication {
                             } else if (column == bcorpCertifiedColumn) {
                                 if (!dataToken.contains("de-certified"))
                                     busTemp.setBcorpCertified(true);
+                            } else if (column == bcorpCommunityScoreColumn) {
+                                try {
+                                    busTemp.setBcorpCommunityScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (column == bcorpEnvironmentsScoreColumn) {
+                                try {
+                                    busTemp.setBcorpEnvironmentScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (column == bcorpGovernanceScoreColumn) {
+                                try {
+                                    busTemp.setBcorpGovernanceScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (column == bcorpWorkersScoreColumn) {
+
+                                try {
+                                    busTemp.setBcorpWorkerScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
                             } else if (column == bcorpScoreColumn) {
                                 try {
                                     busTemp.setBcorpScore(Double.parseDouble(dataToken));
@@ -268,15 +295,19 @@ public class SpringbootApplication {
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }
+                            } else if (column == bcorpProfileColumn) {
+                                if (dataToken.contains("bcorporation.net")) {
+                                    busTemp.setBcorpProfile(dataToken);
+                                }
                             }
                         }
                     }
                     ++column;
                     if (column == columnCount) { // End of Cycle indicator
                         column = 0; // Restarts Cycle
-                            if (compare(searchTerm, busTemp)) {
-                                business.update(busTemp);
-                            }
+                        if (compare(searchTerm, busTemp)) {
+                            business.update(busTemp);
+                        }
                         busTemp = new Business();
                     }
                 }
