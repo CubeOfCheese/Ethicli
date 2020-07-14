@@ -14,8 +14,12 @@
     <div>
         <div id="menuPanel">
             <div id="menuBacking"></div>
-            <button id="somethingWrong"><a>Something Looks Wrong</a></button>
-            <button><a>Settings</a></button>
+            <button class="tooltip" id="somethingWrong">
+                <a id="sendEmail" target="_blank">Something Looks Wrong</a>
+                <span class="tooltiptext" id="somethingWrongTip">If a new tab doesn’t open after pressing this button, 
+                    please tell us the issue at hello@ethicli.com instead.</span>
+            </button>
+            <button><a href="http://www.ethicli.com" target="_blank">Ethicli Website</a></button>
         </div>
         <img src="images/menu.svg" alt="Menu" height="24" width="24" id="menu">
     </div>
