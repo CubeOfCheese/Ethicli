@@ -427,21 +427,8 @@ public class Business {
             if (environmentalImpactScore != 0 && environmentalImpactFactors != 0) {
                 this.environmentScore = environmentalImpactScore / environmentalImpactFactors;
             }
-            switch (environmentalImpactFactors) {
-                case 1:
-                    if (this.environmentScore > 7) {
-                        this.environmentScore = 7;
-                    }
-                    break;
-                case 2:
-                    if (this.environmentScore > 8) {
-                        this.environmentScore = 8;
-                    }
-                    break;
-                default:
-                    if (this.environmentScore > 9) {
-                        this.environmentScore = 9;
-                    }
+            if (this.environmentScore > 9.5) {
+                this.environmentScore = 9.5;
             }
             // Labor Practice Score
             double laborImpactScore = 0;
@@ -454,21 +441,8 @@ public class Business {
             if (laborImpactScore != 0 && laborImpactFactors != 0) {
                 this.laborScore = laborImpactScore / laborImpactFactors;
             }
-            switch (laborImpactFactors) {
-                case 1:
-                    if (this.laborScore > 7) {
-                        this.laborScore = 7;
-                    }
-                    break;
-                case 2:
-                    if (this.laborScore > 8) {
-                        this.laborScore = 8;
-                    }
-                    break;
-                default:
-                    if (this.laborScore > 9) {
-                        this.laborScore = 9;
-                    }
+            if (this.laborScore > 9.5) {
+                this.laborScore = 9.5;
             }
             // Animal Welfare Score
             // Overall Score
@@ -489,21 +463,8 @@ public class Business {
             if (overallImpactScore != 0 && overallImpactFactors != 0) {
                 this.overallScore = overallImpactScore / overallImpactFactors;
             }
-            switch (overallImpactFactors) {
-                case 1:
-                    if (this.laborScore > 7) {
-                        this.laborScore = 7;
-                    }
-                    break;
-                case 2:
-                    if (this.laborScore > 8) {
-                        this.laborScore = 8;
-                    }
-                    break;
-                default:
-                    if (this.laborScore > 9) {
-                        this.laborScore = 9;
-                    }
+            if (this.overallScore > 9.5) {
+                this.overallScore = 9.5;
             }
         }
     }
