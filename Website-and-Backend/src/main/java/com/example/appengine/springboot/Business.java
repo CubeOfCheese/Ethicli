@@ -411,18 +411,24 @@ public class Business {
         if (this.overallScore == 0) {
             // Environmental Impact Score
             double environmentalImpactScore = 0;
+            double bcorpEnvironmentMean = 17.8; // Mean of all bcorpWorkerScore data
             int environmentalImpactFactors = 0;
             if (this.greenPowerPercentage != 0) {
                 ++environmentalImpactFactors;
-                environmentalImpactScore += (4 + ((this.greenPowerPercentage / 100) * 2.5));
+                environmentalImpactScore += (5 + ((this.greenPowerPercentage / 100) * 2.5));
             }
             if (this.bcorpEnvironmentScore != 0) {
                 ++environmentalImpactFactors;
-                environmentalImpactScore += (this.bcorpEnvironmentScore / 2.4);
+                // Turns bcorpEnvironmentScore into a 0 - 10 score in which an average score would earn a 7.5
+                environmentalImpactScore += (this.bcorpEnvironmentScore / (bcorpEnvironmentMean / 7.5));
             }
             if (bluesignPartner) {
-                ++environmentalImpactFactors;
-                environmentalImpactScore += 10;
+                if (environmentalImpactFactors == 0) {
+                    ++environmentalImpactFactors;
+                    environmentalImpactScore += 7.5;
+                } else {
+                    environmentalImpactScore += environmentalImpactFactors;
+                }
             }
             if (environmentalImpactScore != 0 && environmentalImpactFactors != 0) {
                 this.environmentScore = environmentalImpactScore / environmentalImpactFactors;
@@ -432,11 +438,12 @@ public class Business {
             }
             // Labor Practice Score
             double laborImpactScore = 0;
+            double bcorpLaborMean = 20.8;
             int laborImpactFactors = 0;
-
             if (this.bcorpWorkerScore != 0) {
                 ++laborImpactFactors;
-                laborImpactScore += (this.bcorpWorkerScore / 2.7);
+                // Turns bcorpWorkerScore into a 0 - 10 score in which an average score would earn a 7.5
+                laborImpactScore += (this.bcorpWorkerScore / (bcorpLaborMean / 7.5));
             }
             if (laborImpactScore != 0 && laborImpactFactors != 0) {
                 this.laborScore = laborImpactScore / laborImpactFactors;
