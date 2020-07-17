@@ -208,7 +208,7 @@ body {
     margin-left: 24px;
 }
 
-button#detailsButton {
+#detailsButton {
     align-self: flex-end;
     padding: 8px;
 }
@@ -295,6 +295,12 @@ button#detailsButton {
     color: #05668D;
     font-size: 0.6em;
     font-weight: bold;
+}
+
+#noSubscore {
+    font-size: 0.85em;
+    font-weight: bold;
+    color: #E07A5F;
 }
 
 h3 {
