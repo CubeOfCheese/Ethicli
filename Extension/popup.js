@@ -6,7 +6,40 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
 
 function loadExtension() {
     chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(response) {
-        var ethicliScore = (response.ethicliStats.overallScore).toFixed(1)
+        adjustSubscores();
+        function adjustSubscores(){
+            var fullheight = 350;
+            if(response.ethicliStats.environmentScore == 0.0){
+                fullheight= fullheight-50;
+                document.getElementById("envSection").style="display:none;";
+            }
+            if(response.ethicliStats.laborScore == 0.0){
+                fullheight= fullheight-50;
+                document.getElementById("laborSection").style="display:none;";
+            }
+            if(response.ethicliStats.animalsScore == 0.0){
+                fullheight= fullheight-50;
+                document.getElementById("animalSection").style="display:none;";
+            }
+            if(response.ethicliStats.environmentScore == 0.0 &&
+                response.ethicliStats.laborScore == 0.0 &&
+                response.ethicliStats.animalsScore == 0.0
+            ){
+                document.getElementById("noSubscore").style="display:block;";
+                document.getElementById("detailsButton").style="display:none;"
+                fullheight = 160;
+            }
+            var newHeight = "height:"+fullheight+"px;";
+            document.body.style = newHeight;
+        }
+
+        var ethicliScore = (response.ethicliStats.overallScore).toFixed(1);
+
+        //Change sitename
+        document.getElementById("siteurl").innerHTML = response.ethicliStats.name;
+        if(response.ethicliStats.name == null){
+            document.getElementById("siteurl").innerHTML = "Unavailable";
+        }
 
         //Changes subratings
         document.getElementById("envScore").innerHTML = response.ethicliStats.environmentScore;
@@ -20,7 +53,6 @@ function loadExtension() {
         document.getElementById("laborScoreBar").style.width = laborScore + "px";
         var animalScore = response.ethicliStats.animalsScore*20
         document.getElementById("animalScoreBar").style.width = animalScore + "px";
-
 
         if(document.getElementById("overallScore")!== null){ //checks to see if ID even appears on page
             document.getElementById("overallScore").innerHTML = ethicliScore;
