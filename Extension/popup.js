@@ -6,18 +6,7 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
 
 function loadExtension() {
     chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(response) {
-        var ethicliScore;
-        if(response.ethicliStats.overallScore>0){
-            ethicliScore = (response.ethicliStats.overallScore).toFixed(1)
-        }else{
-            ethicliScore = (response.ethicliStats.bcorpScore / 20).toFixed(1)
-            if (response.ethicliStats.bcorpCertified && response.ethicliStats.bluesignPartner) {
-                // bluesign partners get an extra point added to their score
-                ethicliScore = (response.ethicliStats.bcorpScore / 20 + 1).toFixed(1);
-            } else if (!response.ethicliStats.bcorpCertified && response.ethicliStats.bluesignPartner) {
-                ethicliScore = 7.5;
-            }
-        }
+        var ethicliScore = (response.ethicliStats.overallScore).toFixed(1)
 
         //Changes subratings
         document.getElementById("envScore").innerHTML = response.ethicliStats.environmentScore;

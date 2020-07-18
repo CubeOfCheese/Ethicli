@@ -45,16 +45,7 @@ function reloadExt(request, sender, sendResponse) {
                         companyRequest.onload = function() {
                             var jsonResponse = JSON.parse(this.response);
                             ethicliStats = jsonResponse;
-                            if (jsonResponse.overallScore > 0) {
-                                ethicliBadgeScore = Math.round(jsonResponse.overallScore);
-                            } else {
-                                ethicliBadgeScore = Math.round(jsonResponse.bcorpScore / 20);
-                                if (jsonResponse.bcorpCertified && jsonResponse.bluesignPartner) {
-                                    ethicliBadgeScore += 1;
-                                } else if (jsonResponse.bluesignPartner) {
-                                    ethicliBadgeScore = 8;
-                                }
-                            }
+                            ethicliBadgeScore = Math.round(jsonResponse.overallScore);
 
                             if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore == 0)) {
                                 ethicliBadgeScore = "";
