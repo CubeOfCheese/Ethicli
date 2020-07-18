@@ -288,6 +288,15 @@ body {
 
 /** Typography **/
 
+#sitename {
+    position: absolute;
+    top: -20px;
+    left: 0px;
+    color: #05668D;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+
 #noSubscore {
     font-size: 0.85em;
     font-weight: bold;
