@@ -41,12 +41,6 @@ function loadExtension() {
             document.getElementById("siteurl").innerHTML = "Unavailable";
         }
 
-        //Change sitename
-        document.getElementById("siteurl").innerHTML = response.ethicliStats.name;
-        if(response.ethicliStats.name == null){
-            document.getElementById("siteurl").innerHTML = "Unavailable";
-        }
-
         //Changes subratings
         document.getElementById("envScore").innerHTML = response.ethicliStats.environmentScore;
         document.getElementById("laborScore").innerHTML = response.ethicliStats.laborScore;
