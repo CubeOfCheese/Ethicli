@@ -411,7 +411,7 @@ public class Business {
         if (this.overallScore == 0) {
             // Environmental Impact Score
             double environmentalImpactScore = 0;
-            double bcorpEnvironmentMean = 17.8; // Mean of all bcorpWorkerScore data
+            final double BCORP_ENVIRORNMENT_MEAN = 17.8; // Mean of all bcorpWorkerScore data
             int environmentalImpactFactors = 0;
             if (this.greenPowerPercentage != 0) {
                 ++environmentalImpactFactors;
@@ -420,7 +420,7 @@ public class Business {
             if (this.bcorpEnvironmentScore != 0) {
                 ++environmentalImpactFactors;
                 // Turns bcorpEnvironmentScore into a 0 - 10 score in which an average score would earn a 7.5
-                environmentalImpactScore += (this.bcorpEnvironmentScore / (bcorpEnvironmentMean / 7.5));
+                environmentalImpactScore += (this.bcorpEnvironmentScore / (BCORP_ENVIRORNMENT_MEAN / 7.5));
             }
             if (bluesignPartner) {
                 if (environmentalImpactFactors == 0) {
@@ -438,12 +438,12 @@ public class Business {
             }
             // Labor Practice Score
             double laborImpactScore = 0;
-            double bcorpLaborMean = 20.8;
+            final double BCORP_LABOR_MEAN = 20.8;
             int laborImpactFactors = 0;
             if (this.bcorpWorkerScore != 0) {
                 ++laborImpactFactors;
                 // Turns bcorpWorkerScore into a 0 - 10 score in which an average score would earn a 7.5
-                laborImpactScore += (this.bcorpWorkerScore / (bcorpLaborMean / 7.5));
+                laborImpactScore += (this.bcorpWorkerScore / (BCORP_LABOR_MEAN / 7.5));
             }
             if (laborImpactScore != 0 && laborImpactFactors != 0) {
                 this.laborScore = laborImpactScore / laborImpactFactors;
