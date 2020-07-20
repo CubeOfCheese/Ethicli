@@ -361,7 +361,7 @@ a {
     font-weight: 700;
 }
 
-.readmore:hover, #backToTop:hover{
+.readmore:hover, #backToTop:hover, #pitchdeck:hover{
     opacity: 0.8;
 }
 
@@ -393,6 +393,14 @@ button {
     color: #102340;
 }
 
+#pitchdeck{
+    display: inline-block;
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 100px;
+    background: #D27F65;
+}
+
 #howToUse p, #news p {
     color: #8EA289;
 }
@@ -401,7 +409,7 @@ button {
     color: #C9D4C6;
 }
 
-.colorCream, #featured h3, footer a {
+.colorCream, #pitchdeck, #featured h3, footer a {
     color: #FEFCF3;
 }
 
@@ -432,7 +440,7 @@ button {
 
 #headerExtension {
     position: absolute;
-    width: 45%;
+    width: 41%;
     border-radius: 20px;
     margin-top: 30px;
 }

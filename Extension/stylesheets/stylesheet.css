@@ -208,7 +208,7 @@ body {
     margin-left: 24px;
 }
 
-button#detailsButton {
+#detailsButton {
     align-self: flex-end;
     padding: 8px;
 }
@@ -287,6 +287,21 @@ button#detailsButton {
 
 
 /** Typography **/
+
+#sitename {
+    position: absolute;
+    top: -20px;
+    left: 0px;
+    color: #05668D;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+
+#noSubscore {
+    font-size: 0.85em;
+    font-weight: bold;
+    color: #E07A5F;
+}
 
 h3 {
     text-align: center;
