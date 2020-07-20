@@ -120,12 +120,12 @@ nav a:hover {
 
 /*** Body Content **************************************************************/
 
-header{
+header {
     background: #C9D4C6;
     min-height: 768px;
 }
 
-#privacy header{
+#privacy header, #faq header {
     min-height: 200px;
 }
 
@@ -157,11 +157,11 @@ header{
     background: #C9D4C6;
 }
 
-.basicbody{
+.basicbody {
     background: #aebeaa;
 }
 
-.basicbody section{
+.basicbody section {
     margin-bottom: 60px;
 }
 
@@ -223,7 +223,7 @@ footer p {
     justify-content: space-between;
 }
 
-#news article, #featured article{
+#news article, #featured article {
     position: relative;
     background: #FFFCF2;
     padding: 24px 24px 48px 24px;
@@ -334,11 +334,11 @@ p, ul {
     margin-bottom: 16px;
 }
 
-#privacy .basicbody p, #privacy .basicbody ul li{
+#privacy .basicbody p, #privacy .basicbody ul li {
     font-size: 0.85em;
 }
 
-#privacy .basicbody ul li{
+#privacy .basicbody ul li {
     list-style-type: circle;
     line-height: 1.5em;
     opacity: 0.6;
@@ -349,11 +349,11 @@ a {
     cursor: pointer;
 }
 
-#top a{
+#top a, .basicbody a {
     color:#2B6589;
 }
 
-#top a:hover{
+#top a:hover, .basicbody a:hover {
     color: #D27F65;
 }
 
@@ -361,7 +361,7 @@ a {
     font-weight: 700;
 }
 
-.readmore:hover, #backToTop:hover, #pitchdeck:hover{
+.readmore:hover, #backToTop:hover, #pitchdeck:hover {
     opacity: 0.8;
 }
 
@@ -409,7 +409,7 @@ button {
     color: #C9D4C6;
 }
 
-.colorCream, #pitchdeck, #featured h3, footer a {
+.colorCream, #pitchdeck, #faq #pitchdeck, #featured h3, footer a {
     color: #FEFCF3;
 }
 
