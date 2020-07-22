@@ -31,6 +31,7 @@ body {
     height: 100%;
     background: rgba(255, 252, 242, 0.75);
     z-index: 1;
+    top: -30px;
 }
 
 #menuPanel.menuClicked {
@@ -305,6 +306,7 @@ body {
     color: #05668D;
     font-size: 0.75em;
     font-weight: bold;
+    z-index: 2;
 }
 
 #noSubscore {
