@@ -12,17 +12,17 @@ function loadExtension() {
         if (ethicliScore > 0.0) {  // This will need to be updated once negative scores are used as default
           adjustSubscores();
         }
-        function adjustSubscores(){
+        function adjustSubscores() {
             var fullheight = 350;
-            if (response.ethicliStats.environmentScore == 0.0){
+            if (response.ethicliStats.environmentScore == 0.0) {
                 fullheight= fullheight-50;
                 document.getElementById("envSection").style="display:none;";
             }
-            if (response.ethicliStats.laborScore == 0.0){
+            if (response.ethicliStats.laborScore == 0.0) {
                 fullheight= fullheight-50;
                 document.getElementById("laborSection").style="display:none;";
             }
-            if (response.ethicliStats.animalsScore == 0.0){
+            if (response.ethicliStats.animalsScore == 0.0) {
                 fullheight= fullheight-50;
                 document.getElementById("animalSection").style="display:none;";
             }
