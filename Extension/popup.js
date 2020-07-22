@@ -53,11 +53,11 @@ function loadExtension() {
         document.getElementById("animalScore").innerHTML = response.ethicliStats.animalsScore;
 
         //Changes subratings scorebar
-        var envScore = response.ethicliStats.environmentScore*20
+        var envScore = response.ethicliStats.environmentScore*20;
         document.getElementById("envScoreBar").style.width = envScore + "px";
-        var laborScore = response.ethicliStats.laborScore*20
+        var laborScore = response.ethicliStats.laborScore*20;
         document.getElementById("laborScoreBar").style.width = laborScore + "px";
-        var animalScore = response.ethicliStats.animalsScore*20
+        var animalScore = response.ethicliStats.animalsScore*20;
         document.getElementById("animalScoreBar").style.width = animalScore + "px";
 
         if (document.getElementById("overallScore")!== null) { //checks to see if ID even appears on page
