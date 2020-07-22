@@ -74,11 +74,11 @@ body {
     color: #E07A5F;
 }
 
-#popupNotShop #notShopMessage h2{
+#popupNotShop #notShopMessage h2 {
     margin-top: -16px;
 }
 
-#shopDataUnavailable h2{
+#shopDataUnavailable h2 {
     margin-top: 16px;
 }
 
