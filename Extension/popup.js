@@ -43,7 +43,7 @@ function loadExtension() {
 
         //Change sitename
         document.getElementById("siteurl").innerHTML = response.ethicliStats.name;
-        if(response.ethicliStats.name == null) {
+        if (response.ethicliStats.name == null) {
             document.getElementById("siteurl").innerHTML = "Unavailable";
         }
 
@@ -104,7 +104,7 @@ window.onload = function() {
 
     
     document.getElementById("scores").onmouseover = function() {
-        if(hasSubscore){
+        if (hasSubscore) {
             document.getElementById("subscoreTip").style.left = (event.clientX-30)+"px";
             document.getElementById("subscoreTip").style.top = (event.clientY-30)+"px";
         } else {
