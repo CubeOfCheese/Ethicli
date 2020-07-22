@@ -6,7 +6,10 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
 
 function loadExtension() {
     chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(response) {
-        adjustSubscores();
+        var ethicliScore = (response.ethicliStats.overallScore).toFixed(1);
+        if (ethicliScore > 0.0) {  // This will need to be updated once negative scores are used as default
+          adjustSubscores();
+        }
         function adjustSubscores(){
             var fullheight = 350;
             if(response.ethicliStats.environmentScore == 0.0){
@@ -32,8 +35,6 @@ function loadExtension() {
             var newHeight = "height:"+fullheight+"px;";
             document.body.style = newHeight;
         }
-
-        var ethicliScore = (response.ethicliStats.overallScore).toFixed(1);
 
         //Change sitename
         document.getElementById("siteurl").innerHTML = response.ethicliStats.name;
