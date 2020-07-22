@@ -10,8 +10,9 @@
     <script src="popup.js"></script>
 </head>
 
-<body style="height:280px;">
+<body style="height:280px;" id="popupNoRating">
     <div>
+        <p id="sitename">Shop: <span id="siteurl"></span></p>
         <div id="menuPanel">
             <div id="menuBacking"></div>
             <button class="tooltip" id="somethingWrong">
@@ -25,7 +26,6 @@
     </div>
 
     <div id="extension">
-        <p id="sitename">Site Name: <span id="siteurl"></span></p>
         <div id="shopDataUnavailable">
             <span id="noBadge">
                 <h2>Shop rating<br>unavailable.</h2>

@@ -29,7 +29,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(255, 252, 242, 0.6);
+    background: rgba(255, 252, 242, 0.75);
     z-index: 1;
 }
 
@@ -71,6 +71,14 @@ body {
     margin-bottom: 16px;
     font-weight: 700;
     color: #E07A5F;
+}
+
+#popupNotShop #notShopMessage h2{
+    margin-top: -16px;
+}
+
+#shopDataUnavailable h2{
+    margin-top: 16px;
 }
 
 #notShopMessage p, #shopDataUnavailable p {
@@ -292,14 +300,15 @@ body {
 
 #sitename {
     position: absolute;
-    top: -10px;
-    left: 0px;
+    top: 24px;
+    left: 36px;
     color: #05668D;
     font-size: 0.75em;
     font-weight: bold;
 }
 
 #noSubscore {
+    margin-top: -4px;
     font-size: 0.85em;
     font-weight: bold;
     color: #E07A5F;
@@ -347,7 +356,7 @@ h6 a {
 
 #shoppingBagImg {
     display: block;
-    margin: 16px auto 0 auto;
+    margin: 12px auto 0 auto;
     width: 120px;
     height: 120px;
 }
