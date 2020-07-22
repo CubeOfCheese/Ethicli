@@ -38,7 +38,8 @@ public class SpringbootApplication {
 
     // Controls Searches of all Data Sources
     @GetMapping("/score/{company}")
-    public Business masterController(@PathVariable("company") String companyName) throws IOException {
+    public Business masterController(@PathVariable("company") String companyName, HttpServletResponse response) throws IOException {
+        response.addHeader("Access-Control-Allow-Origin", "*");
         Business business = new Business();
         if (validateURL(companyName)) {
             business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, false));
