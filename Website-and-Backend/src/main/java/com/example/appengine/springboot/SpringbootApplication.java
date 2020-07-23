@@ -42,15 +42,15 @@ public class SpringbootApplication {
         response.addHeader("Access-Control-Allow-Origin", "*");
         Business business = new Business();
         if (validateURL(companyName)) {
-            business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "Top 50 Online Retailers & Manual Scores - Sheet1.csv", 11, 1, -1, -1, -1, -1, -1, -1, 2, 4, 5, -1, 6, 7, 8, 9, 10, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "EPA's Green Power Partners - Sheet1.csv", 5, 0, -1, -1, -1, -1, -1, 1, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "B Corp Impact Data.csv", 11, 0, 3, 4, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 6, 7,8,9,10, 5, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, true, false, false, false));
-            business.update(searchDataSource(companyName, "Black-OwnedOnlineBusinesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, true, false, false));
-            business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, true, false, false, false, false));
-            business.update(searchDataSource(companyName, "POC-Owned Businesses (1).csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, true, false));
-            business.update(searchDataSource(companyName, "Native-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, true));
+            business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Top 50 Online Retailers & Manual Scores - Sheet1.csv", 12, 1, -1, 2, -1, -1, -1, -1, 3, 4, 5, -1, 6, 7, 8, 9, 10, 11, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "EPA's Green Power Partners - Sheet1.csv", 5, 0, -1, -1, -1, -1, -1, 1, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "B Corp Impact Data.csv", 11, 0, 3, 4, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 6, 7,8,9,10, 5, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, true, false, false, false));
+            business.update(searchDataSource(companyName, "Black-OwnedOnlineBusinesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, true, false, false));
+            business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, true, false, false, false, false));
+            business.update(searchDataSource(companyName, "POC-Owned Businesses (1).csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, true, false));
+            business.update(searchDataSource(companyName, "Native-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, false, false, false, false, true));
             business.calculate();
         }
         return business;
@@ -138,9 +138,9 @@ public class SpringbootApplication {
                                      int websiteColumn, int supportsBLMSourceColumn, int supportsBLMEntityColumn, int supportsBLMContributionColumn,
                                      int companyTypeColumn, int betterBusinessBureauColumn, int corporateCriticScoreColumn, int goodOnYouScoreColumn,
                                      int greenPowerPercentageColumn, int environmentScoreColumn, int textilesScoreColumn, int animalsScoreColumn,
-                                     int laborScoreColumn, int overallScoreColumn, int bcorpCertifiedColumn, int bcorpScoreColumn, int bcorpCommunityScoreColumn,
-                                     int bcorpEnvironmentsScoreColumn, int bcorpGovernanceScoreColumn, int bcorpWorkersScoreColumn, int bcorpCertYearColumn,
-                                     boolean bluesignPartnerColumn, boolean supportsBLMColumn, boolean blackOwnedBusinessColumn,
+                                     int laborScoreColumn, int socialScoreColumn, int overallScoreColumn, int bcorpCertifiedColumn, int bcorpScoreColumn,
+                                     int bcorpCommunityScoreColumn, int bcorpEnvironmentsScoreColumn, int bcorpGovernanceScoreColumn, int bcorpWorkersScoreColumn,
+                                     int bcorpCertYearColumn, boolean bluesignPartnerColumn, boolean supportsBLMColumn, boolean blackOwnedBusinessColumn,
                                      boolean pocOwnedBusiness, boolean nativeOwnedBusiness) throws IOException {
         Business busTemp = new Business(); // Business temp obj for search and compare
         Business business = new Business(); // Business obj for matching data of most recent .year
@@ -248,6 +248,12 @@ public class SpringbootApplication {
                             } else if (column == laborScoreColumn) {
                                 try {
                                     busTemp.setLaborScore(Double.parseDouble(dataToken));
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (column == socialScoreColumn) {
+                                try {
+                                    busTemp.setSocialScore(Double.parseDouble(dataToken));
                                 } catch (NumberFormatException e) {
                                     e.printStackTrace();
                                 }

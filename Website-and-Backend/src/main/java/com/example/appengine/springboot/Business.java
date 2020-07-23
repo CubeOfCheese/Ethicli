@@ -21,6 +21,7 @@ public class Business {
     private double greenPowerPercentage;
     private double laborScore;
     private double overallScore;
+    private double socialScore;
     private double textileScore;
     private int bcorpCertYear;
     private String bcorpProfile;
@@ -51,6 +52,7 @@ public class Business {
         this.greenPowerPercentage = 0;
         this.laborScore = 0;
         this.overallScore = 0;
+        this.socialScore = 0;
         this.textileScore = 0;
         this.bcorpCertYear = 0;
         this.bcorpProfile = null;
@@ -75,8 +77,9 @@ public class Business {
                     @JsonProperty("corporateCriticScore") double corporateCriticScore, @JsonProperty("goodOnYouScore") double goodOnYouScore,
                     @JsonProperty("environmentScore") double environmentScore, @JsonProperty("textileScore") double textileScore,
                     @JsonProperty("animalsScore") double animalsScore, @JsonProperty("laborScore") double laborScore,
-                    @JsonProperty("overallScore") double overallScore, @JsonProperty("pocOwnedBusiness") boolean pocOwnedBusiness,
-                    @JsonProperty("nativeOwnedBusiness") boolean nativeOwnedBusiness, @JsonProperty("greenPowerPercentage") double greenPowerPercentage) {
+                    @JsonProperty("socialScore") double socialScore, @JsonProperty("overallScore") double overallScore,
+                    @JsonProperty("pocOwnedBusiness") boolean pocOwnedBusiness, @JsonProperty("nativeOwnedBusiness") boolean nativeOwnedBusiness,
+                    @JsonProperty("greenPowerPercentage") double greenPowerPercentage) {
         this.bcorpCertified = bcorpCertified;
         this.blackOwnedBusiness = blackOwnedBusiness;
         this.bluesignPartner = bluesignPartner;
@@ -95,6 +98,8 @@ public class Business {
         this.goodOnYouScore = goodOnYouScore;
         this.greenPowerPercentage = greenPowerPercentage;
         this.laborScore = laborScore;
+
+        this.socialScore = socialScore;
         this.textileScore = textileScore;
         this.bcorpCertYear = bcorpCertYear;
         this.bcorpProfile = bcorpProfile;
@@ -201,6 +206,10 @@ public class Business {
 
     public double getLaborScore() {
         return laborScore;
+    }
+
+    public double getSocialScore() {
+        return socialScore;
     }
 
     public double getTextileScore() {
@@ -315,6 +324,10 @@ public class Business {
         this.laborScore = laborScore;
     }
 
+    public void setSocialScore(double socialScore) {
+        this.socialScore = socialScore;
+    }
+
     public void setTextileScore(double textileScore) {
         this.textileScore = textileScore;
     }
@@ -400,6 +413,9 @@ public class Business {
                 this.laborScore = business.getLaborScore();
             if (this.overallScore == 0)
                 this.overallScore = business.getOverallScore();
+            if (this.socialScore == 0) {
+                this.socialScore = business.getSocialScore();
+            }
             if (this.pocOwnedBusiness == false)
                 this.pocOwnedBusiness = business.isPocOwnedBusiness();
             if (this.nativeOwnedBusiness == false)
@@ -504,6 +520,7 @@ public class Business {
         System.out.println("Textile Score:          " + this.textileScore);
         System.out.println("Animal Score:           " + this.animalsScore);
         System.out.println("Labor Score:            " + this.laborScore);
+        System.out.println("Social Score:           " + this.socialScore);
         System.out.println("Overall Score:          " + this.overallScore);
     }
 }
