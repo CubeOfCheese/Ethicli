@@ -77,18 +77,16 @@ $(document).ready(function() {
     });
 
     function mobileNav(){ //create mobile menu toggle to show navigation links
-        if ($(window).width() <= 768) {
-            $("#triplebar").click(function(){
-                $("#navlinks").toggleClass("navClicked");
-            })
-        }else{
-            $("#navlinks").removeClass("navClicked");
-        }
+        $(window).bind("resize", function () {
+            if ($(this).width() <= 768) {
+                $("#triplebar").click(function(){
+                    $("#navlinks").toggleClass("navClicked");
+                })
+            }else{
+                $("#navlinks").removeClass("navClicked");
+            }
+        }).trigger('resize');
     }
-
-    $(window).resize(function(){ //after window is resized, allow menu toggle
-        mobileNav();
-    })
     mobileNav(); //allows menu to toggle when starting at a mobile size
 
     $("#mailingListSubmit").click(function(){
