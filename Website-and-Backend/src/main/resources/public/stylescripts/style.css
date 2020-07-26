@@ -178,6 +178,7 @@ footer .container {
 footer aside {
     display: flex;
     flex-direction: column;
+    line-height: 1.19em;
 }
 
 .socials li, footer a {
