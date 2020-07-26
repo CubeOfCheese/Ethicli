@@ -7,9 +7,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class Router {
+  @RequestMapping({"/", "/home"})
+  public String getHome() {
+    return "index";
+  }
+
   @RequestMapping(value = "/faq")
   public String getFAQ() {
-    System.out.println("big faqs");
-    return "classpath:resources/templates/faq";
+    return "faq";
+  }
+
+  @RequestMapping(value = "/privacy")
+  public String getPrivacy() {
+    return "privacy";
   }
 }
