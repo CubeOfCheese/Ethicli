@@ -48,9 +48,9 @@ function loadExtension() {
         }
 
         //Changes subratings
-        document.getElementById("envScore").innerHTML = response.ethicliStats.environmentScore;
-        document.getElementById("laborScore").innerHTML = response.ethicliStats.laborScore;
-        document.getElementById("animalScore").innerHTML = response.ethicliStats.animalsScore;
+        document.getElementById("envScore").innerHTML = response.ethicliStats.environmentScore.toFixed(1);
+        document.getElementById("laborScore").innerHTML = response.ethicliStats.laborScore.toFixed(1);
+        document.getElementById("animalScore").innerHTML = response.ethicliStats.animalsScore.toFixed(1);
 
         //Changes subratings scorebar
         var envScore = response.ethicliStats.environmentScore*20;
