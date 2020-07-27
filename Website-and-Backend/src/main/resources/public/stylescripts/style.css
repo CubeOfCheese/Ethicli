@@ -180,7 +180,7 @@ footer aside {
     flex-direction: column;
 }
 
-.socials li{
+.socials li {
     margin: 0 16px 5px 0;
 }
 
@@ -307,7 +307,7 @@ h2 {
     margin-bottom: 48px;
 }
 
-header h2{
+header h2 {
     margin: 48px 0;
 }
 
@@ -491,22 +491,22 @@ button {
         margin: 81px auto 0 auto;
         width: 300px;
     }
-    .break2{
+    .break2 {
         display: none;
     }
 }
 
 @media screen and (max-width: 450px) {
-    #mainCTA{
+    #mainCTA {
         font-size: 0.7em;
     }
-    footer{
+    footer {
         padding-bottom: 54px;
     }
-    #termsBar{
+    #termsBar {
         display: none;
     }
-    .break{
+    .break {
         display: inline;
     }
 }
