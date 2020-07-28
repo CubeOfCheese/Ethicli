@@ -3,7 +3,7 @@ package com.example.appengine.springboot;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Business {
-    private boolean bcorpCertified;
+    private boolean bcorpCertified; 
     private boolean blackOwnedBusiness;
     private boolean bluesignPartner;
     private boolean nativeOwnedBusiness;
