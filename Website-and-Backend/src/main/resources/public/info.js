@@ -2,13 +2,10 @@ window.onload = function() {
   var currentUrl = window.location.href;
   var urlCut = currentUrl.search("info") + 5;
   var companyName = currentUrl.substring(urlCut);
-  console.log(companyName);
   var url = "https://ethicli.com/score/" + companyName;
   fetch(url)
   .then(response => response.json())
   .then((data) => {
-    console.log(data.name);
-    console.log(data.name != "");
     if (data.name) {
       renderPage(data);
     } else {
@@ -48,6 +45,6 @@ function renderPage(companyData) {
 }
 
 function displayUnavailable() {
-  console.log("displayUnavailable");
+  // Add all changes necessary to display something that shows no data is available
   document.getElementsByTagName("h1")[0].innerText = "No info available"
 }
