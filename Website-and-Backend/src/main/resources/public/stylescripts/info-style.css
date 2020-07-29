@@ -105,13 +105,11 @@ header .container article div{
     color: #fff;
     font-weight: 400;
 }
-#badges > h6 {
-  display: none;
-}
+
 #bcorp a, #bluesign a, #blackowned a, #blmsupport a{
     display: block;
-    font-size: 0.65em;
-    padding: 4px 8px;
+    font-size: 0.8em;
+    padding: 8px 12px;
     margin: 0 8px 16px 0;
     border-radius: 50px;
     background: #05668D;
@@ -125,7 +123,7 @@ header .container article div{
     border-radius:8px;
     text-align: center;
     position: absolute;
-    font-size: 0.5em;
+    font-size: 0.8em;
     z-index: 1;
 }
 
@@ -161,23 +159,41 @@ header .container article div{
 }
 
 #expandedStats ul li{
-    margin-right: 24px;
-    padding: 12px 16px;
-    border-radius: 20px 20px 0 0;
+    margin-right: 16px;
+    padding: 12px 16px; 
+    border-radius:100px; 
+    margin-bottom:12px;
     background: #102340;
     cursor: pointer;
-}
-
-#expandedStats ul li:hover{
-    background: #2B6589;
 }
 
 #expandedStats article {
     position: relative;
     padding: 24px;
-    border-radius: 0 20px 20px 20px;
+    border-radius: 20px;
     width: 100%;
     background: #FFFCF2;
+}
+
+#environmentalStat, #laborStat, #animalStat{
+    background: #102340;
+    color: #FFFCF2;
+    margin-bottom: 12px;
+    padding-bottom: 0px;
+    position: relative;
+}
+
+#environmentalStat.tabClicked, #laborStat.tabClicked, #animalStat.tabClicked{
+    margin-bottom: 0px;
+    padding-bottom: 12px;
+    border-radius:  20px 20px 0 0;
+}
+
+#environmentalStat:hover, #laborStat:hover, #animalStat:hover,
+#environmentalStat.tabClicked, #laborStat.tabClicked, #animalStat.tabClicked,
+#environmentalStat.tabClicked:hover, #laborStat.tabClicked:hover, #animalStat.tabClicked:hover{
+    background:#FFFCF2;
+    color:#05668D;
 }
 
 .articleSource{
@@ -189,6 +205,62 @@ header .container article div{
 
 .articleRatings{
     padding: 30px 0 30px 30px;
+}
+
+.articleList{
+    margin-bottom:30px;
+}
+
+.articleList:last-child{
+    margin-bottom:0;
+}
+
+/*** Tabs *****************************************************/
+
+#environmentalStat.tabClicked:before, #laborStat.tabClicked:before, #animalStat.tabClicked:before{
+    content:"";
+    display:block;
+    width: 8px;
+    height: 8px;
+    background-color:#FEFCF2;
+    position: absolute; 
+    bottom:0;
+    right:-8px;
+}
+
+#environmentalStat.tabClicked a:before, #laborStat.tabClicked a:before, #animalStat.tabClicked a:before{
+    content:"";
+    display:block;
+    width: 16px;
+    height: 16px;
+    border-radius: 100px;
+    background-color: #c6d4c5;
+    position: absolute; 
+    bottom:0px;
+    right:-16px;
+}
+
+#animalStat.tabClicked:after, #laborStat.tabClicked:after{
+    content:"";
+    display:block;
+    width: 16px;
+    height: 16px;
+    border-radius: 100px;
+    background-color: #c6d4c5;
+    position: absolute; 
+    bottom:0px;
+    left:-16px;
+}
+
+#animalStat.tabClicked a:after, #laborStat.tabClicked a:after{
+    content:"";
+    display:block;
+    width: 8px;
+    height: 8px;
+    background-color:#FEFCF2;
+    position: absolute; 
+    bottom:0;
+    left:-8px;
 }
 
 /*** Footer *****************************************************/
@@ -267,7 +339,7 @@ article h3{
 }
 
 h4{
-    font-size: 1.2em;
+    font-size: 1.2em; 
     font-weight: 700;
     padding-bottom: 16px;
 }

@@ -53,58 +53,40 @@ $(document).ready(function() {
     switchSection();
 });
 
+
+
+$("#expandedStats article").css({"border-radius":"0 20px 20px 20px"})
 function switchSection(){
     $("#environmentalStat").click(function(){
-        $(this).css({
-            "background":"#2B6589",
-            "border-radius":"20px 20px 0 0",
-            "margin-bottom":"0"
-        });
-        $("#laborStat, #animalStat").css({
-            "background":"#102340",
-            "border-radius":"100px",
-            "margin-bottom":"12px"
-        });
+        $(this).addClass("tabClicked");
+        $("#laborStat, #animalStat").removeClass("tabClicked");
+        $("#expandedStats article").css({
+            "border-radius":"0 20px 20px 20px"
+        })
 
-        $("#expandedStats article").css({"border-radius":"0 20px 20px 20px"});
         $("#environmentalSec").css({"display":"block"});
-        $("#laborSec").css({"display":"none"});
-        $("#animalSec").css({"display":"none"});
+        $("#laborSec, #animalSec").css({"display":"none"});
     })
 
     $("#laborStat").click(function(){
-        $(this).css({
-            "background":"#2B6589",
-            "border-radius":"20px 20px 0 0",
-            "margin-bottom":"0"
-        });
-        $("#environmentalStat, #animalStat").css({
-            "background":"#102340",
-            "border-radius":"100px",
-            "margin-bottom":"12px"
-        });
+        $(this).addClass("tabClicked");
+        $("#environmentalStat, #animalStat").removeClass("tabClicked");
+        $("#expandedStats article").css({
+            "border-radius":"20px"
+        })
 
-        $("#expandedStats article").css({"border-radius":"20px"});
-        $("#environmentalSec").css({"display":"none"});
         $("#laborSec").css({"display":"block"});
-        $("#animalSec").css({"display":"none"});
+        $("#environmentalSec, #animalSec").css({"display":"none"});
     })
 
     $("#animalStat").click(function(){
-        $(this).css({
-            "background":"#2B6589",
-            "border-radius":"20px 20px 0 0",
-            "margin-bottom":"0"
-        });
-        $("#environmentalStat, #laborStat").css({
-            "background":"#102340",
-            "border-radius":"100px",
-            "margin-bottom":"12px"
-        });
-
-        $("#expandedStats article").css({"border-radius":"20px"});
-        $("#environmentalSec").css({"display":"none"});
-        $("#laborSec").css({"display":"none"});
+        $(this).addClass("tabClicked");
+        $("#environmentalStat, #laborStat").removeClass("tabClicked");
+        $("#expandedStats article").css({
+            "border-radius":"20px"
+        })
+        
         $("#animalSec").css({"display":"block"});
+        $("#environmentalSec, #laborSec").css({"display":"none"});
     })
 }
