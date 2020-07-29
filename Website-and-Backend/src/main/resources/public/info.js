@@ -23,9 +23,9 @@ function renderPage(companyData) {
   } else {
     document.getElementById("companyWebsite").href = companyData.website;
   }
-  document.getElementById("environmentRating").innerText = companyData.environmentScore.toFixed(1);;
-  document.getElementById("laborRating").innerText = companyData.laborScore.toFixed(1);;
-  document.getElementById("animalRating").innerText = companyData.animalsScore.toFixed(1);;
+  document.getElementById("environmentRating").innerText = companyData.environmentScore.toFixed(1);
+  document.getElementById("laborRating").innerText = companyData.laborScore.toFixed(1);
+  document.getElementById("animalRating").innerText = companyData.animalsScore.toFixed(1);
   if (companyData.bluesignPartner) {
     document.getElementById("bluesign").style = "display:block;"
   }
@@ -41,6 +41,20 @@ function renderPage(companyData) {
   if (companyData.greenPowerPercentage) {
     document.getElementById("greenPowerPercentage").innerText
       = "Percentage of power produced by renewable energies: " + companyData.greenPowerPercentage + "%";
+  }
+  
+  
+  if(companyData.environmentScore.toFixed(1) == 0){
+    document.getElementById("environmentalStat").style = "display:none;"
+    console.log(companyData.environmentScore.toFixed(1))
+  }
+  if(companyData.laborScore.toFixed(1) == 0){
+    document.getElementById("laborStat").style = "display:none;"
+    console.log(companyData.laborScore.toFixed(1))
+  }
+  if(companyData.animalsScore.toFixed(1) == 0){
+    document.getElementById("animalStat").style = "display:none;"
+    console.log(companyData.animalsScore.toFixed(1))
   }
 }
 
