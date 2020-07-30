@@ -1,10 +1,50 @@
-1,Walmart,YES; A+,,0,4,1,3,3,1,2.4
-2,Amazon,-,,0,4,2,2,2,2,2.4
-3,Walgreens Boots Alliance,-,,.7,,5,4,5,4,4.5
-4,McDonald's,"YES, A+",,1,,2,2,4,2,2.5
-5,Aldi,-,,8,4,7,7,7,7,6.4
-6,Best Buy,-,,9.3,,6,5,6,6,5.8
-7,"IKEA US, LLC",-,,3,,8,4,3,7,5.5
-8,Ebay,YES; A+,,5.7,,6,6,7,6,6.3
-9,Costco,-,,6.7,,4,5,3,4,4.0
-10,Gap,-,,3.3,4,7,6,6,7,6.0
+1,Walmart,http://www.walmart.com/,YES; A+,0,4,1,3,3,1,,2.4
+2,Amazon,http://www.amazon.com/,-,0,4,2,2,2,2,,2.4
+3,Walgreens,http://www.walgreens.com/,-,.7,,5,4,5,4,,4.5
+4,McDonald's,http://www.mcdonalds.com/,"YES, A+",1,,2,2,4,2,,2.5
+5,Aldi,http://www.aldi.com/,-,8,4,7,7,7,7,,6.4
+6,Best Buy,http://www.bestbuy.com/,-,9.3,,6,5,6,6,,5.8
+7,"IKEA US, LLC",http://www.ikea.com/,-,3,,8,4,3,7,,5.5
+8,Ebay,http://www.ebay.com/,YES; A+,5.7,,6,6,7,6,,6.3
+9,Costco,http://www.costco.com/,-,6.7,,4,5,3,4,,4.5
+10,Gap,http://www.gap.com/,-,3.3,4,6,4,5,3,,4.4
+11,Carrefour,http://www.carrefour.com,-,8.7,,4,4,3,5,,4.9
+12,Inditex (Zara),http://www.zara.com/,"NO, F Rating!",5.3,4,2,1,3,1,,2.2
+13,H&M,https://www2.hm.com/,-,5.7,4,6,2,4,3,,3.8
+14,Starbucks,http://www.starbucks.com/,"NO, B",1.3,,5,2,1,4,,2.7
+15,Aeon,https://www.aeon.com/,-,8.3,,4,3,1,ND,,4.1
+16,The Home Depot,http://homedepot.com/,"YES, A-",8.3,,6,5,ND,3,,5.6
+17,Lowe's,http://lowes.com/,"YES, A+",9,,7,5,ND,5,,6.5
+18,Alibaba,http://alibaba.com/,YES; A+,9,,3,2,2,1,,2.0
+19,Seven & I,https://www.7andi.com/en.html,-,8.7,,3,2,1,4,,2.5
+20,TJX,https://tjmaxx.tjx.com/,-,2,,3,2,1,3,,2.2
+21,Romwe,http://romwe.com/,-,,1.0,1.0,2.0,1.0,1.0,,1.2
+22,Free People,http://freepeople.com/,-,,4,3,3,4,3,,3.4
+23,Nordstrom,http://nordstrom.com/,-,8,4,4,4,4,3,,4.5
+24,ASOS,http://asos.com/,-,5,3,5,2,3,5,,3.8
+25,Kohl's,https://www.kohls.com/,-,8,,4,2,ND,1,,3.8
+26,Target,http://target.com/,-,7.5,,5,5,5,4,,5.3
+27,"Sears, Roebuck & Co.",http://sears.com/,-,3,,1,2,2,3,,2.2
+28,Wish,http://wish.com/,-,,2,2,1,2,3,,2.0
+29,Urban Outfitters,http://urbanoutfitters.com/,-,9,2,2,2,3,2,,3.3
+30,American Eagle Outfitters,https://www.ae.com/,-,8.5,2,2,2,3,2,,3.3
+31,Etsy,http://etsy.com/,-,8,,8,ND,7,7,,7.5
+32,Boohoo,http://boohoo.com/,-,3,2,2,2,3,1,,2.2
+33,Mango,http://mango.com/,-,,4,4,3,6,4,,4.2
+34,Forever 21,https://www.forever21.com/,-,,4,2,1,2,2,,2.2
+35,Matt & Nat,http://mattandnat.com/,-,,4,4,4,10,3,,5.3
+36,Anthropologie,http://anthropologie.com/,-,,4,4,3,4,3,1,3.0
+37,Lulu Lemon,http://lululemon.com,-,,4,3,3,5,2,2,3.0
+38,Nike,http://nike.com/,-,4,6,6,3,4,5,5,4.7
+39,Adidas,http://adidas.com/,-,4.3,8,7,7,6,6,,6.3
+40,Everlane,http://everlane.com/,-,,4,4,4,4,5,,4.3
+41,Shein,http://shein.com/,-,,2,1,1,0,1,1,1.0
+42,Sephora,http://sephora.com/,-,2.3,,6.0,2.0,1.0,2.0,5.0,3.2
+43,Tom's of Maine,http://tomsofmaine.com/,-,2.7,,8.0,7.0,8.0,7.0,7.0,7.4
+44,Ulta,http://ulta.com/,-,,,ND,2,ND,3,2,2.3
+45,West Elm,http://westelm.com/,-,,,7,6,ND,5,5,5.8
+46,Wayfair,http://wayfair.com/,-,,,4,5,6,4,2,4.2
+47,Overstock,http://overstock.com/,-,,,5,3,4,4,3,3.8
+48,Apple,http://apple.com/,,4.6,,7,6,ND,2,3,4.5
+49,Thrive Market,https://thrivemarket.com/c/food,-,8,,8,7,8,7,7,7.5
+50,Samsung,http://samsung.com/,-,1.6,,2,2,ND,2,2,1.9

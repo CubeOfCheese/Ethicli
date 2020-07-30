@@ -29,8 +29,9 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(255, 252, 242, 0.6);
+    background: rgba(255, 252, 242, 0.75);
     z-index: 1;
+    top: -30px;
 }
 
 #menuPanel.menuClicked {
@@ -43,17 +44,18 @@ body {
 #menu {
     position: absolute;
     right: 36px;
-    top: 36px;
+    top: 24px;
     z-index: 1;
 }
 
 #menuPanel button#somethingWrong {
-    margin-top: 44px;
+    margin-top: 36px;
     background: #E07A5F;
 }
 
 #menuPanel button {
     margin-top: 16px;
+    margin-right: -2px;
     z-index: 2;
 }
 
@@ -72,6 +74,14 @@ body {
     color: #E07A5F;
 }
 
+#popupNotShop #notShopMessage h2 {
+    margin-top: -16px;
+}
+
+#shopDataUnavailable h2 {
+    margin-top: 16px;
+}
+
 #notShopMessage p, #shopDataUnavailable p {
     line-height: 1.4em;
 }
@@ -86,7 +96,8 @@ body {
 }
 
 #rating {
-    margin-bottom: 30px;
+    margin-bottom: 24px;
+    margin-top: 16px;
     background: #89a387;
     width: 116px;
     height: 116px;
@@ -104,7 +115,7 @@ body {
 #badges {
     position: absolute;
     width: 60px;
-    top: 16px;
+    top: 30px;
     left: 32px;
     display: flex;
     flex-direction: column;
@@ -132,17 +143,17 @@ body {
     width: 40px;
 }
 
-#blackowned.trueForPage{
+#blackowned.trueForPage {
     display: block;
     width: 60px;
 }
 
-#blmsupport.trueForPage{
+#blmsupport.trueForPage {
     display: block;
     width: 50px;
 }
 
-#shopDataUnavailable #badges{
+#shopDataUnavailable #badges {
     flex-direction: row;
     width: 100%;
     align-items: flex-start;
@@ -151,18 +162,18 @@ body {
     top: 165px;
 }
 
-#shopDataUnavailable #badges h6{
+#shopDataUnavailable #badges h6 {
     margin-right: 8px;
 }
 
-#shopDataUnavailable #hasBadge h2{
+#shopDataUnavailable #hasBadge h2 {
     color: #89a387;
 }
 
 /** Specific scores **/
 
 #scores {
-    margin-bottom: 24px;
+    margin-bottom: 8px;
     display: flex;
     flex-direction: column;
     align-self: flex-start;
@@ -198,19 +209,18 @@ body {
 }
 
 .label div .scorebarFill {
+    display: block;
     position: relative;
     top: -8px;
-    width: 50%;
     background: #89a387;
 }
 
 .label div p {
-    margin-left: 24px;
+    margin-left: 16px;
 }
 
-button#detailsButton {
+#detailsButton {
     align-self: flex-end;
-    margin: 8px 0;
     padding: 8px;
 }
 
@@ -290,6 +300,23 @@ button#detailsButton {
 
 /** Typography **/
 
+#sitename {
+    position: absolute;
+    top: 24px;
+    left: 36px;
+    color: #05668D;
+    font-size: 0.75em;
+    font-weight: bold;
+    z-index: 2;
+}
+
+#noSubscore {
+    margin-top: -4px;
+    font-size: 0.85em;
+    font-weight: bold;
+    color: #E07A5F;
+}
+
 h3 {
     text-align: center;
     margin-bottom: 1em;
@@ -310,7 +337,7 @@ button:hover {
     background: rgba(224, 122, 95, 0.8);
 }
 
-button a {
+button, button a {
     color: #FFFCF2;
     text-decoration: none;
     padding: 4px;
@@ -331,9 +358,9 @@ h6 a {
 
 /** Images and ToolTip **/
 
-#shoppingBagImg{
+#shoppingBagImg {
     display: block;
-    margin: 16px auto 0 auto;
+    margin: 12px auto 0 auto;
     width: 120px;
     height: 120px;
 }
@@ -351,4 +378,19 @@ h6 a {
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
+}
+
+#subscoreTip, #somethingWrongTip {
+    position: absolute;
+    width: 100px;
+    font-size: 10px;
+    cursor: default;
+    line-height: 1.2em;
+}
+
+#somethingWrongTip {
+    width: 130px;
+    left: 0;
+    z-index: 1;
+    font-size: 0.85em;
 }

@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173025073-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-173025073-2');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:title" content="Ethicli">
@@ -25,16 +34,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-<body>
+<body id="index">
     <button id="mainCTA"><a href="https://forms.gle/DTXjTUsTfb1xjg5UA" target="_blank">Be a Beta Tester!</a></button>
     <nav>
         <div class="container">
-            <a href="#" id="logo"><img src="images/ethicli-logo.png" alt="Extension image in Header"></a>
+            <a href="#top" id="logo"><img src="images/ethicli-logo.png" alt="Extension image in Header"></a>
             <div id="navlinks">
                 <img src="images/menu.svg" alt="triplebar" height="50" width="50" id="triplebar">
-                <a href="https://ko-fi.com/ethicli" target="_blank">Donate</a>
+                <a href="https://cash.app/$Ethicli" target="_blank">Donate</a>
                 <a href="https://medium.com/@team.ethicli" target="_blank">Blog</a>
-                <a href="#intro">About</a>
+                <a href="faq.html">FAQs</a>
                 <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#116;&#104;&#105;&#099;&#108;&#105;&#046;&#099;&#111;&#109;?subject=Ethicli Inquiry" target="_blank">Contact</a>
                 <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Extension</a>
             </div>
@@ -62,10 +71,11 @@
                         consumer power! One of the best ways to vote for what you believe in is with your dollars. 
                         Many of us can feel lost when it comes to knowing how our purchases
                         affect others downstream, and we're here to help!</p>
+                    <a id="pitchdeck" href="documents/Ethicli Pitch Deck.pdf" target="_blank">Read our Pitch Deck</a>
                 </article>
                 <article>
-                    <p>Ethicli suggests better products while you shop by scoring how the product affects our workers, 
-                        planet, and community. Use our free browser extension to effortlessly shop from more ethical, 
+                    <p>We show you ethical scores of online shops based on how they treat their workers, community, and the planet. 
+                        Please use our free browser extension to effortlessly shop from more ethical, 
                         green, and smaller businesses!</p>
                 </article>
             </section>
@@ -104,16 +114,17 @@
             <h2><span class="colorCream">Ethicli</span> <span class="colorLGreen">in the News</span></h2>
             <section>
                 <article>
+                    <h3>BrowserExtension.dev</h3>
+                    <p>We've been featured by <a href="https://browserextension.dev" target="_blank">BrowserExtension.dev</a>, 
+                        which is a website that discusses and explores new web extensions!</p>
+                    <p class="readmore"><a href="https://browserextension.dev/blog/ethicli/" target="_blank">Read More</a></p>
+                </article>
+                <article style="display:none;">
                     <h3>Coming Soon</h3>
                     <p>News about Ethicli coming soon!</p>
                     <p class="readmore"><a>Read More</a></p>
                 </article>
-                <article>
-                    <h3>Coming Soon</h3>
-                    <p>News about Ethicli coming soon!</p>
-                    <p class="readmore"><a>Read More</a></p>
-                </article>
-                <article>
+                <article style="display:none;">
                     <h3>Coming Soon</h3>
                     <p>News about Ethicli coming soon!</p>
                     <p class="readmore"><a>Read More</a></p>
@@ -127,7 +138,14 @@
             <h2><span class="colorBlue">Featured</span> <span class="colorDark">Articles</span></h2>
             <section>
                 <article>
-                    <h3>Rainforests, <br class="break2">Biodiversity, and Economics</h3>
+                    <h3>Suspension of Dakota Access Pipeline</h3>
+                    <p>We discuss the suspension of the Dakota Access Pipeline, and 
+                        how its costruction affected the Standing Rock Sioux, surrounding wildlife, and the control that big oil has over society.
+                    </p>
+                    <p class="readmore"><a href="https://medium.com/@team.ethicli/suspension-of-dakota-access-pipeline-f809122c95dd">Read More</a></p>
+                </article>
+                <article>
+                    <h3>Rainforests, Biodiversity, and Economics</h3>
                     <p>We want to take time to acknowledge the amazing power of rainforests! 🌲</p>
                     <p class="readmore"><a href="https://medium.com/@team.ethicli/rainforests-biodiversity-and-economics-a0314260198b">Read More</a></p>
                 </article>
@@ -136,12 +154,6 @@
                     <p>We need your help to crowdsource a list of Black-Owned businesses, 
                         so you can easily check if the site you’re shopping from is Black-owned! ✊🏾</p>
                     <p class="readmore"><a href="https://medium.com/@team.ethicli/crowdsourcing-data-black-owned-businesses-8ea07ceb8dcd">Read More</a></p>
-                </article>
-                <article>
-                    <h3>Introducing Ethicli</h3>
-                    <p>I was shopping online one day when I thought to myself,
-                       “I wish I could know which products were more ethically produced than others.” 🎉</p>
-                    <p class="readmore"><a href="https://medium.com/@team.ethicli/introducing-ethicli-a6eaf55434b5">Read More</a></p>
                 </article>
             </section>
             <section>
@@ -164,13 +176,12 @@
                 <li><a href="https://www.reddit.com/r/Ethicli/" target="_blank" class="social-icon"><i class="fa fa-reddit-alien"></i></a></li>
             </ul>
             <aside>
-                <a href="#intro">About</a>
                 <a href="https://medium.com/@team.ethicli" target="_blank">Blog</a>
                 <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#116;&#104;&#105;&#099;&#108;&#105;&#046;&#099;&#111;&#109;?subject=Ethicli Inquiry" target="_blank">Contact</a>
-                <a href="https://ko-fi.com/ethicli" target="_blank">Donate</a>
+                <a href="https://cash.app/$Ethicli" target="_blank">Donate</a>
                 <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Download</a>
-                <a>Español</a>
-                <a>Privacy Policy</a>
+                <a href="faq.html">FAQs</a>
+                <a href="privacy.html">Privacy Policy</a>
             </aside>
             <div>
                 <button id="backToTop"><a href="#top">Back to Top</a></button>
