@@ -47,6 +47,11 @@ function loadExtension() {
             document.getElementById("siteurl").innerHTML = "Unavailable";
         }
 
+        //Change "View Details" button routing
+        document.getElementById("detailsButton").innerHTML = 
+        "<a href='https://ethicli.com/score/"+ response.ethicliStats.name +"' target='_blank'>View Details</a?";
+
+
         //Changes subratings
         document.getElementById("envScore").innerHTML = response.ethicliStats.environmentScore.toFixed(1);
         document.getElementById("laborScore").innerHTML = response.ethicliStats.laborScore.toFixed(1);
@@ -112,9 +117,9 @@ window.onload = function() {
         }
     };
 
-    document.getElementById("detailsButton").addEventListener("click", function() {
-        this.innerHTML = "Details unavailable";
-    });
+    // document.getElementById("detailsButton").addEventListener("click", function() {
+    //     this.innerHTML = "Details unavailable";
+    // });
 }
 
 function somethingWrong() {
