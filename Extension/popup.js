@@ -49,7 +49,7 @@ function loadExtension() {
 
         //Change "View Details" button routing
         document.getElementById("detailsButton").innerHTML = 
-        "<a href='https://ethicli.com/score/"+ response.ethicliStats.name +"' target='_blank'>View Details</a?";
+        "<a href='https://ethicli.com/info/"+ response.ethicliStats.name +"' target='_blank'>View Details</a?";
 
 
         //Changes subratings
