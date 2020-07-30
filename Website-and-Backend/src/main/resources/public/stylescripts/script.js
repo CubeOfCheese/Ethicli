@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $(window).scroll(function() {
         if ($(window).width() > 768 && $(window).width() <= 800) {
-            if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 2880)) {
+            if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 2870)) {
                 darkNav();
             } else {
                 lightNav();
