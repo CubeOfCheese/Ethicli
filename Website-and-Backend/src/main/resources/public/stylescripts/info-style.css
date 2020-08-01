@@ -108,6 +108,7 @@ header .container article div{
 
 #bcorp, #bluesign, #blackowned, #blmsupport{
     display: none;
+    position: relative;
 }
 
 #bcorp a, #bluesign a, #blackowned a, #blmsupport a{
@@ -120,6 +121,8 @@ header .container article div{
 
 .tooltip .tooltiptext {
     visibility: hidden;
+    flex-wrap: no-wrap;
+    margin: 36px 0 0 -100%;
     background: #0A2342;
     color: #c6d4c5;
     padding: 8px;
@@ -127,12 +130,12 @@ header .container article div{
     text-align: center;
     position: absolute;
     font-size: 0.8em;
+    line-height: 1.2em;
     z-index: 1;
 }
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
-    margin: -40px 0 0 0px;
 }
 
 /*** Expanded Stats Sections **************************************************************/
