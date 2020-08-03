@@ -78,14 +78,19 @@ chrome.tabs.onActivated.addListener(
         chrome.tabs.query(query, function callback(tabs) {
             var currentTab = tabs[0];
             chrome.tabs.sendMessage(tabs[0].id, { msgName: "isShoppingPage?" }, function(response) {
+              // On first page visit, response is null. This function is only supposed to run after the first visit anyway,
+              // so this just gets rid of an error that didn't actually break anything
+              if (response) {
                 isShoppingPage = response.isShoppingPage;
-                if (isShoppingPage && currentTab.url && (currentTab.url != "chrome://newtab/")) { // currentTab.url is null for new tab pages when first opened and equal to "chrome://newtab/" when navigated to from another tab.
+                // currentTab.url is null for new tab pages when first opened and equal to "chrome://newtab/" when navigated to from another tab.
+                if (isShoppingPage && currentTab.url && (currentTab.url != "chrome://newtab/")) {
                 // data should only be retrieved for actual pages that are shopping pages
                     var request = { msgName: "PageEvaluated", shoppingPage: true };
                     var sender = { tab: { url: "" } };
                     sender.tab.url = currentTab.url;
                     reloadExt(request, sender);
                 }
+              }
             });
         })
     }
