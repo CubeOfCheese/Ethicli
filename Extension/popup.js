@@ -52,8 +52,15 @@ function loadExtension(ethicliStats) {
     var query = { active: true, currentWindow: true };
     chrome.tabs.query(query, function callback(tabs) {
       var currentTab = tabs[0];
+      var companyUrl = currentTab.url;
+      if (companyUrl.substring(0, 8) == "https://") companyUrl = companyUrl.substring(8);
+      else if (companyUrl.substring(0, 7) == "http://") companyUrl = companyUrl.substring(7);
+      if (companyUrl.substring(0, 4) == "www.") companyUrl = companyUrl.substring(4);
+      var endOfBaseDomain = companyUrl.search(/\./);
+      if (endOfBaseDomain > -1) companyUrl = companyUrl.substring(0, endOfBaseDomain);
+
       document.getElementById("detailsButton").innerHTML =
-      "<a href='https://ethicli.com/info/"+ currentTab.url +"' target='_blank'>View Details</a?";
+      "<a href='https://ethicli.com/info/"+ companyUrl +"' target='_blank'>View Details</a?";
     })
 
     //Changes subratings
