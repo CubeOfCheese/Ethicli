@@ -6,9 +6,11 @@ public class Business {
     private boolean bcorpCertified; 
     private boolean blackOwnedBusiness;
     private boolean bluesignPartner;
+    private boolean ethicalElephantCrueltyFree;
     private boolean nativeOwnedBusiness;
     private boolean pocOwnedBusiness;
     private boolean supportsBLM;
+    private boolean veganDotOrgCertified;
     private double animalsScore;
     private double bcorpCommunityScore;
     private double bcorpEnvironmentScore;
@@ -27,6 +29,7 @@ public class Business {
     private String bcorpProfile;
     private String betterBusinessBureau;
     private String companyType;
+    private String ethicalElephantType;
     private String name;
     private String supportsBLMContribution;
     private String supportsBLMEntity;
@@ -37,9 +40,11 @@ public class Business {
         this.bcorpCertified = false;
         this.blackOwnedBusiness = false;
         this.bluesignPartner = false;
+        this.ethicalElephantCrueltyFree = false;
         this.nativeOwnedBusiness = false;
         this.pocOwnedBusiness = false;
         this.supportsBLM = false;
+        this.veganDotOrgCertified = false;
         this.animalsScore = 0;
         this.bcorpCommunityScore = 0;
         this.bcorpEnvironmentScore = 0;
@@ -58,6 +63,7 @@ public class Business {
         this.bcorpProfile = null;
         this.betterBusinessBureau = null;
         this.companyType = null;
+        this.ethicalElephantType = null;
         this.name = null;
         this.supportsBLMContribution = null;
         this.supportsBLMEntity = null;
@@ -79,13 +85,16 @@ public class Business {
                     @JsonProperty("animalsScore") double animalsScore, @JsonProperty("laborScore") double laborScore,
                     @JsonProperty("socialScore") double socialScore, @JsonProperty("overallScore") double overallScore,
                     @JsonProperty("pocOwnedBusiness") boolean pocOwnedBusiness, @JsonProperty("nativeOwnedBusiness") boolean nativeOwnedBusiness,
-                    @JsonProperty("greenPowerPercentage") double greenPowerPercentage) {
+                    @JsonProperty("greenPowerPercentage") double greenPowerPercentage, @JsonProperty("veganDotOrgCertified") boolean veganDotOrgCertified,
+                    @JsonProperty("ethicalElephantCrueltyFree") boolean ethicalElephantCrueltyFree, @JsonProperty("ethicalElephantType") String ethicalElephantType) {
         this.bcorpCertified = bcorpCertified;
         this.blackOwnedBusiness = blackOwnedBusiness;
         this.bluesignPartner = bluesignPartner;
+        this.ethicalElephantCrueltyFree = ethicalElephantCrueltyFree;
         this.nativeOwnedBusiness = nativeOwnedBusiness;
         this.pocOwnedBusiness = pocOwnedBusiness;
         this.supportsBLM = supportsBLM;
+        this.veganDotOrgCertified = veganDotOrgCertified;
         this.animalsScore = animalsScore;
         this.overallScore = overallScore;
         this.bcorpCommunityScore = bcorpCommunityScore;
@@ -98,13 +107,13 @@ public class Business {
         this.goodOnYouScore = goodOnYouScore;
         this.greenPowerPercentage = greenPowerPercentage;
         this.laborScore = laborScore;
-
         this.socialScore = socialScore;
         this.textileScore = textileScore;
         this.bcorpCertYear = bcorpCertYear;
         this.bcorpProfile = bcorpProfile;
         this.betterBusinessBureau = betterBusinessBureau;
         this.companyType = companyType;
+        this.ethicalElephantType = ethicalElephantType;
         this.name = name;
         this.supportsBLMContribution = supportsBLMContribution;
         this.supportsBLMEntity = supportsBLMEntity;
@@ -122,6 +131,10 @@ public class Business {
 
     public boolean isPocOwnedBusiness() {
         return pocOwnedBusiness;
+    }
+
+    public boolean isEthicalElephantCrueltyFree() {
+        return ethicalElephantCrueltyFree;
     }
 
     public String getBcorpProfile() {
@@ -180,6 +193,10 @@ public class Business {
         return companyType;
     }
 
+    public String getEthicalElephantType() {
+        return ethicalElephantType;
+    }
+
     public boolean isBlackOwnedBusiness() {
         return blackOwnedBusiness;
     }
@@ -228,6 +245,10 @@ public class Business {
         return nativeOwnedBusiness;
     }
 
+    public boolean isVeganDotOrgCertified() {
+        return veganDotOrgCertified;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -260,6 +281,10 @@ public class Business {
         this.bcorpGovernanceScore = bcorpGovernanceScore;
     }
 
+    public void setEthicalElephantCrueltyFree(boolean ethicalElephantCrueltyFree) {
+        this.ethicalElephantCrueltyFree = ethicalElephantCrueltyFree;
+    }
+
     public void setBcorpWorkerScore(double bcorpWorkerScore) {
         this.bcorpWorkerScore = bcorpWorkerScore;
     }
@@ -286,6 +311,10 @@ public class Business {
 
     public void setCompanyType(String companyType) {
         this.companyType = companyType;
+    }
+
+    public void setEthicalElephantType(String ethicalElephantType) {
+        this.ethicalElephantType = ethicalElephantType;
     }
 
     public void setBlackOwnedBusiness(boolean blackOwnedBusiness) {
@@ -336,6 +365,10 @@ public class Business {
         this.supportsBLMContribution = supportsBLMContribution;
     }
 
+    public void setVeganDotOrgCertified(boolean veganDotOrgCertified) {
+        this.veganDotOrgCertified = veganDotOrgCertified;
+    }
+
     public void setNativeOwnedBusiness(boolean nativeOwnedBusiness) {
         this.nativeOwnedBusiness = nativeOwnedBusiness;
     }
@@ -376,6 +409,8 @@ public class Business {
                 this.bluesignPartner = business.isBluesignPartner();
             if (this.supportsBLM == false)
                 this.supportsBLM = business.getSupportsBLM();
+            if (this.ethicalElephantCrueltyFree == false)
+                this.ethicalElephantCrueltyFree = business.isEthicalElephantCrueltyFree();
             if (this.supportsBLMSource == null) {
                 this.supportsBLMSource = business.getSupportsBLMSource();
             } else if (business.getSupportsBLMSource() != null) {
@@ -393,6 +428,8 @@ public class Business {
             }
             if (this.companyType == null)
                 this.companyType = business.getCompanyType();
+            if (this.ethicalElephantType == null)
+                this.ethicalElephantType = business.getEthicalElephantType();
             if (this.blackOwnedBusiness == false)
                 this.blackOwnedBusiness = business.isBlackOwnedBusiness();
             if (this.betterBusinessBureau == null)
@@ -413,6 +450,8 @@ public class Business {
                 this.laborScore = business.getLaborScore();
             if (this.overallScore == 0)
                 this.overallScore = business.getOverallScore();
+            if (this.veganDotOrgCertified == false)
+                this.veganDotOrgCertified = business.isVeganDotOrgCertified();
             if (this.socialScore == 0) {
                 this.socialScore = business.getSocialScore();
             }
@@ -512,6 +551,9 @@ public class Business {
         System.out.println("Supports BLMSource:     " + this.supportsBLMSource);
         System.out.println("Supports BLMEntity:     " + this.supportsBLMEntity);
         System.out.println("BLM Contribution:       " + this.supportsBLMContribution);
+        System.out.println("Vegan.org Certified:    " + this.veganDotOrgCertified);
+        System.out.println("EthicalElephant CR:     " + this.ethicalElephantCrueltyFree);
+        System.out.println("EthicalElephant Type:   " + this.ethicalElephantType);
         System.out.println("BBB Score:              " + this.betterBusinessBureau);
         System.out.println("CCR Score:              " + this.corporateCriticScore);
         System.out.println("GoY Score:              " + this.goodOnYouScore);
