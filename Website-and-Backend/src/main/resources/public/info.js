@@ -39,8 +39,7 @@ function renderPage(companyData) {
     document.getElementById("blmsupport").style = "display:block;"
   }
   if (companyData.greenPowerPercentage) {
-    document.getElementById("greenPowerPercentage").innerText
-      = "Percentage of power produced by renewable energies: " + companyData.greenPowerPercentage + "%";
+    document.getElementById("greenPowerPercentage").innerText = companyData.greenPowerPercentage + "%";
   }
 
   if(companyData.environmentScore.toFixed(1) == 0){
