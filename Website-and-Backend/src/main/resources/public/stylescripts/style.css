@@ -7,6 +7,7 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
+    background: #8EA289;
     color: #102340;
 }
 
@@ -168,6 +169,7 @@ header {
 
 footer {
     background: #8EA289;
+    position: relative;
 }
 
 footer .container {
@@ -216,6 +218,13 @@ footer p {
     margin: 4px;
     line-height: 24px;
     color: #102340;
+}
+
+#california{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    font-size: 0.85em;
 }
 
 

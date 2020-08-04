@@ -104,13 +104,16 @@ function displayUnavailable() {
   // Add all changes necessary to display something that shows no data is available
   document.getElementsByTagName("h1")[0].innerText = "No info available";
   document.getElementById("overallRating").innerText = "🙊";
+  document.getElementById("overallRating").style = "margin-top: 8px";
+  document.getElementById("mainRating").style = "max-width:120px; height:120px;";
+  document.getElementById("outof10").style = "display:none;";
+  document.getElementById("companyWebsite").style = "display:none;";
+  document.getElementById("mainStats").style = "padding-bottom: 60px;";
+  document.getElementById("expandedStats").style = "display:none; overflow:hidden;";
+  
   document.getElementById("overall-score-desc").innerHTML =
     'It looks like we don&#39t have any info on that company. We&#39re constantly trying to improve our data coverage, \
     but it looks like we&#39ve still got farther to go. Please send us an email at \
     <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#116;&#104;&#105;&#099;&#108;&#105;&#046;&#099;&#111;&#109;?subject=Ethicli Inquiry" target="_blank">hello@ethicli.com</a> \
-    to let us know if you really want to know more about this company. Thank you for shopping Ethicli 💛';
-  document.getElementById("environmentalStat").style = "display:none;"
-  document.getElementById("laborStat").style = "display:none;"
-  document.getElementById("animalStat").style = "display:none;"
-  document.getElementById("socialStat").style = "display:none;"
+    to let us know if you really want to know more about this company. Thank you for shopping Ethicli ♥';
 }
