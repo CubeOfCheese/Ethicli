@@ -181,7 +181,7 @@ header .container article div{
     background: #FFFCF2;
 }
 
-#environmentalStat, #laborStat, #animalStat{
+#environmentalStat, #laborStat, #animalStat, #socialStat{
     background: #102340;
     color: #FFFCF2;
     margin-bottom: 12px;
@@ -189,15 +189,15 @@ header .container article div{
     position: relative;
 }
 
-#environmentalStat.tabClicked, #laborStat.tabClicked, #animalStat.tabClicked{
+/* #environmentalStat.tabClicked, #laborStat.tabClicked, #animalStat.tabClicked, #socialStat.tabClicked{
     margin-bottom: 0px;
     padding-bottom: 12px;
     border-radius:  20px 20px 0 0;
-}
+} */
 
-#environmentalStat:hover, #laborStat:hover, #animalStat:hover,
-#environmentalStat.tabClicked, #laborStat.tabClicked, #animalStat.tabClicked,
-#environmentalStat.tabClicked:hover, #laborStat.tabClicked:hover, #animalStat.tabClicked:hover{
+#environmentalStat:hover, #laborStat:hover, #animalStat:hover, #socialStat:hover,
+#environmentalStat.tabClicked, #laborStat.tabClicked, #animalStat.tabClicked, #socialStat.tabClicked,
+#environmentalStat.tabClicked:hover, #laborStat.tabClicked:hover, #animalStat.tabClicked:hover, #socialStat.tabClicked:hover{
     background:#FFFCF2;
     color:#05668D;
 }
@@ -222,52 +222,7 @@ header .container article div{
 }
 
 /*** Tabs *****************************************************/
-
-#environmentalStat.tabClicked:before, #laborStat.tabClicked:before, #animalStat.tabClicked:before{
-    content:"";
-    display:block;
-    width: 8px;
-    height: 8px;
-    background-color:#FEFCF2;
-    position: absolute; 
-    bottom:0;
-    right:-8px;
-}
-
-#environmentalStat.tabClicked a:before, #laborStat.tabClicked a:before, #animalStat.tabClicked a:before{
-    content:"";
-    display:block;
-    width: 16px;
-    height: 16px;
-    border-radius: 100px;
-    background-color: #c6d4c5;
-    position: absolute; 
-    bottom:0px;
-    right:-16px;
-}
-
-#animalStat.tabClicked:after, #laborStat.tabClicked:after{
-    content:"";
-    display:block;
-    width: 16px;
-    height: 16px;
-    border-radius: 100px;
-    background-color: #c6d4c5;
-    position: absolute; 
-    bottom:0px;
-    left:-16px;
-}
-
-#animalStat.tabClicked a:after, #laborStat.tabClicked a:after{
-    content:"";
-    display:block;
-    width: 8px;
-    height: 8px;
-    background-color:#FEFCF2;
-    position: absolute; 
-    bottom:0;
-    left:-8px;
-}
+/* Tabs styling and curvature will eventually go here */
 
 /*** Footer *****************************************************/
 
@@ -357,8 +312,8 @@ h4{
 }
 
 .substatCircle h6{
-    margin: 16px 0 0 0;
-    font-size: 3.8em;
+    margin: 8px 0 8px 0;
+    font-size: 3em;
     color: #fff;
 }
 
@@ -404,7 +359,7 @@ button {
     cursor: pointer;
 }
 
-.colorBlue, #top a {
+.colorBlue, #top a, #mainStats a, #environmentalSec a, #laborSec a, #animalSec a, #socialSec a {
     color: #2B6589;
 }
 
@@ -420,7 +375,7 @@ button {
     color: #FEFCF3;
 }
 
-#top a:hover{
+#top a:hover, #mainStats a:hover, #environmentalSec a:hover, #laborSec a:hover, #animalSec a:hover, #socialSec a:hover{
     color: #d27f64;
 }
 

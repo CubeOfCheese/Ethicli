@@ -34,6 +34,13 @@ $(document).ready(function() {
         mobileNav();
     })
 
+
+    // Tabs Initial Setup -------------------------------------------------------------------------
+    //$("#expandedStats article").css({"border-radius":"0 20px 20px 20px"})
+
+
+    // Miling List and Tab Switch -----------------------------------------------------------------
+
     $("#mailingListSubmit").click(function(){
         alert("Our mailing list isn't available yet, but thank you for considering to subscribe!");
     });
@@ -41,39 +48,36 @@ $(document).ready(function() {
     switchSection();
 });
 
-
-$("#expandedStats article").css({"border-radius":"0 20px 20px 20px"})
 function switchSection(){
     $("#environmentalStat").click(function(){
         $(this).addClass("tabClicked");
-        $("#laborStat, #animalStat").removeClass("tabClicked");
-        $("#expandedStats article").css({
-            "border-radius":"0 20px 20px 20px"
-        })
+        $("#laborStat, #animalStat, #socialStat").removeClass("tabClicked");
 
         $("#environmentalSec").css({"display":"block"});
-        $("#laborSec, #animalSec").css({"display":"none"});
+        $("#laborSec, #animalSec, #socialSec").css({"display":"none"});
     })
 
     $("#laborStat").click(function(){
         $(this).addClass("tabClicked");
-        $("#environmentalStat, #animalStat").removeClass("tabClicked");
-        $("#expandedStats article").css({
-            "border-radius":"20px"
-        })
+        $("#environmentalStat, #animalStat, #socialStat").removeClass("tabClicked");
 
         $("#laborSec").css({"display":"block"});
-        $("#environmentalSec, #animalSec").css({"display":"none"});
+        $("#environmentalSec, #animalSec, #socialSec").css({"display":"none"});
     })
 
     $("#animalStat").click(function(){
         $(this).addClass("tabClicked");
-        $("#environmentalStat, #laborStat").removeClass("tabClicked");
-        $("#expandedStats article").css({
-            "border-radius":"20px"
-        })
+        $("#environmentalStat, #laborStat, #socialStat").removeClass("tabClicked");
         
         $("#animalSec").css({"display":"block"});
-        $("#environmentalSec, #laborSec").css({"display":"none"});
+        $("#environmentalSec, #laborSec, #socialSec").css({"display":"none"});
+    })
+
+    $("#socialStat").click(function(){
+        $(this).addClass("tabClicked");
+        $("#environmentalStat, #laborStat, #animalStat").removeClass("tabClicked");
+        
+        $("#socialSec").css({"display":"block"});
+        $("#environmentalSec, #laborSec, #animalSec").css({"display":"none"});
     })
 }
