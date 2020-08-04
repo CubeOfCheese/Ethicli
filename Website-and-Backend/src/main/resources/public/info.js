@@ -43,57 +43,40 @@ function renderPage(companyData) {
     document.getElementById("greenPowerPercentage").innerText = companyData.greenPowerPercentage + "%";
   }
 
-  // if(companyData.environmentScore.toFixed(1) == 0){
-  //   document.getElementById("environmentalStat").style = "display:none;"
-  //   document.getElementById("environmentalSec").style = "display:none;"
-  // }
-  // if(companyData.laborScore.toFixed(1) == 0){
-  //   document.getElementById("laborStat").style = "display:none;"
-  //   document.getElementById("laborSec").style = "display:none;"
-  // }
-  // if(companyData.animalsScore.toFixed(1) == 0){
-  //   document.getElementById("animalStat").style = "display:none;"
-  //   document.getElementById("animalSec").style = "display:none;"
-  // }
-  // if(companyData.socialScore.toFixed(1) == 0){
-  //   document.getElementById("socialStat").style = "display:none;"
-  //   document.getElementById("socialSec").style = "display:none;"
-  // }
-
   // Subscores ----------------------------------------------------------------------------------------
-  if(companyData.environmentScore.toFixed(1) == 0){
+  if (companyData.environmentScore.toFixed(1) == 0) {
     document.getElementById("environmentalStat").style = "display:none;"
     document.getElementById("environmentalSec").style = "display:none;"
-  }else{
+  } else {
     document.getElementById("environmentalStat").classList.add("tabClicked");
     document.getElementById("environmentalSec").style = "display:block;"
   }
 
-  if(companyData.laborScore.toFixed(1) == 0){
+  if (companyData.laborScore.toFixed(1) == 0) {
     document.getElementById("laborStat").style = "display:none;"
     document.getElementById("laborSec").style = "display:none;"
-  }else{
+  } else {
     if(companyData.environmentScore.toFixed(1) == 0){
       document.getElementById("laborStat").classList.add("tabClicked");
       document.getElementById("laborSec").style = "display:block;"
     }
   }
 
-  if(companyData.animalsScore.toFixed(1) == 0){
+  if (companyData.animalsScore.toFixed(1) == 0) {
     document.getElementById("animalStat").style = "display:none;"
     document.getElementById("animalSec").style = "display:none;"
-  }else{
-    if((companyData.environmentScore.toFixed(1) == 0)&&(companyData.laborScore.toFixed(1) == 0)){
+  } else {
+    if ((companyData.environmentScore.toFixed(1) == 0)&&(companyData.laborScore.toFixed(1) == 0)) {
       document.getElementById("animalStat").classList.add("tabClicked");
       document.getElementById("animalSec").style = "display:block;"
     }
   }
 
-  if(companyData.socialScore.toFixed(1) == 0){
+  if (companyData.socialScore.toFixed(1) == 0) {
     document.getElementById("socialStat").style = "display:none;"
     document.getElementById("socialSec").style = "display:none;"
-  }else{
-    if((companyData.environmentScore.toFixed(1) == 0)&&(companyData.laborScore.toFixed(1) == 0)&&(companyData.animalsScore.toFixed(1) == 0)){
+  } else {
+    if ((companyData.environmentScore.toFixed(1) == 0)&&(companyData.laborScore.toFixed(1) == 0)&&(companyData.animalsScore.toFixed(1) == 0)) {
       document.getElementById("socialStat").classList.add("tabClicked");
       document.getElementById("socialSec").style = "display:block;"
     }
@@ -110,7 +93,6 @@ function displayUnavailable() {
   document.getElementById("companyWebsite").style = "display:none;";
   document.getElementById("mainStats").style = "padding-bottom: 60px;";
   document.getElementById("expandedStats").style = "display:none; overflow:hidden;";
-  
   document.getElementById("overall-score-desc").innerHTML =
     'It looks like we don&#39t have any info on that company. We&#39re constantly trying to improve our data coverage, \
     but it looks like we&#39ve still got farther to go. Please send us an email at \
