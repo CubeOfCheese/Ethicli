@@ -376,7 +376,7 @@ a {
     cursor: pointer;
 }
 
-.emphasis, #mainRating p, #top a, .substatCircle p{
+em, #mainRating p, #top a, .substatCircle p{
     font-weight: 700;
 }
 
