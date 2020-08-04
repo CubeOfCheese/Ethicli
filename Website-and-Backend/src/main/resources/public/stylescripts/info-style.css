@@ -1,0 +1,456 @@
+html {
+    scroll-behavior: smooth;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #8EA289;
+    color: #102340;
+}
+
+header, nav, #expandedStats, footer {
+    position: relative;
+}
+
+.container {
+    position: relative;
+    margin: auto;
+    max-width: 960px;
+    padding: 81px 30px;
+}
+
+/*** Nav **************************************************************/
+
+nav {
+    position: fixed;
+    width: 100vw;
+    z-index: 1;
+}
+
+nav .container {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    padding: 36px 30px;
+}
+
+#navlinks {
+    display: flex;
+    align-items: flex-end;
+}
+
+nav a {
+    display: block;
+    border-radius: 100px;
+    margin-left: 24px;
+    padding: 16px;
+    background: #102340;
+    color: #FFFCF2;
+}
+
+nav a:hover {
+    background: #2B6589;
+}
+
+#triplebar {
+    display: none;
+}
+
+
+/*** Header Content **************************************************************/
+
+header {
+    background: #C9D4C6;
+}
+
+header .container{
+    padding-bottom:0;
+}
+
+header article, #expandedStats .statsTop{
+    display: flex;
+    align-items: center;
+}
+
+header .container article div{
+    flex:1;
+}
+
+#mainRating, .substatCircle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 auto 0;
+    max-width: 180px;
+    height: 180px;
+    margin-right: 36px;
+    border-radius: 200px;
+    background: #8EA289;
+}
+
+/*** Badge Group *****************************************************/
+
+#badges {
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    margin: 16px 0;
+    overflow: visible;
+}
+
+#badges .tooltip a, #badges .tooltip a:hover{
+    color: #fff;
+    font-weight: 400;
+}
+
+#bcorp, #bluesign, #blackowned, #blmsupport{
+    display: none;
+    position: relative;
+}
+
+#bcorp a, #bluesign a, #blackowned a, #blmsupport a{
+    font-size: 0.8em;
+    padding: 8px 12px;
+    margin: 0 8px 16px 0;
+    border-radius: 50px;
+    background: #05668D;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    flex-wrap: no-wrap;
+    margin: 36px 0 0 -100%;
+    background: #0A2342;
+    color: #c6d4c5;
+    padding: 8px;
+    border-radius:8px;
+    text-align: center;
+    position: absolute;
+    font-size: 0.8em;
+    line-height: 1.2em;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/*** Expanded Stats Sections **************************************************************/
+
+#expandedStats {
+    background: #C9D4C6;
+}
+
+.substatCircle {
+    min-width: 150px;
+    height: 150px;
+    margin-left:0;
+}
+
+#expandedStats .statsBottom{
+    margin-top: 36px;
+}
+
+#expandedStats section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#expandedStats ul, .articleList{
+    display: flex;
+}
+
+#expandedStats ul li{
+    margin-right: 16px;
+    padding: 12px 16px; 
+    border-radius:100px; 
+    margin-bottom:12px;
+    background: #102340;
+    cursor: pointer;
+}
+
+#expandedStats article {
+    position: relative;
+    padding: 24px;
+    border-radius: 20px;
+    width: 100%;
+    background: #FFFCF2;
+}
+
+#environmentalStat, #laborStat, #animalStat, #socialStat{
+    background: #102340;
+    color: #FFFCF2;
+    margin-bottom: 12px;
+    padding-bottom: 0px;
+    position: relative;
+}
+
+/* #environmentalStat.tabClicked, #laborStat.tabClicked, #animalStat.tabClicked, #socialStat.tabClicked{
+    margin-bottom: 0px;
+    padding-bottom: 12px;
+    border-radius:  20px 20px 0 0;
+} */
+
+#environmentalStat:hover, #laborStat:hover, #animalStat:hover, #socialStat:hover,
+#environmentalStat.tabClicked, #laborStat.tabClicked, #animalStat.tabClicked, #socialStat.tabClicked,
+#environmentalStat.tabClicked:hover, #laborStat.tabClicked:hover, #animalStat.tabClicked:hover, #socialStat.tabClicked:hover{
+    background:#FFFCF2;
+    color:#05668D;
+}
+
+.articleSource{
+    padding: 30px;
+    border-radius: 20px;
+    background: #C9D4C6;
+    min-width: 50%;
+}
+
+.articleRatings{
+    padding: 30px 0 30px 30px;
+}
+
+.articleList{
+    margin-bottom:30px;
+}
+
+.articleList:last-child{
+    margin-bottom:0;
+}
+
+/*** Tabs *****************************************************/
+/* Tabs styling and curvature will eventually go here */
+
+/*** Footer *****************************************************/
+
+footer {
+    background: #8EA289;
+}
+
+footer .container {
+    padding: 48px 30px 40px 30px;
+    display: flex;
+}
+
+footer aside {
+    display: flex;
+    flex-direction: column;
+}
+
+.socials li{
+    margin: 0 16px 13px 0;
+}
+
+footer a {
+    margin: 0 16px 8px 0;
+}
+
+footer .container div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    margin: auto;
+    right: 30px;
+    text-align: right;
+}
+
+footer .container div:last-of-type a {
+    margin: 0;
+}
+
+footer p {
+    margin-top: 16px;
+}
+
+#backToTop {
+    background: #C9D4C6;
+    border-radius: 20px;
+    margin-left: auto;
+}
+
+#backToTop a {
+    margin: 4px;
+    line-height: 24px;
+    color: #102340;
+}
+
+#california{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    font-size: 0.85em;
+}
+
+/*** Typography and Buttons *******************************************/
+
+h1 {
+    margin: 48px 0 0 0;
+    margin-bottom: 24px;
+    font-size: 3.375em;
+    font-weight: 500;
+    line-height: 1.2em;
+}
+
+h3 {
+    font-size: 2.25em;
+    line-height: 1.2em;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+article h3{
+    font-size: 1.6em;
+}
+
+h4{
+    font-size: 1.2em; 
+    font-weight: 700;
+    padding-bottom: 16px;
+}
+
+#mainRating h6{
+    margin: 20px 0 8px 0;
+    font-size: 4em;
+    color: #fff;
+}
+
+.substatCircle h6{
+    margin: 8px 0 8px 0;
+    font-size: 3em;
+    color: #fff;
+}
+
+p {
+    line-height: 1.5em;
+    margin-bottom: 16px;
+}
+
+article p:last-of-type{
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+em, #mainRating p, #top a, .substatCircle p{
+    font-weight: 700;
+}
+
+#backToTop:hover{
+    opacity: 0.8;
+}
+
+.break{
+    display: none;
+}
+
+.break2{
+    display: block;
+}
+
+#quote {
+    position: absolute;
+    right: 30px;
+    margin-top: 36px;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.colorBlue, #top a, #mainStats a, #environmentalSec a, #laborSec a, #animalSec a, #socialSec a {
+    color: #2B6589;
+}
+
+.colorDark, #expandedStats h3, header p {
+    color: #102340;
+}
+
+.colorLGreen, footer p, footer a:hover {
+    color: #C9D4C6;
+}
+
+.colorCream, #expandedStats ul li, footer a {
+    color: #FEFCF3;
+}
+
+#top a:hover, #mainStats a:hover, #environmentalSec a:hover, #laborSec a:hover, #animalSec a:hover, #socialSec a:hover{
+    color: #d27f64;
+}
+
+::selection{
+    background: #2B6589;
+    color: #FEFCF3;
+}
+
+/*** Images *****************************************************/
+
+#logo {
+    position: absolute;
+    left: 30px;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+#logo img {
+    width: 50px;
+    margin: 0;
+    background: none;
+}
+
+#logo img:hover {
+    opacity: 0.8;
+}
+
+/*** Queries *****************************************************/
+
+@media screen and (max-width: 768px) {
+    #expandedStats .statsTop{
+        flex-direction: column;
+    }
+    .substatCircle {
+        margin: 0 auto 36px 0;
+    }
+    #expandedStats .statsTop div:last-child{
+        width: 100%;
+    }
+    #triplebar {
+        display: block;
+    }
+    #navlinks {
+        display: flex;
+        flex-direction: column;
+    }
+    #navlinks a {
+        display: none;
+        margin-top: 16px;
+    }
+    #navlinks.navClicked a {
+        display: block;
+    }
+    .gallery {
+        margin: 24px 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    footer{
+        padding-bottom: 54px;
+    }
+    #termsBar{
+        display: none;
+    }
+    .break{
+        display: inline;
+    }
+}

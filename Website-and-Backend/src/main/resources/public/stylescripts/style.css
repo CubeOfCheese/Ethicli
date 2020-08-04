@@ -7,6 +7,7 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
+    background: #8EA289;
     color: #102340;
 }
 
@@ -164,10 +165,11 @@ header {
     margin-bottom: 60px;
 }
 
-/*** News and Featured Sections *****************************************************/
+/*** Footer *****************************************************/
 
 footer {
     background: #8EA289;
+    position: relative;
 }
 
 footer .container {
@@ -216,6 +218,13 @@ footer p {
     margin: 4px;
     line-height: 24px;
     color: #102340;
+}
+
+#california{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    font-size: 0.85em;
 }
 
 
@@ -357,11 +366,12 @@ a {
 
     color:#2B6589;
 }
+
 a:hover {
     color: #D27F65;
 }
 
-.emphasis {
+em {
     font-weight: 700;
 }
 
