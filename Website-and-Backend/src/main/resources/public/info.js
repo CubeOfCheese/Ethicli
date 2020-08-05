@@ -41,6 +41,8 @@ function renderPage(companyData) {
   }
   if (companyData.greenPowerPercentage) {
     document.getElementById("greenPowerPercentage").innerText = companyData.greenPowerPercentage + "%";
+  } else {
+    document.getElementById("greenPower").style = "display:none;";
   }
 
   // Subscores ----------------------------------------------------------------------------------------
