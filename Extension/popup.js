@@ -59,8 +59,11 @@ function loadExtension(ethicliStats) {
       var endOfBaseDomain = companyUrl.search(/\./);
       if (endOfBaseDomain > -1) companyUrl = companyUrl.substring(0, endOfBaseDomain);
 
-      document.getElementById("detailsButton").textContent =
-      "<a href='https://ethicli.com/info/"+ companyUrl +"' target='_blank'>View Details</a?";
+      var infoLink = document.createElement("a");
+      infoLink.href = "https://ethicli.com/info/" + companyUrl;
+      infoLink.target = "_blank";
+      infoLink.textContent = "View Details";
+      document.getElementById("detailsButton").append(infoLink);
     })
 
     //Changes subratings
