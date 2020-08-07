@@ -63,7 +63,7 @@ function reloadExt(request, sender, sendResponse) {
 
             function notShop(){
                 isShoppingPage = false;
-                chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id })
+                chrome.browserAction.setPopup({ popup: "popupOptin.html", tabId: currentTab.id })
                 chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id })
                 chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
             }
@@ -118,3 +118,29 @@ chrome.runtime.onMessage.addListener(
         }
     }
 );
+
+//The load stuff
+window.addEventListener("load", function() {
+    // set up the appearance of the popup depending on the outcome of the opt-in
+    chrome.storage.local.get("optInShown", function(result) {
+    //   console.log("Setting up UI. result.optInShown:" + result.optInShown);
+    //   document.getElementById("opt-in-prompt").hidden = result.optInShown;
+    //   document.getElementById("after-opt-in").hidden = !result.optInShown;
+    });
+  
+    document.getElementById("optinYes").addEventListener(
+      "click",
+      function() {
+        chrome.storage.local.set({ "optIn" : true, "optInShown" : true });
+        window.close();
+        console.log("kjhfksd");
+    });
+  
+    document.getElementById("optinNo").addEventListener(
+      "click",
+      function() {
+        chrome.storage.local.set({ "optIn" : false, "optInShown" : true });
+        window.close();
+        console.log("glervjlw");
+    });
+});
