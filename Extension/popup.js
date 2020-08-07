@@ -43,9 +43,9 @@ function loadExtension(ethicliStats) {
     }
 
     //Change sitename
-    document.getElementById("siteurl").innerHTML = ethicliStats.name;
+    document.getElementById("siteurl").textContent = ethicliStats.name;
     if (ethicliStats.name == null) {
-        document.getElementById("siteurl").innerHTML = "Unavailable";
+        document.getElementById("siteurl").textContent = "Unavailable";
     }
 
     //Change "View Details" button routing
@@ -59,14 +59,17 @@ function loadExtension(ethicliStats) {
       var endOfBaseDomain = companyUrl.search(/\./);
       if (endOfBaseDomain > -1) companyUrl = companyUrl.substring(0, endOfBaseDomain);
 
-      document.getElementById("detailsButton").innerHTML =
-      "<a href='https://ethicli.com/info/"+ companyUrl +"' target='_blank'>View Details</a?";
+      var infoLink = document.createElement("a");
+      infoLink.href = "https://ethicli.com/info/" + companyUrl;
+      infoLink.target = "_blank";
+      infoLink.textContent = "View Details";
+      document.getElementById("detailsButton").append(infoLink);
     })
 
     //Changes subratings
-    document.getElementById("envScore").innerHTML = ethicliStats.environmentScore.toFixed(1);
-    document.getElementById("laborScore").innerHTML = ethicliStats.laborScore.toFixed(1);
-    document.getElementById("animalScore").innerHTML = ethicliStats.animalsScore.toFixed(1);
+    document.getElementById("envScore").textContent = ethicliStats.environmentScore.toFixed(1);
+    document.getElementById("laborScore").textContent = ethicliStats.laborScore.toFixed(1);
+    document.getElementById("animalScore").textContent = ethicliStats.animalsScore.toFixed(1);
 
     //Changes subratings scorebar
     var envScore = ethicliStats.environmentScore*20;
@@ -77,7 +80,7 @@ function loadExtension(ethicliStats) {
     document.getElementById("animalScoreBar").style.width = animalScore + "px";
 
     if (document.getElementById("overallScore")!== null) { //checks to see if ID even appears on page
-        document.getElementById("overallScore").innerHTML = ethicliScore;
+        document.getElementById("overallScore").textContent = ethicliScore;
     }
 
     var badgeCounter = 0;
