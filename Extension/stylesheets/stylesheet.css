@@ -149,6 +149,12 @@ body {
 
 #optin #shoppingbag{
     margin: 24px 0 0 24px;
+    animation: shoppingMove 2s;
+}
+
+@keyframes shoppingMove {
+    from {margin: 200px 0 0 24px;}
+    to {margin: 24px 0 0 24px;}
 }
 
 /** General scoring and popup, confirmed that it's a shop **/
