@@ -42,17 +42,22 @@ public class SpringbootApplication {
         response.addHeader("Access-Control-Allow-Origin", "*");
         Business business = new Business();
         if (validateURL(companyName)) {
-            business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1,false, false, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "Top 50 Online Retailers & Manual Scores - Sheet1.csv", 12, 1, -1, 2, -1, -1, -1, -1, 3, 4, 5, -1, 6, 7, 8, 9, 10, 11, -1, -1, -1, -1, -1, -1,-1,  -1,false, false, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "EPA's Green Power Partners - Sheet1.csv", 5, 0, -1, -1, -1, -1, -1, 1, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1,false, false, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "B Corp Impact Data.csv", 11, 0, 3, 4, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 6, 7,8,9,10, 5,  -1,false, false, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1,false, true, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "Black-OwnedOnlineBusinesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1,false, false, true, false, false, false, false));
-            business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1,true, false, false, false, false, false, false));
-            business.update(searchDataSource(companyName, "POC-Owned Businesses (1).csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1,false, false, false, true, false, false, false));
-            business.update(searchDataSource(companyName, "Native-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1,false, false, false, false, true, false, false));
-            business.update(searchDataSource(companyName, "Animal Welfare Certifications - Certified Vegan Retailers.csv", 3,0,-1, 1, -1, -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  -1,false, false, false, false, false,true, false));
-            business.update(searchDataSource(companyName,"Copy of Animal Welfare Certifications - Cruelty-Free (Ethical Elephant Directory).csv", 5,0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,1, false, false, false, false, false, false, true));
+            business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1, -1,false, false, false, false, false, false, false, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Top 50 Online Retailers & Manual Scores - Sheet1.csv", 12, 1, -1, 2, -1, -1, -1, -1, 3, 4, 5, -1, 6, 7, 8, 9, 10, 11, -1, -1, -1, -1, -1, -1,-1,  -1, -1,false, false, false, false, false, false, false, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "EPA's Green Power Partners - Sheet1.csv", 5, 0, -1, -1, -1, -1, -1, 1, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1, -1,false, false, false, false, false, false, false, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "B Corp Impact Data.csv", 11, 0, 3, 4, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 6, 7,8,9,10, 5,  -1, -1,false, false, false, false, false, false, false, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1, -1,false, true, false, false, false, false, false, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Black-OwnedOnlineBusinesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1, -1,false, false, true, false, false, false, false, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1, -1,true, false, false, false, false, false, false, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "POC-Owned Businesses (1).csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1, -1,false, false, false, true, false, false, false, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Native-Owned Online Businesses.csv", 3, 0, -1, 2, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1, -1,false, false, false, false, true, false, false, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Certified Vegan Retailers.csv", 3,0,-1, 1, -1, -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  -1, -1,false, false, false, false, false,true, false, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Cruelty-Free (Ethical Elephant Directory).csv", 5,0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,1, -1, false, false, false, false, false, false, true, false, false, false, false, false));
+            business.update(searchDataSource(companyName, "Certified Humane.csv", 3, 0, -1, 1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, true, false, false, false, false));
+            business.update(searchDataSource(companyName, "Certified Wildlife Friendly products.csv", 2, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, true, false, false, false));
+            business.update(searchDataSource(companyName, "Choose Cruelty Free (CCF) Certified.csv", 5, 0, -1, 1,  -1, -1,  -1, 3,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 2,  false, false, false, false, false, false, false, false, false, true, false, false));
+            business.update(searchDataSource(companyName, "Companies that test on animals.csv", 2, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, true, false));
+            business.update(searchDataSource(companyName, "Leaping Bunny Approved Brands.csv", 3, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, true));
             business.calculate();
         }
         return business;
@@ -142,8 +147,11 @@ public class SpringbootApplication {
                                      int greenPowerPercentageColumn, int environmentScoreColumn, int textilesScoreColumn, int animalsScoreColumn,
                                      int laborScoreColumn, int socialScoreColumn, int overallScoreColumn, int bcorpCertifiedColumn, int bcorpScoreColumn,
                                      int bcorpCommunityScoreColumn, int bcorpEnvironmentsScoreColumn, int bcorpGovernanceScoreColumn, int bcorpWorkersScoreColumn,
-                                     int bcorpCertYearColumn, int ethicalElephantTypeColumn, boolean bluesignPartnerColumn, boolean supportsBLMColumn, boolean blackOwnedBusinessColumn,
-                                     boolean pocOwnedBusiness, boolean nativeOwnedBusiness, boolean veganDotOrgCertified, boolean ethicalElephantCrueltyFree) throws IOException {
+                                     int bcorpCertYearColumn, int ethicalElephantTypeColumn, int chooseCrueltyFreeVeganColumn,
+                                     boolean bluesignPartnerColumn, boolean supportsBLMColumn, boolean blackOwnedBusinessColumn,
+                                     boolean pocOwnedBusiness, boolean nativeOwnedBusiness, boolean veganDotOrgCertified, boolean ethicalElephantCrueltyFree, boolean certifiedHumane,
+                                     boolean wildlifeFriendlyCertified, boolean chooseCrueltyFreeCertified, boolean ethicalElephantTestsOnAnimals,
+                                     boolean leapingBunnyCertified) throws IOException {
         Business busTemp = new Business(); // Business temp obj for search and compare
         Business business = new Business(); // Business obj for matching data of most recent .year
         Resource resource = new ClassPathResource(filename);
@@ -200,7 +208,11 @@ public class SpringbootApplication {
                                 busTemp.setNativeOwnedBusiness(nativeOwnedBusiness);
                                 busTemp.setVeganDotOrgCertified(veganDotOrgCertified);
                                 busTemp.setEthicalElephantCrueltyFree(ethicalElephantCrueltyFree);
-
+                                busTemp.setCertifiedHumane(certifiedHumane);
+                                busTemp.setWildlifeFriendlyCertified(wildlifeFriendlyCertified);
+                                busTemp.setChooseCrueltyFreeCertified(chooseCrueltyFreeCertified);
+                                busTemp.setEthicalElephantTestsOnAnimals(ethicalElephantTestsOnAnimals);
+                                busTemp.setLeapingBunnyCertified(leapingBunnyCertified);
                             } else if (column == websiteColumn) {
                                 busTemp.setWebsite(dataToken);
                             } else if (column == supportsBLMSourceColumn) {
@@ -313,9 +325,15 @@ public class SpringbootApplication {
                                     busTemp.setBcorpProfile(dataToken);
                                 }
                             } else if (column == ethicalElephantTypeColumn) {
-                                busTemp.setEthicalElephantType(dataToken);
+                                if (dataToken.isEmpty()) {
+                                    busTemp.setEthicalElephantType("");
+                                } else {
+                                    busTemp.setEthicalElephantType(dataToken);
+                                }
+                            } else if (column == chooseCrueltyFreeVeganColumn) {
+                                if (dataToken.contains("vegan"))
+                                    busTemp.setChooseCrueltyFreeVegan(true);
                             }
-
                         }
                     }
                     ++column;
