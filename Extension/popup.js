@@ -120,15 +120,16 @@ window.onload = function() {
         somethingWrong();
     });
 
-
-    document.getElementById("scores").onmouseover = function() {
-        if (hasSubscore) {
-            document.getElementById("subscoreTip").style.left = (event.clientX-30)+"px";
-            document.getElementById("subscoreTip").style.top = (event.clientY-30)+"px";
-        } else {
-            document.getElementById("subscoreTip").style = "display:none;";
-        }
-    };
+    if(document.getElementById("scores") != null){ //if there is a scores ID present
+        document.getElementById("scores").onmouseover = function() {
+            if (hasSubscore) {
+                document.getElementById("subscoreTip").style.left = (event.clientX-30)+"px";
+                document.getElementById("subscoreTip").style.top = (event.clientY-30)+"px";
+            } else {
+                document.getElementById("subscoreTip").style = "display:none;";
+            }
+        };
+    }
 }
 
 function somethingWrong() {
