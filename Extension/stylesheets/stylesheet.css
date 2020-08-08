@@ -203,6 +203,10 @@ body {
     color: #fff;
 }
 
+#bcorp:hover, #bluesign:hover, #blackowned:hover, #blmsupport:hover {
+    background: #2482a7;
+}
+
 #bcorp.trueForPage {
     display: block;
     width: 30px;
@@ -258,8 +262,8 @@ body {
 }
 
 .label p {
-    margin-bottom: 8px;
-    font-size: 0.8em;
+    margin-bottom: 6px;
+    font-size: 12px;
 }
 
 .label p:last-child {
@@ -273,7 +277,7 @@ body {
 .label div .scorebar, .label div .scorebarFill {
     display: block;
     width: 200px;
-    height: 8px;
+    height: 6px;
     background: #c6d4c5;
     border-radius: 100px;
 }
@@ -281,19 +285,19 @@ body {
 .label div .scorebarFill {
     display: block;
     position: relative;
-    top: -8px;
+    top: -6px;
     background: #89a387;
 }
 
 .label div p {
-    margin-left: 16px;
+    margin-left: 14px;
 }
 
 #detailsButton {
     align-self: flex-end;
-    padding: 8px;
+    padding: 6px;
+    font-size: 12px;
 }
-
 
 /** Sponsored **/
 
@@ -389,6 +393,10 @@ body {
 h3 {
     text-align: center;
     margin-bottom: 1em;
+}
+
+p {
+    font-size: 14px;
 }
 
 button {

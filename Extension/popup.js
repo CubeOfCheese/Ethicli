@@ -14,26 +14,31 @@ function loadExtension(ethicliStats) {
       adjustSubscores();
     }
     function adjustSubscores() {
-        var fullheight = 340;
+        var fullheight = 360;
         if (ethicliStats.environmentScore == 0.0) {
-            fullheight= fullheight-50;
-            document.getElementById("envSection").style="display:none;";
+            fullheight = fullheight-50;
+            document.getElementById("envSection").style = "display:none;";
         }
         if (ethicliStats.laborScore == 0.0) {
-            fullheight= fullheight-50;
-            document.getElementById("laborSection").style="display:none;";
+            fullheight = fullheight-50;
+            document.getElementById("laborSection").style = "display:none;";
         }
         if (ethicliStats.animalsScore == 0.0) {
-            fullheight= fullheight-50;
-            document.getElementById("animalSection").style="display:none;";
+            fullheight = fullheight-50;
+            document.getElementById("animalSection").style = "display:none;";
+        }
+        if (ethicliStats.socialScore == 0.0) {
+            fullheight = fullheight-50;
+            document.getElementById("socialSection").style = "display:none;";
         }
         if (ethicliStats.environmentScore == 0.0 &&
             ethicliStats.laborScore == 0.0 &&
-            ethicliStats.animalsScore == 0.0
+            ethicliStats.animalsScore == 0.0 &&
+            ethicliStats.socialScore == 0.0
         ){
             hasSubscore = false;
-            document.getElementById("noSubscore").style="display:block;";
-            document.getElementById("detailsButton").style="display:none;"
+            document.getElementById("noSubscore").style = "display:block;";
+            document.getElementById("detailsButton").style = "display:none;"
             fullheight = 160;
         } else {
             hasSubscore = true;
@@ -70,6 +75,7 @@ function loadExtension(ethicliStats) {
     document.getElementById("envScore").textContent = ethicliStats.environmentScore.toFixed(1);
     document.getElementById("laborScore").textContent = ethicliStats.laborScore.toFixed(1);
     document.getElementById("animalScore").textContent = ethicliStats.animalsScore.toFixed(1);
+    document.getElementById("socialScore").textContent = ethicliStats.socialScore.toFixed(1);
 
     //Changes subratings scorebar
     var envScore = ethicliStats.environmentScore*20;
@@ -78,6 +84,8 @@ function loadExtension(ethicliStats) {
     document.getElementById("laborScoreBar").style.width = laborScore + "px";
     var animalScore = ethicliStats.animalsScore*20;
     document.getElementById("animalScoreBar").style.width = animalScore + "px";
+    var socialScore = ethicliStats.socialScore*20;
+    document.getElementById("socialScoreBar").style.width = socialScore + "px";
 
     if (document.getElementById("overallScore")!== null) { //checks to see if ID even appears on page
         document.getElementById("overallScore").textContent = ethicliScore;
