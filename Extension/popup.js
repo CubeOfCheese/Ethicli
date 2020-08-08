@@ -17,19 +17,19 @@ function loadExtension(ethicliStats) {
         var fullheight = 360;
         if (ethicliStats.environmentScore == 0.0) {
             fullheight = fullheight-50;
-            document.getElementById("envSection").style="display:none;";
+            document.getElementById("envSection").style = "display:none;";
         }
         if (ethicliStats.laborScore == 0.0) {
             fullheight = fullheight-50;
-            document.getElementById("laborSection").style="display:none;";
+            document.getElementById("laborSection").style = "display:none;";
         }
         if (ethicliStats.animalsScore == 0.0) {
             fullheight = fullheight-50;
-            document.getElementById("animalSection").style="display:none;";
+            document.getElementById("animalSection").style = "display:none;";
         }
         if (ethicliStats.socialScore == 0.0) {
             fullheight = fullheight-50;
-            document.getElementById("socialSection").style="display:none;";
+            document.getElementById("socialSection").style = "display:none;";
         }
         if (ethicliStats.environmentScore == 0.0 &&
             ethicliStats.laborScore == 0.0 &&
@@ -37,8 +37,8 @@ function loadExtension(ethicliStats) {
             ethicliStats.socialScore == 0.0
         ){
             hasSubscore = false;
-            document.getElementById("noSubscore").style="display:block;";
-            document.getElementById("detailsButton").style="display:none;"
+            document.getElementById("noSubscore").style = "display:block;";
+            document.getElementById("detailsButton").style = "display:none;"
             fullheight = 160;
         } else {
             hasSubscore = true;
