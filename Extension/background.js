@@ -32,13 +32,14 @@ function reloadExt(request, sender, sendResponse) {
                     var blacklist = ["google", "bing", "yahoo",  "baidu", "aol", "duckduckgo", "yandex", "ecosia"];
                     var notBlacklisted;
                     var ethicliBadgeScore;
-                    for(b=0; b<blacklist.length; b++){
-                        if(companyUrl.includes(blacklist[b])){
+                    for (b=0; b<blacklist.length; b++) {
+                        if (companyUrl.includes(blacklist[b])) {
+                          console.log("blacklist");
                             ethicliBadgeScore = "";
                             notBlacklisted = false;
-                            notShop();
                             break;
-                        }else{
+                        }
+                        else {
                             notBlacklisted = true;
                         }
                     }
@@ -62,6 +63,9 @@ function reloadExt(request, sender, sendResponse) {
                         }
                         companyRequest.send();
                     }
+                    else {
+                      notShop();
+                    }
                 }
                 else {
                   notShop();
@@ -69,7 +73,7 @@ function reloadExt(request, sender, sendResponse) {
 
                 function notShop(){
                   isShoppingPage = false;
-                  chrome.browserAction.setPopup({ popup: "popNotShop.html", tabId: currentTab.id })
+                  chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id })
                   chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id })
                   chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
                 }
