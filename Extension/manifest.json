@@ -23,7 +23,8 @@
         }
     },
     "permissions": [
-        "tabs"
+        "tabs",
+        "storage"
     ],
     "icons": {
         "16": "icons/ethicli-16.png",

@@ -82,10 +82,80 @@ body {
     margin-top: 16px;
 }
 
-#notShopMessage p, #shopDataUnavailable p {
+#notShopMessage p, #shopDataUnavailable p, #optin p {
     line-height: 1.4em;
 }
 
+/** Opt In Intro **/
+
+#optin {
+    background: #C9D4C6;
+}
+
+#optin h2 {
+    font-size: 1.95em;
+    line-height: 1.4em;
+    margin: 24px auto 16px auto;
+    font-weight: 700;
+    color: #05668D;
+}
+
+#optin p {
+    margin-bottom: 16px;
+}
+
+#optin a {
+    color: #05668D;
+    text-decoration: none;
+}
+
+#optin a:hover {
+    color: #E07A5F;
+}
+
+.darkblue {
+    color: #102340;
+}
+
+#optinButtons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#optinButtons a, #optinButtons a:hover {
+    padding: 8px 12px;
+    color: #FFFCF2;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 100px;
+}
+
+#optinNo {
+    background:#E07A5F;
+}
+
+#optinNo:hover {
+    background: #f0a38c;
+}
+
+#optinYes {
+    background:#0A2342;
+}
+
+#optinYes:hover {
+    background: #05668D;
+}
+
+#optin #shoppingbag {
+    margin: 24px 0 0 24px;
+    animation: shoppingMove 2s;
+}
+
+@keyframes shoppingMove {
+    from {margin: 200px 0 0 24px;}
+    to {margin: 24px 0 0 24px;}
+}
 
 /** General scoring and popup, confirmed that it's a shop **/
 
@@ -357,6 +427,10 @@ h6 a {
     text-decoration: none;
 }
 
+p {
+    font-size: 14px;
+}
+
 #left p, #right p {
     padding: 5px;
     text-decoration: none;
@@ -367,7 +441,7 @@ h6 a {
 
 #shoppingBagImg {
     display: block;
-    margin: 12px auto 0 auto;
+    margin: 16px auto 0 auto;
     width: 120px;
     height: 120px;
 }
