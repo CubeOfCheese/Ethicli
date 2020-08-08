@@ -203,6 +203,10 @@ body {
     color: #fff;
 }
 
+#bcorp:hover, #bluesign:hover, #blackowned:hover, #blmsupport:hover {
+    background: #2482a7;
+}
+
 #bcorp.trueForPage {
     display: block;
     width: 30px;
