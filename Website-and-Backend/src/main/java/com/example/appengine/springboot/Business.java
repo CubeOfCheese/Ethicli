@@ -3,7 +3,7 @@ package com.example.appengine.springboot;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Business {
-    private boolean bcorpCertified; // Boolean Variables:
+    private boolean bcorpCertified;
     private boolean blackOwnedBusiness;
     private boolean bluesignPartner;
     private boolean certifiedHumane;
@@ -17,7 +17,7 @@ public class Business {
     private boolean supportsBLM;
     private boolean veganDotOrgCertified;
     private boolean wildlifeFriendlyCertified;
-    private double animalsScore; // Double Variables:
+    private double animalsScore;
     private double bcorpCommunityScore;
     private double bcorpEnvironmentScore;
     private double bcorpGovernanceScore;
@@ -31,8 +31,8 @@ public class Business {
     private double overallScore;
     private double socialScore;
     private double textileScore;
-    private int bcorpCertYear; // Integer Variables:
-    private String bcorpProfile; // String Variables:
+    private int bcorpCertYear;
+    private String bcorpProfile;
     private String betterBusinessBureau;
     private String companyType;
     private String ethicalElephantType;
