@@ -31,7 +31,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     width: 48%;
 }
 
-.threes{
+.threes {
     margin-bottom: 48px;
 }
 
@@ -45,7 +45,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     justify-content: space-between;
 }
 
-.gallery.halfWidth img{
+.gallery.halfWidth img {
     width: 48%;
 }
 
