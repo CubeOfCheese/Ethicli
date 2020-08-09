@@ -31,8 +31,12 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     width: 48%;
 }
 
-.threes:first-of-type {
+.threes{
     margin-bottom: 48px;
+}
+
+.threes:last-of-type {
+    margin-bottom: 0;
 }
 
 .gallery {
@@ -41,7 +45,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     justify-content: space-between;
 }
 
-.gallery:first-child img {
+.gallery.halfWidth img{
     width: 48%;
 }
 
