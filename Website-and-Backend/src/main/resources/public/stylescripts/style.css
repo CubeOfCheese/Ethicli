@@ -138,7 +138,8 @@ header {
     position: absolute;
     padding: 30px;
     right: 0;
-    width: 50%;
+    width: 56%;
+    hyphens: none;
 }
 
 #intro {
@@ -458,7 +459,7 @@ button {
 
 #headerExtension {
     position: absolute;
-    width: 41%;
+    width: 39%;
     border-radius: 20px;
     margin-top: 30px;
 }
