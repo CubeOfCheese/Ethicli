@@ -611,11 +611,12 @@ public class Business {
             // Animal Welfare Score
                     // Mean scores based on number of animal factors (0 - 10):
             double testsOnAnimalsNoFactors = 3;
-            double testsOnAnimalsWithFactors = .5;
+            double testsOnAnimalsWithFactors = .55;
             double oneFactorAnimal = 6;
-            double twoFactorAnimal = 7.5;
+            double twoFactorAnimal = 8;
             double threeFactorAnimal = 9;
             double fourFactorAnimal = 9.5;
+            double fiveFactorAnimal = 9.75;
             double rangeAnimal = 1;
                     // Weights for Animal Factors (1 - 10):
             double ethicalElephantCrueltyFreeVeganWeight = 9;
@@ -637,11 +638,12 @@ public class Business {
             boolean certifiedHumaneSwitch = true;
             boolean chooseCrueltyFreeSwitch = true;
                     // Animal Calculation Variables:
-            double [] scoreGuideAnimal = {oneFactorAnimal, twoFactorAnimal - oneFactorAnimal, threeFactorAnimal - twoFactorAnimal, fourFactorAnimal - threeFactorAnimal};
+            double [] scoreGuideAnimal = {oneFactorAnimal, twoFactorAnimal - oneFactorAnimal, threeFactorAnimal - twoFactorAnimal, fourFactorAnimal - threeFactorAnimal, fiveFactorAnimal - fourFactorAnimal};
             double cumulativeAnimalScore = 0;
             double animalFactors = 0;
-            double animalWeightMean = (certifiedHumaneWeight + veganDotOrgCertifiedWeight + ethicalElephantCrueltyFreeVeganWeight
-                    + chooseCrueltyFreeVeganWeight + leapingBunnyWeight) / numberOfFactorsAnimal;
+            double animalWeightMean = (certifiedHumaneWeight + veganDotOrgCertifiedWeight
+                    + ((ethicalElephantCrueltyFreeVeganWeight + ethicalElephantCrueltyFreeVeganOptionsWeight + ethicalElephantCrueltyFreeWeight) / 3)
+                    + ((chooseCrueltyFreeVeganWeight + chooseCrueltyFreeVeganWeight) / 2) + leapingBunnyWeight) / numberOfFactorsAnimal;
 
                 // Animal Welfare - Positive Factors:
             for (int a = 0; a < scoreGuideAnimal.length; ++a) {
@@ -687,11 +689,16 @@ public class Business {
                 if (cumulativeAnimalScore == 0) {
                     cumulativeAnimalScore = testsOnAnimalsNoFactors;
                 } else {
-                    cumulativeAnimalScore -= (testsOnAnimalsWithFactors * animalFactors);
+                    for (int a = 0; a < animalFactors; ++a) {
+                        testsOnAnimalsWithFactors = Math.sqrt(testsOnAnimalsWithFactors);
+                    }
+                    cumulativeAnimalScore -= testsOnAnimalsWithFactors;
                 }
             }
 
                 // Animal Welfare - Score:
+            if (cumulativeAnimalScore > 10)
+                cumulativeAnimalScore = 10;
             this.animalsScore = cumulativeAnimalScore;
 
             // Overall Score
