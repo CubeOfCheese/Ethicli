@@ -93,6 +93,7 @@ $(document).ready(function() {
     $(window).bind("resize", function () {
         if ($(this).width() > 768) {
             $("#navlinks").removeClass("navClicked");
+            $(".submenu").removeClass("submenuClicked");
         }
     }).trigger('resize');
 
