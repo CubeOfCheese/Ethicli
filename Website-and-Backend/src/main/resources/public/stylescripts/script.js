@@ -37,7 +37,7 @@ $(document).ready(function() {
             })
         }
 
-        function darkNav(){
+        function darkNav() {
             $("#index #navlinks a").css({
                 "background": "#102340",
                 "color": "#FEFCF3"
@@ -56,7 +56,7 @@ $(document).ready(function() {
             })
         }
 
-        function lightNav(){
+        function lightNav() {
             $("#index #navlinks a").css({
                 "background": "#C9D4C6",
                 "color": "#102340"
@@ -76,18 +76,26 @@ $(document).ready(function() {
         }
     });
 
-    function mobileNav(){ //create mobile menu toggle to show navigation links
-        $(window).bind("resize", function () {
-            if ($(this).width() <= 768) {
-                $("#triplebar").click(function(){
-                    $("#navlinks").toggleClass("navClicked");
-                })
-            }else{
-                $("#navlinks").removeClass("navClicked");
-            }
-        }).trigger('resize');
+    dropdown();
+    function dropdown() {
+        $(".dropdownMenu").click(function(){
+            $(".dropdownIcon").toggleClass("dropped");
+            $(".submenu").toggleClass("submenuClicked");
+        });
     }
+
     mobileNav(); //allows menu to toggle when starting at a mobile size
+    function mobileNav() { //create mobile menu toggle to show navigation links
+        $("#triplebar").click(function(){
+            $("#navlinks").toggleClass("navClicked");
+        })
+    }
+    $(window).bind("resize", function () {
+        if ($(this).width() > 768) {
+            $("#navlinks").removeClass("navClicked");
+        }
+    }).trigger('resize');
+
 
     $("#mailingListSubmit").click(function(){
         alert("Our mailing list isn't available yet, but thank you for considering to subscribe!");
