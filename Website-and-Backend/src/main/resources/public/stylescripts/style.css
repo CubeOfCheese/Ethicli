@@ -31,8 +31,12 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     width: 48%;
 }
 
-.threes:first-of-type {
+.threes {
     margin-bottom: 48px;
+}
+
+.threes:last-of-type {
+    margin-bottom: 0;
 }
 
 .gallery {
@@ -41,7 +45,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     justify-content: space-between;
 }
 
-.gallery:first-child img {
+.gallery.halfWidth img {
     width: 48%;
 }
 
@@ -177,7 +181,8 @@ header {
     position: absolute;
     padding: 30px;
     right: 0;
-    width: 50%;
+    width: 56%;
+    hyphens: none;
 }
 
 #intro {
@@ -497,7 +502,7 @@ button {
 
 #headerExtension {
     position: absolute;
-    width: 41%;
+    width: 39%;
     border-radius: 20px;
     margin-top: 30px;
 }
