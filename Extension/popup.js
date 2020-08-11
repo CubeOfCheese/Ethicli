@@ -57,15 +57,10 @@ function loadExtension(ethicliStats) {
     var query = { active: true, currentWindow: true };
     chrome.tabs.query(query, function callback(tabs) {
       var currentTab = tabs[0];
-      var companyUrl = currentTab.url;
-      if (companyUrl.substring(0, 8) == "https://") companyUrl = companyUrl.substring(8);
-      else if (companyUrl.substring(0, 7) == "http://") companyUrl = companyUrl.substring(7);
-      if (companyUrl.substring(0, 4) == "www.") companyUrl = companyUrl.substring(4);
-      var endOfBaseDomain = companyUrl.search(/\./);
-      if (endOfBaseDomain > -1) companyUrl = companyUrl.substring(0, endOfBaseDomain);
+      var companyName = urlToCompanyName(currentTab.url);
 
       var infoLink = document.createElement("a");
-      infoLink.href = "https://ethicli.com/info/" + companyUrl;
+      infoLink.href = "https://ethicli.com/info/" + companyName;
       infoLink.target = "_blank";
       infoLink.textContent = "View Details";
       document.getElementById("detailsButton").append(infoLink);
@@ -138,6 +133,31 @@ window.onload = function() {
             }
         };
     }
+}
+
+function urlToCompanyName(url) {
+  if (url.substring(0, 8) == "https://") {
+    url = url.substring(8);
+  }
+  else if (url.substring(0, 7) == "http://") {
+    url = url.substring(7);
+  }
+
+  if (url.substring(0, 4) == "www.") {
+    url = url.substring(4);
+  }
+  else if (url.substring(0, 4) == "us.") {
+    url = url.substring(3);
+  }
+  else if (url.substring(0, 4) == "docs.") {
+    url = url.substring(5);
+  }
+
+  var endOfBaseDomain = url.search(/\./);
+  if (endOfBaseDomain > -1) {
+    url = url.substring(0, endOfBaseDomain);
+  }
+  return url;
 }
 
 function somethingWrong() {

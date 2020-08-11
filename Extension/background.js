@@ -22,18 +22,14 @@ function reloadExt(request, sender, sendResponse) {
                 if (request.shoppingPage == true) {
                     chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTab.id })
                     isShoppingPage = true;
-                    var companyUrl = sender.tab.url;
-                    if (companyUrl.substring(0, 8) == "https://") companyUrl = companyUrl.substring(8);
-                    else if (companyUrl.substring(0, 7) == "http://") companyUrl = companyUrl.substring(7);
-                    if (companyUrl.substring(0, 4) == "www.") companyUrl = companyUrl.substring(4);
-                    var endOfBaseDomain = companyUrl.search(/\./);
-                    if (endOfBaseDomain > -1) companyUrl = companyUrl.substring(0, endOfBaseDomain);
+
+                    var companyName = urlToCompanyName(sender.tab.url);
 
                     var blacklist = ["google", "bing", "yahoo",  "baidu", "aol", "duckduckgo", "yandex", "ecosia"];
                     var notBlacklisted;
                     var ethicliBadgeScore;
                     for (b=0; b<blacklist.length; b++) {
-                        if (companyUrl.includes(blacklist[b])) {
+                        if (companyName.includes(blacklist[b])) {
                             ethicliBadgeScore = "";
                             notBlacklisted = false;
                             break;
@@ -45,7 +41,7 @@ function reloadExt(request, sender, sendResponse) {
 
                     if (notBlacklisted) {
                         var companyRequest = new XMLHttpRequest()
-                        var url = 'https://ethicli.com/score/' + companyUrl;
+                        var url = 'https://ethicli.com/score/' + companyName;
                         companyRequest.open('GET', url, true)
                         companyRequest.onload = function() {
                             var jsonResponse = JSON.parse(this.response);
@@ -106,6 +102,31 @@ chrome.tabs.onActivated.addListener(
         })
     }
 );
+
+function urlToCompanyName(url) {
+  if (url.substring(0, 8) == "https://") {
+    url = url.substring(8);
+  }
+  else if (url.substring(0, 7) == "http://") {
+    url = url.substring(7);
+  }
+
+  if (url.substring(0, 4) == "www.") {
+    url = url.substring(4);
+  }
+  else if (url.substring(0, 4) == "us.") {
+    url = url.substring(3);
+  }
+  else if (url.substring(0, 4) == "docs.") {
+    url = url.substring(5);
+  }
+
+  var endOfBaseDomain = url.search(/\./);
+  if (endOfBaseDomain > -1) {
+    url = url.substring(0, endOfBaseDomain);
+  }
+  return url;
+}
 
 chrome.tabs.onCreated.addListener(
     function() {
