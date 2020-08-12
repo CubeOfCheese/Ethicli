@@ -177,6 +177,15 @@ window.onload = function pageEval() {
         chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: false }, function(response) {});
         isShoppingPage = false;
     }
+
+
+    var productElements = document.querySelectorAll("[class*='product'] * img");
+    for (let element of productElements) {
+      if (element.alt) {
+        console.log(element.alt);
+        break;
+      }
+    }
 };
 
 chrome.runtime.onMessage.addListener(
