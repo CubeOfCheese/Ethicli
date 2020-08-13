@@ -99,6 +99,7 @@ window.onload = function pageEval() {
         /coupons &amp; deals/i,
         /featured products/i,
         /find a store/i,
+        /for sale/i,
         /free shipping/i,
         /get free shipping/i,
         /get free shipping*/i,
@@ -116,6 +117,7 @@ window.onload = function pageEval() {
         /our stores/i,
         /pre-order/i,
         /preorder/i,
+        /pricing/i,
         /product catalog/i,
         /refund policy/i,
         /return policy/i,
@@ -159,7 +161,10 @@ window.onload = function pageEval() {
         /ssl secure checkout/i,
         /track order/i,
         /track your order/i,
-        /upcoming sales/i
+        /upcoming sales/i,
+
+        /のお店を探す/i, //Find an online store
+        /ショップを探す/i, //Find a shop
     ];
 
     var wordTracker = 0;
