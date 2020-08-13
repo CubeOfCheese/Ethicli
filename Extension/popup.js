@@ -16,19 +16,19 @@ function loadExtension(ethicliStats) {
     function adjustSubscores() {
         var fullheight = 360;
         if (ethicliStats.environmentScore == 0.0) {
-            fullheight = fullheight-50;
+            fullheight = fullheight-40;
             document.getElementById("envSection").style = "display:none;";
         }
         if (ethicliStats.laborScore == 0.0) {
-            fullheight = fullheight-50;
+            fullheight = fullheight-40;
             document.getElementById("laborSection").style = "display:none;";
         }
         if (ethicliStats.animalsScore == 0.0) {
-            fullheight = fullheight-50;
+            fullheight = fullheight-40;
             document.getElementById("animalSection").style = "display:none;";
         }
         if (ethicliStats.socialScore == 0.0) {
-            fullheight = fullheight-50;
+            fullheight = fullheight-40;
             document.getElementById("socialSection").style = "display:none;";
         }
         if (ethicliStats.environmentScore == 0.0 &&
