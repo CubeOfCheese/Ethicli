@@ -178,11 +178,11 @@ window.onload = function pageEval() {
         isShoppingPage = false;
     }
 
-
+    //gets all html elements that are images and have an ancestor with a classname that includes the word product
     var productElements = document.querySelectorAll("[class*='product'] * img");
     for (let element of productElements) {
       if (element.alt) {
-        console.log(element.alt);
+        console.log(element.alt); //.alt is the alt text for the image
         break;
       }
     }
