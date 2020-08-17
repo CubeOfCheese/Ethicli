@@ -133,7 +133,10 @@ window.onload = function() {
             }
         };
     }
-    fadeLongURL();
+
+    if(document.getElementById("sitename") != null){
+        fadeLongURL();
+    }
 }
 
 function fadeLongURL(){
