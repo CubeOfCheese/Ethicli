@@ -140,6 +140,9 @@ function fadeLongURL(){
     document.getElementById("siteurl").addEventListener("mouseover", function( event ) {
         var siteurlLength = this.innerHTML.length;
         if(siteurlLength > 30){
+            document.getElementById("siteurlcontainer").style = 
+                "-webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);\
+                mask-image: linear-gradient(to right, black 90%, transparent 100%);";
             for(i=0; i<siteurlLength; i++){
                 var diff = i+6; //6 fixes padding
                 this.style = "margin-left: -"+diff+"px;";
