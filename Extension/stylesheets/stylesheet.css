@@ -381,6 +381,31 @@ body {
     font-size: 0.75em;
     font-weight: bold;
     z-index: 2;
+    
+}
+
+#siteurlcontainer {
+    display: inline-block;
+    overflow-x: hidden;
+    max-width: 190px;
+    white-space: pre;
+    height: 10px;
+
+    -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, black 90%, transparent 100%);
+}
+
+#siteurl {
+    display: block;
+    cursor: default;
+    -webkit-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
+    -moz-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
+    -o-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
+    transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
+    -webkit-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
+    -moz-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
+    -o-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
+    transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
 }
 
 #noSubscore {
