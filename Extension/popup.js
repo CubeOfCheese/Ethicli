@@ -133,6 +133,28 @@ window.onload = function() {
             }
         };
     }
+
+    if(document.getElementById("sitename") != null){
+        fadeLongURL();
+    }
+}
+
+function fadeLongURL(){
+    document.getElementById("siteurl").addEventListener("mouseover", function( event ) {
+        var siteurlLength = this.innerHTML.length+16;
+        if(siteurlLength > 30){
+            this.style = "margin-left: -"+(siteurlLength)+"px;";
+            document.getElementById("siteurlcontainer").style = 
+                "-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%);\
+                mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%)";
+        }
+    })
+    document.getElementById("siteurl").addEventListener("mouseout", function( event ) {
+        this.style = "margin-left: 0px;";
+        document.getElementById("siteurlcontainer").style = 
+            "-webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);\
+            mask-image: linear-gradient(to right, black 90%, transparent 100%)";
+    })
 }
 
 function urlToCompanyName(url) {
