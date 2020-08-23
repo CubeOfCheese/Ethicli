@@ -272,6 +272,11 @@ header .container article div {
     margin-bottom: 0;
 }
 
+/*** Subscore Certifications *****************************************************/
+
+#subscore-certifiedHumane, #subscore-veganDotOrg, #subscore-chooseCrueltyFree, #subscore-ethicalElephant, #subscore-leapingBunny {
+    display:none;
+}
 
 /*** Tabs *****************************************************/
 
