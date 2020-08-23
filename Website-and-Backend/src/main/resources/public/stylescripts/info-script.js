@@ -1,27 +1,28 @@
 $(document).ready(function() {
     $(window).scroll(function() {
         if ($(window).width() > 768) {
-            $("#navlinks a").css({"background": "#102340"});
+            $("#navlinks a").css({ "background": "#102340" });
             $("#navlinks a").on("mouseover", function() {
-                $(this).css({"background": "#2B6589"});
+                $(this).css({ "background": "#2B6589" });
             })
             $("#navlinks a").on("mouseleave", function() {
-                $(this).css({"background": "#102340"});
+                $(this).css({ "background": "#102340" });
             })
         } else {
-            $("#navlinks a").css({"background": "#8EA289",});
+            $("#navlinks a").css({ "background": "#8EA289", });
             $("#navlinks a").on("mouseover", function() {
-                $(this).css({"background": "#2B6589"});
+                $(this).css({ "background": "#2B6589" });
             })
             $("#navlinks a").on("mouseleave", function() {
-                $(this).css({"background": "#8EA289"});
+                $(this).css({ "background": "#8EA289" });
             })
         }
     });
 
     dropdown();
+
     function dropdown() {
-        $(".dropdownMenu").click(function(){
+        $(".dropdownMenu").click(function() {
             $(".dropdownIcon").toggleClass("dropped");
             $(".submenu").toggleClass("submenuClicked");
         });
@@ -29,11 +30,11 @@ $(document).ready(function() {
 
     mobileNav(); //allows menu to toggle when starting at a mobile size
     function mobileNav() { //create mobile menu toggle to show navigation links
-        $("#triplebar").click(function(){
+        $("#triplebar").click(function() {
             $("#navlinks").toggleClass("navClicked");
         })
     }
-    $(window).bind("resize", function () {
+    $(window).bind("resize", function() {
         if ($(this).width() > 768) {
             $("#navlinks").removeClass("navClicked");
             $(".submenu").removeClass("submenuClicked");
@@ -48,43 +49,43 @@ $(document).ready(function() {
 
     // Miling List and Tab Switch -----------------------------------------------------------------
 
-    $("#mailingListSubmit").click(function(){
+    $("#mailingListSubmit").click(function() {
         alert("Our mailing list isn't available yet, but thank you for considering to subscribe!");
     });
 
     switchSection();
 });
 
-function switchSection(){
-    $("#environmentalStat").click(function(){
+function switchSection() {
+    $("#environmentalStat").click(function() {
         $(this).addClass("tabClicked");
         $("#laborStat, #animalStat, #socialStat").removeClass("tabClicked");
 
-        $("#environmentalSec").css({"display":"block"});
-        $("#laborSec, #animalSec, #socialSec").css({"display":"none"});
+        $("#environmentalSec").css({ "display": "block" });
+        $("#laborSec, #animalSec, #socialSec").css({ "display": "none" });
     })
 
-    $("#laborStat").click(function(){
+    $("#laborStat").click(function() {
         $(this).addClass("tabClicked");
         $("#environmentalStat, #animalStat, #socialStat").removeClass("tabClicked");
 
-        $("#laborSec").css({"display":"block"});
-        $("#environmentalSec, #animalSec, #socialSec").css({"display":"none"});
+        $("#laborSec").css({ "display": "block" });
+        $("#environmentalSec, #animalSec, #socialSec").css({ "display": "none" });
     })
 
-    $("#animalStat").click(function(){
+    $("#animalStat").click(function() {
         $(this).addClass("tabClicked");
         $("#environmentalStat, #laborStat, #socialStat").removeClass("tabClicked");
-        
-        $("#animalSec").css({"display":"block"});
-        $("#environmentalSec, #laborSec, #socialSec").css({"display":"none"});
+
+        $("#animalSec").css({ "display": "block" });
+        $("#environmentalSec, #laborSec, #socialSec").css({ "display": "none" });
     })
 
-    $("#socialStat").click(function(){
+    $("#socialStat").click(function() {
         $(this).addClass("tabClicked");
         $("#environmentalStat, #laborStat, #animalStat").removeClass("tabClicked");
-        
-        $("#socialSec").css({"display":"block"});
-        $("#environmentalSec, #laborSec, #animalSec").css({"display":"none"});
+
+        $("#socialSec").css({ "display": "block" });
+        $("#environmentalSec, #laborSec, #animalSec").css({ "display": "none" });
     })
 }
