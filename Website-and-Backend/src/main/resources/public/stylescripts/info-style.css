@@ -175,6 +175,7 @@ header .container article div{
     position: absolute;
     font-size: 0.8em;
     line-height: 1.2em;
+    hyphens: none;
     z-index: 1;
 }
 
