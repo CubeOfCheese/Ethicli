@@ -19,28 +19,27 @@ $(document).ready(function() {
         }
     });
 
-    function mobileNav(){ //create mobile menu toggle to show navigation links
-        if ($(window).width() <= 768) {
-            $("#triplebar").click(function(){
-                $("#navlinks").toggleClass("navClicked");
-            })
-        }else{
-            $("#navlinks").removeClass("navClicked");
-        }
-    }
-
-    mobileNav(); //allows menu to toggle when starting off with a mobile size
-    $(window).resize(function(){ //after window is resized, allow menu toggle
-        mobileNav();
-    })
-
-    dropdown(); //Menu Dropdown
+    dropdown();
     function dropdown() {
         $(".dropdownMenu").click(function(){
             $(".dropdownIcon").toggleClass("dropped");
             $(".submenu").toggleClass("submenuClicked");
         });
     }
+
+    mobileNav(); //allows menu to toggle when starting at a mobile size
+    function mobileNav() { //create mobile menu toggle to show navigation links
+        $("#triplebar").click(function(){
+            $("#navlinks").toggleClass("navClicked");
+        })
+    }
+    $(window).bind("resize", function () {
+        if ($(this).width() > 768) {
+            $("#navlinks").removeClass("navClicked");
+            $(".submenu").removeClass("submenuClicked");
+            $(".dropdownIcon").removeClass("dropped");
+        }
+    }).trigger('resize');
 
 
     // Tabs Initial Setup -------------------------------------------------------------------------

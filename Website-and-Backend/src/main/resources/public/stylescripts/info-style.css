@@ -473,6 +473,7 @@ button {
     #navlinks {
         display: flex;
         flex-direction: column;
+        align-items: flex-end;
     }
     #navlinks a {
         display: none;
