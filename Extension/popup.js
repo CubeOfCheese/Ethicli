@@ -154,14 +154,14 @@ function fadeLongURL(){
         var siteurlLength = this.innerHTML.length+16;
         if(siteurlLength > 30){
             this.style = "margin-left: -"+(siteurlLength)+"px;";
-            document.getElementById("siteurlcontainer").style = 
+            document.getElementById("siteurlcontainer").style =
                 "-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%);\
                 mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%)";
         }
     })
     document.getElementById("siteurl").addEventListener("mouseout", function( event ) {
         this.style = "margin-left: 0px;";
-        document.getElementById("siteurlcontainer").style = 
+        document.getElementById("siteurlcontainer").style =
             "-webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);\
             mask-image: linear-gradient(to right, black 90%, transparent 100%)";
     })
@@ -221,3 +221,14 @@ function somethingWrong() {
         }
     });
 }
+
+// GOOGLE ANALYTICS
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-173025073-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
