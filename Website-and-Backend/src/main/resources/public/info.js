@@ -39,6 +39,12 @@ function renderPage(companyData) {
   if (companyData.supportsBLM) {
     document.getElementById("blmsupport").style = "display:block;"
   }
+  if (companyData.veganDotOrgCertified) {
+    document.getElementById("vegan").style = "display:block;"
+  }
+  if (companyData.leapingBunnyCertified) {
+    document.getElementById("leapingbunny").style = "display:block;"
+  }
   if (companyData.greenPowerPercentage) {
     document.getElementById("greenPowerPercentage").innerText = companyData.greenPowerPercentage + "%";
   } else {

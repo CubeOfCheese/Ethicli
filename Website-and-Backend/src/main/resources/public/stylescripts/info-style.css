@@ -39,7 +39,7 @@ nav .container {
 
 #navlinks {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 
 nav a {
@@ -59,6 +59,49 @@ nav a:hover {
     display: none;
 }
 
+.submenu {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -10px;
+    opacity: 0;
+    -webkit-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+
+    -webkit-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+.submenu.submenuClicked {
+    top: 0;
+    opacity: 1;
+    -webkit-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+
+    -webkit-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+.submenu a {
+    position: relative;
+    margin-top: 20px;
+    padding: 12px;
+    text-align: end;
+    margin-left: auto;
+}
+
+.dropdownIcon.dropped {
+    display: inline-block;
+    transform: rotate(180deg);
+}
 
 /*** Header Content **************************************************************/
 
@@ -107,12 +150,12 @@ header .container article div{
     font-weight: 400;
 }
 
-#bcorp, #bluesign, #blackowned, #blmsupport{
+#bcorp, #bluesign, #blackowned, #blmsupport, #vegan, #leapingbunny {
     display: none;
     position: relative;
 }
 
-#bcorp a, #bluesign a, #blackowned a, #blmsupport a{
+#bcorp a, #bluesign a, #blackowned a, #blmsupport a, #vegan a, #leapingbunny a {
     font-size: 0.8em;
     padding: 8px 12px;
     margin: 0 8px 16px 0;

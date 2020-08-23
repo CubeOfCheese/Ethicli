@@ -34,6 +34,14 @@ $(document).ready(function() {
         mobileNav();
     })
 
+    dropdown(); //Menu Dropdown
+    function dropdown() {
+        $(".dropdownMenu").click(function(){
+            $(".dropdownIcon").toggleClass("dropped");
+            $(".submenu").toggleClass("submenuClicked");
+        });
+    }
+
 
     // Tabs Initial Setup -------------------------------------------------------------------------
     //$("#expandedStats article").css({"border-radius":"0 20px 20px 20px"})
