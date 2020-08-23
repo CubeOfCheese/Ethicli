@@ -86,6 +86,7 @@ function loadExtension(ethicliStats) {
         document.getElementById("overallScore").textContent = ethicliScore;
     }
 
+    // Badges ------------------------------------------------------------------------------------------------
     var badgeCounter = 0;
     if (ethicliStats.bcorpCertified) {
         document.getElementById("bcorp").classList.add("trueForPage");
@@ -103,11 +104,20 @@ function loadExtension(ethicliStats) {
         document.getElementById("blmsupport").classList.add("trueForPage");
         badgeCounter++;
     }
+    if (ethicliStats.veganDotOrgCertified) {
+        document.getElementById("vegan").classList.add("trueForPage");
+        badgeCounter++;
+    }
+    if (ethicliStats.leapingBunnyCertified) {
+        document.getElementById("leapingbunny").classList.add("trueForPage");
+        badgeCounter++;
+    }
     if (badgeCounter>0) {
         document.getElementById("noBadge").style.display = "none";
         document.getElementById("hasBadge").style.display = "block";
         document.body.style = "height:190px;"
     }
+    // End Badges ------------------------------------------------------------------------------------
 }
 
 window.onload = function() {

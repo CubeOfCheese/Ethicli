@@ -28,14 +28,20 @@
 <body>
     <nav>
         <div class="container">
-            <a href="../home" target="_blank" id="logo"><img src="../images/ethicli-logo.png" alt="Extension image in Header"></a>
+            <a href="/home" target="_blank" id="logo"><img src="../images/ethicli-logo.png" alt="Extension image in Header"></a>
             <div id="navlinks">
                 <img src="../images/menu.svg" alt="triplebar" height="50" width="50" id="triplebar">
                 <a href="https://cash.app/$Ethicli" target="_blank">Donate</a>
                 <a href="https://medium.com/@team.ethicli" target="_blank">Blog</a>
-                <a href="..//faq" target="_blank">FAQs</a>
+                <a href="/faq" target="_blank">FAQs</a>
                 <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#116;&#104;&#105;&#099;&#108;&#105;&#046;&#099;&#111;&#109;?subject=Ethicli Inquiry" target="_blank">Contact</a>
-                <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Extension</a>
+                <div class="dropdownMenu">
+                    <a>Extension <span class="dropdownIcon">▾</span></a>
+                    <div class="submenu">
+                        <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Chrome</a>
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/ethicli" target="_blank">Firefox</a>
+                    </div>
+                </div>            
             </div>
         </div>
     </nav>
@@ -69,6 +75,14 @@
                             <h6 id="blmsupport" class="tooltip">
                                 <a href="https://data.world/ethicli/financial-contributions-companies-supporting-blm" target="_blank">Anti-Racism</a>
                                 <span class="tooltiptext">Donates to Anti-Racism Organizations</span>
+                            </h6>
+                            <h6 id="vegan" class="tooltip">
+                                <a href="https://vegan.org/companies-using-our-logo/" target="_blank">Vegan</a>
+                                <span class="tooltiptext">Has a vegan.org certification</span>
+                            </h6>
+                            <h6 id="leapingbunny" class="tooltip">
+                                <a href="https://www.leapingbunny.org/guide/brands" target="_blank">Leaping Bunny</a>
+                                <span class="tooltiptext">Cruelty-free certification from Leaping Bunny</span>
                             </h6>
                         </div>
                     </div>
@@ -140,8 +154,8 @@
                         </div>
                         <div>
                             <h3>Animal Statistics</h3>
-                            <p id="animalDesc">The animal score was produced manually using public data and trusted news sources.<br><br>
-                                Data is drawn from multiple sources including certification datasets, articles, and directories.
+                            <p id="animalDesc">The Animal Rights score was produced from multiple sources including animal welfare certification datasets, articles, and directories.<br><br>
+                                These sources focus on materials used, testing practices, and if the products are vegan or vegetarian.
                                 Only reputable sources are considered in the process. In future updates, we will be detailing these scores more specifically 📈</p>
                         </div>
                     </div>
@@ -179,9 +193,10 @@
                 <a href="https://medium.com/@team.ethicli" target="_blank">Blog</a>
                 <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#116;&#104;&#105;&#099;&#108;&#105;&#046;&#099;&#111;&#109;?subject=Ethicli Inquiry" target="_blank">Contact</a>
                 <a href="https://cash.app/$Ethicli" target="_blank">Donate</a>
-                <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Download</a>
-                <a href="..//faq">FAQs</a>
-                <a href="..//privacy">Privacy Policy</a>
+                <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Download for Chrome</a>
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/ethicli" target="_blank">Download for Firefox</a>
+                <a href="/faq" target="_blank">FAQs</a>
+                <a href="/privacy" target="_blank">Privacy Policy</a>
             </aside>
             <div>
                 <button id="backToTop"><a href="#top">Back to Top</a></button>

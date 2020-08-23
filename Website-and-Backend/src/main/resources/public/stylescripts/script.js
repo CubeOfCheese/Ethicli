@@ -94,6 +94,7 @@ $(document).ready(function() {
         if ($(this).width() > 768) {
             $("#navlinks").removeClass("navClicked");
             $(".submenu").removeClass("submenuClicked");
+            $(".dropdownIcon").removeClass("dropped");
         }
     }).trigger('resize');
 

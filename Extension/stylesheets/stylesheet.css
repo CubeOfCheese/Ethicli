@@ -193,7 +193,7 @@ body {
     text-align: center;
 }
 
-#bcorp, #bluesign, #blackowned, #blmsupport {
+#bcorp, #bluesign, #blackowned, #blmsupport, #vegan, #leapingbunny {
     display: none;
     font-size: 0.5em;
     padding: 4px;
@@ -203,11 +203,11 @@ body {
     color: #fff;
 }
 
-#bcorp:hover, #bluesign:hover, #blackowned:hover, #blmsupport:hover {
+#bcorp:hover, #bluesign:hover, #blackowned:hover, #blmsupport:hover, #vegan:hover, #leapingbunny:hover {
     background: #2482a7;
 }
 
-#bcorp.trueForPage {
+#bcorp.trueForPage, #vegan.trueForPage {
     display: block;
     width: 30px;
 }
@@ -217,7 +217,7 @@ body {
     width: 40px;
 }
 
-#blackowned.trueForPage {
+#blackowned.trueForPage, #leapingbunny.trueForPage {
     display: block;
     width: 60px;
 }
