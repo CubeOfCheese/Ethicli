@@ -92,6 +92,7 @@ function renderPage(companyData) {
     && !companyData.ethicalElephantCrueltyFree
     && !companyData.leapingBunnyCertified){
       document.getElementById("followingsourcesdesc").style = "display:none;"
+      document.getElementById("manualscore").innerText = "manually"
     }
 }
 
