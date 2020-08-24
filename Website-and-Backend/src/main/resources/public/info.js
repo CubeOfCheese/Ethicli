@@ -27,24 +27,13 @@ function renderPage(companyData) {
   document.getElementById("laborRating").innerText = companyData.laborScore.toFixed(1);
   document.getElementById("animalRating").innerText = companyData.animalsScore.toFixed(1);
   document.getElementById("socialRating").innerText = companyData.socialScore.toFixed(1);
-  if (companyData.bluesignPartner) {
-    document.getElementById("bluesign").style = "display:block;"
-  }
-  if (companyData.bcorpCertified) {
-    document.getElementById("bcorp").style = "display:block;"
-  }
-  if (companyData.blackOwnedBusiness) {
-    document.getElementById("blackowned").style = "display:block;"
-  }
-  if (companyData.supportsBLM) {
-    document.getElementById("blmsupport").style = "display:block;"
-  }
-  if (companyData.veganDotOrgCertified) {
-    document.getElementById("vegan").style = "display:block;"
-  }
-  if (companyData.leapingBunnyCertified) {
-    document.getElementById("leapingbunny").style = "display:block;"
-  }
+
+  if (companyData.bluesignPartner) { document.getElementById("bluesign").style = "display:block;" }
+  if (companyData.bcorpCertified) { document.getElementById("bcorp").style = "display:block;" }
+  if (companyData.blackOwnedBusiness) { document.getElementById("blackowned").style = "display:block;" }
+  if (companyData.supportsBLM) { document.getElementById("blmsupport").style = "display:block;" }
+  if (companyData.veganDotOrgCertified) { document.getElementById("vegan").style = "display:block;" }
+  if (companyData.leapingBunnyCertified) { document.getElementById("leapingbunny").style = "display:block;" }
   if (companyData.greenPowerPercentage) {
     document.getElementById("greenPowerPercentage").innerText = companyData.greenPowerPercentage + "%";
   } else {
@@ -89,6 +78,22 @@ function renderPage(companyData) {
       document.getElementById("socialSec").style = "display:block;"
     }
   }
+
+  // Conditionally Display Subrating Links to Certifications ----------------------------------------------------
+  if (companyData.certifiedHumane) { document.getElementById("subscore-certifiedHumane").style = "display:block;" }
+  if (companyData.veganDotOrgCertified) { document.getElementById("subscore-veganDotOrg").style = "display:block;" }
+  if (companyData.chooseCrueltyFreeCertified || companyData.chooseCrueltyFreeVegan) { document.getElementById("subscore-chooseCrueltyFree").style = "display:block;" }
+  if (companyData.ethicalElephantCrueltyFree) { document.getElementById("subscore-ethicalElephant").style = "display:block;" }
+  if (companyData.leapingBunnyCertified) { document.getElementById("subscore-leapingBunny").style = "display:block;" }
+  if (!companyData.certifiedHumane //if no sources are shown
+    && !companyData.veganDotOrgCertified
+    && !companyData.chooseCrueltyFreeCertified
+    && !companyData.chooseCrueltyFreeVegan
+    && !companyData.ethicalElephantCrueltyFree
+    && !companyData.leapingBunnyCertified){
+      document.getElementById("followingsourcesdesc").style = "display:none;"
+      document.getElementById("manualscore").innerText = "manually"
+    }
 }
 
 function displayUnavailable() {
