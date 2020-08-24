@@ -225,6 +225,11 @@ header .container article div {
     line-height: 1.5em;
 }
 
+.subscoreCertifications li::before{
+    content: "• ";
+    color: #05668D;
+}
+
 #expandedStats article {
     position: relative;
     padding: 24px;
