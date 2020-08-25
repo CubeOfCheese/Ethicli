@@ -14,7 +14,7 @@ function loadExtension(ethicliStats) {
       adjustSubscores();
     }
     function adjustSubscores() {
-        var fullheight = 360;
+        var fullheight = 680;
         if (ethicliStats.environmentScore == 0.0) {
             fullheight = fullheight-50;
             document.getElementById("envSection").style = "display:none;";
