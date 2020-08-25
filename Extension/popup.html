@@ -12,7 +12,7 @@
 
 <body style="height:350px;" id="popupMain">
     <div>
-        <p id="sitename">Shop: <span id="siteurl"></span></p>
+        <p id="sitename">Shop: <span id="siteurlcontainer"><span id="siteurl"></span></span></p>
         <div id="menuPanel">
             <div id="menuBacking"></div>
             <button class="tooltip" id="somethingWrong">
@@ -44,6 +44,14 @@
                     <h6 id="blmsupport" class="tooltip">
                         <a href="https://data.world/ethicli/financial-contributions-companies-supporting-blm" target="_blank">Anti-Racism</a>
                         <span class="tooltiptext">Donates to Anti-Racism Organizations</span>
+                    </h6>
+                    <h6 id="vegan" class="tooltip">
+                        <a href="https://vegan.org/companies-using-our-logo/" target="_blank">Vegan</a>
+                        <span class="tooltiptext">Has a vegan.org certification</span>
+                    </h6>
+                    <h6 id="leapingbunny" class="tooltip">
+                        <a href="https://www.leapingbunny.org/guide/brands" target="_blank">Leaping Bunny</a>
+                        <span class="tooltiptext">Cruelty-free certification from Leaping Bunny</span>
                     </h6>
                 </div>
             </div>
@@ -78,13 +86,23 @@
                         <p><span id="animalScore"></span> /10</p>
                     </div>
                 </div>
+                <div class="label" id="socialSection">
+                    <p>Social Involvement</p>
+                    <div>
+                        <span>
+                        <span class="scorebar"></span>
+                        <span class="scorebarFill" id="socialScoreBar"></span>
+                        </span>
+                        <p><span id="socialScore"></span> /10</p>
+                    </div>
+                </div>
                 <p id="noSubscore" style="display:none;">No subscores at this time.</p>
-                <span class="tooltiptext" id="subscoreTip">Scores calculated in these sectors contribute to 
-                    the Overall Score, but may not average out to the Overall Score since we are also factoring in 
+                <span class="tooltiptext" id="subscoreTip">Scores calculated in these sectors contribute to
+                    the Overall Score, but may not average out to the Overall Score since we are also factoring in
                     other datasets.
                 </span>
             </div>
-            <button id="detailsButton"><a>View Details</a></button>
+            <button id="detailsButton" title="Read about how this business is scored!"></button>
 
             <div id="sponsor">
                 <div>

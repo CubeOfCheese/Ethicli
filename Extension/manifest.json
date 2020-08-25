@@ -1,6 +1,6 @@
 {
     "name": "Ethicli",
-    "version": "0.4",
+    "version": "0.5.1",
     "description": "To help you make ethical online shopping choices",
     "background": {
         "scripts": ["background.js", "env.js"],
@@ -23,7 +23,8 @@
         }
     },
     "permissions": [
-        "tabs"
+        "tabs",
+        "storage"
     ],
     "icons": {
         "16": "icons/ethicli-16.png",

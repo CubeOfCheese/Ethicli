@@ -10,7 +10,7 @@
         gtag('js', new Date());
         gtag('config', 'UA-173025073-2');
     </script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:title" content="Ethicli">
@@ -18,13 +18,13 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="http://www.ethicli.com/">
     <meta property="og:image" content="images/website-screenshot.png">
-    <meta property="og:description" 
-        content="Ethicli suggests better products while you shop by scoring how the product affects our workers, 
-        planet, and community. Use our free browser extension to effortlessly shop from more ethical, 
+    <meta property="og:description"
+        content="Ethicli suggests better products while you shop by scoring how the product affects our workers,
+        planet, and community. Use our free browser extension to effortlessly shop from more ethical,
         green, and smaller businesses!">
     <title>Ethicli</title>
     <!-- [if lt IE 9]>
-    <script src="stylesheets/html5shiv.js"></script>
+    <script src="stylescripts/html5shiv.js"></script>
     <![endif]-->
     <link rel="icon" href="images/ethicli-logo.png">
     <link href="stylescripts/reset.css" rel="stylesheet">
@@ -43,9 +43,15 @@
                 <img src="images/menu.svg" alt="triplebar" height="50" width="50" id="triplebar">
                 <a href="https://cash.app/$Ethicli" target="_blank">Donate</a>
                 <a href="https://medium.com/@team.ethicli" target="_blank">Blog</a>
-                <a href="faq.html">FAQs</a>
+                <a href="/faq">FAQs</a>
                 <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#116;&#104;&#105;&#099;&#108;&#105;&#046;&#099;&#111;&#109;?subject=Ethicli Inquiry" target="_blank">Contact</a>
-                <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Extension</a>
+                <div class="dropdownMenu">
+                    <a>Extension <span class="dropdownIcon">▾</span></a>
+                    <div class="submenu">
+                        <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Chrome</a>
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/ethicli" target="_blank">Firefox</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -67,15 +73,15 @@
             <h2><span class="colorLGreen">About</span> <span class="colorCream">Ethicli</span></h2>
             <section class="half">
                 <article>
-                    <p>We are a team of developers who want to change the world by bringing you greater 
-                        consumer power! One of the best ways to vote for what you believe in is with your dollars. 
+                    <p>We are a team of developers who want to change the world by bringing you greater
+                        consumer power! One of the best ways to vote for what you believe in is with your dollars.
                         Many of us can feel lost when it comes to knowing how our purchases
                         affect others downstream, and we're here to help!</p>
                     <a id="pitchdeck" href="documents/Ethicli Pitch Deck.pdf" target="_blank">Read our Pitch Deck</a>
                 </article>
                 <article>
-                    <p>We show you ethical scores of online shops based on how they treat their workers, community, and the planet. 
-                        Please use our free browser extension to effortlessly shop from more ethical, 
+                    <p>We show you ethical scores of online shops based on how they treat their workers, community, and the planet.
+                        Please use our free browser extension to effortlessly shop from more ethical,
                         green, and smaller businesses!</p>
                 </article>
             </section>
@@ -86,24 +92,34 @@
         <div class="container">
             <h2><span class="colorLGreen">How to use</span> <span class="colorCream">Ethicli</span></h2>
             <div class="threes">
-                <article class="gallery">
+                <article class="gallery halfWidth">
                     <img src="images/extension-error.png" alt="Full Extension">
                     <img src="images/extension-bluesign.png" alt="Full Extension">
                 </article>
                 <article class="imageDesc">
                     <h3>How it Works</h3>
-                    <p>While shopping, click on the Ethicli icon in your browser menu to see a breakdown of a shop’s score. 
+                    <p>While shopping, click on the Ethicli icon in your browser menu to see a breakdown of a shop’s score.
                         Want to know more? Select “View Details” to access links, sources, and suggestions for better products!</p>
                 </article>
             </div>
             <div class="threes">
                 <article class="imageDesc">
                     <h3>About Ratings</h3>
-                    <p>We use a data-driven algorithm based on companies' certifications and partnerships to score online shops, 
+                    <p>We use a data-driven algorithm based on companies' certifications and partnerships to score online shops,
                         saving you the time and energy it takes to be sure your purchase reflects your values.</p>
                 </article>
                 <article class="gallery">
                     <img src="images/ethicli-in-use.png" alt="Ethicli In Use">
+                </article>
+            </div>
+            <div class="threes">
+                <article class="gallery">
+                    <img src="images/infopage.png" alt="Info Page">
+                </article>
+                <article class="imageDesc">
+                    <h3>Info Page</h3>
+                    <p>After clicking the "View Details" button on the extension, a new tab opens with score-breakdowns 
+                        and details of how and why each online business recieved their scores.</p>
                 </article>
             </div>
         </div>
@@ -115,7 +131,7 @@
             <section>
                 <article>
                     <h3>BrowserExtension.dev</h3>
-                    <p>We've been featured by <a href="https://browserextension.dev" target="_blank">BrowserExtension.dev</a>, 
+                    <p>We've been featured by <a href="https://browserextension.dev" target="_blank">BrowserExtension.dev</a>,
                         which is a website that discusses and explores new web extensions!</p>
                     <p class="readmore"><a href="https://browserextension.dev/blog/ethicli/" target="_blank">Read More</a></p>
                 </article>
@@ -139,7 +155,7 @@
             <section>
                 <article>
                     <h3>Suspension of Dakota Access Pipeline</h3>
-                    <p>We discuss the suspension of the Dakota Access Pipeline, and 
+                    <p>We discuss the suspension of the Dakota Access Pipeline, and
                         how its costruction affected the Standing Rock Sioux, surrounding wildlife, and the control that big oil has over society.
                     </p>
                     <p class="readmore"><a href="https://medium.com/@team.ethicli/suspension-of-dakota-access-pipeline-f809122c95dd">Read More</a></p>
@@ -151,7 +167,7 @@
                 </article>
                 <article>
                     <h3>Crowdsourcing Black Businesses</h3>
-                    <p>We need your help to crowdsource a list of Black-Owned businesses, 
+                    <p>We need your help to crowdsource a list of Black-Owned businesses,
                         so you can easily check if the site you’re shopping from is Black-owned! ✊🏾</p>
                     <p class="readmore"><a href="https://medium.com/@team.ethicli/crowdsourcing-data-black-owned-businesses-8ea07ceb8dcd">Read More</a></p>
                 </article>
@@ -179,22 +195,24 @@
                 <a href="https://medium.com/@team.ethicli" target="_blank">Blog</a>
                 <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#116;&#104;&#105;&#099;&#108;&#105;&#046;&#099;&#111;&#109;?subject=Ethicli Inquiry" target="_blank">Contact</a>
                 <a href="https://cash.app/$Ethicli" target="_blank">Donate</a>
-                <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Download</a>
-                <a href="faq.html">FAQs</a>
-                <a href="privacy.html">Privacy Policy</a>
+                <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Download for Chrome</a>
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/ethicli" target="_blank">Download for Firefox</a>
+                <a href="/faq">FAQs</a>
+                <a href="/privacy">Privacy Policy</a>
             </aside>
             <div>
                 <button id="backToTop"><a href="#top">Back to Top</a></button>
                 <p><a>Terms of Use</a><span id="termsBar"> |</span> <br class="break">Copyright 2020</p>
             </div>
+            <p id="california">Made in California with ♥</p>
         </div>
     </footer>
 
     <div style="display:none;">
         <p>"Intro" section photo by Toa Heftiba on Unsplash</p>
         <p>"News" section photo by Lauren Fleischmann on Unsplash</p>
-        <p id="SEOKeywords">browser, chrome, consumer responsibility, corporate accountability, design, design thinking, environmental, 
-            ethical consumerism, ethically, ethical Fashion, extension, online, onlineshopping, shop, shopping, startup, sustainability, 
+        <p id="SEOKeywords">browser, chrome, consumer responsibility, corporate accountability, design, design thinking, environmental,
+            ethical consumerism, ethically, ethical Fashion, extension, online, onlineshopping, shop, shopping, startup, sustainability,
             sustainable production, labor practice, practices</p>
     </div>
     <script src="stylescripts/script.js" rel="text/javascript"></script>
