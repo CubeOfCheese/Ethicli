@@ -1,5 +1,15 @@
 var hasSubscore;
 
+const adJSON = '{
+  "link": "https://cleanbean.cafe/?product=pure-sugar?utm=stuffsrc=Ethicli",
+  "image": "https://images.unsplash.com/photo-1490885578174-acda8905c2c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2500&q=80",
+  "companyScore": 9.4,
+  "companyName": "Clean Bean Cafe",
+  "price": 4.99,
+  "productName": "Pound of Pure Sugar",
+}';
+let ad = JSON.parse(adJSON)
+
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
     if (response.shoppingPage) {
       chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(response) {
@@ -113,11 +123,19 @@ function loadExtension(ethicliStats) {
         badgeCounter++;
     }
     if (badgeCounter>0) {
-        document.getElementById("noBadge").style.display = "none";
-        document.getElementById("hasBadge").style.display = "block";
-        document.body.style = "height:190px;"
+        // document.getElementById("noBadge").style.display = "none";
+        // document.getElementById("hasBadge").style.display = "block";
+        // document.body.style = "height:190px;"
     }
     // End Badges ------------------------------------------------------------------------------------
+    // var myAd = JSON.parse(ad)
+    console.log(ad);
+    document.getElementById("sponsorLink").href = ad.link;
+    document.getElementById("sponsorCompany").textContent = ad.companyName;
+    document.getElementById("sponsorRating").textContent = ad.companyScore;
+    document.getElementById("sponsorPrice").textContent = ad.price;
+    document.getElementById("sponsorImg").src = ad.image;
+
 }
 
 window.onload = function() {
@@ -154,14 +172,14 @@ function fadeLongURL(){
         var siteurlLength = this.innerHTML.length+16;
         if(siteurlLength > 30){
             this.style = "margin-left: -"+(siteurlLength)+"px;";
-            document.getElementById("siteurlcontainer").style = 
+            document.getElementById("siteurlcontainer").style =
                 "-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%);\
                 mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%)";
         }
     })
     document.getElementById("siteurl").addEventListener("mouseout", function( event ) {
         this.style = "margin-left: 0px;";
-        document.getElementById("siteurlcontainer").style = 
+        document.getElementById("siteurlcontainer").style =
             "-webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);\
             mask-image: linear-gradient(to right, black 90%, transparent 100%)";
     })

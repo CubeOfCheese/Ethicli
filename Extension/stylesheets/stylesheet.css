@@ -303,7 +303,7 @@ body {
     font-size: 12px;
 }
 
-/** Sponsored **/
+/** sponsor **/
 
 #sponsor {
     width: 100%;
@@ -318,14 +318,14 @@ body {
     width: 100%;
 }
 
-#sponsoredImg {
+#sponsorImg {
     width: 180px;
     height: 160px;
     border-radius: 8px;
     object-fit: cover;
 }
 
-.sponsorRating {
+#sponsorRating {
     position: absolute;
     right: 12px;
     display: block;
@@ -341,7 +341,7 @@ body {
     z-index: 1;
 }
 
-#sponsoredBy {
+#sponsorBy {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -364,7 +364,7 @@ body {
     transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
 }
 
-#sponsor div #sponsoredBy:hover {
+#sponsor div #sponsorBy:hover {
     background: rgba(10, 35, 66, 0.6);
     color: rgba(255, 255, 255, 1);
     -webkit-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
@@ -377,7 +377,7 @@ body {
     transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
 }
 
-#sponsoredBy span {
+#sponsorBy span {
     height: 2em;
 }
 
@@ -392,7 +392,7 @@ body {
     font-size: 0.75em;
     font-weight: bold;
     z-index: 2;
-    
+
 }
 
 #siteurlcontainer {
@@ -481,7 +481,7 @@ p {
     width: 120px;
     height: 120px;
 }
-  
+
 .tooltip .tooltiptext {
     visibility: hidden;
     background: #0A2342;
