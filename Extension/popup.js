@@ -23,7 +23,7 @@ function loadExtension(ethicliStats) {
       adjustSubscores();
     }
     function adjustSubscores() {
-        var fullheight = 680;
+        var fullheight = 600;
         if (ethicliStats.environmentScore == 0.0) {
             fullheight = fullheight-50;
             document.getElementById("envSection").style = "display:none;";
@@ -127,8 +127,7 @@ function loadExtension(ethicliStats) {
         // document.body.style = "height:190px;"
     }
     // End Badges ------------------------------------------------------------------------------------
-    // var myAd = JSON.parse(ad)
-    console.log(ad);
+
     document.getElementById("sponsorLink").href = ad.link;
     document.getElementById("sponsorCompany").textContent = ad.companyName;
     document.getElementById("sponsorRating").textContent = ad.companyScore;

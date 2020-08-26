@@ -251,7 +251,7 @@ body {
 /** Specific scores **/
 
 #scores {
-    margin-bottom: 8px;
+    margin-bottom: 0px;
     display: flex;
     flex-direction: column;
     align-self: flex-start;
@@ -306,8 +306,9 @@ body {
 /** sponsor **/
 
 #sponsor {
+    position: relative;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
 #sponsor div {
@@ -320,7 +321,7 @@ body {
 
 #sponsorImg {
     width: 180px;
-    height: 160px;
+    height: 150px;
     border-radius: 8px;
     object-fit: cover;
 }
@@ -347,7 +348,7 @@ body {
     flex-direction: column;
     top: 0;
     width: 180px;
-    height: 160px;
+    height: 150px;
     line-height: 160px;
     font-size: 0.8em;
     text-align: center;
@@ -381,6 +382,12 @@ body {
     height: 2em;
 }
 
+#sponsordesc {
+    font-size: 12px;
+    margin-top: 8px;
+    text-align: center;
+    color: #89a387;
+}
 
 /** Typography **/
 
