@@ -1,13 +1,12 @@
 var hasSubscore;
 
-const adJSON = '{
-  "link": "https://cleanbean.cafe/?product=pure-sugar?utm=stuffsrc=Ethicli",
-  "image": "https://images.unsplash.com/photo-1490885578174-acda8905c2c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2500&q=80",
-  "companyScore": 9.4,
-  "companyName": "Clean Bean Cafe",
-  "price": 4.99,
-  "productName": "Pound of Pure Sugar",
-}';
+var adJSON = '{ "link": "https://cleanbean.cafe/?product=pure-sugar?utm=stuffsrc=Ethicli",' +
+'"image": "https://images.unsplash.com/photo-1490885578174-acda8905c2c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2500&q=80",' +
+'"companyScore": 9.4,' +
+'"companyName": "Clean Bean Cafe",' +
+'"price": 4.99,' +
+'"productName": "Pound of Pure Sugar" }';
+
 let ad = JSON.parse(adJSON)
 
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
