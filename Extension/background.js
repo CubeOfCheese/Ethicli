@@ -2,6 +2,7 @@ chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } })
 
 var isShoppingPage;
 var ethicliStats;
+var productName;
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
@@ -142,11 +143,22 @@ chrome.tabs.onCreated.addListener(
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
+        if (request.msgName == "productIdentified") {
+            productName = sender.productName;
+        }
+    }
+);
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
         if (request.msgName == "isShoppingPage?") {
             sendResponse({ shoppingPage: isShoppingPage });
         }
         if (request.msgName == "whatsMainRating?") {
             sendResponse({ ethicliStats: ethicliStats });
+        }
+        if (request.msgName == "productIdentified?") {
+            sendResponse({ productName: productName });
         }
     }
 );

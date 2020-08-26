@@ -172,20 +172,19 @@ window.onload = function pageEval() {
 
     if (wordTracker > 0) { //if there's at least one shopWord present
         chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: true }, function(response) {});
+        //gets all html elements that are images and have an ancestor with a classname that includes the word product
+        var productElements = document.querySelectorAll("[class*='product'] * img");
+        console.log(productElements[0].alt); //.alt is the alt text for the image
+        if (productElements[0]) {
+          chrome.runtime.sendMessage({ msgName: "ProductIdentified", productName: productElements[0] }, function(response) {});
+        }
         isShoppingPage = true;
     } else {
         chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: false }, function(response) {});
         isShoppingPage = false;
     }
 
-    //gets all html elements that are images and have an ancestor with a classname that includes the word product
-    var productElements = document.querySelectorAll("[class*='product'] * img");
-    for (let element of productElements) {
-      if (element.alt) {
-        console.log(element.alt); //.alt is the alt text for the image
-        break;
-      }
-    }
+
 };
 
 chrome.runtime.onMessage.addListener(

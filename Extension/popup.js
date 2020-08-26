@@ -5,7 +5,13 @@ var adJSON = '{ "link": "https://cleanbean.cafe/?product=pure-sugar?utm=stuffsrc
 '"companyScore": 9.4,' +
 '"companyName": "Clean Bean Cafe",' +
 '"price": 4.99,' +
-'"productName": "Pound of Pure Sugar" }';
+'"productName": "tee",' +
+'"productTags": [' +
+'"tee",' +
+'"shirt",' +
+'"top",' +
+'"Men\'s"' +
+']}';
 
 let ad = JSON.parse(adJSON)
 
@@ -13,6 +19,10 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
     if (response.shoppingPage) {
       chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(response) {
         loadExtension(response.ethicliStats);
+      });
+      chrome.runtime.sendMessage({ msgName: "productIdentified?" }, function(response) {
+        console.log(response);
+        loadSponsor(response.productName);
       });
     }
 });
@@ -128,12 +138,28 @@ function loadExtension(ethicliStats) {
     }
     // End Badges ------------------------------------------------------------------------------------
 
+}
+
+function loadSponsor(productName) {
+  var display = false;
+  var nameWords = productName.split(" ");
+
+  for (word in nameWords) {
+    for (tag in ad.productTags) {
+      if (word.toLowerCase() == tag.toLowerCase()) {
+        console.log(word);
+        console.log(tag);
+        display = true
+      }
+    }
+  }
+  if (display) {
     document.getElementById("sponsorLink").href = ad.link;
     document.getElementById("sponsorCompany").textContent = ad.companyName;
     document.getElementById("sponsorRating").textContent = ad.companyScore;
     document.getElementById("sponsorPrice").textContent = ad.price;
     document.getElementById("sponsorImg").src = ad.image;
-
+  }
 }
 
 window.onload = function() {
