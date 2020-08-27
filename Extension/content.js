@@ -1,4 +1,5 @@
 var isShoppingPage;
+var productName;
 
 window.onload = function pageEval() {
     let dom = document.getElementsByTagName('html')[0].innerHTML;
@@ -176,7 +177,9 @@ window.onload = function pageEval() {
         var productElements = document.querySelectorAll("[class*='product'] * img");
         console.log(productElements[0].alt); //.alt is the alt text for the image
         if (productElements[0]) {
-          chrome.runtime.sendMessage({ msgName: "ProductIdentified", productName: productElements[0] }, function(response) {});
+          console.log(productElements[0].alt);
+          productName = productElements[0].alt;
+          chrome.runtime.sendMessage({ msgName: "ProductIdentified", productName: productElements[0].alt }, function(response) {});
         }
         isShoppingPage = true;
     } else {
@@ -186,6 +189,19 @@ window.onload = function pageEval() {
 
 
 };
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      if (request.msgName == "isShoppingPage?") {
+          sendResponse({ isShoppingPage: isShoppingPage });
+      }
+      // if (request.msgName == "productIdentified?") {
+      //     console.log(productName);
+      //     sendResponse({ productName: productName });
+      // }
+      return true;
+    }
+);
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {

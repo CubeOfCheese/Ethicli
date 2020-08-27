@@ -143,8 +143,9 @@ chrome.tabs.onCreated.addListener(
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        if (request.msgName == "productIdentified") {
-            productName = sender.productName;
+        if (request.msgName == "ProductIdentified") {
+            console.log(request.productName);
+            productName = request.productName;
         }
     }
 );
@@ -158,6 +159,7 @@ chrome.runtime.onMessage.addListener(
             sendResponse({ ethicliStats: ethicliStats });
         }
         if (request.msgName == "productIdentified?") {
+            console.log(productName);
             sendResponse({ productName: productName });
         }
     }

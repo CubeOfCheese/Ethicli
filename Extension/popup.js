@@ -144,11 +144,11 @@ function loadSponsor(productName) {
   var display = false;
   var nameWords = productName.split(" ");
 
-  for (word in nameWords) {
-    for (tag in ad.productTags) {
-      if (word.toLowerCase() == tag.toLowerCase()) {
-        console.log(word);
-        console.log(tag);
+  for (var i = 0; i < nameWords.length; i++) {
+    for (var j = 0; j < ad.productTags.length; j++) {
+      if (nameWords[i].toLowerCase() == ad.productTags[j].toLowerCase()) {
+        console.log(nameWords[i]);
+        console.log(ad.productTags[j]);
         display = true
       }
     }
