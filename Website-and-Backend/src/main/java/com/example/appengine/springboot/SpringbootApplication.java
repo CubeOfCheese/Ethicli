@@ -24,9 +24,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 @RestController
@@ -36,10 +41,72 @@ public class SpringbootApplication {
         SpringApplication.run(SpringbootApplication.class, args);
     }
 
-    // Controls Searches of all Data Sources
+    @Autowired
+    private AdvertisementRepo AdvertisementRepo;
+
+    @GetMapping("/uploadAdvertisements")
+    public String uploadAdvertisements(HttpServletResponse response) throws IOException {
+        Resource resource = new ClassPathResource("Advertisements.csv");
+        InputStream file = resource.getInputStream();
+        BufferedReader br = null;
+        String line;
+        try {
+            br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                if (line.charAt(line.length() - 1) == ',') {
+                    line += "0";
+                }
+                String adData[] = Tools.csvToStringArray(line);
+                Optional<Advertisement> result = this.AdvertisementRepo.findById(adData[0]);
+                if (result.isPresent()) {
+                    Advertisement advertisement = result.get();
+                    AdvertisementRepo.save(advertisement);
+                } else {
+                    AdvertisementRepo.save(new Advertisement(adData[0],adData[1],Long.parseLong(adData[2]),adData[3].split(","),adData[4],adData[5], 0, 0));
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return "Advertisements Uploaded Successfully";
+    }
+
+    @GetMapping("/getAdvertisement/{productName}")
+    public AdPackage [] getAdvertisement(@PathVariable("productName") String productName, HttpServletResponse response) throws IOException {
+        List <AdPackage> advertisementList = new ArrayList<>();
+        Iterable<Advertisement> advertisements = this.AdvertisementRepo.findAll();
+        for (Advertisement advertisement : advertisements){
+            for (int a = 0; a < advertisement.getProductTags().length; ++a) {
+                if (productName.toLowerCase().contains(advertisement.getProductTags()[a].toLowerCase())) {
+                    advertisement.setInsights(advertisement.getInsights() + 1);
+                    AdvertisementRepo.save(advertisement);
+
+                    Business business = masterController(advertisement.getBusiness());
+                    advertisementList.add(new AdPackage(advertisement, business));
+                    a = advertisement.getProductTags().length;
+                }
+            }
+        }
+        return advertisementList.toArray(new AdPackage[0]);
+    }
     @GetMapping("/score/{company}")
     public Business masterController(@PathVariable("company") String companyName, HttpServletResponse response) throws IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
+        return masterController(companyName);
+    }
+
+    public Business masterController(@PathVariable("company") String companyName) throws IOException {
         Business business = new Business();
         if (validateURL(companyName)) {
             business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1, -1,false, false, false, false, false, false, false, false, false, false, false, false));
