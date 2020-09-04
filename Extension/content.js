@@ -176,7 +176,7 @@ window.onload = function pageEval() {
         //gets all html elements that are images and have an ancestor with a classname that includes the word product
         var productElements = document.querySelectorAll("[class*='product'] * img");
         console.log(productElements[0].alt); //.alt is the alt text for the image
-        if (productElements[0]) {
+        if (productElements[0].alt != "") {
           console.log(productElements[0].alt);
           productName = productElements[0].alt;
           chrome.runtime.sendMessage({ msgName: "ProductIdentified", productName: productElements[0].alt }, function(response) {});

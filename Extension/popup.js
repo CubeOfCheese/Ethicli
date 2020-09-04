@@ -22,7 +22,9 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
       });
       chrome.runtime.sendMessage({ msgName: "productIdentified?" }, function(response) {
         console.log(response);
-        loadSponsor(response.productName);
+        if (response) {
+          loadSponsor(response.productName);
+        }
       });
     }
 });
@@ -149,16 +151,23 @@ function loadSponsor(productName) {
       if (nameWords[i].toLowerCase() == ad.productTags[j].toLowerCase()) {
         console.log(nameWords[i]);
         console.log(ad.productTags[j]);
-        display = true
+        display = true;
       }
     }
   }
   if (display) {
+    console.log("display ad");
+    document.getElementById("sponsor").style = "display:block;";
     document.getElementById("sponsorLink").href = ad.link;
     document.getElementById("sponsorCompany").textContent = ad.companyName;
     document.getElementById("sponsorRating").textContent = ad.companyScore;
     document.getElementById("sponsorPrice").textContent = ad.price;
     document.getElementById("sponsorImg").src = ad.image;
+  }
+  else {
+    console.log("hide ad");
+    document.getElementById("sponsor").style = "display:none;";
+    // Something to resize the popup might belong here
   }
 }
 
@@ -238,7 +247,7 @@ function somethingWrong() {
     var query = { active: true, currentWindow: true };
     chrome.tabs.query(query, function callback(tabs) {
         var currentTab = tabs[0];
-        var fetchUrlFeedback = "http://ethicli.com/feedback";
+        var fetchUrlFeedback = "https://ethicli.com/feedback";
         let fetchData = {
             url: currentTab.url
         };
