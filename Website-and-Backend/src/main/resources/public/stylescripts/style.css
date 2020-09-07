@@ -480,6 +480,42 @@ button {
     color: #FEFCF3;
 }
 
+
+/*** Landing/Tutorial *****************************************************/
+
+#tutorial {
+    width: 360px;
+    height: 460px;
+    background: #FEFCF3;
+    position: fixed;
+    top: 0;
+    right: 100px;
+    z-index: 2;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+}
+
+#hideTutorial {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background: #8EA289;
+    color: #fff;
+    text-align: center;
+}
+
+#tutorialHome {
+    height: 100%;
+}
+
+#tutorialHome #shoppingbag {
+    position: absolute;
+    bottom: -200px;
+}
+
+
+
 /*** Images *****************************************************/
 
 #logo {
