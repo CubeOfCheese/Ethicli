@@ -100,12 +100,17 @@ $(document).ready(function() {
 
 
 //--- Tutorial --------------------------------------------------------------------------
-    $("#hideTutorial").click(function() {
-        $("#tutorial").toggleClass("hideTutorial");
-    })
-
     var startTutorial = false;
     var currentTutorial;
+    $("#hideTutorial").click(function() {
+        $("#tutorial").toggleClass("hideTutorial");
+        if(startTutorial) {
+            $("#tutorial").removeClass("tutorialHeightAdjust");
+        } else {
+            $("#tutorial").addClass("tutorialHeightAdjust");
+        }
+    })
+
     $("#watchTutorial").click(function() { 
         startTutorial = !startTutorial 
         currentTutorial = 1;
@@ -113,6 +118,7 @@ $(document).ready(function() {
             $("#tutorialScreens").css({"display":"block"});
             $("#tutorialNavigation").css({"display":"flex"});
             $("#tutorialScreens img:nth-child("+currentTutorial+")").css({"display":"block"});
+            $("#tutorial").css({"height":"624px"});
         } else {
             $("#tutorialScreens").css({"display":"none"});
             $("#tutorialNavigation").css({"display":"none"});
@@ -132,6 +138,7 @@ $(document).ready(function() {
             currentTutorial = 1;
             $("#tutorialScreens").css({"display":"none"});
             $("#tutorialNavigation").css({"display":"none"});
+            $("#tutorial").css({"height":"400px"});
         }
         if(currentTutorial == 6 || currentTutorial == 7) {
             $("#tutorialNavigation").css({"bottom":"476px"});

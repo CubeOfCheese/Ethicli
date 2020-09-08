@@ -497,7 +497,7 @@ button {
 
 #tutorial {
     width: 330px;
-    height: 624px;
+    height: 400px;
     background: #FEFCF2;
     position: fixed;
     top: 0;
@@ -518,7 +518,11 @@ button {
 }
 
 #tutorial.hideTutorial {
-    margin-top: -600px;
+    top: -600px;
+}
+
+#tutorial.hideTutorial.tutorialHeightAdjust {
+    top: -376px;
 }
 
 #hideTutorial {
@@ -542,14 +546,14 @@ button {
 
 #tutorialHome {
     height: 100%;
-    padding-top: 48px;
+    padding-top: 54px;
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
 #tutorialHome div{
-    margin: 60px auto 0 auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
 }
