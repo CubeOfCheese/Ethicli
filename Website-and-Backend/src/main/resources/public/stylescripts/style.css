@@ -534,6 +534,11 @@ button {
     color: #fff;
     text-align: center;
     font-size: 14px;
+    cursor: pointer;
+}
+
+#hideTutorial:hover{
+    background: #8EA289;
 }
 
 #tutorial #hideTutorial:after {
@@ -558,7 +563,7 @@ button {
     flex-direction: column;
 }
 
-#visitEthicli, #watchTutorial, #optinDeclined, #optinAccepted{
+#watchTutorial, #optinDeclined, #optinAccepted{
     display: block;
     padding: 8px 12px; 
     background: #00213f;
@@ -567,6 +572,10 @@ button {
     color: #FEFCF2;
     font-size: 14px;
     cursor: pointer;
+}
+
+#watchTutorial:hover, #optinDeclined:hover, #optinAccepted:hover {
+    opacity: 0.8;
 }
 
 #optinDeclined{
@@ -632,7 +641,7 @@ button {
 
 #confettiLogo {
     width: 50px;
-    margin: 16px auto 0 auto;
+    margin: 8px auto 0 auto;
     cursor: pointer;
 }
 
