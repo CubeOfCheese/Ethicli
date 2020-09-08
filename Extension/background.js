@@ -110,18 +110,13 @@ function urlToCompanyName(url) {
   else if (url.substring(0, 7) == "http://") {
     url = url.substring(7);
   }
-
-  if (url.substring(0, 4) == "www.") {
-    url = url.substring(4);
+  var endOfBaseDomain = url.search(/\//);
+  if (endOfBaseDomain > -1) {
+    url = url.substring(0, endOfBaseDomain);
   }
-  else if (url.substring(0, 4) == "us.") {
-    url = url.substring(3);
-  }
-  else if (url.substring(0, 4) == "docs.") {
-    url = url.substring(5);
-  }
-
-  var endOfBaseDomain = url.search(/\./);
+  var secondLastIndex = url.lastIndexOf('.', url.lastIndexOf('.')-1)
+  url = url.substring(secondLastIndex+1);
+  endOfBaseDomain = url.search(/\./);
   if (endOfBaseDomain > -1) {
     url = url.substring(0, endOfBaseDomain);
   }
