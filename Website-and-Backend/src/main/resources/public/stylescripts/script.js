@@ -99,6 +99,45 @@ $(document).ready(function() {
     }).trigger('resize');
 
 
+//--- Tutorial --------------------------------------------------------------------------
+    $("#hideTutorial").click(function() {
+        $("#tutorial").toggleClass("hideTutorial");
+    })
+
+    var startTutorial = false;
+    var currentTutorial;
+    $("#watchTutorial").click(function() { 
+        startTutorial = !startTutorial 
+        currentTutorial = 1;
+        if(startTutorial) {
+            $("#tutorialScreens").css({"display":"block"});
+            $("#tutorialNavigation").css({"display":"flex"});
+        } else {
+            $("#tutorialScreens").css({"display":"none"});
+            $("#tutorialNavigation").css({"display":"none"});
+        }
+    })
+    
+    // TO DO
+    // Fix Slideshow back/next btn after show
+    // Add ending screen
+    // Add confetti (maybe)
+
+    $("#tutorialBack").click(function() { currentTutorial -= 1; tutorialSlideshow(); })
+    $("#tutorialNext").click(function() { currentTutorial += 1; tutorialSlideshow(); })
+    function tutorialSlideshow() {
+        for(i=0; i<7; i++){
+            $("#tutorialScreens img:nth-child("+i+")").css({"display":"none"});
+        }
+        $("#tutorialScreens img:nth-child("+currentTutorial+")").css({"display":"block"});
+        if(currentTutorial<1 || currentTutorial>7) { // Resets tutorial
+            startTutorial = false;
+            currentTutorial = 1;
+            $("#tutorialScreens").css({"display":"none"});
+            $("#tutorialNavigation").css({"display":"none"});
+        }
+    }
+
     $("#mailingListSubmit").click(function(){
         alert("Our mailing list isn't available yet, but thank you for considering to subscribe!");
     });

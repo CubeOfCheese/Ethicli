@@ -213,6 +213,10 @@ header {
     margin-bottom: 60px;
 }
 
+#optinButtonGroup {
+    display: flex;
+}
+
 /*** Footer *****************************************************/
 
 footer {
@@ -343,7 +347,7 @@ input:focus {
     align-items: center;
     padding: 0 16px;
     background:#2B6589;
-    color: #FEFCF3;
+    color: #FEFCF2;
     border-radius: 20px;
     cursor: pointer;
 }
@@ -472,49 +476,144 @@ button {
 }
 
 .colorCream, nav a:hover, #pitchdeck, #faq #pitchdeck, #featured h3, .readmore:hover a, footer a {
-    color: #FEFCF3;
+    color: #FEFCF2;
 }
 
 ::selection {
     background: #2B6589;
-    color: #FEFCF3;
+    color: #FEFCF2;
 }
 
 
 /*** Landing/Tutorial *****************************************************/
 
+#landing header {
+    min-height: 0;
+}
+
+#privacyPolicyDescription {
+    width: 50%;
+}
+
 #tutorial {
-    width: 360px;
-    height: 460px;
-    background: #FEFCF3;
+    width: 330px;
+    height: 624px;
+    background: #FEFCF2;
     position: fixed;
     top: 0;
-    right: 100px;
+    right: 106px;
     z-index: 2;
     border-radius: 0 0 8px 8px;
     overflow: hidden;
+
+    -webkit-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+
+    -webkit-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+#tutorial.hideTutorial {
+    margin-top: -600px;
 }
 
 #hideTutorial {
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     width: 100%;
-    height: 20px;
-    background: #8EA289;
+    padding: 8px;
+    background: #70856b;
     color: #fff;
     text-align: center;
+    font-size: 14px;
+}
+
+#tutorial #hideTutorial:after {
+    content: "Hide Tutorial";
+}
+
+#tutorial.hideTutorial #hideTutorial:after {
+    content: "Show Tutorial";
 }
 
 #tutorialHome {
     height: 100%;
+    padding-top: 48px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#tutorialHome div{
+    margin: 60px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#visitEthicli, #watchTutorial, #optinDeclined, #optinAccepted{
+    display: block;
+    padding: 8px 12px; 
+    background: #00213f;
+    margin: 0 auto 24px auto;
+    border-radius: 100px;
+    color: #FEFCF2;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#optinDeclined{
+    margin: 0;
+    background: #D27F65;
+}
+
+#optinAccepted {
+    margin: 0 0 0 24px;
+}
+
+#watchTutorial{
+    background: #8EA289;
 }
 
 #tutorialHome #shoppingbag {
     position: absolute;
-    bottom: -200px;
+    bottom: -60px;
+    left: 24px;
 }
 
+#tutorialScreens {
+    display: none;
+    position: absolute;
+    top: 0;
+}
 
+#tutorialScreens img {
+    width: 100%;
+}
+
+#tutorialNavigation {
+    position: absolute;
+    bottom: 12px;
+    width: 100%;
+    justify-content: space-between;
+    padding: 30px;
+    display: none;
+}
+
+#tutorialBack, #tutorialNext, #tutorialBack::selection, #tutorialNext::selection {
+    padding: 4px 8px; 
+    border-radius: 100px;
+    background: #f0a38c;
+    color: #FEFCF2;
+    font-size: 14px;
+}
+
+#tutorialNext {
+    background: #D27F65;
+}
 
 /*** Images *****************************************************/
 
@@ -588,6 +687,9 @@ button {
     }
     .break2 {
         display: none;
+    }
+    #privacyPolicyDescription {
+        width: 100%;
     }
 }
 
