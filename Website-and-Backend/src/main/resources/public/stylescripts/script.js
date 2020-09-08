@@ -112,16 +112,13 @@ $(document).ready(function() {
         if(startTutorial) {
             $("#tutorialScreens").css({"display":"block"});
             $("#tutorialNavigation").css({"display":"flex"});
+            $("#tutorialScreens img:nth-child("+currentTutorial+")").css({"display":"block"});
         } else {
             $("#tutorialScreens").css({"display":"none"});
             $("#tutorialNavigation").css({"display":"none"});
         }
+        console.log("After watchTutorial "+currentTutorial)
     })
-    
-    // TO DO
-    // Fix Slideshow back/next btn after show
-    // Add ending screen
-    // Add confetti (maybe)
 
     $("#tutorialBack").click(function() { currentTutorial -= 1; tutorialSlideshow(); })
     $("#tutorialNext").click(function() { currentTutorial += 1; tutorialSlideshow(); })
@@ -130,13 +127,20 @@ $(document).ready(function() {
             $("#tutorialScreens img:nth-child("+i+")").css({"display":"none"});
         }
         $("#tutorialScreens img:nth-child("+currentTutorial+")").css({"display":"block"});
-        if(currentTutorial<1 || currentTutorial>7) { // Resets tutorial
+        if(currentTutorial < 1 || currentTutorial > 7) { // Resets tutorial
             startTutorial = false;
             currentTutorial = 1;
             $("#tutorialScreens").css({"display":"none"});
             $("#tutorialNavigation").css({"display":"none"});
         }
+        if(currentTutorial == 6 || currentTutorial == 7) {
+            $("#tutorialNavigation").css({"bottom":"476px"});
+        } else {
+            $("#tutorialNavigation").css({"bottom":"8px"});
+        }
     }
+
+    $("#confettiLogo").click(function() { confetti.start(1000, 100); })
 
     $("#mailingListSubmit").click(function(){
         alert("Our mailing list isn't available yet, but thank you for considering to subscribe!");

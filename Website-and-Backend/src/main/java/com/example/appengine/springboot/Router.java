@@ -23,9 +23,9 @@ public class Router {
     return "privacy";
   }
 
-  @RequestMapping(value = "/landing")
-  public String getLanding() {
-    return "landing";
+  @RequestMapping(value = "/welcome")
+  public String getWelcome() {
+    return "welcome";
   }
 
   @RequestMapping(value = "/info/{company}")

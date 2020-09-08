@@ -485,9 +485,9 @@ button {
 }
 
 
-/*** Landing/Tutorial *****************************************************/
+/*** welcome/Tutorial *****************************************************/
 
-#landing header {
+#welcome header {
     min-height: 0;
 }
 
@@ -578,7 +578,17 @@ button {
     background: #8EA289;
 }
 
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 #tutorialHome #shoppingbag {
+    animation: 1.5s cubic-bezier(0.500, 0.025, 0.500, 1.000) 0s 1 slideUp;
     position: absolute;
     bottom: -60px;
     left: 24px;
@@ -609,10 +619,17 @@ button {
     background: #f0a38c;
     color: #FEFCF2;
     font-size: 14px;
+    cursor: pointer;
 }
 
 #tutorialNext {
     background: #D27F65;
+}
+
+#confettiLogo {
+    width: 50px;
+    margin: 16px auto 0 auto;
+    cursor: pointer;
 }
 
 /*** Images *****************************************************/
