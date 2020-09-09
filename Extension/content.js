@@ -1,19 +1,14 @@
 var isShoppingPage;
 
-function onError(e) {
-  console.error(e);
-}
-
 window.onload = function() {
-  var optin = chrome.storage.local.get("optIn")
-  optin.then((response) => {
+  chrome.storage.local.get("optIn", function(response) {
     if (response.optIn === true) {
       pageEval();
     }
     else {
       chrome.runtime.sendMessage({ msgName: "displayOptin" });
     }
-  }, onError);
+  })
 }
 
 function pageEval() {
@@ -204,11 +199,12 @@ chrome.runtime.onMessage.addListener(
 );
 
 chrome.runtime.onMessage.addListener(
-    function(request) {
-        if (request.msgName == "tabSwitched") {
-            pageEval();
-        }
-        return true;
+    function(request, sender, sendResponse) {
+      if (request.msgName == "reevaluatePage") {
+          pageEval();
+          sendResponse({ response: "reevaluated" });
+      }
+      return true;
     }
 );
 

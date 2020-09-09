@@ -3,7 +3,13 @@ window.addEventListener("load", function() {
       "click",
       function() {
         chrome.storage.local.set({ "optIn" : true }, function() {
-          window.close()
+          var query = { active: true, currentWindow: true };
+          chrome.tabs.query(query, function callback(tabs) {
+            var currentTab = tabs[0];
+            chrome.tabs.sendMessage(currentTab.id, { msgName: "reevaluatePage" }, function(response) {
+              window.close()
+            })
+          })
         });
     });
 

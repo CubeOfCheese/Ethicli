@@ -12,8 +12,8 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
       if (request.msgName == "displayOptin") {
         chrome.browserAction.setPopup({ popup: "popupOptin.html" })
-        chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id })
-        chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
+        chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }})
+        chrome.browserAction.setBadgeText({ text: "" });
       }
     }
 );
@@ -162,10 +162,11 @@ chrome.runtime.onInstalled.addListener(
           var query = { active: true, currentWindow: true };
           chrome.tabs.query(query, function callback(tabs) {
               var currentTab = tabs[0];
-              chrome.tabs.sendMessage(currentTab.id, { msgName: "isEthicliWelcomePage" });
+              if (currentTab.id  === welcomeTabId) {
+                chrome.tabs.sendMessage(currentTab.id, { msgName: "isEthicliWelcomePage" });
+              }
           })
-        }, {tabId: welcomeTabId}
-      )
+        })
     })
   }
 
