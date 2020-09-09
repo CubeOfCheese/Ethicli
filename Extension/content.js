@@ -1,6 +1,22 @@
 var isShoppingPage;
 
-window.onload = function pageEval() {
+function onError(e) {
+  console.error(e);
+}
+
+window.onload = function() {
+  var optin = chrome.storage.local.get("optIn")
+  optin.then((response) => {
+    if (response.optIn === true) {
+      pageEval();
+    }
+    else {
+      chrome.runtime.sendMessage({ msgName: "displayOptin" });
+    }
+  }, onError);
+}
+
+function pageEval() {
     let dom = document.getElementsByTagName('html')[0].innerHTML;
     var shopWords = [
         /add-to-basket/i,
@@ -191,6 +207,28 @@ chrome.runtime.onMessage.addListener(
     function(request) {
         if (request.msgName == "tabSwitched") {
             pageEval();
+        }
+        return true;
+    }
+);
+
+
+chrome.runtime.onMessage.addListener(
+    function(request) {
+        if (request.msgName == "isEthicliWelcomePage") {
+          document.getElementById("optinAccepted").addEventListener(
+            "click",
+            function() {
+              chrome.storage.local.set({ "optIn" : true }, function() {
+              });
+          });
+
+          document.getElementById("optinDeclined").addEventListener(
+            "click",
+            function() {
+              chrome.storage.local.set({ "optIn" : false }, function() {
+              });
+          });
         }
         return true;
     }
