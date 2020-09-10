@@ -117,8 +117,8 @@ function urlToCompanyName(url) {
   if (endOfBaseDomain > -1) {
     url = url.substring(0, endOfBaseDomain);
   }
-  var secondLastIndex = url.lastIndexOf('.', url.lastIndexOf('.')-1)
-  url = url.substring(secondLastIndex+1);
+  var endOfSubDomain = url.lastIndexOf('.', url.lastIndexOf('.')-1)
+  url = url.substring(endOfSubDomain+1);
   endOfBaseDomain = url.search(/\./);
   if (endOfBaseDomain > -1) {
     url = url.substring(0, endOfBaseDomain);
