@@ -3,6 +3,7 @@ $(document).ready(function() {
     $("#optinAccepted").click(function() {
         $("#optinAcceptedResult").css({"display":"block"});
         $("#optinDeclinedResult").css({"display":"none"});
+        confetti.start(1000, 150);
     })
 
     $("#optinDeclined").click(function() {
@@ -58,5 +59,5 @@ $(document).ready(function() {
         }
     }
 
-    $("#confettiLogo").click(function() { confetti.start(1000, 100); })
+    $("#confettiLogo").click(function() { confetti.start(1000, 150); })
 });
