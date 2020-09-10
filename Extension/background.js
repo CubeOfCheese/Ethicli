@@ -154,7 +154,7 @@ chrome.runtime.onMessage.addListener(
 chrome.runtime.onInstalled.addListener(
   function handleInstalled(details) {
     let welcomeTabId;
-    chrome.tabs.create({url: "http://localhost:8080/welcome"}, function(result) {
+    chrome.tabs.create({url: "https://ethicli.com/welcome"}, function(result) {
       welcomeTabId = result.id;
 
       chrome.tabs.onUpdated.addListener(
