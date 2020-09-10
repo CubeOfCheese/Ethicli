@@ -213,6 +213,10 @@ header {
     margin-bottom: 60px;
 }
 
+#optinButtonGroup {
+    display: flex;
+}
+
 /*** Footer *****************************************************/
 
 footer {
@@ -343,7 +347,7 @@ input:focus {
     align-items: center;
     padding: 0 16px;
     background:#2B6589;
-    color: #FEFCF3;
+    color: #FEFCF2;
     border-radius: 20px;
     cursor: pointer;
 }
@@ -472,13 +476,14 @@ button {
 }
 
 .colorCream, nav a:hover, #pitchdeck, #faq #pitchdeck, #featured h3, .readmore:hover a, footer a {
-    color: #FEFCF3;
+    color: #FEFCF2;
 }
 
 ::selection {
     background: #2B6589;
-    color: #FEFCF3;
+    color: #FEFCF2;
 }
+
 
 /*** Images *****************************************************/
 
