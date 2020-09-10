@@ -215,6 +215,7 @@ chrome.runtime.onMessage.addListener(
           document.getElementById("optinAccepted").addEventListener(
             "click",
             function() {
+              pageEval();
               chrome.storage.local.set({ "optIn" : true }, function() {
               });
           });
