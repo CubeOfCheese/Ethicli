@@ -131,10 +131,6 @@ nav a:hover {
     display: none;
 }
 
-#dropdownMenu > a {
-    z-index: 5;
-}
-
 .submenu {
     display: flex;
     flex-direction: column;
