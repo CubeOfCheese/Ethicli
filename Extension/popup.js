@@ -191,6 +191,8 @@ window.onload = function() {
             document.getElementById("tutorialNavigation").style = "display:none";
             if (document.getElementById("popupMain") != null) { // for shop pages
                 document.body.style = "height: 360px;";
+            } else if (document.getElementById("popupNoRating") != null) { // for no ratings
+                document.body.style = "height: 280px;";
             } else if (document.getElementById("popupNotShop") != null) { // for non-shops
                 document.body.style = "height: 136px;";
             } else {
