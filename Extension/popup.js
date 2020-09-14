@@ -1,5 +1,6 @@
 var hasSubscore;
 var newHeight = 360;
+var fullheight = 360;
 
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
     if (response.shoppingPage) {
@@ -16,21 +17,20 @@ function loadExtension(ethicliStats) {
     }
 
     function adjustSubscores() {
-        var fullheight = 360;
         if (ethicliStats.environmentScore == 0.0) {
-            fullheight = fullheight - 50;
+            fullheight = fullheight - 42;
             document.getElementById("envSection").style = "display:none;";
         }
         if (ethicliStats.laborScore == 0.0) {
-            fullheight = fullheight - 50;
+            fullheight = fullheight - 42;
             document.getElementById("laborSection").style = "display:none;";
         }
         if (ethicliStats.animalsScore == 0.0) {
-            fullheight = fullheight - 50;
+            fullheight = fullheight - 42;
             document.getElementById("animalSection").style = "display:none;";
         }
         if (ethicliStats.socialScore == 0.0) {
-            fullheight = fullheight - 50;
+            fullheight = fullheight - 42;
             document.getElementById("socialSection").style = "display:none;";
         }
         if (ethicliStats.environmentScore == 0.0 &&
@@ -190,7 +190,7 @@ window.onload = function() {
             document.getElementById("tutorial").style = "display:none";
             document.getElementById("tutorialNavigation").style = "display:none";
             if (document.getElementById("popupMain") != null) { // for shop pages
-                document.body.style = "height: 360px;";
+                document.body.style = "height:" + fullheight + "px;";
             } else if (document.getElementById("popupNoRating") != null) { // for no ratings
                 document.body.style = "height: 280px;";
             } else if (document.getElementById("popupNotShop") != null) { // for non-shops
