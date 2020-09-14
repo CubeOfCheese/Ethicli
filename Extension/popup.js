@@ -153,14 +153,6 @@ window.onload = function() {
     //--- Tutorial --------------------------------------------------------------------------
     var startTutorial = false;
     var currentTutorial;
-    // document.getElementById("hideTutorial").onclick(function() {
-    //     $("#tutorial").toggleClass("hideTutorial");
-    //     if (startTutorial) {
-    //         $("#tutorial").removeClass("tutorialHeightAdjust");
-    //     } else {
-    //         $("tutorial").addClass("tutorialHeightAdjust");
-    //     }
-    // })
 
     document.getElementById("watchTutorial").addEventListener("click", function() {
         document.body.style = "height: 600px;";
