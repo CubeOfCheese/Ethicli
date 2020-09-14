@@ -481,6 +481,10 @@ p {
     display: none;
 }
 
+#popupMain #tutorialNavigation, #popupNoRating #tutorialNavigation, #popupNotShop #tutorialNavigation {
+    padding: 0 40px 20px 40px;
+}
+
 #tutorialBack, #tutorialNext, #tutorialBack::selection, #tutorialNext::selection {
     padding: 4px 8px;
     border-radius: 100px;

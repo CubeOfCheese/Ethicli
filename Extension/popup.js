@@ -189,17 +189,19 @@ window.onload = function() {
             currentTutorial = 1;
             document.getElementById("tutorial").style = "display:none";
             document.getElementById("tutorialNavigation").style = "display:none";
-            document.body.style = "height: " + newHeight + "px;";
+            if (document.getElementById("popupMain") != null) {
+                document.body.style = "height: 360px;";
+            } else {
+                document.body.style = "height: " + newHeight + "px;";
+            }
         } else {
             document.getElementById(idname).style = "display:block";
         }
 
         if (currentTutorial == 6 || currentTutorial == 7) {
             document.getElementById("tutorialNavigation").style = "display:flex; bottom:476px;";
-            console.log(document.getElementById("tutorialNavigation").style)
         } else {
             document.getElementById("tutorialNavigation").style = "display:flex; bottom:8px;";
-            console.log(document.getElementById("tutorialNavigation").style)
         }
     }
 }
