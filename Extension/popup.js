@@ -189,8 +189,10 @@ window.onload = function() {
             currentTutorial = 1;
             document.getElementById("tutorial").style = "display:none";
             document.getElementById("tutorialNavigation").style = "display:none";
-            if (document.getElementById("popupMain") != null) {
+            if (document.getElementById("popupMain") != null) { // for shop pages
                 document.body.style = "height: 360px;";
+            } else if (document.getElementById("popupNotShop") != null) { // for non-shops
+                document.body.style = "height: 136px;";
             } else {
                 document.body.style = "height: " + newHeight + "px;";
             }
