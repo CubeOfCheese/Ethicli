@@ -1,50 +1,87 @@
-1,Walmart,http://www.walmart.com/,YES; A+,0.0,4,1,3,3,1,2,2.0
-2,Amazon,http://www.amazon.com/,-,0.0,4,2,2,2,2,1,1.9
-3,Walgreens,http://www.walgreens.com/,-,0.7,,5,4,5,4,4,3.8
-4,McDonald's,http://www.mcdonalds.com/,"YES, A+",1.0,,2,2,4,2,3,2.3
-5,Aldi,http://www.aldi.com/,-,8.0,4,7,7,7,7,7,6.7
-6,Best Buy,http://www.bestbuy.com/,-,9.3,,6,5,6,6,5,6.2
-7,"IKEA US, LLC",http://www.ikea.com/,-,3.0,,8,4,3,7,7,5.3
-8,Ebay,http://www.ebay.com/,YES; A+,5.7,,6,6,7,6,7,6.3
-9,Costco,http://www.costco.com/,-,6.7,,4,5,3,4,4,4.5
-10,Gap,http://www.gap.com/,-,3.3,4,6,4,5,3,3,4.0
-11,Carrefour,http://www.carrefour.com,-,8.7,,4,4,3,5,3,4.6
-12,Inditex (Zara),http://www.zara.com/,"NO, F Rating!",5.3,4,2,1,3,1,1,2.5
-13,H&M,https://www2.hm.com/,-,5.7,4,6,2,4,3,3,4.0
-14,Starbucks,http://www.starbucks.com/,"NO, B",1.3,,5,2,1,4,2,2.6
-15,Aeon,https://www.aeon.com/,-,8.3,,4,3,1,ND,2,3.7
-16,The Home Depot,http://homedepot.com/,"YES, A-",8.3,,6,5,ND,3,5,5.5
-17,Lowe's,http://lowes.com/,"YES, A+",9.0,,7,5,ND,5,6,6.4
-18,Alibaba,http://alibaba.com/,YES; A+,9.0,,3,2,2,1,2,3.2
-19,Seven & I,https://www.7andi.com/en.html,-,8.7,,3,2,1,4,3,3.6
-20,TJX,https://tjmaxx.tjx.com/,-,2.0,,3,2,1,3,2,2.2
-21,Romwe,http://romwe.com/,-,,1,1,2,1,1,1,1.2
-22,Free People,http://freepeople.com/,-,,4,3,3,4,3,4,3.5
-23,Nordstrom,http://nordstrom.com/,-,8.0,4,4,4,4,3,3,4.3
-24,ASOS,http://asos.com/,-,5.0,3,5,2,3,5,2,3.6
-25,Kohl's,https://www.kohls.com/,-,8.0,,4,2,ND,1,2,3.4
-26,Target,http://target.com/,-,7.5,,5,5,5,4,6,5.4
-27,"Sears, Roebuck & Co.",http://sears.com/,-,3.0,,1,2,2,3,2,2.2
-28,Wish,http://wish.com/,-,,2,2,1,2,3,2,2.0
-29,Urban Outfitters,http://urbanoutfitters.com/,-,9.0,2,2,2,3,2,3,3.3
-30,American Eagle Outfitters,https://www.ae.com/,-,8.5,2,2,2,3,2,2,3.1
-31,Etsy,http://etsy.com/,-,8.0,,8,ND,7,7,7,7.4
-32,Boohoo,http://boohoo.com/,-,3.0,2,2,2,3,1,2,2.1
-33,Mango,http://mango.com/,-,,4,4,3,6,4,2,3.8
-34,Forever 21,https://www.forever21.com/,-,,4,2,1,2,2,1,2.0
-35,Matt & Nat,http://mattandnat.com/,-,,4,4,4,10,3,6,5.2
-36,Anthropologie,http://anthropologie.com/,-,,4,4,3,4,3,1,3.2
-37,Lulu Lemon,http://lululemon.com,-,,4,3,3,5,2,2,3.2
-38,Nike,http://nike.com/,-,4.0,6,6,3,4,5,5,4.7
-39,Adidas,http://adidas.com/,-,4.3,8,7,7,6,6,6,6.3
-40,Everlane,http://everlane.com/,-,,4,4,4,4,5,4,4.2
-41,Shein,http://shein.com/,-,,2,1,1,0,1,1,1.0
-42,Sephora,http://sephora.com/,-,2.3,,6,2,1,2,5,3.1
-43,Tom's of Maine,http://tomsofmaine.com/,-,2.7,,8,7,8,7,7,6.6
-44,Ulta,http://ulta.com/,-,,,ND,2,ND,3,2,2.3
-45,West Elm,http://westelm.com/,-,,,7,6,ND,5,5,5.8
-46,Wayfair,http://wayfair.com/,-,,,4,5,6,4,2,4.2
-47,Overstock,http://overstock.com/,-,,,5,3,4,4,3,3.8
-48,Apple,http://apple.com/,,4.6,,7,6,ND,2,3,4.5
-49,Thrive Market,https://thrivemarket.com/c/food,-,8.0,,8,7,8,7,7,7.5
-50,Samsung,http://samsung.com/,-,1.6,,2,2,ND,2,2,1.9
+1,Walmart,http://www.walmart.com/,0.0,4,3,1,3,1,2,2.0,,,,(2),
+2,Amazon,http://www.amazon.com/,0.0,4,2,2,2,1,1,1.7,"Severely low Forest 500 rating (9/100), Rates a tier 5 on the 2019 Business Benchmark on Farm Animal Welfare Report (BBFAW) meaning they provide little evidence they are making strides to manage animal welfare in their practices, (16/100) on S&P global sustainability report, identified as a company using Uyghur forced labor in China, low transparency about e-waste and fails to publish restrictions on hazardous chemicals in its devices. 10-20% ranking on Corporate Human Rights Benchmark (CHRB). Low risk managaement in global mineral mining and workers involved, numerous lawsuits involving labor rights and tax avoidance.","(3), (4), (5), (6), (12), (15),",(16),"(1), (2), (7), (8),  (14), ","(9), (10), (11), (13)"
+3,Walgreens,http://www.walgreens.com/,0.7,,4,5,5,4,4,3.8,,,,,
+4,McDonald's,http://www.mcdonalds.com/,1.0,,2,2,4,2,3,2.3,,,,(2),
+5,Aldi,http://www.aldi.com/,8.0,4,7,7,7,7,7,6.7,,,,,
+6,Best Buy,http://www.bestbuy.com/,9.3,,5,6,6,6,5,6.2,,,,,
+7,"IKEA US, LLC",http://www.ikea.com/,3.0,,4,8,3,7,7,5.3,"Acredited living wage employer, ",,,(1),
+8,Ebay,http://www.ebay.com/,5.7,,6,6,7,6,7,6.3,,,,,
+9,Costco,http://www.costco.com/,6.7,,5,4,3,3,4,4.3,,,,(2),
+10,Gap,http://www.gap.com/,3.3,4,4,6,5,3,3,4.0,,,,"(1), (7), ",
+11,Carrefour,http://www.carrefour.com,8.7,,4,4,3,5,3,4.6,,,,,
+12,Inditex (Zara),http://www.zara.com/,5.3,4,1,2,3,1,1,2.5,,,,"(1), (7), ",
+13,H&M,https://www2.hm.com/,5.7,4,2,6,4,3,3,4.0,,,,"(1), (7), ",
+14,Starbucks,http://www.starbucks.com/,1.3,,2,5,1,3,2,2.4,,,,(2),
+15,Aeon,https://www.aeon.com/,8.3,,3,4,1,ND,2,3.7,,,,,
+16,The Home Depot,http://homedepot.com/,8.3,,5,6,ND,3,5,5.5,,,,,
+17,Lowe's,http://lowes.com/,9.0,,5,7,ND,5,6,6.4,,,,,
+18,Alibaba,http://alibaba.com/,9.0,,2,3,2,1,2,3.2,,,,,
+19,Seven & I,https://www.7andi.com/en.html,8.7,,2,3,1,3,3,3.5,,,,(2),
+20,TJX,https://tjmaxx.tjx.com/,2.0,,2,3,1,3,2,2.2,,,,,
+21,Romwe,http://romwe.com/,,1,2,1,1,1,1,1.2,,,,,
+22,Free People,http://freepeople.com/,,4,3,3,4,3,4,3.5,,,,,
+23,Nordstrom,http://nordstrom.com/,8.0,4,4,4,4,2,3,4.1,,,,(2),
+24,ASOS,http://asos.com/,5.0,3,2,5,3,5,2,3.6,,,,"(7),",
+25,Kohl's,https://www.kohls.com/,8.0,,2,4,ND,1,2,3.4,,,,(2),
+26,Target,http://target.com/,7.5,,5,5,5,3,6,5.3,,,,(2),
+27,"Sears, Roebuck & Co.",http://sears.com/,3.0,,2,1,2,3,2,2.2,,,,,
+28,Wish,http://wish.com/,,2,1,2,2,3,2,2.0,,,,,
+29,Urban Outfitters,http://urbanoutfitters.com/,9.0,2,2,2,3,2,3,3.3,,,,,
+30,American Eagle Outfitters,https://www.ae.com/,8.5,2,2,2,3,2,2,3.1,,,,,
+31,Etsy,http://etsy.com/,8.0,,ND,8,7,7,7,7.4,,,,,
+32,Boohoo,http://boohoo.com/,3.0,2,2,2,3,1,2,2.1,,,,(7),
+33,Mango,http://mango.com/,,4,3,4,6,4,2,3.8,,,,,
+34,Forever 21,https://www.forever21.com/,,4,1,2,2,2,1,2.0,,,,,
+35,Matt & Nat,http://mattandnat.com/,,4,4,4,10,3,6,5.2,,,,,
+36,Anthropologie,http://anthropologie.com/,,4,3,4,4,3,1,3.2,,,,,
+37,Lulu Lemon,http://lululemon.com,,4,3,3,5,2,2,3.2,,,,(2),
+38,Nike,http://nike.com/,4.0,6,3,6,4,4,5,4.6,,,,"(1), (7), ",
+39,Adidas,http://adidas.com/,4.3,8,7,7,6,4,6,6.0,,,,"(1), (7)",
+40,Everlane,http://everlane.com/,,4,4,4,4,5,4,4.2,,,,,
+41,Shein,http://shein.com/,,2,1,1,0,1,1,1.0,,,,,
+42,Sephora,http://sephora.com/,2.3,,2,6,1,2,5,3.1,,,,,
+43,Tom's of Maine,http://tomsofmaine.com/,2.7,,7,8,8,7,7,6.6,,,,,
+44,Ulta,http://ulta.com/,,,2,ND,ND,3,2,2.3,,,,,
+45,West Elm,http://westelm.com/,,,6,7,ND,5,5,5.8,,,,,
+46,Wayfair,http://wayfair.com/,,,5,4,6,4,2,4.2,,,,,
+47,Overstock,http://overstock.com/,,,3,5,4,4,3,3.8,,,,,
+48,Apple,http://apple.com/,4.6,,6,7,ND,2,3,4.5,,,,(1),
+49,Thrive Market,https://thrivemarket.com/c/food,8.0,,7,8,8,7,7,7.5,,,,,
+50,Samsung,http://samsung.com/,1.6,,2,2,ND,2,2,1.9,,,,(1),
+51,Vibram,vibram.com,,,,8.0,8.0,7.0,ND,7.7,"Uses sustainable soles, vegan friendly, divested from sales with Amazon","(1), (2), (3), (6)","(5),","(4),",
+52,Nintendo,nintendo.com,7.0,,,3,ND,1,3,3.0,"Uses Uyghur child labor, poor e-recycling practices, and low labor rights ranking.","(3), (6), (7), ",,"(1), (2), (4),","(5),"
+53,Gamestop,gamestop.com,4.0,,,6.0,ND,3.0,4,4.3,"Customer trickery, labor lawsuits, decent game recycling/upcycling program"," (4), (5), (6)",,"(1), (2),","(3),"
+54,Petsmart,petsmart.com,9.0,,,6,2,3,6,4.3,"Many animal deaths at the hands of groomers and exotic animal trade, poor labour conditions, funds a foundation for support-animals for people with disability."," (12),","(1), (2), (3), (4), (5),  (10), (11),","(6), (7), (8), (9),","(13),"
+55,Jolyn,jolyn.com,,,,7.0,9.0,ND,8.5,8.3,"Anti-fast-fashion, uses sustainable fabric, made in USA, partners with local charities, not fully body inclusive (implies curvy people aren't active), gender roles for clothing a little whack (and offering only some different colors for ""women"" rather than suit type), vegan and fibers include no animal-based by-products, donated $20k to BLM, model diversity and platforms Black aquatic athletes. ","(1), (2), (3), ",(personal email),,"(personal email), review section of product"
+56,Macy's,macys.com,8.0,4,,5.0,7.0,2.0,6.0,5.0,"Low human rights benchmark rating, Macy's Day Parade is unsustainable with reckless Helium use, making strides in corporate solar panel energy usage, working on diversification, will stop selling and storing fur by 2021, has a GoFundMe ""shop for a cause"" charity.","(1), (3),  (5),","(6), (7),","(2),","(4), (8),"
+57,BLK + GRN,blkandgrn.com,,,,8,9,8,9,8.5,"Sustainable, eco-packaging, Black-owned, social advocate and activism, cruelty free, plant-based, small business, platforms artisans who have ethical practices","(1), (2), ",,,"(3), (4),"
+58,Titleist ,titleist.com,,,,5,6,8,ND,6.3,"Made in USA, Last basically forever as opposed to single-use golf balls, but aren't biodegradable. Does not use animal products but little information on this, and golf balls adversely affect wildlife when lost. ", (2),,"(1), (3)",
+59,Fashion Nova,https://www.fashionnova.com/,,1,,1,4,1,1,1.8,"Fast-fashion, uses Los Angeles sweat shops,  contributes to over 92 million tons into the landfil annually, labor violations. Extensive vegan collection. ","(1), ",,"(3),","(2),"
+60,Get Lost Perv!,https://www.getlostperv.com/,,,,ND,ND,ND,ND,4.0,"No Transparency, no data, fast fashion",,,,
+61,Knotty Knickers,https://knottyknickersusa.co/,,,,ND,ND,ND,ND,4.0,"No Transparency, no data, fast fashion",,,,
+62,Milky Syrup,https://milkysyrup.com/,,,,ND,ND,ND,ND,4.0,"No Transparency, no data, fast fashion",,,,
+63,iiii clothing,https://iiiiclothing.com/collections/all,,,,ND,ND,ND,ND,4.0,"No Transparency, no data, fast fashion, small business (2 people)",,,,
+64,Bad Habits,https://www.welcometoheartbreak.us/,,,,ND,ND,ND,ND,4.0,"No Transparency, no data, fast fashion",,,,
+65,Belayered,https://www.belayered.com/,,,,ND,ND,ND,ND,4.0,"No Transparency, no data, no indication of where parfums are sourced.",,,,
+66,Cheekbone Beauty,https://cheekbonebeauty.ca/,,,,8,9,8,9,8.5,"10% profits donated to Shannen’s Dream, a charity that supports first nations youth education, does not test on animals, all products vegan, Indigenous-owned, working to eliminate single-use plastics, hires Indigenous employees, supports Native labor and economy, zero-waste innovation.","(1), (4)","(2),","(3),","(1),"
+67,Fragrance Net,https://www.fragrancenet.com/,,,,ND,ND,ND,ND,6.0,"No Transparency, no data, no indication of where parfums are sourced.",,,,
+68,Foreflight,foreflight.com,,,,ND,ND,ND,ND,6.0,"Private company, no data, market is hard to score",,,,
+69,Fashion Brand,https://www.fashionbrandcompany.com/,,,,8,9,8,8,8.3,"Anti-fast-fashion, reusable packaging, works with international fair-trade co-ops, runs company on her own, woman-owned, pays artisans fair wage, body size-inclusive, gender-inclusive. Vegan","(1),",,"(2),",
+70,Harbor Freight,https://www.harborfreight.com/,,,,6,ND,6,6,6.0,"Anti-human trafficking and slave labor, ligation with manager labor, extensive donation program",(1),,(1),(1)
+71,Tee Public,https://www.teepublic.com/,,,,7,9,8,7,7.8,"Supports independent artists, use biodeegradable ink, vegan, GIves back to charities, body-inclusive options, Good GlassDoor reviews for labor","(1),",,"(3),","(2),"
+72,Girlfriend Collective,girlfriendcollective.com,,10,,9,8,9,9,8.8,"Extensive recycling program (clothing is recyclable and buys back clothes to make new ones), materials made in a zero-waste facility that guarantees fair wages, size inclusive (XXS - 6XL), SA8000-Certified (like FairTrade), upcycles BPA-free waterbottles to make material, anti-child labor, vegan. ","(1),",,(2),
+73,Deciem,https://deciem.com/brand/the-ordinary,x,,,8,8,6,8,7.5,"Ships in Carbon-neutral boxes from offset purchased from CarbonZero, and for brick-and-mortar recycled paper bags, takes back empty packaging and uses progressive waste management program to reduce the fate of products ending up in the landfill. Very transparent, does not test on animals, cruelty-free, resisted black friday sales last year to not support over-consumption. Poor rating on Glassdoor (working conditions reviews from employees), BLM donation, gave paid leave for employees protesting for George Floyd","(1), ","(3), (4),","(2),",
+74,Yes Style,https://www.yesstyle.com/en/home.html,x,,,5,ND,6,6,5.7,"Fast fashion, ships in plastic wasteful packaging, no indication they intend to be transparent or support human or animal welfare, but recognized as a ""Caring Company"" from Hong Kong Council of Social Service.",(1),,,
+75,Peach and Lily,https://www.peachandlily.com/,x,,,ND,7,ND,8,7.5,"Cruelty-free/Vegan, Mentorship program to support Black aestheticians",,(1),,(1)
+76,Hair Story,https://www.hairstory.com/,x,,,7,6,ND,ND,6.5,"biodegradable, Refill System reduces plastic consumption by 91%, 1% for the Planet partner,  cruelty-free but not vegan (uses keratin derived from sheeps wool)",(1),(1),,
+77,Innisfree,https://us.innisfree.com/,x,,,8,5,ND,ND,6.5,"Eco-Recycling Program for empty containers to be upcycled into other merch. Eco-Handkerchief Campaign, which gifts hankies with purchase, not cruelty-free.","(1), (2)",(1),,
+78,Spectrum Boutique,https://spectrumboutique.com/,x,,,TBD (email),TBD ,TBD,8,8.0,"Woman-owned, body-inclusive, gender non-conforming, advocates for sex-education, ",,,,(1)
+79,Dumbgood,https://dumbgood.com/,x,,,TBD (email),TBD ,TBD ,TBD ,5.0,"no transparency, no outstanding critisism for practices",,,,
+80,LL Bean,llbean.com,9.3,1,,6,5,5,3,4.8,"Uses Uyghur slave labor, (6/100) transparency, Responsible Down Standard (RDS) compliant, Bangladesh Worker Safety Alliance, Sustainable Apparel Coalition member, Textile Exchange member, BlueSign partner, low transparency about social welfare","(1), (2)",(1),"(1), (2), (3)",
+81,Soft Charms,https://www.softcharms.co.uk/,x,,,TBD (email),TBD ,TBD ,TBD ,5.0,Not a fast fashion company but little transparency thus far and a relatively smaller business. No outstanding critisism found,,,,
+82,NBA store,https://store.nba.com/,x,,,8,7,6,6,6.8,"Very low transparency, blocks messages critical of Chinese regime but allows other racist custom jerseys, taking measures for sustainability and upcycling of unsold jerseys into 7,000 masks, Community Assist Award winner, rates (6.2 /10) on Glassdoor, member of the Green Sports Alliance, has a code of coduct for labor practices publicly available, recycled jerseys made but can contribute to microplastics in the ocean,  transitioning to vegan/vegetarian foods at games and players are going v/veg to help divest from animal ag.Jerseys made by Adidas","(1), (2), (3), (4),  (5), (6), (7)","(1), (2)","(1), (2)","(1), (2), (3), (4)"
+83,Blueland,https://www.blueland.com/,x,,,8,8,TBD,TBD,8.0,"Strong environmental mission, Platinum meterial health certificate from Cradle to Cradle, sells no-waste no-plastic packaging, vegan and cruelty-free, leaping-bunny certified. Uses glass to reduce plastic waste but glass can be environmentally costly to transport.","(1), (2)",(1),,
+84,Hello Hi-Bar,https://hellohibar.com/,x,,,9,8,TBD,TBD,8.5,"Cruelty-free, vegan, eco-friendly packaging, compostable/recyclable packaging, no palm oil, bar is biodegradable, not very diverse in their models or commitment to diversity on social media.","(1), (2)",(1),,
+85,Victoria's Secret,victoriassecret.com,,4,,4,4,3,3,3.5,"Lacks eco-friendly materials, little evidence of seeking improvement in environmental and labor practices, doesn't use animal products except silk but tests on animals. Fatphobia, transphobia, lack of diversity, child labor allegations, pollution in China, uses Uyghur slave labor, low transparency index, ","(1), (2),",(1),"(1), (2)",(1)
+86,Pink,https://www.victoriassecret.com/us/pink,,,,7,3,3,7,5.0,"Progressing sustainability initiatives, Better Cotton Initiative member, member of JED foundation for teen mental health, donated $50k to the Human RIghts Campaign, $200k to the Feeding America Foundation, and $1 million to the National Urban League, American Forests partner, and Her Next Play supporter, not cruelty-free",(1),(1),"(1), (2)",(1)
+87,Newegg,newegg.com,,,,6,N/A,4,5,5.0,"No evidence of environmental responsibility, reports of underpaid labor. Somewhat better than Amazon but still poor in ethical practices",(1),,"(1), (2)",(1)
