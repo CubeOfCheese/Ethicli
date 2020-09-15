@@ -154,20 +154,23 @@ chrome.runtime.onMessage.addListener(
 chrome.runtime.onInstalled.addListener(
   function handleInstalled(details) {
     let welcomeTabId;
-    chrome.tabs.create({url: "https://ethicli.com/welcome"}, function(result) {
-      welcomeTabId = result.id;
 
-      chrome.tabs.onUpdated.addListener(
-        function() {
-          var query = { active: true, currentWindow: true };
-          chrome.tabs.query(query, function callback(tabs) {
-              var currentTab = tabs[0];
-              if (currentTab.id  === welcomeTabId) {
-                chrome.tabs.sendMessage(currentTab.id, { msgName: "isEthicliWelcomePage" });
-              }
-          })
-        })
-    })
+    if (details.reason == "install") {
+      chrome.tabs.create({url: "https://ethicli.com/welcome"}, function(result) {
+        welcomeTabId = result.id;
+
+        chrome.tabs.onUpdated.addListener(
+          function() {
+            var query = { active: true, currentWindow: true };
+            chrome.tabs.query(query, function callback(tabs) {
+                var currentTab = tabs[0];
+                if (currentTab.id  === welcomeTabId) {
+                  chrome.tabs.sendMessage(currentTab.id, { msgName: "isEthicliWelcomePage" });
+                }
+            })
+          }
+        )
+      })
+    }
   }
-
 );
