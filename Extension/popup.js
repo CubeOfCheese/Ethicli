@@ -210,11 +210,11 @@ window.onload = function() {
     }
 }
 
-function fadeLongURL() {
-    document.getElementById("siteurl").addEventListener("mouseover", function(event) {
-        var siteurlLength = this.innerHTML.length + 16;
-        if (siteurlLength > 30) {
-            this.style = "margin-left: -" + (siteurlLength) + "px;";
+function fadeLongURL(){
+    document.getElementById("siteurl").addEventListener("mouseover", function( event ) {
+        var siteurlLength = this.innerHTML.length+16;
+        if(siteurlLength > 30){
+            this.style = "margin-left: -"+(siteurlLength)+"px;";
             document.getElementById("siteurlcontainer").style =
                 "-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%);\
                 mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%)";
@@ -229,25 +229,23 @@ function fadeLongURL() {
 }
 
 function urlToCompanyName(url) {
-    if (url.substring(0, 8) == "https://") {
-        url = url.substring(8);
-    } else if (url.substring(0, 7) == "http://") {
-        url = url.substring(7);
-    }
-
-    if (url.substring(0, 4) == "www.") {
-        url = url.substring(4);
-    } else if (url.substring(0, 4) == "us.") {
-        url = url.substring(3);
-    } else if (url.substring(0, 4) == "docs.") {
-        url = url.substring(5);
-    }
-
-    var endOfBaseDomain = url.search(/\./);
-    if (endOfBaseDomain > -1) {
-        url = url.substring(0, endOfBaseDomain);
-    }
-    return url;
+  if (url.substring(0, 8) == "https://") {
+    url = url.substring(8);
+  }
+  else if (url.substring(0, 7) == "http://") {
+    url = url.substring(7);
+  }
+  var endOfBaseDomain = url.search(/\//);
+  if (endOfBaseDomain > -1) {
+    url = url.substring(0, endOfBaseDomain);
+  }
+  var endOfSubDomain = url.lastIndexOf('.', url.lastIndexOf('.')-1)
+  url = url.substring(endOfSubDomain+1);
+  endOfBaseDomain = url.search(/\./);
+  if (endOfBaseDomain > -1) {
+    url = url.substring(0, endOfBaseDomain);
+  }
+  return url;
 }
 
 function somethingWrong() {
@@ -280,3 +278,14 @@ function somethingWrong() {
         }
     });
 }
+
+// GOOGLE ANALYTICS
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-173025073-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
