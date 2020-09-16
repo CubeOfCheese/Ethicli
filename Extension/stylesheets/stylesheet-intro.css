@@ -1,0 +1,84 @@
+/** Opt In Intro **/
+
+#optin {
+    background: #C9D4C6;
+}
+
+#optin h2 {
+    font-size: 1.95em;
+    line-height: 1.4em;
+    margin: 24px auto 16px auto;
+    font-weight: 700;
+    color: #05668D;
+}
+
+#optin p {
+    margin-bottom: 16px;
+}
+
+#optin a {
+    color: #05668D;
+    text-decoration: none;
+}
+
+#optin a:hover {
+    color: #E07A5F;
+}
+
+.darkblue {
+    color: #102340;
+}
+
+#optinButtons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#optinButtons a, #optinButtons a:hover {
+    padding: 8px 12px;
+    color: #FFFCF2;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 100px;
+}
+
+#optinNo {
+    background: #E07A5F;
+}
+
+#optinNo:hover {
+    background: #f0a38c;
+}
+
+#optinYes {
+    background: #0A2342;
+}
+
+#optinYes:hover {
+    background: #05668D;
+}
+
+#optin #shoppingbag {
+    margin: 24px 0 0 24px;
+    animation: shoppingMove 2s;
+}
+
+@keyframes shoppingMove {
+    from {
+        margin: 200px 0 0 24px;
+    }
+    to {
+        margin: 24px 0 0 24px;
+    }
+}
+
+
+/** Menu Backing **/
+
+#menuBacking {
+    background: rgb(201, 212, 198, 0.75);
+}
+
+#menuPanel button a, #menuPanel button a:hover {
+    color: #FFFCF2;
+}
