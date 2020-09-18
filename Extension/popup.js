@@ -4,21 +4,6 @@ var hasSubscore;
 var newHeight = 360;
 var fullheight = 360;
 
-var adJSON = '{ "link": "https://cleanbean.cafe/?product=pure-sugar?utm=stuffsrc=Ethicli",' +
-'"image": "https://images.unsplash.com/photo-1490885578174-acda8905c2c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2500&q=80",' +
-'"companyScore": 9.4,' +
-'"companyName": "Clean Bean Cafe",' +
-'"price": 4.99,' +
-'"productName": "tee",' +
-'"productTags": [' +
-'"tee",' +
-'"shirt",' +
-'"top",' +
-'"Men\'s"' +
-']}';
-
-let ad = JSON.parse(adJSON)
-
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
     if (response.shoppingPage) {
       chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(ratingResponse) {

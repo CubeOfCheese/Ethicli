@@ -23,6 +23,10 @@ export let ads = [
         "weight": 1.0
       },
       {
+        "tag": "pants",
+        "weight": 0.6
+      },
+      {
         "tag": "highrise",
         "weight": 0.1
       },
