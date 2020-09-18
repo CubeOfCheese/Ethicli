@@ -1,3 +1,5 @@
+import {ads} from './response.js';
+
 var hasSubscore;
 var newHeight = 360;
 var fullheight = 360;
@@ -19,15 +21,16 @@ let ad = JSON.parse(adJSON)
 
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
     if (response.shoppingPage) {
-      chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(response) {
-        loadExtension(response.ethicliStats);
+      chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(ratingResponse) {
+        loadExtension(ratingResponse.ethicliStats);
+        chrome.runtime.sendMessage({ msgName: "productIdentified?" }, function(productResponse) {
+          console.log(productResponse);
+          if (productResponse) {
+            loadSponsor(productResponse.productName, ratingResponse.ethicliStats.overallScore);
+          }
+        });
       });
-      chrome.runtime.sendMessage({ msgName: "productIdentified?" }, function(response) {
-        console.log(response);
-        if (response) {
-          loadSponsor(response.productName);
-        }
-      });
+
     }
 });
 
@@ -144,27 +147,36 @@ function loadExtension(ethicliStats) {
 
 }
 
-function loadSponsor(productName) {
+function loadSponsor(productName, ethicliScore) {
   var display = false;
   var nameWords = productName.split(" ");
+  let relevance = 0;
 
   for (var i = 0; i < nameWords.length; i++) {
-    for (var j = 0; j < ad.productTags.length; j++) {
-      if (nameWords[i].toLowerCase() == ad.productTags[j].toLowerCase()) {
-        console.log(nameWords[i]);
-        console.log(ad.productTags[j]);
-        display = true;
+    for (var j = 0; j < ads.length; j++) {
+      for (var k = 0; k < ads[j].productTags.length; k++) {
+        console.log(ads[j].productTags[k].tag.toLowerCase());
+        console.log(nameWords[i].toLowerCase());
+
+        if (nameWords[i].toLowerCase() == ads[j].productTags[k].tag.toLowerCase()) {
+          console.log(ads[j].productTags[k].weight);
+          relevance = relevance + ads[j].productTags[k].weight;
+        }
       }
     }
   }
-  if (display) {
+  console.log(relevance);
+  console.log(ads[0].companyScore);
+  console.log(ethicliScore);
+  if (ads[0].companyScore > ethicliScore && relevance > 0.75) {
     console.log("display ad");
+    document.body.style = "height: 600px;";
     document.getElementById("sponsor").style = "display:block;";
-    document.getElementById("sponsorLink").href = ad.link;
-    document.getElementById("sponsorCompany").textContent = ad.companyName;
-    document.getElementById("sponsorRating").textContent = ad.companyScore;
-    document.getElementById("sponsorPrice").textContent = ad.price;
-    document.getElementById("sponsorImg").src = ad.image;
+    document.getElementById("sponsorLink").href = ads[0].productURL;
+    document.getElementById("sponsorCompany").textContent = ads[0].companyName;
+    document.getElementById("sponsorRating").textContent = ads[0].companyScore;
+    document.getElementById("sponsorPrice").textContent = ads[0].price;
+    document.getElementById("sponsorImg").src = ads[0].productImageURL;
   }
   else {
     console.log("hide ad");
