@@ -32,11 +32,16 @@ public class Business {
     private double socialScore;
     private double textileScore;
     private int bcorpCertYear;
+    private String [] animalScoreSource;
     private String bcorpProfile;
     private String betterBusinessBureau;
     private String companyType;
+    private String [] environmentScoreSource;
     private String ethicalElephantType;
+    private String [] laborScoreSource;
     private String name;
+    private String overallScoreDetails;
+    private String [] socialScoreSource;
     private String supportsBLMContribution;
     private String supportsBLMEntity;
     private String supportsBLMSource;
@@ -72,21 +77,27 @@ public class Business {
         this.socialScore = 0;
         this.textileScore = 0;
         this.bcorpCertYear = 0;
-        this.bcorpProfile = null;
-        this.betterBusinessBureau = null;
-        this.companyType = null;
+        this.bcorpProfile = "";
+        this.betterBusinessBureau = "";
+        this.companyType = "";
         this.ethicalElephantType = "";
-        this.name = null;
-        this.supportsBLMContribution = null;
-        this.supportsBLMEntity = null;
-        this.supportsBLMSource = null;
-        this.website = null;
+        this.name = "";
+        this.overallScoreDetails = "";
+        this.supportsBLMContribution = "";
+        this.supportsBLMEntity = "";
+        this.supportsBLMSource = "";
+        this.website = "";
+        this.animalScoreSource = new String[]{""};
+        this.environmentScoreSource = new String[]{""};
+        this.laborScoreSource = new String[]{""};
+        this.socialScoreSource = new String[]{""};
+
     }
 
     public Business(@JsonProperty("name") String name, // Business Profile:
                     @JsonProperty("website") String website,
                     @JsonProperty("companyType") String companyType,
-                    @JsonProperty("bcorpCertYear") int bcorpCertYear, // Business Info:
+                    @JsonProperty("bcorpCertYear") int bcorpCertYear,
                     @JsonProperty("bcorpProfile") String bcorpProfile,
                     @JsonProperty("blackOwnedBusiness") boolean blackOwnedBusiness,
                     @JsonProperty("ethicalElephantType") String ethicalElephantType,
@@ -115,6 +126,11 @@ public class Business {
                     @JsonProperty("leapingBunnyCertified") boolean leapingBunnyCertified,
                     @JsonProperty("veganDotOrgCertified") boolean veganDotOrgCertified,
                     @JsonProperty("wildlifeFriendlyCertified") boolean wildlifeFriendlyCertified,
+                    @JsonProperty("animalScoreSource") String [] animalScoreSource, // Business Info:
+                    @JsonProperty("environmentalScoreSource") String [] environmentScoreSource,
+                    @JsonProperty("laborScoreSource") String [] laborScoreSource,
+                    @JsonProperty("socialScoreSource") String [] socialScoreSource,
+                    @JsonProperty("overallScoreDetails") String overallScoreDetails,
                     @JsonProperty("animalsScore") double animalsScore, // Ethicli Scores:
                     @JsonProperty("environmentScore") double environmentScore,
                     @JsonProperty("laborScore") double laborScore,
@@ -153,6 +169,11 @@ public class Business {
         this.leapingBunnyCertified = leapingBunnyCertified;
         this.veganDotOrgCertified = veganDotOrgCertified;
         this.wildlifeFriendlyCertified = wildlifeFriendlyCertified;
+        this.animalScoreSource = animalScoreSource;
+        this.environmentScoreSource = environmentScoreSource;
+        this.laborScoreSource = laborScoreSource;
+        this.socialScoreSource = socialScoreSource;
+        this.overallScoreDetails = overallScoreDetails;
         this.animalsScore = animalsScore;
         this.environmentScore = environmentScore;
         this.laborScore = laborScore;
@@ -274,6 +295,10 @@ public class Business {
         return bcorpCertYear;
     }
 
+    public String [] getAnimalScoreSource() {
+        return animalScoreSource;
+    }
+
     public String getBcorpProfile() {
         return bcorpProfile;
     }
@@ -286,12 +311,28 @@ public class Business {
         return companyType;
     }
 
+    public String [] getEnvironmentScoreSource() {
+        return environmentScoreSource;
+    }
+
     public String getEthicalElephantType() {
         return ethicalElephantType;
     }
 
+    public String [] getLaborScoreSource() {
+        return laborScoreSource;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public String getOverallScoreDetails() {
+        return overallScoreDetails;
+    }
+
+    public String [] getSocialScoreSource() {
+        return socialScoreSource;
     }
 
     public String getSupportsBLMContribution() {
@@ -431,6 +472,10 @@ public class Business {
         this.bcorpCertYear = bcorpCertYear;
     }
 
+    public void setAnimalScoreSource(String [] animalScoreSource) {
+        this.animalScoreSource = animalScoreSource;
+    }
+
     public void setBcorpProfile(String bcorpProfile) {
         this.bcorpProfile = bcorpProfile;
     }
@@ -443,12 +488,28 @@ public class Business {
         this.companyType = companyType;
     }
 
+    public void setEnvironmentScoreSource(String [] environmentScoreSource) {
+        this.environmentScoreSource = environmentScoreSource;
+    }
+
     public void setEthicalElephantType(String ethicalElephantType) {
         this.ethicalElephantType = ethicalElephantType;
     }
 
+    public void setLaborScoreSource(String [] laborScoreSource) {
+        this.laborScoreSource = laborScoreSource;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setOverallScoreDetails(String overallScoreDetails) {
+        this.overallScoreDetails = overallScoreDetails;
+    }
+
+    public void setSocialScoreSource(String [] socialScoreSource) {
+        this.socialScoreSource = socialScoreSource;
     }
 
     public void setSupportsBLMContribution(String supportsBLMContribution) {
@@ -533,32 +594,42 @@ public class Business {
                 this.textileScore = business.getTextileScore();
             if (this.bcorpCertYear == 0)
                 this.bcorpCertYear = business.getBcorpCertYear();
-            if (this.bcorpProfile == null)
+            if (this.animalScoreSource[0].equals(""))
+                this.animalScoreSource = business.getAnimalScoreSource();
+            if (this.bcorpProfile.equals(""))
                 this.bcorpProfile = business.getBcorpProfile();
-            if (this.betterBusinessBureau == null)
+            if (this.betterBusinessBureau.equals(""))
                 this.betterBusinessBureau = business.getBetterBusinessBureau();
-            if (this.companyType == null)
+            if (this.companyType.equals(""))
                 this.companyType = business.getCompanyType();
+            if (this.environmentScoreSource[0].equals(""))
+                this.environmentScoreSource = business.getEnvironmentScoreSource();
             if (this.ethicalElephantType == "")
                 this.ethicalElephantType = business.getEthicalElephantType();
-            if (this.name == null)
+            if (this.laborScoreSource[0].equals(""))
+                this.laborScoreSource = business.getLaborScoreSource();
+            if (this.name.equals(""))
                 this.name = business.getName();
-            if (this.supportsBLMContribution == null) {
+            if (this.overallScoreDetails.equals(""))
+                this.overallScoreDetails = business.getOverallScoreDetails();
+            if (this.socialScoreSource[0].equals(""))
+                this.socialScoreSource = business.getSocialScoreSource();
+            if (this.supportsBLMContribution.equals("")) {
                 this.supportsBLMContribution = business.getSupportsBLMContribution();
-            } else if (business.getSupportsBLMContribution() != null) {
+            } else if (!business.getSupportsBLMContribution().equals("")) {
                 this.supportsBLMContribution += " + " + business.getSupportsBLMContribution();
             }
-            if (this.supportsBLMEntity == null) {
+            if (this.supportsBLMEntity.equals("")) {
                 this.supportsBLMEntity = business.getSupportsBLMEntity();
-            } else if (business.getSupportsBLMEntity() != null) {
+            } else if (!business.getSupportsBLMEntity().equals("")) {
                 this.supportsBLMEntity += " + " + business.getSupportsBLMEntity();
             }
-            if (this.supportsBLMSource == null) {
+            if (this.supportsBLMSource.equals("")) {
                 this.supportsBLMSource = business.getSupportsBLMSource();
-            } else if (business.getSupportsBLMSource() != null) {
+            } else if (!business.getSupportsBLMSource().equals("")) {
                 this.supportsBLMSource += " + " + business.getSupportsBLMSource();
             }
-            if (this.website == null)
+            if (this.website .equals(""))
                 this.website = business.getWebsite();
         }
     }
@@ -723,46 +794,5 @@ public class Business {
                 this.overallScore = 9.5;
             }
         }
-    }
-
-    public void display() {
-        System.out.println("Name:                   " + this.name);
-        System.out.println("Website:                " + this.website);
-        System.out.println("Business Type:          " + this.companyType);
-        System.out.println("BCorp Cert Year:        " + this.bcorpCertYear);
-        System.out.println("BCorp Profile:          " + this.bcorpProfile);
-        System.out.println("Black Owned Business:   " + this.blackOwnedBusiness);
-        System.out.println("EthicalElephant Type:   " + this.ethicalElephantType);
-        System.out.println("Native Owned Business:  " + this.nativeOwnedBusiness);
-        System.out.println("POC Owned Business:     " + this.pocOwnedBusiness);
-        System.out.println("Supports BLM:           " + this.supportsBLM);
-        System.out.println("BLM Contribution:       " + this.supportsBLMContribution);
-        System.out.println("Supports BLMEntity:     " + this.supportsBLMEntity);
-        System.out.println("Supports BLMSource:     " + this.supportsBLMSource);
-        System.out.println("Bcorp Community:        " + this.bcorpCommunityScore);
-        System.out.println("Bcorp Environment:      " + this.bcorpEnvironmentScore);
-        System.out.println("Bcorp Governance:       " + this.bcorpGovernanceScore);
-        System.out.println("Bcorp Score:            " + this.bcorpScore);
-        System.out.println("Bcorp Workers:          " + this.bcorpWorkerScore);
-        System.out.println("CCR Score:              " + this.corporateCriticScore);
-        System.out.println("GoY Score:              " + this.goodOnYouScore);
-        System.out.println("Green Power %:          " + this.greenPowerPercentage);
-        System.out.println("BBB Score:              " + this.betterBusinessBureau);
-        System.out.println("BCorp Certified:        " + this.bcorpCertified);
-        System.out.println("Bluesign Partner:       " + this.bluesignPartner);
-        System.out.println("Certified Humane:       " + this.certifiedHumane);
-        System.out.println("Choose Cruelty Free:    " + this.chooseCrueltyFreeCertified);
-        System.out.println("Choose Cruelty Vegan:   " + this.chooseCrueltyFreeVegan);
-        System.out.println("EthicalElephant CF:     " + this.ethicalElephantCrueltyFree);
-        System.out.println("EthicalElephant TOA:    " + this.ethicalElephantTestsOnAnimals);
-        System.out.println("Leaping Bunny Cert:     " + this.leapingBunnyCertified);
-        System.out.println("Vegan.org Certified:    " + this.veganDotOrgCertified);
-        System.out.println("Wildlife Friendly Cert: " + this.wildlifeFriendlyCertified);
-        System.out.println("Animal Score:           " + this.animalsScore);
-        System.out.println("Environment Score:      " + this.environmentScore);
-        System.out.println("Labor Score:            " + this.laborScore);
-        System.out.println("Social Score:           " + this.socialScore);
-        System.out.println("Textile Score:          " + this.textileScore);
-        System.out.println("Overall Score:          " + this.overallScore);
     }
 }
