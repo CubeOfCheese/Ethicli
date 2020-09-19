@@ -32,20 +32,20 @@ public class Business {
     private double socialScore;
     private double textileScore;
     private int bcorpCertYear;
-    private String [] animalScoreSource;
     private String bcorpProfile;
     private String betterBusinessBureau;
     private String companyType;
-    private String [] environmentScoreSource;
     private String ethicalElephantType;
-    private String [] laborScoreSource;
     private String name;
     private String overallScoreDetails;
-    private String [] socialScoreSource;
     private String supportsBLMContribution;
     private String supportsBLMEntity;
     private String supportsBLMSource;
     private String website;
+    private String [] animalScoreSource;
+    private String [] environmentScoreSource;
+    private String [] laborScoreSource;
+    private String [] socialScoreSource;
 
     public Business() {
         this.bcorpCertified = false;
