@@ -25,6 +25,7 @@
 
 #badgeDisplayer {
     position: absolute;
+    display: flex;
     top: 36px;
     right: 175px;
     font-size: 0.5em;
@@ -38,7 +39,8 @@
 }
 
 #badgeDisplayer.tooltip .tooltiptext {
-    margin-left: -60px;
+    width: 60px;
+    margin-left: -30px;
     margin-top: 20px;
 }
 
@@ -47,7 +49,6 @@
     top: 160px;
     left: 8px;
     width: 280px;
-    /* background: green; */
     display: none;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -55,7 +56,7 @@
 }
 
 #bcorp, #bluesign, #blackowned, #blmsupport, #vegan, #leapingbunny {
-    /* display: none; */
+    display: none;
     max-width: 100px;
     font-size: 0.5em;
     padding: 4px;
@@ -64,6 +65,7 @@
     border-radius: 50px;
     background: #05668D;
     color: #fff;
+    cursor: pointer;
 }
 
 #bcorp:hover, #bluesign:hover, #blackowned:hover, #blmsupport:hover, #vegan:hover, #leapingbunny:hover {

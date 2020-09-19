@@ -1,6 +1,7 @@
 var hasSubscore;
 var newHeight = 360;
 var fullheight = 360;
+var badgeCounter = 0;
 
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
     if (response.shoppingPage) {
@@ -89,7 +90,6 @@ function loadExtension(ethicliStats) {
     }
 
     // Badges ------------------------------------------------------------------------------------------------
-    var badgeCounter = 0;
     if (ethicliStats.bcorpCertified) {
         document.getElementById("bcorp").classList.add("trueForPage");
         badgeCounter++;
@@ -114,10 +114,14 @@ function loadExtension(ethicliStats) {
         document.getElementById("leapingbunny").classList.add("trueForPage");
         badgeCounter++;
     }
+    if (badgeCounter === 1) document.getElementById("numBadgesDescription").textContent = "badge";
     if (badgeCounter > 0) {
+        document.getElementById("numBadges").textContent = badgeCounter;
         document.getElementById("noBadge").style.display = "none";
         document.getElementById("hasBadge").style.display = "block";
         document.body.style = "height:190px;"
+    } else {
+        document.getElementById("badgeDisplayer").style.display = "none";
     }
     // End Badges ------------------------------------------------------------------------------------
 }

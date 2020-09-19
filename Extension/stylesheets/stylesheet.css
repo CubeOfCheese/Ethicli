@@ -105,11 +105,14 @@ body {
 }
 
 #siteurlcontainer {
-    display: inline-block;
+    display: flex;
     overflow-x: hidden;
+    flex-wrap: nowrap;
     width: 190px;
     white-space: pre;
-    height: 10px;
+    height: 20px;
+    margin-top: -12px;
+    margin-left: 36px;
     -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
     mask-image: linear-gradient(to right, black 90%, transparent 100%);
 }
@@ -207,7 +210,7 @@ p {
 
 #subscoreTip, #somethingWrongTip {
     position: absolute;
-    width: 100px;
+    width: 140px;
     font-size: 10px;
     cursor: default;
     line-height: 1.2em;
