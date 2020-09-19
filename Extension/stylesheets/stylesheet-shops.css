@@ -37,23 +37,29 @@
     cursor: pointer;
 }
 
+#badgeDisplayer.tooltip .tooltiptext {
+    margin-left: -60px;
+    margin-top: 20px;
+}
+
 #badges {
     position: absolute;
     top: 160px;
     left: 8px;
     width: 280px;
     /* background: green; */
-    display: flex;
+    display: none;
     justify-content: space-between;
     flex-wrap: wrap;
     text-align: center;
 }
 
 #bcorp, #bluesign, #blackowned, #blmsupport, #vegan, #leapingbunny {
-    display: none;
+    /* display: none; */
+    max-width: 100px;
     font-size: 0.5em;
     padding: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 12px;
     margin-right: 30px;
     border-radius: 50px;
     background: #05668D;
@@ -62,6 +68,12 @@
 
 #bcorp:hover, #bluesign:hover, #blackowned:hover, #blmsupport:hover, #vegan:hover, #leapingbunny:hover {
     background: #2482a7;
+}
+
+#bcorp.tooltip .tooltiptext, #bluesign.tooltip .tooltiptext, #blackowned.tooltip .tooltiptext, #blmsupport.tooltip .tooltiptext, #vegan.tooltip .tooltiptext, #leapingbunny.tooltip .tooltiptext {
+    max-width: 60px;
+    margin-left: -60px;
+    margin-top: 20px;
 }
 
 #bcorp.trueForPage, #vegan.trueForPage {
@@ -107,7 +119,26 @@
     background: #c6d4c5;
 }
 
-#popupMain.badgesExpanded #badges {}
+#popupMain.badgesExpanded #badgeDisplayer, #popupMain.badgesExpanded #detailsButton {
+    background: #0A2342;
+}
+
+#popupMain.badgesExpanded #badgeDisplayer:hover, #popupMain.badgesExpanded #detailsButton:hover {
+    background: rgb(37, 69, 112);
+}
+
+#popupMain.badgesExpanded #scores {
+    opacity: 0;
+}
+
+#popupMain.badgesExpanded #badges {
+    display: flex;
+    z-index: 1;
+}
+
+#popupMain.badgesExpanded #menuBacking {
+    background: rgba(198, 212, 197, 0.75);
+}
 
 
 /** Specific scores **/

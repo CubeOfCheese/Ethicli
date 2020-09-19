@@ -49,6 +49,7 @@ body {
     right: 36px;
     top: 24px;
     z-index: 1;
+    cursor: pointer;
 }
 
 #menuPanel button#somethingWrong {
@@ -60,6 +61,7 @@ body {
     margin-top: 16px;
     margin-right: -2px;
     z-index: 2;
+    font-size: 12px;
     cursor: pointer;
 }
 

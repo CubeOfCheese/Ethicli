@@ -135,6 +135,16 @@ window.onload = function() {
         somethingWrong();
     });
 
+    document.getElementById("badgeDisplayer").addEventListener("click", function() {
+        document.getElementById("popupMain").classList.toggle("badgesExpanded");
+        if(document.getElementById("popupMain").classList.contains("badgesExpanded")){
+            document.getElementById("badgeDisplayerTooltip").textContent = "Click to return to score breakdowns";
+        } else {
+            document.getElementById("badgeDisplayerTooltip").textContent = "Click to view expanded badges";
+        }
+            
+    })
+
     if (document.getElementById("scores") != null) { //if there is a scores ID present
         document.getElementById("scores").onmouseover = function() {
             if (hasSubscore) {
@@ -213,7 +223,7 @@ window.onload = function() {
 function fadeLongURL(){
     document.getElementById("siteurl").addEventListener("mouseover", function( event ) {
         var siteurlLength = this.innerHTML.length+16;
-        if(siteurlLength > 30){
+        if(siteurlLength > 40){
             this.style = "margin-left: -"+(siteurlLength)+"px;";
             document.getElementById("siteurlcontainer").style =
                 "-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%);\
