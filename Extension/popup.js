@@ -114,14 +114,16 @@ function loadExtension(ethicliStats) {
         document.getElementById("leapingbunny").classList.add("trueForPage");
         badgeCounter++;
     }
-    if (badgeCounter === 1) document.getElementById("numBadgesDescription").textContent = "badge";
+    
+    if (badgeCounter <= 3) {
+        document.getElementById("badges").classList.add("lessThanThreeBadges");
+        document.getElementById("badgeDisplayer").style.display = "none";
+    }
     if (badgeCounter > 0) {
         document.getElementById("numBadges").textContent = badgeCounter;
         document.getElementById("noBadge").style.display = "none";
         document.getElementById("hasBadge").style.display = "block";
         document.body.style = "height:190px;"
-    } else {
-        document.getElementById("badgeDisplayer").style.display = "none";
     }
     // End Badges ------------------------------------------------------------------------------------
 }
