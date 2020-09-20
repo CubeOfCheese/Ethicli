@@ -6,6 +6,7 @@
     <title>Ethicli</title>
     <link href="stylesheets/reset.css" rel="stylesheet">
     <link href="stylesheets/stylesheet.css" rel="stylesheet">
+    <link href="stylesheets/stylesheet-shops.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="popup.js"></script>
 </head>
@@ -48,6 +49,13 @@
             <div id="rating">
                 <h2 id="overallScore"></h2>
                 <p>/10</p>
+                <h6 id="badgeDisplayer" class="tooltip">
+                    <span>
+                        <img id="badgeIcon" src="images/badge.svg" alt="Badge Icon">
+                        <span id="numBadges"></span>
+                    </span>
+                    <span id="badgeDisplayerTooltip" class="tooltiptext">Click to view expanded badges</span>
+                </h6>
                 <div id="badges">
                     <h6 id="bluesign" class="tooltip">
                         <a href="https://www.bluesign.com" target="_blank">BlueSign</a>
