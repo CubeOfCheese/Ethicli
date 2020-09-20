@@ -183,6 +183,9 @@ p {
     color: #000;
 }
 
+::selection {
+    background: none;
+}
 
 /** Images and ToolTip **/
 
@@ -276,7 +279,6 @@ p {
 #tutorialBack, #tutorialNext, #tutorialBack::selection, #tutorialNext::selection {
     padding: 4px 8px;
     border-radius: 100px;
-    background: #f0a38c;
     color: #FEFCF2;
     font-size: 14px;
     cursor: pointer;

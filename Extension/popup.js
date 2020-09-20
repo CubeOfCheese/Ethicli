@@ -114,7 +114,11 @@ function loadExtension(ethicliStats) {
         document.getElementById("leapingbunny").classList.add("trueForPage");
         badgeCounter++;
     }
-    
+    if (ethicliStats.leapingBunnyCertified) {
+        document.getElementById("leapingbunny").classList.add("trueForPage");
+        badgeCounter++;
+    }
+
     if (badgeCounter <= 3) {
         document.getElementById("badges").classList.add("lessThanThreeBadges");
         document.getElementById("badgeDisplayer").style.display = "none";
@@ -145,8 +149,10 @@ window.onload = function() {
         document.getElementById("popupMain").classList.toggle("badgesExpanded");
         if(document.getElementById("popupMain").classList.contains("badgesExpanded")){
             document.getElementById("badgeDisplayerTooltip").textContent = "Click to return to score breakdowns";
+            document.getElementById("badgeIcon").src = "images/badge-dark.svg";
         } else {
             document.getElementById("badgeDisplayerTooltip").textContent = "Click to view expanded badges";
+            document.getElementById("badgeIcon").src = "images/badge.svg";
         }
             
     })
