@@ -278,6 +278,7 @@ p {
 
 #tutorialBack, #tutorialNext, #tutorialBack::selection, #tutorialNext::selection {
     padding: 4px 8px;
+    background: #d69f8e;
     border-radius: 100px;
     color: #FEFCF2;
     font-size: 14px;
@@ -286,4 +287,8 @@ p {
 
 #tutorialNext {
     background: #D27F65;
+}
+
+#tutorialBack:hover, #tutorialNext:hover {
+    opacity: 0.75;
 }

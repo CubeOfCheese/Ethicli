@@ -13,6 +13,50 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
 
 function loadExtension(ethicliStats) {
     var ethicliScore = (ethicliStats.overallScore).toFixed(1);
+    // Badges ------------------------------------------------------------------------------------------------
+    var badgeCounter = 0;
+    if (ethicliStats.bcorpCertified) {
+        document.getElementById("bcorp").classList.add("trueForPage");
+        badgeCounter++;
+    }
+    if (ethicliStats.bluesignPartner) {
+        document.getElementById("bluesign").classList.add("trueForPage");
+        badgeCounter++;
+    }
+    if (ethicliStats.blackOwnedBusiness) {
+        document.getElementById("blackowned").classList.add("trueForPage");
+        badgeCounter++;
+    }
+    if (ethicliStats.supportsBLM) {
+        document.getElementById("blmsupport").classList.add("trueForPage");
+        badgeCounter++;
+    }
+    if (ethicliStats.veganDotOrgCertified) {
+        document.getElementById("vegan").classList.add("trueForPage");
+        badgeCounter++;
+    }
+    if (ethicliStats.leapingBunnyCertified) {
+        document.getElementById("leapingbunny").classList.add("trueForPage");
+        badgeCounter++;
+    }
+    if (badgeCounter <= 3) {
+        document.getElementById("badges").classList.add("lessThanThreeBadges");
+        if (document.getElementById("badgeDisplayer") !== null) {
+          document.getElementById("badgeDisplayer").style.display = "none";
+        }
+    }
+    if (badgeCounter > 0) {
+        if (document.getElementById("numBadges") !== null) {
+          document.getElementById("numBadges").textContent = badgeCounter;
+        }
+        if (document.getElementById("noBadge") !== null || document.getElementById("hasBadge") !== null) {
+          document.getElementById("noBadge").style.display = "none";
+          document.getElementById("hasBadge").style.display = "block";
+        }
+        document.body.style = "height:190px;"
+    }
+    // End Badges ------------------------------------------------------------------------------------
+
     if (ethicliScore > 0.0) { // This will need to be updated once negative scores are used as default
         adjustSubscores();
     }
@@ -46,6 +90,22 @@ function loadExtension(ethicliStats) {
         } else {
             hasSubscore = true;
         }
+        //Changes subratings
+        document.getElementById("envScore").textContent = ethicliStats.environmentScore.toFixed(1);
+        document.getElementById("laborScore").textContent = ethicliStats.laborScore.toFixed(1);
+        document.getElementById("animalScore").textContent = ethicliStats.animalsScore.toFixed(1);
+        document.getElementById("socialScore").textContent = ethicliStats.socialScore.toFixed(1);
+
+        //Changes subratings scorebar
+        var envScore = ethicliStats.environmentScore * 20;
+        document.getElementById("envScoreBar").style.width = envScore + "px";
+        var laborScore = ethicliStats.laborScore * 20;
+        document.getElementById("laborScoreBar").style.width = laborScore + "px";
+        var animalScore = ethicliStats.animalsScore * 20;
+        document.getElementById("animalScoreBar").style.width = animalScore + "px";
+        var socialScore = ethicliStats.socialScore * 20;
+        document.getElementById("socialScoreBar").style.width = socialScore + "px";
+
         newHeight = "height:" + fullheight + "px;";
         document.body.style = newHeight;
     }
@@ -66,66 +126,38 @@ function loadExtension(ethicliStats) {
         infoLink.href = "https://ethicli.com/info/" + companyName;
         infoLink.target = "_blank";
         infoLink.textContent = "View Details";
-        document.getElementById("detailsButton").append(infoLink);
+        if (document.getElementById("detailsButton") !== null) {
+          document.getElementById("detailsButton").append(infoLink);
+        }
     })
-
-    //Changes subratings
-    document.getElementById("envScore").textContent = ethicliStats.environmentScore.toFixed(1);
-    document.getElementById("laborScore").textContent = ethicliStats.laborScore.toFixed(1);
-    document.getElementById("animalScore").textContent = ethicliStats.animalsScore.toFixed(1);
-    document.getElementById("socialScore").textContent = ethicliStats.socialScore.toFixed(1);
-
-    //Changes subratings scorebar
-    var envScore = ethicliStats.environmentScore * 20;
-    document.getElementById("envScoreBar").style.width = envScore + "px";
-    var laborScore = ethicliStats.laborScore * 20;
-    document.getElementById("laborScoreBar").style.width = laborScore + "px";
-    var animalScore = ethicliStats.animalsScore * 20;
-    document.getElementById("animalScoreBar").style.width = animalScore + "px";
-    var socialScore = ethicliStats.socialScore * 20;
-    document.getElementById("socialScoreBar").style.width = socialScore + "px";
 
     if (document.getElementById("overallScore") !== null) { //checks to see if ID even appears on page
         document.getElementById("overallScore").textContent = ethicliScore;
     }
+}
 
-    // Badges ------------------------------------------------------------------------------------------------
-    if (ethicliStats.bcorpCertified) {
-        document.getElementById("bcorp").classList.add("trueForPage");
-        badgeCounter++;
-    }
-    if (ethicliStats.bluesignPartner) {
-        document.getElementById("bluesign").classList.add("trueForPage");
-        badgeCounter++;
-    }
-    if (ethicliStats.blackOwnedBusiness) {
-        document.getElementById("blackowned").classList.add("trueForPage");
-        badgeCounter++;
-    }
-    if (ethicliStats.supportsBLM) {
-        document.getElementById("blmsupport").classList.add("trueForPage");
-        badgeCounter++;
-    }
-    if (ethicliStats.veganDotOrgCertified) {
-        document.getElementById("vegan").classList.add("trueForPage");
-        badgeCounter++;
-    }
-    if (ethicliStats.leapingBunnyCertified) {
-        document.getElementById("leapingbunny").classList.add("trueForPage");
-        badgeCounter++;
-    }
+function loadSponsor(productName, ethicliScore) {
+  if (ethicliScore <= 0) {
+    return;
+  }
+  let display = false;
+  const nameWords = productName.split(" ");
+  let adToDisplay;
+  let relevance = 0;
+  const MIN_RELEVANCE = 0.75;
 
-    if (badgeCounter <= 3) {
-        document.getElementById("badges").classList.add("lessThanThreeBadges");
-        document.getElementById("badgeDisplayer").style.display = "none";
+  for (let j = 0; j < ads.length; j++) {
+    if (!ads[j].companyScore > ethicliScore) { continue; }
+    let tempRelevance = 0;
+    for (let i = 0; i < nameWords.length; i++) {
+      for (let k = 0; k < ads[j].productTags.length; k++) {
+        if (nameWords[i].toLowerCase() == ads[j].productTags[k].tag.toLowerCase() ||
+            nameWords[i].toLowerCase().substring(0, nameWords[i].length-1) == ads[j].productTags[k].tag.toLowerCase()) {
+            tempRelevance = tempRelevance + ads[j].productTags[k].weight;
+        }
+      }
     }
-    if (badgeCounter > 0) {
-        document.getElementById("numBadges").textContent = badgeCounter;
-        document.getElementById("noBadge").style.display = "none";
-        document.getElementById("hasBadge").style.display = "block";
-        document.body.style = "height:190px;"
-    }
-    // End Badges ------------------------------------------------------------------------------------
+  }
 }
 
 window.onload = function() {
@@ -140,18 +172,19 @@ window.onload = function() {
     document.getElementById("somethingWrong").addEventListener("click", function() {
         somethingWrong();
     });
+    if (document.getElementById("badgeDisplayer") !== null) {
+      document.getElementById("badgeDisplayer").addEventListener("click", function() {
+          document.getElementById("popupMain").classList.toggle("badgesExpanded");
+          if(document.getElementById("popupMain").classList.contains("badgesExpanded")){
+              document.getElementById("badgeDisplayerTooltip").textContent = "Click to return to score breakdowns";
+              document.getElementById("badgeIcon").src = "images/badge-dark.svg";
+          } else {
+              document.getElementById("badgeDisplayerTooltip").textContent = "Click to view expanded badges";
+              document.getElementById("badgeIcon").src = "images/badge.svg";
+          }
 
-    document.getElementById("badgeDisplayer").addEventListener("click", function() {
-        document.getElementById("popupMain").classList.toggle("badgesExpanded");
-        if(document.getElementById("popupMain").classList.contains("badgesExpanded")){
-            document.getElementById("badgeDisplayerTooltip").textContent = "Click to return to score breakdowns";
-            document.getElementById("badgeIcon").src = "images/badge-dark.svg";
-        } else {
-            document.getElementById("badgeDisplayerTooltip").textContent = "Click to view expanded badges";
-            document.getElementById("badgeIcon").src = "images/badge.svg";
-        }
-            
-    })
+      })
+    }
 
     if (document.getElementById("scores") != null) { //if there is a scores ID present
         document.getElementById("scores").onmouseover = function() {
