@@ -91,7 +91,6 @@ public class Business {
         this.environmentScoreSource = new String[]{""};
         this.laborScoreSource = new String[]{""};
         this.socialScoreSource = new String[]{""};
-
     }
 
     public Business(@JsonProperty("name") String name, // Business Profile:
@@ -629,7 +628,7 @@ public class Business {
             } else if (!business.getSupportsBLMSource().equals("")) {
                 this.supportsBLMSource += " + " + business.getSupportsBLMSource();
             }
-            if (this.website .equals(""))
+            if (this.website.equals(""))
                 this.website = business.getWebsite();
         }
     }
