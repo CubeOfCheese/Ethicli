@@ -114,10 +114,6 @@ function loadExtension(ethicliStats) {
         document.getElementById("leapingbunny").classList.add("trueForPage");
         badgeCounter++;
     }
-    if (ethicliStats.leapingBunnyCertified) {
-        document.getElementById("leapingbunny").classList.add("trueForPage");
-        badgeCounter++;
-    }
 
     if (badgeCounter <= 3) {
         document.getElementById("badges").classList.add("lessThanThreeBadges");
