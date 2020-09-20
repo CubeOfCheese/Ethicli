@@ -1,3 +1,5 @@
+import { ads } from './response.js';
+
 var hasSubscore;
 var newHeight = 360;
 var fullheight = 360;
@@ -5,9 +7,15 @@ var badgeCounter = 0;
 
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
     if (response.shoppingPage) {
-        chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(response) {
-            loadExtension(response.ethicliStats);
+        chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(ratingResponse) {
+            loadExtension(ratingResponse.ethicliStats);
+            chrome.runtime.sendMessage({ msgName: "productIdentified?" }, function(productResponse) {
+                if (productResponse) {
+                    loadSponsor(productResponse.productName, ratingResponse.ethicliStats.overallScore);
+                }
+            });
         });
+
     }
 });
 
@@ -42,16 +50,16 @@ function loadExtension(ethicliStats) {
     if (badgeCounter <= 3) {
         document.getElementById("badges").classList.add("lessThanThreeBadges");
         if (document.getElementById("badgeDisplayer") !== null) {
-          document.getElementById("badgeDisplayer").style.display = "none";
+            document.getElementById("badgeDisplayer").style.display = "none";
         }
     }
     if (badgeCounter > 0) {
         if (document.getElementById("numBadges") !== null) {
-          document.getElementById("numBadges").textContent = badgeCounter;
+            document.getElementById("numBadges").textContent = badgeCounter;
         }
         if (document.getElementById("noBadge") !== null || document.getElementById("hasBadge") !== null) {
-          document.getElementById("noBadge").style.display = "none";
-          document.getElementById("hasBadge").style.display = "block";
+            document.getElementById("noBadge").style.display = "none";
+            document.getElementById("hasBadge").style.display = "block";
         }
         document.body.style = "height:190px;"
     }
@@ -127,7 +135,7 @@ function loadExtension(ethicliStats) {
         infoLink.target = "_blank";
         infoLink.textContent = "View Details";
         if (document.getElementById("detailsButton") !== null) {
-          document.getElementById("detailsButton").append(infoLink);
+            document.getElementById("detailsButton").append(infoLink);
         }
     })
 
@@ -137,27 +145,39 @@ function loadExtension(ethicliStats) {
 }
 
 function loadSponsor(productName, ethicliScore) {
-  if (ethicliScore <= 0) {
-    return;
-  }
-  let display = false;
-  const nameWords = productName.split(" ");
-  let adToDisplay;
-  let relevance = 0;
-  const MIN_RELEVANCE = 0.75;
+    const nameWords = productName.split(" ");
+    let adToDisplay;
+    let relevance = 0;
+    const MIN_RELEVANCE = 0.75;
 
-  for (let j = 0; j < ads.length; j++) {
-    if (!ads[j].companyScore > ethicliScore) { continue; }
-    let tempRelevance = 0;
-    for (let i = 0; i < nameWords.length; i++) {
-      for (let k = 0; k < ads[j].productTags.length; k++) {
-        if (nameWords[i].toLowerCase() == ads[j].productTags[k].tag.toLowerCase() ||
-            nameWords[i].toLowerCase().substring(0, nameWords[i].length-1) == ads[j].productTags[k].tag.toLowerCase()) {
-            tempRelevance = tempRelevance + ads[j].productTags[k].weight;
+    for (let j = 0; j < ads.length; j++) {
+        if (!ads[j].companyScore > ethicliScore) { continue; }
+        let tempRelevance = 0;
+        for (let i = 0; i < nameWords.length; i++) {
+            for (let k = 0; k < ads[j].productTags.length; k++) {
+                if (nameWords[i].toLowerCase() == ads[j].productTags[k].tag.toLowerCase() ||
+                    nameWords[i].toLowerCase().substring(0, nameWords[i].length - 1) == ads[j].productTags[k].tag.toLowerCase()) {
+                    tempRelevance = tempRelevance + ads[j].productTags[k].weight;
+                }
+            }
         }
-      }
+        if (tempRelevance > MIN_RELEVANCE && tempRelevance > relevance) {
+            adToDisplay = ads[j];
+            relevance = tempRelevance;
+        }
     }
-  }
+    if (adToDisplay) {
+        document.body.style = "height: 600px;";
+        document.getElementById("sponsor").style = "display:block;";
+        document.getElementById("sponsorLink").href = adToDisplay.productURL;
+        document.getElementById("sponsorProductName").textContent = adToDisplay.productName;
+        document.getElementById("sponsorCompany").textContent = adToDisplay.companyName;
+        document.getElementById("sponsorRating").textContent = adToDisplay.companyScore;
+        document.getElementById("sponsorPrice").textContent = adToDisplay.price;
+        document.getElementById("sponsorImg").src = adToDisplay.productImageURL;
+    } else {
+        document.getElementById("sponsor").style = "display:none;";
+    }
 }
 
 window.onload = function() {
@@ -173,17 +193,17 @@ window.onload = function() {
         somethingWrong();
     });
     if (document.getElementById("badgeDisplayer") !== null) {
-      document.getElementById("badgeDisplayer").addEventListener("click", function() {
-          document.getElementById("popupMain").classList.toggle("badgesExpanded");
-          if(document.getElementById("popupMain").classList.contains("badgesExpanded")){
-              document.getElementById("badgeDisplayerTooltip").textContent = "Click to return to score breakdowns";
-              document.getElementById("badgeIcon").src = "images/badge-dark.svg";
-          } else {
-              document.getElementById("badgeDisplayerTooltip").textContent = "Click to view expanded badges";
-              document.getElementById("badgeIcon").src = "images/badge.svg";
-          }
+        document.getElementById("badgeDisplayer").addEventListener("click", function() {
+            document.getElementById("popupMain").classList.toggle("badgesExpanded");
+            if (document.getElementById("popupMain").classList.contains("badgesExpanded")) {
+                document.getElementById("badgeDisplayerTooltip").textContent = "Click to return to score breakdowns";
+                document.getElementById("badgeIcon").src = "images/badge-dark.svg";
+            } else {
+                document.getElementById("badgeDisplayerTooltip").textContent = "Click to view expanded badges";
+                document.getElementById("badgeIcon").src = "images/badge.svg";
+            }
 
-      })
+        })
     }
 
     if (document.getElementById("scores") != null) { //if there is a scores ID present
@@ -261,11 +281,11 @@ window.onload = function() {
     }
 }
 
-function fadeLongURL(){
-    document.getElementById("siteurl").addEventListener("mouseover", function( event ) {
-        var siteurlLength = this.innerHTML.length+16;
-        if(siteurlLength > 40){
-            this.style = "margin-left: -"+(siteurlLength)+"px;";
+function fadeLongURL() {
+    document.getElementById("siteurl").addEventListener("mouseover", function(event) {
+        var siteurlLength = this.innerHTML.length + 16;
+        if (siteurlLength > 40) {
+            this.style = "margin-left: -" + (siteurlLength) + "px;";
             document.getElementById("siteurlcontainer").style =
                 "-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%);\
                 mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%)";
@@ -280,30 +300,29 @@ function fadeLongURL(){
 }
 
 function urlToCompanyName(url) {
-  if (url.substring(0, 8) == "https://") {
-    url = url.substring(8);
-  }
-  else if (url.substring(0, 7) == "http://") {
-    url = url.substring(7);
-  }
-  var endOfBaseDomain = url.search(/\//);
-  if (endOfBaseDomain > -1) {
-    url = url.substring(0, endOfBaseDomain);
-  }
-  var endOfSubDomain = url.lastIndexOf('.', url.lastIndexOf('.')-1)
-  url = url.substring(endOfSubDomain+1);
-  endOfBaseDomain = url.search(/\./);
-  if (endOfBaseDomain > -1) {
-    url = url.substring(0, endOfBaseDomain);
-  }
-  return url;
+    if (url.substring(0, 8) == "https://") {
+        url = url.substring(8);
+    } else if (url.substring(0, 7) == "http://") {
+        url = url.substring(7);
+    }
+    var endOfBaseDomain = url.search(/\//);
+    if (endOfBaseDomain > -1) {
+        url = url.substring(0, endOfBaseDomain);
+    }
+    var endOfSubDomain = url.lastIndexOf('.', url.lastIndexOf('.') - 1)
+    url = url.substring(endOfSubDomain + 1);
+    endOfBaseDomain = url.search(/\./);
+    if (endOfBaseDomain > -1) {
+        url = url.substring(0, endOfBaseDomain);
+    }
+    return url;
 }
 
 function somethingWrong() {
     var query = { active: true, currentWindow: true };
     chrome.tabs.query(query, function callback(tabs) {
         var currentTab = tabs[0];
-        var fetchUrlFeedback = "http://ethicli.com/feedback";
+        var fetchUrlFeedback = "https://ethicli.com/feedback";
         let fetchData = {
             url: currentTab.url
         };
@@ -336,7 +355,10 @@ _gaq.push(['_setAccount', 'UA-173025073-1']);
 _gaq.push(['_trackPageview']);
 
 (function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = 'https://ssl.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
 })();

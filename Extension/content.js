@@ -1,4 +1,5 @@
 var isShoppingPage;
+var productName = "";
 
 window.onload = function() {
   chrome.storage.local.get("optIn", function(response) {
@@ -183,6 +184,7 @@ function pageEval() {
 
     if (wordTracker > 0) { //if there's at least one shopWord present
         chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: true }, function(response) {});
+        identifyProduct();
         isShoppingPage = true;
     } else {
         chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: false }, function(response) {});
@@ -190,10 +192,36 @@ function pageEval() {
     }
 };
 
+function identifyProduct() {
+  productName = "";
+  //gets all html elements that are images and have an ancestor with a classname that includes the word product
+  var productElements = document.querySelectorAll("[class*='product'] * img");
+  if (productElements[0]) {
+    //.alt is the alt text for the image
+    productName = productName + productElements[0].alt + " ";
+  }
+  productName = productName + document.title;
+  if (productName != "") {
+    chrome.runtime.sendMessage({ msgName: "ProductIdentified", productName: productName }, function(response) {});
+  }
+}
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      if (request.msgName == "isShoppingPage?") {
+          sendResponse({ isShoppingPage: isShoppingPage });
+      }
+      return true;
+    }
+);
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request.msgName == "isShoppingPage?") {
             sendResponse({ isShoppingPage: isShoppingPage });
+        }
+        if (request.msgName == "productIdentified?") {
+            sendResponse({ productName: productName });
         }
     }
 );
