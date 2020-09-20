@@ -1,28 +1,17 @@
-#badges {
-    position: absolute;
-    top: 160px;
-    left: 8px;
-    width: 280px;
-    display: none;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    text-align: center;
-}
-
-#badges.lessThanThreeBadges {
+#badges, #badges.lessThanThreeBadges {
     position: absolute;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     align-items: flex-end;
-    top: 32px;
-    left: -165px;
     font-size: 0.5em;
-    padding: 4px 6px;
+    padding: 0;
 }
 
 #bcorp, #bluesign, #blackowned, #blmsupport, #vegan, #leapingbunny {
     display: none;
-    max-width: 100px;
+    position: relative;
+    text-align: center;
     font-size: 0.5em;
     padding: 4px;
     margin-bottom: 12px;
@@ -38,9 +27,10 @@
 }
 
 #bcorp.tooltip .tooltiptext, #bluesign.tooltip .tooltiptext, #blackowned.tooltip .tooltiptext, #blmsupport.tooltip .tooltiptext, #vegan.tooltip .tooltiptext, #leapingbunny.tooltip .tooltiptext {
+    position: absolute;
     max-width: 60px;
     margin-left: -60px;
-    margin-top: 20px;
+    bottom: 28px;
 }
 
 #bcorp.trueForPage, #vegan.trueForPage {
