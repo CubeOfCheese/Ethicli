@@ -170,6 +170,7 @@ function loadSponsor(productName, ethicliScore) {
         document.body.style = "height: 600px;";
         document.getElementById("sponsor").style = "display:block;";
         document.getElementById("sponsorLink").href = adToDisplay.productURL;
+        document.getElementById("sponsorProductName").textContent = adToDisplay.productName;
         document.getElementById("sponsorCompany").textContent = adToDisplay.companyName;
         document.getElementById("sponsorRating").textContent = adToDisplay.companyScore;
         document.getElementById("sponsorPrice").textContent = adToDisplay.price;
