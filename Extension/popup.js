@@ -3,6 +3,7 @@ import {ads} from './response.js';
 var hasSubscore;
 var newHeight = 360;
 var fullheight = 360;
+var badgeCounter = 0;
 
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
     if (response.shoppingPage) {
@@ -97,7 +98,6 @@ function loadExtension(ethicliStats) {
     }
 
     // Badges ------------------------------------------------------------------------------------------------
-    var badgeCounter = 0;
     if (ethicliStats.bcorpCertified) {
         document.getElementById("bcorp").classList.add("trueForPage");
         badgeCounter++;
@@ -122,10 +122,16 @@ function loadExtension(ethicliStats) {
         document.getElementById("leapingbunny").classList.add("trueForPage");
         badgeCounter++;
     }
-    if (badgeCounter>0) {
-        // document.getElementById("noBadge").style.display = "none";
-        // document.getElementById("hasBadge").style.display = "block";
-        // document.body.style = "height:190px;"
+
+    if (badgeCounter <= 3) {
+        document.getElementById("badges").classList.add("lessThanThreeBadges");
+        document.getElementById("badgeDisplayer").style.display = "none";
+    }
+    if (badgeCounter > 0) {
+        document.getElementById("numBadges").textContent = badgeCounter;
+        document.getElementById("noBadge").style.display = "none";
+        document.getElementById("hasBadge").style.display = "block";
+        document.body.style = "height:190px;"
     }
     // End Badges ------------------------------------------------------------------------------------
 
@@ -180,6 +186,18 @@ window.onload = function() {
     document.getElementById("somethingWrong").addEventListener("click", function() {
         somethingWrong();
     });
+
+    document.getElementById("badgeDisplayer").addEventListener("click", function() {
+        document.getElementById("popupMain").classList.toggle("badgesExpanded");
+        if(document.getElementById("popupMain").classList.contains("badgesExpanded")){
+            document.getElementById("badgeDisplayerTooltip").textContent = "Click to return to score breakdowns";
+            document.getElementById("badgeIcon").src = "images/badge-dark.svg";
+        } else {
+            document.getElementById("badgeDisplayerTooltip").textContent = "Click to view expanded badges";
+            document.getElementById("badgeIcon").src = "images/badge.svg";
+        }
+            
+    })
 
     if (document.getElementById("scores") != null) { //if there is a scores ID present
         document.getElementById("scores").onmouseover = function() {
@@ -259,7 +277,7 @@ window.onload = function() {
 function fadeLongURL(){
     document.getElementById("siteurl").addEventListener("mouseover", function( event ) {
         var siteurlLength = this.innerHTML.length+16;
-        if(siteurlLength > 30){
+        if(siteurlLength > 40){
             this.style = "margin-left: -"+(siteurlLength)+"px;";
             document.getElementById("siteurlcontainer").style =
                 "-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%);\
