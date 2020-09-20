@@ -57,19 +57,18 @@ public class Tools {
     }
 
     public static String[] csvToStringArray(String content) {
-        String[] splitByDoubleComma;
+        String[] splitByComma;
         String output = "";
         boolean quoteDetected = false;
-        if (content.contains("\"\""))
-            content.replaceAll("\"\"", "@@DOUBLEQUOTES@@");
-        splitByDoubleComma = content.split(",");
-        for (int a = 0; a < splitByDoubleComma.length; ++a) {
-            if (splitByDoubleComma[a].contains("\""))
+        content = content.replaceAll("\"\"", "@@DOUBLEQUOTES@@");
+        splitByComma = content.split(",");
+        for (int a = 0; a < splitByComma.length; ++a) {
+            if (splitByComma[a].contains("\""))
                 quoteDetected = !quoteDetected;
             if (quoteDetected) {
-                output += splitByDoubleComma[a] + ",";
+                output += splitByComma[a] + ",";
             } else {
-                output += splitByDoubleComma[a] + "@@DELIMITER@@";
+                output += splitByComma[a] + "@@DELIMITER@@";
             }
         }
         return output
