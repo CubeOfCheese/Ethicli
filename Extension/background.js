@@ -96,6 +96,9 @@ chrome.tabs.onActivated.addListener(
                 // currentTab.url is null for new tab pages when first opened and equal to "chrome://newtab/" when navigated to from another tab.
                 if (isShoppingPage && currentTab.url && (currentTab.url != "chrome://newtab/")) {
                 // data should only be retrieved for actual pages that are shopping pages
+                    chrome.tabs.sendMessage(tabs[0].id, { msgName: "productIdentified?" }, function(response) {
+                        productName = response.productName
+                    })
                     var request = { msgName: "PageEvaluated", shoppingPage: true };
                     var sender = { tab: { url: "" } };
                     sender.tab.url = currentTab.url;
@@ -138,11 +141,19 @@ chrome.tabs.onCreated.addListener(
         })
     }
 )
+chrome.tabs.onUpdated.addListener(
+  function() {
+    var query = { active: true, currentWindow: true };
+    chrome.tabs.query(query, function callback(tabs) {
+        var currentTab = tabs[0];
+        chrome.tabs.sendMessage(currentTab.id, { msgName: "reevaluatePage" });
+    })
+  }
+)
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request.msgName == "ProductIdentified") {
-            console.log(request.productName);
             productName = request.productName;
         }
     }
@@ -157,7 +168,6 @@ chrome.runtime.onMessage.addListener(
             sendResponse({ ethicliStats: ethicliStats });
         }
         if (request.msgName == "productIdentified?") {
-            console.log(productName);
             sendResponse({ productName: productName });
         }
     }

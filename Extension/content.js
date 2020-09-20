@@ -193,16 +193,14 @@ function pageEval() {
 };
 
 function identifyProduct() {
+  productName = "";
   //gets all html elements that are images and have an ancestor with a classname that includes the word product
   var productElements = document.querySelectorAll("[class*='product'] * img");
-  console.log(productElements);
   if (productElements[0]) {
-    console.log(productElements[0]); //.alt is the alt text for the image
+    //.alt is the alt text for the image
     productName = productName + productElements[0].alt + " ";
   }
-  console.log(document.title);
   productName = productName + document.title;
-  console.log(productName);
   if (productName != "") {
     chrome.runtime.sendMessage({ msgName: "ProductIdentified", productName: productName }, function(response) {});
   }
@@ -213,10 +211,6 @@ chrome.runtime.onMessage.addListener(
       if (request.msgName == "isShoppingPage?") {
           sendResponse({ isShoppingPage: isShoppingPage });
       }
-      // if (request.msgName == "productIdentified?") {
-      //     console.log(productName);
-      //     sendResponse({ productName: productName });
-      // }
       return true;
     }
 );
@@ -225,6 +219,9 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request.msgName == "isShoppingPage?") {
             sendResponse({ isShoppingPage: isShoppingPage });
+        }
+        if (request.msgName == "productIdentified?") {
+            sendResponse({ productName: productName });
         }
     }
 );

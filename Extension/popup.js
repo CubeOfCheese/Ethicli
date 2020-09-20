@@ -9,7 +9,6 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
       chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(ratingResponse) {
         loadExtension(ratingResponse.ethicliStats);
         chrome.runtime.sendMessage({ msgName: "productIdentified?" }, function(productResponse) {
-          console.log(productResponse);
           if (productResponse) {
             loadSponsor(productResponse.productName, ratingResponse.ethicliStats.overallScore);
           }
@@ -133,40 +132,39 @@ function loadExtension(ethicliStats) {
 }
 
 function loadSponsor(productName, ethicliScore) {
-  var display = false;
-  var nameWords = productName.split(" ");
+  let display = false;
+  const nameWords = productName.split(" ");
+  let adToDisplay;
   let relevance = 0;
+  const MIN_RELEVANCE = 0.75;
 
-  for (var i = 0; i < nameWords.length; i++) {
-    for (var j = 0; j < ads.length; j++) {
-      for (var k = 0; k < ads[j].productTags.length; k++) {
-        console.log(ads[j].productTags[k].tag.toLowerCase());
-        console.log(nameWords[i].toLowerCase());
-
-        if (nameWords[i].toLowerCase() == ads[j].productTags[k].tag.toLowerCase()) {
-          console.log(ads[j].productTags[k].weight);
-          relevance = relevance + ads[j].productTags[k].weight;
+  for (let j = 0; j < ads.length; j++) {
+    if (!ads[j].companyScore > ethicliScore) { continue; }
+    let tempRelevance = 0;
+    for (let i = 0; i < nameWords.length; i++) {
+      for (let k = 0; k < ads[j].productTags.length; k++) {
+        if (nameWords[i].toLowerCase() == ads[j].productTags[k].tag.toLowerCase() ||
+            nameWords[i].toLowerCase().substring(0, nameWords[i].length-1) == ads[j].productTags[k].tag.toLowerCase()) {
+            tempRelevance = tempRelevance + ads[j].productTags[k].weight;
         }
       }
     }
+    if (tempRelevance > MIN_RELEVANCE && tempRelevance > relevance) {
+      adToDisplay = ads[j];
+      relevance = tempRelevance;
+    }
   }
-  console.log(relevance);
-  console.log(ads[0].companyScore);
-  console.log(ethicliScore);
-  if (ads[0].companyScore > ethicliScore && relevance > 0.75) {
-    console.log("display ad");
+  if (adToDisplay) {
     document.body.style = "height: 600px;";
     document.getElementById("sponsor").style = "display:block;";
-    document.getElementById("sponsorLink").href = ads[0].productURL;
-    document.getElementById("sponsorCompany").textContent = ads[0].companyName;
-    document.getElementById("sponsorRating").textContent = ads[0].companyScore;
-    document.getElementById("sponsorPrice").textContent = ads[0].price;
-    document.getElementById("sponsorImg").src = ads[0].productImageURL;
+    document.getElementById("sponsorLink").href = adToDisplay.productURL;
+    document.getElementById("sponsorCompany").textContent = adToDisplay.companyName;
+    document.getElementById("sponsorRating").textContent = adToDisplay.companyScore;
+    document.getElementById("sponsorPrice").textContent = adToDisplay.price;
+    document.getElementById("sponsorImg").src = adToDisplay.productImageURL;
   }
   else {
-    console.log("hide ad");
     document.getElementById("sponsor").style = "display:none;";
-    // Something to resize the popup might belong here
   }
 }
 
