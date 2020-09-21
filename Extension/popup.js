@@ -1,9 +1,9 @@
 import { ads } from './response.js';
 
 var hasSubscore;
+var numSubscores = 0;
 var newHeight = 360;
 var fullheight = 360;
-var badgeCounter = 0;
 
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
     if (response.shoppingPage) {
@@ -15,7 +15,6 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
                 }
             });
         });
-
     }
 });
 
@@ -70,22 +69,24 @@ function loadExtension(ethicliStats) {
     }
 
     function adjustSubscores() {
-        if (ethicliStats.environmentScore == 0.0) {
-            fullheight = fullheight - 42;
+        if (ethicliStats.environmentScore == 0.0) { 
             document.getElementById("envSection").style = "display:none;";
+            numSubscores++;
         }
         if (ethicliStats.laborScore == 0.0) {
-            fullheight = fullheight - 42;
             document.getElementById("laborSection").style = "display:none;";
+            numSubscores++;
         }
         if (ethicliStats.animalsScore == 0.0) {
-            fullheight = fullheight - 42;
             document.getElementById("animalSection").style = "display:none;";
+            numSubscores++;
         }
         if (ethicliStats.socialScore == 0.0) {
-            fullheight = fullheight - 42;
             document.getElementById("socialSection").style = "display:none;";
+            numSubscores++;
         }
+        fullheight = fullheight - numSubscores*42;
+        
         if (ethicliStats.environmentScore == 0.0 &&
             ethicliStats.laborScore == 0.0 &&
             ethicliStats.animalsScore == 0.0 &&
@@ -120,7 +121,7 @@ function loadExtension(ethicliStats) {
 
     //Change sitename
     document.getElementById("siteurl").textContent = ethicliStats.name;
-    if (ethicliStats.name == null) {
+    if (ethicliStats.name == null || ethicliStats.name == "") {
         document.getElementById("siteurl").textContent = "Unavailable";
     }
 
@@ -167,7 +168,13 @@ function loadSponsor(productName, ethicliScore) {
         }
     }
     if (adToDisplay) {
-        document.body.style = "height: 600px;";
+        if (document.getElementById("popupNoRating") !== null) {
+            document.body.style = "height:280px;";
+        } else {
+            fullheight = 540 - numSubscores*46;
+            newHeight = "height:" + fullheight + "px;";
+            document.body.style = newHeight;
+        }
         document.getElementById("sponsor").style = "display:block;";
         document.getElementById("sponsorLink").href = adToDisplay.productURL;
         document.getElementById("sponsorProductName").textContent = adToDisplay.productName;
@@ -251,8 +258,8 @@ window.onload = function() {
 
     function tutorialSlideshow() {
         idname = "tutorial" + (currentTutorial)
-        for (i = 0; i < 7; i++) {
-            var tutorialCycle = "tutorial" + (i + 1)
+        for (var i = 0; i < 7; i++) {
+            var tutorialCycle = "tutorial" + (i + 1);
             document.getElementById(tutorialCycle).style = "display:none";
         }
         if (currentTutorial < 1 || currentTutorial > 7) { // Resets tutorial
