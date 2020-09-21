@@ -258,8 +258,8 @@ window.onload = function() {
 
     function tutorialSlideshow() {
         idname = "tutorial" + (currentTutorial)
-        for (i = 0; i < 7; i++) {
-            var tutorialCycle = "tutorial" + (i + 1)
+        for (var i = 0; i < 7; i++) {
+            var tutorialCycle = "tutorial" + (i + 1);
             document.getElementById(tutorialCycle).style = "display:none";
         }
         if (currentTutorial < 1 || currentTutorial > 7) { // Resets tutorial
