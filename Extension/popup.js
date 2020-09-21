@@ -121,7 +121,7 @@ function loadExtension(ethicliStats) {
 
     //Change sitename
     document.getElementById("siteurl").textContent = ethicliStats.name;
-    if (ethicliStats.name == null) {
+    if (ethicliStats.name == null || ethicliStats.name == "") {
         document.getElementById("siteurl").textContent = "Unavailable";
     }
 
@@ -168,9 +168,13 @@ function loadSponsor(productName, ethicliScore) {
         }
     }
     if (adToDisplay) {
-        fullheight = 540 - numSubscores*42;
-        newHeight = "height:" + fullheight + "px;";
-        document.body.style = newHeight;
+        if (document.getElementById("popupNoRating") !== null) {
+            document.body.style = "height:280px;";
+        } else {
+            fullheight = 540 - numSubscores*46;
+            newHeight = "height:" + fullheight + "px;";
+            document.body.style = newHeight;
+        }
         document.getElementById("sponsor").style = "display:block;";
         document.getElementById("sponsorLink").href = adToDisplay.productURL;
         document.getElementById("sponsorProductName").textContent = adToDisplay.productName;

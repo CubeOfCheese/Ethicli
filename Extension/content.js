@@ -87,6 +87,7 @@ function pageEval() {
         /pvproduct*/i,
         /return-policy/i,
         /return_policy/i,
+        /shopcart/i,
         /shopcontent/i,
         /shop-module/i,
         /shopify-section/i,
