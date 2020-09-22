@@ -37,6 +37,10 @@ body {
     top: -30px;
 }
 
+#optin #menuBacking {
+    background: rgba(201, 212, 198, 0.75);
+}
+
 #menuPanel.menuClicked {
     display: block;
     display: flex;
@@ -49,6 +53,7 @@ body {
     right: 36px;
     top: 24px;
     z-index: 1;
+    cursor: pointer;
 }
 
 #menuPanel button#somethingWrong {
@@ -60,6 +65,7 @@ body {
     margin-top: 16px;
     margin-right: -2px;
     z-index: 2;
+    font-size: 12px;
     cursor: pointer;
 }
 
@@ -90,223 +96,6 @@ body {
     line-height: 1.4em;
 }
 
-
-/** General scoring and popup, confirmed that it's a shop **/
-
-#shopping {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-#rating {
-    margin-bottom: 24px;
-    margin-top: 16px;
-    background: #89a387;
-    width: 120px;
-    height: 120px;
-    border-radius: 100%;
-    text-align: center;
-}
-
-#overallScore {
-    padding-top: 30px;
-    padding-bottom: 8px;
-    font-size: 2.8em;
-    color: #fff;
-}
-
-#badges {
-    position: absolute;
-    width: 60px;
-    top: 30px;
-    left: 32px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    text-align: center;
-}
-
-#bcorp, #bluesign, #blackowned, #blmsupport, #vegan, #leapingbunny {
-    display: none;
-    font-size: 0.5em;
-    padding: 4px;
-    margin-bottom: 4px;
-    border-radius: 50px;
-    background: #05668D;
-    color: #fff;
-}
-
-#bcorp:hover, #bluesign:hover, #blackowned:hover, #blmsupport:hover, #vegan:hover, #leapingbunny:hover {
-    background: #2482a7;
-}
-
-#bcorp.trueForPage, #vegan.trueForPage {
-    display: block;
-    width: 30px;
-}
-
-#bluesign.trueForPage {
-    display: block;
-    width: 40px;
-}
-
-#blackowned.trueForPage, #leapingbunny.trueForPage {
-    display: block;
-    width: 60px;
-}
-
-#blmsupport.trueForPage {
-    display: block;
-    width: 50px;
-}
-
-#shopDataUnavailable #badges {
-    flex-direction: row;
-    width: 100%;
-    align-items: flex-start;
-    position: absolute;
-    left: 0;
-    top: 165px;
-}
-
-#shopDataUnavailable #badges h6 {
-    margin-right: 8px;
-}
-
-#shopDataUnavailable #hasBadge h2 {
-    color: #89a387;
-}
-
-
-/** Specific scores **/
-
-#scores {
-    margin-bottom: 8px;
-    display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-}
-
-.label {
-    margin-bottom: 12px;
-}
-
-.label:last-child {
-    margin-bottom: 0;
-}
-
-.label p {
-    margin-bottom: 6px;
-    font-size: 12px;
-}
-
-.label p:last-child {
-    margin-bottom: 0;
-}
-
-.label div {
-    display: flex;
-}
-
-.label div .scorebar, .label div .scorebarFill {
-    display: block;
-    width: 200px;
-    height: 6px;
-    background: #c6d4c5;
-    border-radius: 100px;
-}
-
-.label div .scorebarFill {
-    display: block;
-    position: relative;
-    top: -6px;
-    background: #89a387;
-}
-
-.label div p {
-    margin-left: 14px;
-}
-
-#detailsButton {
-    align-self: flex-end;
-    padding: 6px;
-    font-size: 12px;
-}
-
-
-/** Sponsored **/
-
-#sponsor {
-    width: 100%;
-    margin-top: 24px;
-    display: none;
-}
-
-#sponsor div {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-#sponsoredImg {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-}
-
-.sponsorRating {
-    position: absolute;
-    right: 50px;
-    display: block;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    margin: 8px;
-    padding: 4px;
-    border-radius: 100px;
-    background: #aaa;
-    color: #fff;
-    text-align: center;
-    z-index: 1;
-}
-
-#sponsoredBy {
-    position: absolute;
-    top: 0;
-    width: 160px;
-    height: 160px;
-    line-height: 160px;
-    font-size: 0.8em;
-    text-align: center;
-    background: rgba(0, 0, 0, 0);
-    color: rgba(255, 255, 255, 0);
-    -webkit-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    -moz-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    -o-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    -webkit-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    -moz-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    -o-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
-}
-
-#sponsor div:hover #sponsoredBy {
-    background: rgba(0, 0, 0, 0.5);
-    color: rgba(255, 255, 255, 1);
-    -webkit-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    -moz-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    -o-transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    transition: all 200ms cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    -webkit-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    -moz-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    -o-transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
-    transition-timing-function: cubic-bezier(0.815, 0.015, 0.750, 0.750);
-}
-
-
 /** Typography **/
 
 #sitename {
@@ -320,11 +109,14 @@ body {
 }
 
 #siteurlcontainer {
-    display: inline-block;
+    display: flex;
     overflow-x: hidden;
+    flex-wrap: nowrap;
     width: 190px;
     white-space: pre;
-    height: 10px;
+    height: 20px;
+    margin-top: -12px;
+    margin-left: 36px;
     -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
     mask-image: linear-gradient(to right, black 90%, transparent 100%);
 }
@@ -363,7 +155,6 @@ button {
     border: none;
     background: #05668D;
     outline: none;
-    padding: 5px;
 }
 
 button:hover {
@@ -377,7 +168,7 @@ button:hover {
 button, button a {
     color: #FFFCF2;
     text-decoration: none;
-    padding: 5px;
+    padding: 4px;
 }
 
 h6 a {
@@ -390,11 +181,16 @@ p {
 }
 
 #left p, #right p {
-    padding: 5px;
+    padding: 0 4px;
     text-decoration: none;
-    color: #000;
+    color: #c6d4c5;
+    font-weight: bold;
+    cursor: pointer;
 }
 
+::selection {
+    background: none;
+}
 
 /** Images and ToolTip **/
 
@@ -413,7 +209,7 @@ p {
     border-radius: 8px;
     text-align: center;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
 }
 
 .tooltip:hover .tooltiptext {
@@ -422,7 +218,7 @@ p {
 
 #subscoreTip, #somethingWrongTip {
     position: absolute;
-    width: 100px;
+    width: 140px;
     font-size: 10px;
     cursor: default;
     line-height: 1.2em;
@@ -487,8 +283,8 @@ p {
 
 #tutorialBack, #tutorialNext, #tutorialBack::selection, #tutorialNext::selection {
     padding: 4px 8px;
+    background: #d69f8e;
     border-radius: 100px;
-    background: #f0a38c;
     color: #FEFCF2;
     font-size: 14px;
     cursor: pointer;
@@ -496,4 +292,8 @@ p {
 
 #tutorialNext {
     background: #D27F65;
+}
+
+#tutorialBack:hover, #tutorialNext:hover {
+    opacity: 0.75;
 }

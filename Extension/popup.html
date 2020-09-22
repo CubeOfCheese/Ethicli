@@ -6,8 +6,9 @@
     <title>Ethicli</title>
     <link href="stylesheets/reset.css" rel="stylesheet">
     <link href="stylesheets/stylesheet.css" rel="stylesheet">
+    <link href="stylesheets/stylesheet-shops.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <script src="popup.js"></script>
+    <script type="module" src="popup.js"></script>
 </head>
 
 <body style="height:350px;" id="popupMain">
@@ -48,6 +49,13 @@
             <div id="rating">
                 <h2 id="overallScore"></h2>
                 <p>/10</p>
+                <h6 id="badgeDisplayer" class="tooltip">
+                    <span>
+                        <img id="badgeIcon" src="images/badge.svg" alt="Badge Icon">
+                        <span id="numBadges"></span>
+                    </span>
+                    <span id="badgeDisplayerTooltip" class="tooltiptext">Click to view expanded badges</span>
+                </h6>
                 <div id="badges">
                     <h6 id="bluesign" class="tooltip">
                         <a href="https://www.bluesign.com" target="_blank">BlueSign</a>
@@ -123,17 +131,23 @@
             </div>
             <button id="detailsButton" title="Read about how this business is scored!"></button>
 
-            <div id="sponsor">
-                <h3>Sponsored</h3>
+            <div id="sponsor" class="singleSponsor">
                 <div>
                     <button id="left"><p>&lt;</p></button>
-                    <a href="#" id="sponsoredImg">
-                        <p class="sponsorRating"> 9.5</p>
-                        <img src="https://images.unsplash.com/photo-1490885578174-acda8905c2c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2500&q=80" alt="Sponsored Image" id="sponsoredImg">
-                        <p id="sponsoredBy">Sponsoring Company</p>
-                    </a>
+                    <div id="sponsorGroup">
+                        <img alt="Sponsored Image" id="sponsorImg">
+                        <a href="#" id="sponsorLink" target="_blank">
+                            <span id="sponsorPriceGroup">$<span id="sponsorPrice"></span></span>
+                            <p id="sponsorRating"></p>
+                            <div id="sponsordesc">
+                                <span id="sponsorProductName"></span>
+                                <span id="sponsorCompany"></span>
+                            </div>
+                        </a>
+                    </div>
                     <button id="right"><p>&gt;</p></button>
                 </div>
+                <p id="sponsorLabel">Suggested Product</p>
             </div>
         </div>
 </body>
