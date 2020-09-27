@@ -111,6 +111,16 @@ nav a:hover {
     margin-left: auto;
 }
 
+.dropdownMenu button {
+    margin-left: 24px;
+    padding: 0;
+    background: none;
+}
+
+.dropdownMenu button a{
+    margin: 0;
+}
+
 .dropdownIcon.dropped {
     display: inline-block;
     transform: rotate(180deg);
@@ -410,6 +420,10 @@ p {
 
 article p:last-of-type {
     margin-bottom: 0;
+}
+
+nav a {
+    font-size: 14px;
 }
 
 a {
