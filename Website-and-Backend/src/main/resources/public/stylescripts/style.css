@@ -67,6 +67,11 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     bottom: 36px;
     right: 30px;
     border-radius: 100px;
+    padding: 12px 16px;
+    line-height: 24px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFFCF2;
     background-color: #D27F65;
     z-index: 1;
     filter: drop-shadow(0px 1px 10px rgba(16, 35, 64, 0.3));
@@ -74,14 +79,6 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
 
 #mainCTA:hover {
     background-color: #f0a38c;
-}
-
-#mainCTA a {
-    padding: 10px;
-    line-height: 2em;
-    font-size: 1.8em;
-    font-weight: 700;
-    color: #FFFCF2;
 }
 
 
