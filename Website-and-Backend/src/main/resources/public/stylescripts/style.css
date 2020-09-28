@@ -391,6 +391,10 @@ h3 {
     margin-bottom: 16px;
 }
 
+#faq .basicbody h3 {
+    font-size: 1.8em;
+}
+
 #news h3, #featured h3 {
     font-size: 1.25em;
 }
