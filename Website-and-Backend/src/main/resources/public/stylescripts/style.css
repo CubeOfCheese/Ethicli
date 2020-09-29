@@ -294,20 +294,41 @@ footer p {
 
 /*** News and Featured Sections *****************************************************/
 
-#news section, #featured section {
+#partners section, #news section, #featured section {
     display: flex;
     justify-content: space-between;
 }
 
-#news article, #featured article {
+#partners article, #news article, #featured article {
     position: relative;
     background: #FFFCF2;
     padding: 24px 24px 48px 24px;
     border-radius: 20px;
-    width: 31%;
+    width: 49%;
+}
+
+#partners article {
+    background: #C9D4C6;
+    font-size: 14px;
+}
+
+#partners article span {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 16px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#partners article span img {
+    width: 100%;
+    margin-top: -50%;
 }
 
 #featured article {
+    width: 31%;
     background: rgba(16, 35, 64, 0.5);
 }
 
@@ -323,7 +344,11 @@ footer p {
     padding: 8px 10px;
     background: rgba(142, 162, 137, 0.8);
     color: #FFFCF2;
-    font-size: 0.8em;
+    font-size: 14px;
+}
+
+#partners .readmore a {
+    background: #2B6589;
 }
 
 /*** Mailing List *****************************************************/
@@ -389,6 +414,10 @@ h3 {
     line-height: 1.2em;
     font-weight: 500;
     margin-bottom: 16px;
+}
+
+#faq .basicbody h3 {
+    font-size: 1.8em;
 }
 
 #news h3, #featured h3 {
@@ -543,13 +572,13 @@ button {
     #navlinks.navClicked a {
         display: block;
     }
-    .half, .threes, #news section, #featured section {
+    .half, .threes, #partners section, #news section, #featured section {
         flex-direction: column;
     }
-    #headerInfo, .half article, .threes article, #news article, #featured article {
+    #headerInfo, .half article, .threes article, #partners article, #news article, #featured article {
         width: 100%;
     }
-    #news article, #featured article {
+    #partners article, #news article, #featured article {
         margin-bottom: 24px;
     }
     #news article:last-child, #featured article:last-child {

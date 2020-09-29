@@ -1,19 +1,19 @@
 $(document).ready(function() {
     $(window).scroll(function() {
         if ($(window).width() > 768 && $(window).width() <= 800) {
-            if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 2870)) {
+            if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 3940)) {
                 darkNav();
             } else {
                 lightNav();
             }
         } else if ($(window).width() > 800 && $(window).width() <= 850) {
-            if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 2900)) {
+            if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 3960)) {
                 darkNav();
             } else {
                 lightNav();
             }
         } else if ($(window).width() > 850) {
-            if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 2960)) {
+            if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 4100)) {
                 darkNav();
             } else {
                 lightNav();
