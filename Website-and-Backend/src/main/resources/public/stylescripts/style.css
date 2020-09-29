@@ -327,6 +327,10 @@ footer p {
     margin-top: -50%;
 }
 
+#partners article:nth-child(2) span img {
+    margin-top: -20%;
+}
+
 #featured article {
     width: 31%;
     background: rgba(16, 35, 64, 0.5);
