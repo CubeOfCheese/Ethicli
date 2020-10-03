@@ -220,19 +220,6 @@ header .container article div {
     justify-content: space-between;
 }
 
-#tabs, .articleList {
-    display: flex;
-}
-
-#tabs li {
-    margin-right: 16px;
-    padding: 12px 16px;
-    border-radius: 100px;
-    margin-bottom: 12px;
-    background: #102340;
-    cursor: pointer;
-}
-
 .subscoreCertifications li {
     font-weight: bold;
     line-height: 1.5em;
@@ -258,13 +245,6 @@ header .container article div {
     padding-bottom: 0px;
     position: relative;
 }
-
-
-/* #environmentalStat.tabClicked, #laborStat.tabClicked, #animalStat.tabClicked, #socialStat.tabClicked{
-    margin-bottom: 0px;
-    padding-bottom: 12px;
-    border-radius:  20px 20px 0 0;
-} */
 
 #environmentalStat:hover, #laborStat:hover, #animalStat:hover, #socialStat:hover, #environmentalStat.tabClicked, #laborStat.tabClicked, #animalStat.tabClicked, #socialStat.tabClicked, #environmentalStat.tabClicked:hover, #laborStat.tabClicked:hover, #animalStat.tabClicked:hover, #socialStat.tabClicked:hover {
     background: #FFFCF2;
@@ -298,8 +278,18 @@ header .container article div {
 
 /*** Tabs *****************************************************/
 
+#tabs, .articleList {
+    display: flex;
+}
 
-/* Tabs styling and curvature will eventually go here */
+#tabs li {
+    margin-right: 16px;
+    padding: 12px 16px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+    background: #102340;
+    cursor: pointer;
+}
 
 
 /*** Footer *****************************************************/
@@ -521,6 +511,22 @@ button {
     }
     .gallery {
         margin: 24px 0;
+    }
+}
+
+
+@media screen and (max-width: 530px) {
+    #mainStats article {
+        flex-direction: column;
+    }
+    #mainRating {
+        width: 180px;
+        min-height: 180px;
+        margin-bottom: 36px;
+    }
+    #tabs {
+        flex-wrap: wrap;
+        width: 80%;
     }
 }
 
