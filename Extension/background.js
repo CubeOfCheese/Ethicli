@@ -57,10 +57,8 @@ function reloadExt(request, sender, sendResponse) {
                         if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore == 0)) {
                             ethicliBadgeScore = "";
                             chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id })
-                            reportGA("ShopNoRating");
                         } else {
                             chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id })
-                            reportGA("ShopHasRating");
                         }
                         chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
                     }
@@ -75,7 +73,6 @@ function reloadExt(request, sender, sendResponse) {
             }
 
             function notShop(){
-              reportGA("NotShop");
               isShoppingPage = false;
               chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id })
               chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id })
@@ -201,20 +198,3 @@ chrome.runtime.onInstalled.addListener(
     }
   }
 );
-
-// GOOGLE ANALYTICS
-const GA_TRACKING_ID = "UA-173025073-1";
-const GA_CLIENT_ID = "4FB5D5BF-B582-41AD-9BDF-1EC789AE6544";
-
-function reportGA(aType) {
-  try {
-    let request = new XMLHttpRequest();
-    let message =
-      "v=1&tid=" + GA_TRACKING_ID + "&cid= " + GA_CLIENT_ID + "&aip=1" +
-      "&ds=add-on&t=event&ec=VISITORS&ea=" + aType;
-    request.open("POST", "https://www.google-analytics.com/collect", true);
-    request.send(message);
-  } catch (e) {
-    console.error("Error sending report to Google Analytics.\n" + e);
-  }
-}
