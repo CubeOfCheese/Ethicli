@@ -28,6 +28,6 @@ public class BadUrl {
 
   @Override
   public String toString() {
-        return "BadUrl{" + "url=" + this.url + '}';
-    }
+    return "BadUrl{" + "url=" + this.url + '}';
+  }
 }
