@@ -5,11 +5,11 @@ var numSubscores = 0;
 var newHeight = 360;
 var fullheight = 360;
 
-chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, function(response) {
+chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, (response) => {
     if (response.shoppingPage) {
-        chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, function(ratingResponse) {
+        chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, (ratingResponse) => {
             loadExtension(ratingResponse.ethicliStats);
-            chrome.runtime.sendMessage({ msgName: "productIdentified?" }, function(productResponse) {
+            chrome.runtime.sendMessage({ msgName: "productIdentified?" }, (productResponse) => {
                 if (productResponse) {
                     loadSponsor(productResponse.productName, ratingResponse.ethicliStats.overallScore);
                 }
@@ -137,6 +137,10 @@ function loadExtension(ethicliStats) {
         infoLink.textContent = "View Details";
         if (document.getElementById("detailsButton") !== null) {
             document.getElementById("detailsButton").append(infoLink);
+            document.getElementById("detailsButton").addEventListener("click", () => {
+                reportGA("ViewDetailsClicked");
+            })
+            
         }
     })
 
@@ -182,25 +186,30 @@ function loadSponsor(productName, ethicliScore) {
         document.getElementById("sponsorRating").textContent = adToDisplay.companyScore;
         document.getElementById("sponsorPrice").textContent = adToDisplay.price;
         document.getElementById("sponsorImg").src = adToDisplay.productImageURL;
+        reportGA("AdDisplayed");
+        document.getElementById("sponsorLink").addEventListener("click", () => {
+            reportGA("AdClicked");
+        })
     } else {
         document.getElementById("sponsor").style = "display:none;";
     }
 }
 
-window.onload = function() {
-    document.getElementById("menu").addEventListener("click", function() {
+window.onload = () => {
+    document.getElementById("menu").addEventListener("click", () => {
         document.getElementById("menuPanel").classList.toggle("menuClicked");
     });
 
-    document.getElementById("menuBacking").addEventListener("click", function() {
+    document.getElementById("menuBacking").addEventListener("click", () => {
         document.getElementById("menuPanel").classList.remove("menuClicked");
     });
 
-    document.getElementById("somethingWrong").addEventListener("click", function() {
+    document.getElementById("somethingWrong").addEventListener("click", () => {
         somethingWrong();
+        reportGA("SomethingWrong");
     });
     if (document.getElementById("badgeDisplayer") !== null) {
-        document.getElementById("badgeDisplayer").addEventListener("click", function() {
+        document.getElementById("badgeDisplayer").addEventListener("click", () => {
             document.getElementById("popupMain").classList.toggle("badgesExpanded");
             if (document.getElementById("popupMain").classList.contains("badgesExpanded")) {
                 document.getElementById("badgeDisplayerTooltip").textContent = "Click to return to score breakdowns";
@@ -214,7 +223,7 @@ window.onload = function() {
     }
 
     if (document.getElementById("scores") != null) { //if there is a scores ID present
-        document.getElementById("scores").onmouseover = function() {
+        document.getElementById("scores").onmouseover = () => {
             if (hasSubscore) {
                 document.getElementById("subscoreTip").style.left = (event.clientX - 30) + "px";
                 document.getElementById("subscoreTip").style.top = (event.clientY - 30) + "px";
@@ -232,7 +241,7 @@ window.onload = function() {
     var startTutorial = false;
     var currentTutorial;
 
-    document.getElementById("watchTutorial").addEventListener("click", function() {
+    document.getElementById("watchTutorial").addEventListener("click", () => {
         document.body.style = "height: 600px;";
         startTutorial = !startTutorial
         currentTutorial = 1;
@@ -244,14 +253,15 @@ window.onload = function() {
             document.getElementById("tutorialScreens").style = "display:none";
             document.getElementById("tutorialNavigation").style = "display:none";
         }
+        reportGA("TutorialViewed");
     })
 
     var idname = "tutorial1";
-    document.getElementById("tutorialBack").addEventListener("click", function() {
+    document.getElementById("tutorialBack").addEventListener("click", () => {
         currentTutorial -= 1;
         tutorialSlideshow();
     })
-    document.getElementById("tutorialNext").addEventListener("click", function() {
+    document.getElementById("tutorialNext").addEventListener("click", () => {
         currentTutorial += 1;
         tutorialSlideshow();
     })
@@ -286,10 +296,14 @@ window.onload = function() {
             document.getElementById("tutorialNavigation").style = "display:flex; bottom:8px;";
         }
     }
+
+    document.getElementById("visitWebsite").addEventListener("click", () => {
+        reportGA("VisitedWebsite");
+    })
 }
 
 function fadeLongURL() {
-    document.getElementById("siteurl").addEventListener("mouseover", function(event) {
+    document.getElementById("siteurl").addEventListener("mouseover", (event) => {
         var siteurlLength = this.innerHTML.length + 16;
         if (siteurlLength > 40) {
             this.style = "margin-left: -" + (siteurlLength) + "px;";
@@ -298,7 +312,7 @@ function fadeLongURL() {
                 mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%)";
         }
     })
-    document.getElementById("siteurl").addEventListener("mouseout", function(event) {
+    document.getElementById("siteurl").addEventListener("mouseout", (event) => {
         this.style = "margin-left: 0px;";
         document.getElementById("siteurlcontainer").style =
             "-webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);\
@@ -348,7 +362,7 @@ function somethingWrong() {
         function sendEmail() {
             var emailUrl = "mailto:hello@ethicli.com?subject=Error%20With%20Current%20Website%20&body=Error%20with%20the%20following%20page:%20" + currentTab.url + "%0d%0aPlease%20let%20us%20know%20what%20is%20wrong%20below.";
             chrome.tabs.create({ url: emailUrl }, function(tab) {
-                setTimeout(function() {
+                setTimeout(() => {
                     chrome.tabs.remove(tab.id);
                 }, 500);
             });
@@ -356,16 +370,20 @@ function somethingWrong() {
     });
 }
 
-// GOOGLE ANALYTICS
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-173025073-1']);
-_gaq.push(['_trackPageview']);
 
-(function() {
-    var ga = document.createElement('script');
-    ga.type = 'text/javascript';
-    ga.async = true;
-    ga.src = 'https://ssl.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ga, s);
-})();
+// GOOGLE ANALYTICS
+const GA_TRACKING_ID = "UA-173025073-1";
+const GA_CLIENT_ID = "4FB5D5BF-B582-41AD-9BDF-1EC789AE6544";
+
+function reportGA(aType) {
+  try {
+    let request = new XMLHttpRequest();
+    let message =
+      "v=1&tid=" + GA_TRACKING_ID + "&cid= " + GA_CLIENT_ID + "&aip=1" +
+      "&ds=add-on&t=event&ec=VISITORS&ea=" + aType;
+    request.open("POST", "https://www.google-analytics.com/collect", true);
+    request.send(message);
+  } catch (e) {
+    console.error("Error sending report to Google Analytics.\n" + e);
+  }
+}
