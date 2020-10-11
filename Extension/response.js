@@ -1045,7 +1045,7 @@ export let ads = [
       },
       {
         "tag": "pants",
-        "weight": 0.8
+        "weight": 0.6
       }
     ],
     "productURL":"https://shareasale.com/r.cfm?b=1230635&u=2552760&m=81987&urllink=www%2Etentree%2Ecom%2Fcollections%2Fmens%2Fproducts%2Funwind%2Dsweatpant%3FMETEORITE%2520BLACK%2520MARLED%23&afftrack=",
@@ -1071,15 +1071,11 @@ export let ads = [
         "weight": 0.4
       },
       {
-        "tag": "big foot",
-        "weight": 0.4
-      },
-      {
         "tag": "mens",
         "weight": 0.4
       },
       {
-        "tag": "button up",
+        "tag": "buttonup",
         "weight": 0.4
       }
     ],
@@ -1114,7 +1110,7 @@ export let ads = [
         "weight": 0.4
       },
       {
-        "tag": "button up",
+        "tag": "buttonup",
         "weight": 0.4
       }
     ],
@@ -1141,7 +1137,7 @@ export let ads = [
         "weight": 0.1
       },
       {
-        "tag": "1/4 zip",
+        "tag": "quarterzip",
         "weight": 0.8
       },
       {
@@ -1188,10 +1184,6 @@ export let ads = [
         "weight": 0.4
       },
       {
-        "tag": "kangaroo pocket",
-        "weight": 0.4
-      },
-      {
         "tag": "henley",
         "weight": 0.4
       }
@@ -1207,7 +1199,7 @@ export let ads = [
     "price":35.00,
     "productTags": [
       {
-        "tag": "t-shirt",
+        "tag": "tshirt",
         "weight": 0.8
       },
       {
@@ -1220,7 +1212,7 @@ export let ads = [
       },
       {
         "tag": "top",
-        "weight": 0.8
+        "weight": 0.6
       },
       {
         "tag": "mens",
@@ -1232,7 +1224,7 @@ export let ads = [
       },
       {
         "tag": "ev2",
-        "weight": 0.4
+        "weight": 0.2
       }
     ],
     "productURL":"https://shareasale.com/r.cfm?b=1230635&u=2552760&m=81987&urllink=www%2Etentree%2Ecom%2Fcollections%2Fmens%2Fproducts%2Fm%2Djuniper%2Dt%3FMETEORITE%2520BLACK%2520HEATHER%23&afftrack=",
@@ -1246,7 +1238,7 @@ export let ads = [
     "price":44.20,
     "productTags": [
       {
-        "tag": "t-shirt",
+        "tag": "tshirt",
         "weight": 0.8
       },
       {
@@ -1266,11 +1258,11 @@ export let ads = [
         "weight": 0.4
       },
       {
-        "tag": "button up",
+        "tag": "buttonup",
         "weight": 0.8
       },
       {
-        "tag": "short sleeve",
+        "tag": "shortsleeve",
         "weight": 0.8
       }
     ],
@@ -1328,7 +1320,7 @@ export let ads = [
         "weight": 0.8
       },
       {
-        "tag": "full zip",
+        "tag": "fullzip",
         "weight": 0.1
       },
       {
@@ -1426,7 +1418,7 @@ export let ads = [
       },
       {
         "tag": "covid",
-        "weight": 0.8
+        "weight": 0.5
       },
       {
         "tag": "3-pack",
@@ -1638,7 +1630,7 @@ export let ads = [
         "weight": 0.8
       },
       {
-        "tag": "hand warmers",
+        "tag": "handwarmers",
         "weight": 0.8
       },
       {
@@ -1665,7 +1657,7 @@ export let ads = [
     "price":30.80,
     "productTags": [
       {
-        "tag": "travel cubes",
+        "tag": "travelcubes",
         "weight": 0.8
       },
       {
@@ -1793,7 +1785,7 @@ export let ads = [
         "weight": 0.1
       },
       {
-        "tag": "half sleeve",
+        "tag": "half-sleeve",
         "weight": 0.5
       }
     ],
