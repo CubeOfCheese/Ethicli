@@ -17,4 +17,4 @@ function reportGA(aType) {
   }
 }
 
-reportGA("ShopHasRating");
+reportGA("Opened-ShopHasRating");

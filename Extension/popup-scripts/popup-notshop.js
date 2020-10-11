@@ -17,4 +17,4 @@ function reportGA(aType) {
   }
 }
 
-reportGA("NotShop");
+reportGA("Opened-NotShop");

@@ -17,4 +17,4 @@ function reportGA(aType) {
   }
 }
 
-reportGA("SomethingWrong");
+reportGA("Opened-SomethingWrong");
