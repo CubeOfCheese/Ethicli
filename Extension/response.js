@@ -1075,7 +1075,7 @@ export let ads = [
         "weight": 0.4
       },
       {
-        "tag": "buttonup",
+        "tag": "button-up",
         "weight": 0.4
       }
     ],
@@ -1110,7 +1110,7 @@ export let ads = [
         "weight": 0.4
       },
       {
-        "tag": "buttonup",
+        "tag": "button-up",
         "weight": 0.4
       }
     ],
@@ -1137,7 +1137,7 @@ export let ads = [
         "weight": 0.1
       },
       {
-        "tag": "quarterzip",
+        "tag": "quarter-zip",
         "weight": 0.8
       },
       {
@@ -1221,10 +1221,6 @@ export let ads = [
       {
         "tag": "tree",
         "weight": 0.4
-      },
-      {
-        "tag": "ev2",
-        "weight": 0.2
       }
     ],
     "productURL":"https://shareasale.com/r.cfm?b=1230635&u=2552760&m=81987&urllink=www%2Etentree%2Ecom%2Fcollections%2Fmens%2Fproducts%2Fm%2Djuniper%2Dt%3FMETEORITE%2520BLACK%2520HEATHER%23&afftrack=",
@@ -1238,7 +1234,7 @@ export let ads = [
     "price":44.20,
     "productTags": [
       {
-        "tag": "tshirt",
+        "tag": "t-shirt",
         "weight": 0.8
       },
       {
@@ -1258,7 +1254,7 @@ export let ads = [
         "weight": 0.4
       },
       {
-        "tag": "buttonup",
+        "tag": "button-up",
         "weight": 0.8
       },
       {
@@ -1355,10 +1351,6 @@ export let ads = [
         "weight": 0.8
       },
       {
-        "tag": "mobius",
-        "weight": 0.1
-      },
-      {
         "tag": "modular",
         "weight": 0.1
       },
@@ -1421,10 +1413,6 @@ export let ads = [
         "weight": 0.5
       },
       {
-        "tag": "3-pack",
-        "weight": 0.1
-      },
-      {
         "tag": "protect",
         "weight": 0.3
       },
@@ -1454,10 +1442,6 @@ export let ads = [
       {
         "tag": "notebook",
         "weight": 0.8
-      },
-      {
-        "tag": "4-pack",
-        "weight": 0.1
       },
       {
         "tag": "eco",
@@ -1657,8 +1641,8 @@ export let ads = [
     "price":30.80,
     "productTags": [
       {
-        "tag": "travelcubes",
-        "weight": 0.8
+        "tag": "cubes",
+        "weight": 0.5
       },
       {
         "tag": "backpack",
@@ -1670,7 +1654,7 @@ export let ads = [
       },
       {
         "tag": "travel",
-        "weight": 0.2
+        "weight": 0.3
       },
       {
         "tag": "organizers",
@@ -1693,7 +1677,7 @@ export let ads = [
       },
       {
         "tag": "hat",
-        "weight": 0.8
+        "weight": 0.7
       },
       {
         "tag": "winter",
@@ -1720,7 +1704,7 @@ export let ads = [
       },
       {
         "tag": "hat",
-        "weight": 0.8
+        "weight": 0.7
       },
       {
         "tag": "winter",
@@ -1728,7 +1712,7 @@ export let ads = [
       },
       {
         "tag": "pom",
-        "weight": 0.1
+        "weight": 0.3
       },
       {
         "tag": "atlin",
@@ -1773,7 +1757,7 @@ export let ads = [
         "weight": 0.8
       },
       {
-        "tag": "button up",
+        "tag": "button-up",
         "weight": 0.8
       },
       {
