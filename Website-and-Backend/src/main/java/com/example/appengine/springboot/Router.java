@@ -33,7 +33,7 @@ public class Router {
     model.addAttribute(
         "companyName",
         companyName); // doesn't do anything as of right now. Leaving it in as an example for future
-    // thymeleaf use
+                      // thymeleaf use
     return "info";
   }
 }
