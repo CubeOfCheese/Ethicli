@@ -19,13 +19,13 @@ public class NotificationService {
     // Controls Feedback Service: If you need to change sender information (email/password)
     // make sure tochange it in resources/application.properties as well
     @PostMapping("/feedback")
-    public String sendNotification(@RequestBody Feedback url) throws MailException {
+    public String sendNotification(@RequestBody Feedback message) throws MailException {
         SimpleMailMessage mail = new SimpleMailMessage();
         mail.setTo("team.ethicli@gmail.com");
         mail.setFrom("feedback.ethicli@gmail.com");
-        mail.setSubject(url.getMessageType() + " Feedback");
-        mail.setText(url.toString());
+        mail.setSubject(message.getMessageType() + " Feedback");
+        mail.setText(message.toString());
         javaMailSender.send(mail);
-        return url.toString();
+        return message.toString();
     }
 }
