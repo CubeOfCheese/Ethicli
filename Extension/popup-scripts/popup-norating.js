@@ -4,8 +4,9 @@ uemail = "";
 
 document.addEventListener('DOMContentLoaded', windowOnload, false);
 
-function windowOnload(){
+function windowOnload() {
   document.getElementById("requestrating").addEventListener("click", () => {
+    requestShop();
     confetti.start(1000, 60);
     document.getElementById("ratingPreRequest").classList.add("requestsubmitted");
     document.getElementById("ratingPostRequest").classList.add("requestsubmitted");
