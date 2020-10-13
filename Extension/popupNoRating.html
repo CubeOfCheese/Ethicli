@@ -8,6 +8,7 @@
     <link href="stylesheets/stylesheet.css" rel="stylesheet">
     <link href="stylesheets/stylesheet-norating.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="popup-scripts/confetti.js"></script>
     <script type="module" src="popup.js"></script>
     <script src="popup-scripts/popup-norating.js"></script>
 </head>
@@ -49,12 +50,10 @@
     <div id="extension">
         <div id="shopDataUnavailable">
             <span id="noBadge">
-                <h2>Shop rating<br>unavailable.</h2>
-                <p>Please visit another shop to check for a shop rating.</p>
-                <img src="images/shoppingbag.svg" alt="Shopping Bag" id="shoppingBagImg">
+                <h2>Shop rating unavailable.</h2>
             </span>
             <span id="hasBadge" style="display:none;">
-                <h2>Shop rating<br>unavailable.</h2>
+                <h2>Shop rating unavailable.</h2>
                 <p>We don't have a rating for this shop, but it's got some featured badges:</p>
                 <div id="badges">
                     <h6 id="bluesign" class="tooltip">
@@ -81,6 +80,22 @@
                         <span class="tooltiptext">Cruelty-free certification from Leaping Bunny</span>
                     </h6>
                 </div>
+            </span>
+            <span id="requestSection">
+                <span id="ratingPreRequest">
+                    <h3>We’ll rate this shop as soon as possible.</h3>
+                    <p>If you leave your email, we will send you a personalized message about its scoring within 24 hours.</p>
+                    <form id="emailrequestgroup">
+                        <label for="emailrequest">Your Email</label>
+                        <input type="email" name="emailrequest" id="emailrequest" placeholder="youremail@email.com (optional)">
+                    </form>
+                    <input type="submit" value="Rate this Shop" id="requestrating"></input>
+                </span>
+                <span id="ratingPostRequest">
+                    <h3>Request received!</h3>
+                    <p><span id="withemail">We've sent an email to <span id="uemail"></span></span> Thanks for letting us know to rate this shop, and we appreciate you ♥</p>
+                    <img src="images/shoppingbag.svg" alt="Shopping Bag" id="shoppingBagImg">
+                </span>
             </span>
         </div>
     </div>

@@ -59,13 +59,103 @@
     align-items: flex-start;
     position: absolute;
     left: 0;
-    top: 165px;
+    top: 136px;
 }
 
 #shopDataUnavailable #badges h6 {
     margin-right: 8px;
 }
 
+#shopDataUnavailable h2 {
+    padding-top: 16px;
+    font-size: 24px;
+}
+
 #shopDataUnavailable #hasBadge h2 {
     color: #89a387;
+}
+
+#hasBadge {
+    margin-bottom: 96px;
+}
+
+img#shoppingBagImg {
+    margin: 24px auto 0 auto;
+    width: 260px;
+    height: 260px;
+    margin: 24px 0 0 24px;
+    animation: shoppingMove 1s;
+}
+
+@keyframes shoppingMove {
+    from {
+        margin: 200px 0 0 24px;
+    }
+    to {
+        margin: 24px 0 0 24px;
+    }
+}
+
+/* Email Request */
+
+#emailrequestgroup {
+    display: block;
+    margin-top: 24px;
+    width: 100%;
+}
+
+#emailrequestgroup label {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#emailrequestgroup input {
+    margin-left: 6px;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    min-width: 174px;
+    border: none;
+    background: #c6d4c5cc;
+}
+
+#emailrequestgroup input:focus {
+    outline:none;
+    background: #c6d4c588;
+}
+
+#emailrequestgroup input::placeholder {
+    color: #05668Dcc;
+}
+
+#requestrating {
+    margin-top: 24px;
+    font-size: 12px;
+    padding: 4px 8px;
+    cursor: pointer;
+    border: none;
+    border-radius: 100px;
+    background: #05668D;
+    color: #FFFCF2;
+}
+
+#noBadge p{
+    margin-bottom: 8px;
+}
+
+
+/* Rating Requests */
+
+h3 {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#ratingPreRequest, #ratingPostRequest.requestsubmitted {
+    display: block;
+}
+
+#ratingPostRequest, #ratingPreRequest.requestsubmitted{
+    display: none;
 }

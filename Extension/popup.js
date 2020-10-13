@@ -62,6 +62,13 @@ function loadExtension(ethicliStats) {
         }
         document.body.style = "height:190px;"
     }
+
+    if (document.getElementById("popupNoRating") != null) { // for no ratings
+        document.body.style = "height: 280px;";
+        if (badgeCounter > 0) {
+            document.body.style = "height: 400px;";
+        }
+    }
     // End Badges ------------------------------------------------------------------------------------
 
     if (ethicliScore > 0.0) { // This will need to be updated once negative scores are used as default

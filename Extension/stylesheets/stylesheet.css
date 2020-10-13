@@ -74,6 +74,7 @@ body {
 
 #shopping, #notShopMessage, #shopDataUnavailable {
     display: block;
+    margin-right: auto;
 }
 
 #notShopMessage h2, #shopDataUnavailable h2 {
