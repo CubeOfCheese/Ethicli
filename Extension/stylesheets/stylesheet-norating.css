@@ -99,22 +99,23 @@ img#shoppingBagImg {
 /* Email Request */
 
 #emailrequestgroup {
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin-top: 24px;
     width: 100%;
 }
 
 #emailrequestgroup label {
+    margin-bottom: 8px;
     font-size: 12px;
     font-weight: 600;
 }
 
 #emailrequestgroup input {
-    margin-left: 6px;
     padding: 8px;
     border-radius: 8px;
     font-size: 12px;
-    min-width: 174px;
+    width: 240px;
     border: none;
     background: #c6d4c5cc;
 }
