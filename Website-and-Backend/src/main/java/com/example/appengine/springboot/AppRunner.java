@@ -13,6 +13,6 @@ public class AppRunner implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    System.out.println("Collection Exists? " + mongoTemplate.collectionExists("Advertisement"));
+    System.out.println("Collection Exists? " + mongoTemplate.collectionExists("advertisement"));
   }
 }

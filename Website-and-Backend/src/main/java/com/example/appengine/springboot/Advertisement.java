@@ -10,17 +10,21 @@ public class Advertisement {
   private String website;
   private ProductTag[] productTags;
   private double price;
+  private String productURL;
+  private String productImageURL;
+  private Business business;
 
   public Advertisement() {
-    super();
-  }
 
-  public Advertisement(String name, String website, ProductTag[] productTags, double price) {
-    super();
+  }
+  public Advertisement(String name, String website, ProductTag[] productTags, double price, String productURL, String productImageURL, Business business) {
     this.name = name;
     this.website = website;
     this.productTags = productTags;
     this.price = price;
+    this.productURL = productURL;
+    this.productImageURL = productImageURL;
+    this.business = business;
   }
 
   public String getId() {
@@ -61,5 +65,29 @@ public class Advertisement {
 
   public void setPrice(double price) {
     this.price = price;
+  }
+
+  public String getProductURL() {
+    return productURL;
+  }
+
+  public void setProductURL(String productURL) {
+    this.productURL = productURL;
+  }
+
+  public String getProductImageURL() {
+    return productImageURL;
+  }
+
+  public void setProductImageURL(String productImageURL) {
+    this.productImageURL = productImageURL;
+  }
+
+  public Business getBusiness() {
+    return business;
+  }
+
+  public void setBusiness(Business business) {
+    this.business = business;
   }
 }

@@ -64,12 +64,18 @@ public class SpringbootApplication implements CommandLineRunner{
 //    advertisementRepository.insert(listOfAdvertisements);
   }
 
-  // Controls Searches of all Data Sources
   @GetMapping("/score/{company}")
   public Business masterController(
       @PathVariable("company") String companyName, HttpServletResponse response)
       throws IOException {
     response.addHeader("Access-Control-Allow-Origin", "*");
+    return masterController(companyName);
+  }
+
+  // Controls Searches of all Data Sources
+  public Business masterController(
+      @PathVariable("company") String companyName)
+      throws IOException {
     Business business = new Business();
     if (Tools.validateURL(companyName)) {
       business.update(
