@@ -1,51 +1,57 @@
 // for popupNoRating.html
-userEmailHTML = "";
-uemail = "";
+let userEmailHTML = "";
 
-document.addEventListener('DOMContentLoaded', windowOnload, false);
+document.addEventListener("DOMContentLoaded", windowOnload, false);
 
 function windowOnload() {
   document.getElementById("requestrating").addEventListener("click", () => {
     requestShop();
-    confetti.start(1000, 60);
-    document.getElementById("ratingPreRequest").classList.add("requestsubmitted");
-    document.getElementById("ratingPostRequest").classList.add("requestsubmitted");
-    let emailstr = String(userEmailHTML).replace(/\s+/g, '');
-    if(emailstr !== ""){
-      document.getElementById("uemail").innerText = userEmailHTML;
-    } else {
-      document.getElementById("withemail").style = "display:none;";
-    }
-  })
-  
+  });
+
   document.getElementById("emailrequest").addEventListener("blur", () => {
     userEmailHTML = document.getElementById("emailrequest").value;
-  })
+  });
 }
 
-function requestShop() { //runs when user hits "Request this Shop" button
-  var query = { active: true, currentWindow: true };
+function requestShop() { // runs when user hits "Request this Shop" button
+  const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, function callback(tabs) {
-      var currentTab = tabs[0];
-      var fetchUrlFeedback = "https://ethicli.com/feedback";
-      let fetchData = {
-          url: currentTab.url,
-          userEmail: userEmailHTML,
-          messageType: "RequestShop"
-      };
-      let fetchParams = {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(fetchData)
-      }
-      fetch(fetchUrlFeedback, fetchParams)
-      .then((response) => {
-        document.getElementById("emailrequest").innerText = response;
-        //may have to be response.body.someting
-        //occurs after button is pressed
-      })
+    const currentTab = tabs[0];
+    const fetchUrlFeedback = "https://ethicli.com/feedback";
+    const fetchData = {
+      url: currentTab.url,
+      userEmail: userEmailHTML,
+      messageType: "RequestShop"
+    };
+    const fetchParams = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(fetchData)
+    };
+    fetch(fetchUrlFeedback, fetchParams)
+        .then((response) => {
+          if (response.status !== 200) {
+            throw new Error("404");
+          }
+          console.log(response);
+          confetti.start(1000, 60);
+          document.getElementById("ratingPreRequest").classList.add("requestsubmitted");
+          document.getElementById("ratingPostRequest").classList.add("requestsubmitted");
+          const emailstr = String(userEmailHTML).replace(/\s+/g, "");
+          if (emailstr !== "") {
+            document.getElementById("uemail").innerText = userEmailHTML;
+          } else {
+            document.getElementById("withemail").style = "display:none;";
+          }
+          console.log(response);
+        })
+        .catch((error) => {
+          document.getElementById("ratingPreRequest").classList.add("failed");
+          document.getElementById("messageFailed").classList.add("failed");
+          console.log("aw nards: " + error.message); // not necessary
+        });
   });
   reportGA("ShopRequested");
 }
@@ -56,8 +62,8 @@ const GA_CLIENT_ID = "4FB5D5BF-B582-41AD-9BDF-1EC789AE6544";
 
 function reportGA(aType) {
   try {
-    let request = new XMLHttpRequest();
-    let message =
+    const request = new XMLHttpRequest();
+    const message =
       "v=1&tid=" + GA_TRACKING_ID + "&cid= " + GA_CLIENT_ID + "&aip=1" +
       "&ds=add-on&t=event&ec=VISITORS&ea=" + aType;
     request.open("POST", "https://www.google-analytics.com/collect", true);

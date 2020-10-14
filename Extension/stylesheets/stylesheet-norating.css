@@ -79,21 +79,28 @@
     margin-bottom: 96px;
 }
 
-img#shoppingBagImg {
-    margin: 24px auto 0 auto;
+#shoppingBagImg {
     width: 260px;
     height: 260px;
-    margin: 24px 0 0 24px;
+    margin: 24px 0 0 16px;
     animation: shoppingMove 1s;
 }
 
+#sadplantguy {
+    width: 90px;
+    height: 90px;
+    margin: 20px 0 0 84px;
+    animation: plantguymove 1s;
+}
+
 @keyframes shoppingMove {
-    from {
-        margin: 200px 0 0 24px;
-    }
-    to {
-        margin: 24px 0 0 24px;
-    }
+    from { margin: 200px 0 0 16px; }
+    to { margin: 24px 0 0 16px; }
+}
+
+@keyframes plantguymove {
+    from { margin: 200px 0 0 84px; }
+    to { margin: 20px 0 0 84px; }
 }
 
 /* Email Request */
@@ -108,7 +115,7 @@ img#shoppingBagImg {
 #emailrequestgroup label {
     margin-bottom: 8px;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 #emailrequestgroup input {
@@ -120,13 +127,18 @@ img#shoppingBagImg {
     background: #c6d4c5cc;
 }
 
-#emailrequestgroup input:focus {
+#emailrequestgroup input:focus, #requestrating:focus {
     outline:none;
     background: #c6d4c588;
 }
 
 #emailrequestgroup input::placeholder {
     color: #05668Dcc;
+}
+
+#emailrequestgroup input::selection {
+    background: #0A2342;
+    color: #FFFCF2;
 }
 
 #requestrating {
@@ -144,19 +156,38 @@ img#shoppingBagImg {
     margin-bottom: 8px;
 }
 
+#uemail {
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+p {
+    max-width: 260px;
+}
+
+#messageFailed a {
+    text-decoration: none;
+    font-weight: 700;
+    color: #05668D;
+}
+
+a:hover {
+    opacity: 0.6;
+}
 
 /* Rating Requests */
 
 h3 {
     text-align: left;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
+    line-height: 20px;
 }
 
-#ratingPreRequest, #ratingPostRequest.requestsubmitted {
+#ratingPreRequest, #ratingPostRequest.requestsubmitted, #messageFailed.failed {
     display: block;
 }
 
-#ratingPostRequest, #ratingPreRequest.requestsubmitted{
+#ratingPostRequest, #ratingPreRequest.requestsubmitted, #ratingPreRequest.failed, #messageFailed {
     display: none;
 }
