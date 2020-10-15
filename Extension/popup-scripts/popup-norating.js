@@ -7,10 +7,6 @@ function windowOnload() {
   document.getElementById("requestrating").addEventListener("click", () => {
     requestShop();
   });
-
-  document.getElementById("emailrequest").addEventListener("blur", () => {
-    userEmailHTML = document.getElementById("emailrequest").value;
-  });
 }
 
 function requestShop() { // runs when user hits "Request this Shop" button
@@ -36,9 +32,9 @@ function requestShop() { // runs when user hits "Request this Shop" button
             throw new Error("404");
           }
           console.log(response);
-          confetti.start(1000, 60);
           document.getElementById("ratingPreRequest").classList.add("requestsubmitted");
           document.getElementById("ratingPostRequest").classList.add("requestsubmitted");
+          userEmailHTML = document.getElementById("emailrequest").value;
           const emailstr = String(userEmailHTML).replace(/\s+/g, "");
           if (emailstr !== "") {
             document.getElementById("uemail").innerText = userEmailHTML;
@@ -46,11 +42,13 @@ function requestShop() { // runs when user hits "Request this Shop" button
             document.getElementById("withemail").style = "display:none;";
           }
           console.log(response);
+          confetti.start(1000, 60);
         })
         .catch((error) => {
           document.getElementById("ratingPreRequest").classList.add("failed");
           document.getElementById("messageFailed").classList.add("failed");
           console.log("aw nards: " + error.message); // not necessary
+          reportGA("RatingRequestFailed - " + error.message);
         });
   });
   reportGA("ShopRequested");
