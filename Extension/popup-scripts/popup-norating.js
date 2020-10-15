@@ -1,5 +1,4 @@
 // for popupNoRating.html
-let userEmailHTML = "";
 
 document.addEventListener("DOMContentLoaded", windowOnload, false);
 
@@ -10,6 +9,8 @@ function windowOnload() {
 }
 
 function requestShop() { // runs when user hits "Request this Shop" button
+  let userEmailHTML = "";
+  userEmailHTML = document.getElementById("emailrequest").value;
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, function callback(tabs) {
     const currentTab = tabs[0];
@@ -31,17 +32,14 @@ function requestShop() { // runs when user hits "Request this Shop" button
           if (response.status !== 200) {
             throw new Error("404");
           }
-          console.log(response);
           document.getElementById("ratingPreRequest").classList.add("requestsubmitted");
           document.getElementById("ratingPostRequest").classList.add("requestsubmitted");
-          userEmailHTML = document.getElementById("emailrequest").value;
           const emailstr = String(userEmailHTML).replace(/\s+/g, "");
           if (emailstr !== "") {
             document.getElementById("uemail").innerText = userEmailHTML;
           } else {
             document.getElementById("withemail").style = "display:none;";
           }
-          console.log(response);
           confetti.start(1000, 60);
         })
         .catch((error) => {
