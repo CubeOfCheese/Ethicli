@@ -59,13 +59,135 @@
     align-items: flex-start;
     position: absolute;
     left: 0;
-    top: 165px;
+    top: 136px;
 }
 
 #shopDataUnavailable #badges h6 {
     margin-right: 8px;
 }
 
+#shopDataUnavailable h2 {
+    padding-top: 16px;
+    font-size: 24px;
+}
+
 #shopDataUnavailable #hasBadge h2 {
     color: #89a387;
+}
+
+#hasBadge {
+    margin-bottom: 96px;
+}
+
+#shoppingBagImg {
+    width: 260px;
+    height: 260px;
+    margin: 24px 0 0 16px;
+    animation: shoppingMove 1s;
+}
+
+#sadplantguy {
+    width: 90px;
+    height: 90px;
+    margin: 20px 0 0 84px;
+    animation: plantguymove 1s;
+}
+
+@keyframes shoppingMove {
+    from { margin: 200px 0 0 16px; }
+    to { margin: 24px 0 0 16px; }
+}
+
+@keyframes plantguymove {
+    from { margin: 200px 0 0 84px; }
+    to { margin: 20px 0 0 84px; }
+}
+
+/* Email Request */
+
+#emailrequestgroup {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+    width: 100%;
+}
+
+#emailrequestgroup label {
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#emailrequestgroup input {
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    width: 240px;
+    border: none;
+    background: #c6d4c5cc;
+}
+
+#emailrequestgroup input:focus, #requestrating:focus {
+    outline:none;
+    background: #c6d4c588;
+}
+
+#emailrequestgroup input::placeholder {
+    color: #05668Dcc;
+}
+
+#emailrequestgroup input::selection {
+    background: #0A2342;
+    color: #FFFCF2;
+}
+
+#requestrating {
+    margin-top: 24px;
+    font-size: 12px;
+    padding: 4px 8px;
+    cursor: pointer;
+    border: none;
+    border-radius: 100px;
+    background: #05668D;
+    color: #FFFCF2;
+}
+
+#noBadge p{
+    margin-bottom: 8px;
+}
+
+#uemail {
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+p {
+    max-width: 260px;
+}
+
+#messageFailed a {
+    text-decoration: none;
+    font-weight: 700;
+    color: #05668D;
+}
+
+a:hover {
+    opacity: 0.6;
+}
+
+/* Rating Requests */
+
+h3 {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+#ratingPreRequest, #ratingPostRequest.requestsubmitted, #messageFailed.failed {
+    display: block;
+}
+
+#ratingPostRequest, #ratingPreRequest.requestsubmitted, #ratingPreRequest.failed, #messageFailed {
+    display: none;
 }
