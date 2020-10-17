@@ -1,5 +1,6 @@
 package com.example.appengine.springboot;
 
+import java.util.List;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
@@ -85,6 +86,21 @@ public class Tools {
     searchTerm = charRemove(searchTerm, '_');
     searchTerm = charRemove(searchTerm, '&');
     return searchTerm;
+  }
+
+  public static String[] prepareForProductTagQuery(String input) throws IOException {
+    String[] inputToArray = input.toLowerCase().split(" ");
+    String inputCleaned = "";
+    for (int a = 0; a < inputToArray.length; ++a) {
+      if (inputToArray[a].length() > 2 && !isCommonWord(inputToArray[a])) {
+        inputCleaned += removePuntuation(inputToArray[a]) + " ";
+      }
+    }
+    return inputCleaned.split(" ");
+  }
+
+  public static String removePuntuation(String string) {
+    return string.replaceAll("[^a-zA-Z0-9]", "");
   }
 
   public static boolean isCommonWord(String word) throws IOException {

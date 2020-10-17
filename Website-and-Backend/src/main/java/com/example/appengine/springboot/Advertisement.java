@@ -6,25 +6,30 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Advertisement {
   @Id private String id;
-  private String name;
+  private String productName;
   private String website;
+  private String companyName;
   private ProductTag[] productTags;
   private double price;
   private String productURL;
   private String productImageURL;
-  private Business business;
+  private double companyScore;
 
   public Advertisement() {
 
   }
-  public Advertisement(String name, String website, ProductTag[] productTags, double price, String productURL, String productImageURL, Business business) {
-    this.name = name;
+
+  public Advertisement(String id, String productName, String website, String companyName,
+      ProductTag[] productTags, double price, String productURL, String productImageURL, double companyScore) {
+    this.id = id;
+    this.productName = productName;
     this.website = website;
+    this.companyName = companyName;
     this.productTags = productTags;
     this.price = price;
     this.productURL = productURL;
     this.productImageURL = productImageURL;
-    this.business = business;
+    this.companyScore = companyScore;
   }
 
   public String getId() {
@@ -35,12 +40,12 @@ public class Advertisement {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getProductName() {
+    return productName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setProductName(String productName) {
+    this.productName = productName;
   }
 
   public String getWebsite() {
@@ -83,11 +88,19 @@ public class Advertisement {
     this.productImageURL = productImageURL;
   }
 
-  public Business getBusiness() {
-    return business;
+  public String getCompanyName() {
+    return companyName;
   }
 
-  public void setBusiness(Business business) {
-    this.business = business;
+  public void setCompanyName(String companyName) {
+    this.companyName = companyName;
+  }
+
+  public double getCompanyScore() {
+    return companyScore;
+  }
+
+  public void setCompanyScore(double companyScore) {
+    this.companyScore = companyScore;
   }
 }

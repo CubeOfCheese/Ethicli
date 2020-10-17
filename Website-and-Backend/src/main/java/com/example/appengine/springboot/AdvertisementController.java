@@ -11,18 +11,15 @@ import java.util.List;
 @RequestMapping("/Advertisement")
 public class AdvertisementController {
 
-
-
-
-
-  @Autowired AdvertisementService advertisementService;
+  @Autowired
+  AdvertisementService advertisementService;
 
   @RequestMapping(value = "/getByProductTags", method = RequestMethod.GET)
   public Advertisement getAdvertisementByProductTags(@RequestBody Map<String, Object> payload) throws Exception {
     return advertisementService.getAdvertisementByProductTags(payload);
   }
 
-  @GetMapping("/")
+  @GetMapping("/getAll")
   public List<Advertisement> getAll() {
     return advertisementService.getAll();
   }
@@ -32,28 +29,28 @@ public class AdvertisementController {
     return advertisementService.getById(id);
   }
 
-  @PutMapping("/add")
-  public Advertisement addAdvertisement(@RequestBody Advertisement Advertisement) {
-    return advertisementService.addAdvertisement(Advertisement);
-  }
-
-  @PutMapping("/addAll")
-  public List<Advertisement> addAllAdvertisements(@RequestBody List<Advertisement> Advertisement) {
-    return advertisementService.addAllAdvertisements(Advertisement);
-  }
-
-  @PutMapping("/update")
-  public Advertisement updateAdvertisement(@RequestBody Advertisement Advertisement) {
-    return advertisementService.update(Advertisement);
-  }
-
-  @DeleteMapping("/")
-  public void delete(@RequestParam("id") String id) {
-    advertisementService.delete(id);
-  }
+//  @PutMapping("/add")
+//  public Advertisement addAdvertisement(@RequestBody Advertisement Advertisement) {
+//    return advertisementService.addAdvertisement(Advertisement);
+//  }
+//
+//  @PutMapping("/addAll")
+//  public List<Advertisement> addAllAdvertisements(@RequestBody List<Advertisement> Advertisement) {
+//    return advertisementService.addAllAdvertisements(Advertisement);
+//  }
+//
+//  @PutMapping("/update")
+//  public Advertisement updateAdvertisement(@RequestBody Advertisement Advertisement) {
+//    return advertisementService.update(Advertisement);
+//  }
+//
+//  @DeleteMapping("/deleteById")
+//  public void delete(@RequestParam("id") String id) {
+//    advertisementService.delete(id);
+//  }
 
   @GetMapping("/tagRegex")
   public List<Advertisement> regexUser(@RequestParam(name = "tag") String tag) {
-    return advertisementService.regexUser(tag);
+    return advertisementService.regexProductTag(tag);
   }
 }

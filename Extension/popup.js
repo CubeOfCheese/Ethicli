@@ -62,6 +62,13 @@ function loadExtension(ethicliStats) {
         }
         document.body.style = "height:190px;"
     }
+
+    if (document.getElementById("popupNoRating") != null) { // for no ratings
+        document.body.style = "height: 290px;";
+        if (badgeCounter > 0) {
+            document.body.style = "height: 420px;";
+        }
+    }
     // End Badges ------------------------------------------------------------------------------------
 
     if (ethicliScore > 0.0) { // This will need to be updated once negative scores are used as default
@@ -173,7 +180,7 @@ function loadSponsor(productName, ethicliScore) {
     }
     if (adToDisplay) {
         if (document.getElementById("popupNoRating") !== null) {
-            document.body.style = "height:280px;";
+            document.body.style = "height:290px;";
         } else {
             fullheight = 540 - numSubscores*46;
             newHeight = "height:" + fullheight + "px;";
@@ -280,7 +287,7 @@ window.onload = () => {
             if (document.getElementById("popupMain") != null) { // for shop pages
                 document.body.style = "height:" + fullheight + "px;";
             } else if (document.getElementById("popupNoRating") != null) { // for no ratings
-                document.body.style = "height: 280px;";
+                document.body.style = "height: 290px;";
             } else if (document.getElementById("popupNotShop") != null) { // for non-shops
                 document.body.style = "height: 136px;";
             } else {

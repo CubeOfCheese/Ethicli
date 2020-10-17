@@ -51,21 +51,11 @@ public class SpringbootApplication implements CommandLineRunner{
   }
   @Override
   public void run(String... args) throws Exception {
-//    MongoClientURI uri = new MongoClientURI(
-//      "mongodb+srv://user:pass@cluster0.krjxc.gcp.mongodb.net/Advertisement?retryWrites=true&w=majority");
-//
-//  MongoClient mongoClient = new MongoClient(uri);
 
-//    MongoDatabase database = mongoClient.getDatabase("Advertisement");
-//    List<Advertisement> listOfAdvertisements = new ArrayList<Advertisement>();
-//    listOfAdvertisements.add(new Advertisement("Nike", "nike.com", new ProductTag[]{new ProductTag("shoe" , .9), new ProductTag("nike" , .8), new ProductTag("men" , .1)}, 100));
-//    listOfAdvertisements.add(new Advertisement("Black and Green", "blkgrn.com", new ProductTag[]{new ProductTag("shop" , .7), new ProductTag("green" , .6), new ProductTag("men" , .15)}, 30));
-//
-//    advertisementRepository.insert(listOfAdvertisements);
   }
 
   @GetMapping("/score/{company}")
-  public Business masterController(
+  public static Business masterController(
       @PathVariable("company") String companyName, HttpServletResponse response)
       throws IOException {
     response.addHeader("Access-Control-Allow-Origin", "*");
@@ -73,7 +63,7 @@ public class SpringbootApplication implements CommandLineRunner{
   }
 
   // Controls Searches of all Data Sources
-  public Business masterController(
+  public static Business masterController(
       @PathVariable("company") String companyName)
       throws IOException {
     Business business = new Business();
@@ -853,7 +843,7 @@ public class SpringbootApplication implements CommandLineRunner{
 
   // Searches Data Source: Columns of data source should be specified by order 0, 1, 2,.. If column
   // is not present in Data Source write -1.
-  public Business searchDataSource(
+  public static Business searchDataSource(
       String searchTerm,
       String filename,
       final int columnCount,
