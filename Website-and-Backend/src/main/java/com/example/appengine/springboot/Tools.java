@@ -96,13 +96,13 @@ public class Tools {
         String inputCleaned = "";
         for (int a = 0; a < inputToArray.length; ++a) {
           if (inputToArray[a].length() > 2 && !isCommonWord(inputToArray[a])) {
-            inputCleaned += removePuntuation(inputToArray[a]) + " ";
+            inputCleaned += removePunctuation(inputToArray[a]) + " ";
           }
         }
         return inputCleaned.split(" ");
       }
 
-      public static String removePuntuation(String string) {
+      public static String removePunctuation(String string) {
         return string.replaceAll("[^a-zA-Z0-9]", "");
       }
 

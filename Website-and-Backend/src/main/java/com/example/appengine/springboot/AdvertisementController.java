@@ -3,9 +3,14 @@ package com.example.appengine.springboot;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/Advertisement")
@@ -14,7 +19,7 @@ public class AdvertisementController {
   @Autowired
   AdvertisementService advertisementService;
 
-  @RequestMapping(value = "/getByProductTags", method = RequestMethod.GET)
+  @GetMapping(value = "/getByProductTags")
   public Advertisement getAdvertisementByProductTags(@RequestBody Map<String, Object> payload) throws Exception {
     return advertisementService.getAdvertisementByProductTags(payload);
   }

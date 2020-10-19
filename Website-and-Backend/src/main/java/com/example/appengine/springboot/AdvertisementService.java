@@ -22,7 +22,7 @@ public class AdvertisementService {
   public Advertisement getAdvertisementByProductTags(Map<String, Object> payload)
       throws IOException {
     // Advertisement Matches with less than 0.75 will not be returned
-    final double weightThreshold = 0.75;
+    final double WEIGHT_THRESHOLD = 0.75;
     // Stores the Ids of matching Advertisements. As they are added to the
     // Hashmap, their respective weights are accumulated.
     HashMap<String, Double> adMap = new HashMap<String, Double>();
@@ -61,7 +61,7 @@ public class AdvertisementService {
     // returned, else we return an empty advertisement.
     if (!adMap.isEmpty()) {
       double maxValueInMap = (Collections.max(adMap.values())); // This will return max value
-      if (maxValueInMap > weightThreshold) {
+      if (maxValueInMap > WEIGHT_THRESHOLD) {
         for (Entry<String, Double> entry : adMap.entrySet()) { // Itrate through hashmap
           if (entry.getValue() == maxValueInMap) {
             return getById(entry.getKey()).get();
