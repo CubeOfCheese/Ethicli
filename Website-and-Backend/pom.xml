@@ -108,6 +108,10 @@
       <artifactId>appengine-api-1.0-sdk</artifactId>
       <version>1.9.59</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
@@ -124,7 +128,6 @@
               </execution>
           </executions>
       </plugin>
-
       <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>appengine-maven-plugin</artifactId>
@@ -137,5 +140,4 @@
 
     </plugins>
   </build>
-
 </project>
