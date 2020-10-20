@@ -91,6 +91,39 @@ public class Tools {
         return searchTerm;
     }
 
+    public static String[] prepareForProductTagQuery(String input) throws IOException {
+        String[] inputToArray = input.toLowerCase().split(" ");
+        String inputCleaned = "";
+        for (int a = 0; a < inputToArray.length; ++a) {
+          if (inputToArray[a].length() > 2 && !isCommonWord(inputToArray[a])) {
+            inputCleaned += removePunctuation(inputToArray[a]) + " ";
+          }
+        }
+        return inputCleaned.split(" ");
+      }
+
+      public static String removePunctuation(String string) {
+        return string.replaceAll("[^a-zA-Z0-9]", "");
+      }
+
+      public static boolean isCommonWord(String word) throws IOException {
+        Resource resource = new ClassPathResource("Common Words");
+        InputStream file = resource.getInputStream();
+        BufferedReader br = null;
+        String commonWord = "";
+        String[] brLine;
+        try {
+          br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
+          while ((commonWord = br.readLine()) != null) {
+            if (commonWord.equals(word))
+              return true;
+          }
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        return false;
+      }
+
     // Compares companyName to Blocked URLS - Sheet.csv
     public static boolean validateURL(String companyName) throws IOException {
         Resource resource = new ClassPathResource("Blocked URLS - Sheet1.csv");
