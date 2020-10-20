@@ -23,7 +23,7 @@ function requestShop() { // runs when user hits "Request this Shop" button
     const fetchParams = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(fetchData)
     };

@@ -1,18 +1,18 @@
 window.onload = function() {
-  var currentUrl = window.location.href;
-  var urlCut = currentUrl.search("info") + 5;
-  var companyName = currentUrl.substring(urlCut);
-  var url = "https://ethicli.com/score/" + companyName;
+  const currentUrl = window.location.href;
+  const urlCut = currentUrl.search("info") + 5;
+  const companyName = currentUrl.substring(urlCut);
+  const url = "https://ethicli.com/score/" + companyName;
   fetch(url)
-  .then(response => response.json())
-  .then((data) => {
-    if (data.name) {
-      renderPage(data);
-    } else {
-      displayUnavailable();
-    }
-  })
-}
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.name) {
+          renderPage(data);
+        } else {
+          displayUnavailable();
+        }
+      });
+};
 
 function renderPage(companyData) {
   document.getElementById("companyName").innerText = companyData.name;
@@ -28,12 +28,24 @@ function renderPage(companyData) {
   document.getElementById("animalRating").innerText = companyData.animalsScore.toFixed(1);
   document.getElementById("socialRating").innerText = companyData.socialScore.toFixed(1);
 
-  if (companyData.bluesignPartner) { document.getElementById("bluesign").style = "display:block;" }
-  if (companyData.bcorpCertified) { document.getElementById("bcorp").style = "display:block;" }
-  if (companyData.blackOwnedBusiness) { document.getElementById("blackowned").style = "display:block;" }
-  if (companyData.supportsBLM) { document.getElementById("blmsupport").style = "display:block;" }
-  if (companyData.veganDotOrgCertified) { document.getElementById("vegan").style = "display:block;" }
-  if (companyData.leapingBunnyCertified) { document.getElementById("leapingbunny").style = "display:block;" }
+  if (companyData.bluesignPartner) {
+    document.getElementById("bluesign").style = "display:block;";
+  }
+  if (companyData.bcorpCertified) {
+    document.getElementById("bcorp").style = "display:block;";
+  }
+  if (companyData.blackOwnedBusiness) {
+    document.getElementById("blackowned").style = "display:block;";
+  }
+  if (companyData.supportsBLM) {
+    document.getElementById("blmsupport").style = "display:block;";
+  }
+  if (companyData.veganDotOrgCertified) {
+    document.getElementById("vegan").style = "display:block;";
+  }
+  if (companyData.leapingBunnyCertified) {
+    document.getElementById("leapingbunny").style = "display:block;";
+  }
   if (companyData.greenPowerPercentage) {
     document.getElementById("greenPowerPercentage").innerText = companyData.greenPowerPercentage + "%";
   } else {
@@ -42,58 +54,68 @@ function renderPage(companyData) {
 
   // Subscores ----------------------------------------------------------------------------------------
   if (companyData.environmentScore.toFixed(1) == 0) {
-    document.getElementById("environmentalStat").style = "display:none;"
-    document.getElementById("environmentalSec").style = "display:none;"
+    document.getElementById("environmentalStat").style = "display:none;";
+    document.getElementById("environmentalSec").style = "display:none;";
   } else {
     document.getElementById("environmentalStat").classList.add("tabClicked");
-    document.getElementById("environmentalSec").style = "display:block;"
+    document.getElementById("environmentalSec").style = "display:block;";
   }
 
   if (companyData.laborScore.toFixed(1) == 0) {
-    document.getElementById("laborStat").style = "display:none;"
-    document.getElementById("laborSec").style = "display:none;"
+    document.getElementById("laborStat").style = "display:none;";
+    document.getElementById("laborSec").style = "display:none;";
   } else {
-    if(companyData.environmentScore.toFixed(1) == 0){
+    if (companyData.environmentScore.toFixed(1) == 0) {
       document.getElementById("laborStat").classList.add("tabClicked");
-      document.getElementById("laborSec").style = "display:block;"
+      document.getElementById("laborSec").style = "display:block;";
     }
   }
 
   if (companyData.animalsScore.toFixed(1) == 0) {
-    document.getElementById("animalStat").style = "display:none;"
-    document.getElementById("animalSec").style = "display:none;"
+    document.getElementById("animalStat").style = "display:none;";
+    document.getElementById("animalSec").style = "display:none;";
   } else {
-    if ((companyData.environmentScore.toFixed(1) == 0)&&(companyData.laborScore.toFixed(1) == 0)) {
+    if ((companyData.environmentScore.toFixed(1) == 0) && (companyData.laborScore.toFixed(1) == 0)) {
       document.getElementById("animalStat").classList.add("tabClicked");
-      document.getElementById("animalSec").style = "display:block;"
+      document.getElementById("animalSec").style = "display:block;";
     }
   }
 
   if (companyData.socialScore.toFixed(1) == 0) {
-    document.getElementById("socialStat").style = "display:none;"
-    document.getElementById("socialSec").style = "display:none;"
+    document.getElementById("socialStat").style = "display:none;";
+    document.getElementById("socialSec").style = "display:none;";
   } else {
-    if ((companyData.environmentScore.toFixed(1) == 0)&&(companyData.laborScore.toFixed(1) == 0)&&(companyData.animalsScore.toFixed(1) == 0)) {
+    if ((companyData.environmentScore.toFixed(1) == 0) && (companyData.laborScore.toFixed(1) == 0) && (companyData.animalsScore.toFixed(1) == 0)) {
       document.getElementById("socialStat").classList.add("tabClicked");
-      document.getElementById("socialSec").style = "display:block;"
+      document.getElementById("socialSec").style = "display:block;";
     }
   }
 
   // Conditionally Display Subrating Links to Certifications ----------------------------------------------------
-  if (companyData.certifiedHumane) { document.getElementById("subscore-certifiedHumane").style = "display:block;" }
-  if (companyData.veganDotOrgCertified) { document.getElementById("subscore-veganDotOrg").style = "display:block;" }
-  if (companyData.chooseCrueltyFreeCertified || companyData.chooseCrueltyFreeVegan) { document.getElementById("subscore-chooseCrueltyFree").style = "display:block;" }
-  if (companyData.ethicalElephantCrueltyFree) { document.getElementById("subscore-ethicalElephant").style = "display:block;" }
-  if (companyData.leapingBunnyCertified) { document.getElementById("subscore-leapingBunny").style = "display:block;" }
-  if (!companyData.certifiedHumane //if no sources are shown
-    && !companyData.veganDotOrgCertified
-    && !companyData.chooseCrueltyFreeCertified
-    && !companyData.chooseCrueltyFreeVegan
-    && !companyData.ethicalElephantCrueltyFree
-    && !companyData.leapingBunnyCertified){
-      document.getElementById("followingsourcesdesc").style = "display:none;"
-      document.getElementById("manualscore").innerText = "manually"
-    }
+  if (companyData.certifiedHumane) {
+    document.getElementById("subscore-certifiedHumane").style = "display:block;";
+  }
+  if (companyData.veganDotOrgCertified) {
+    document.getElementById("subscore-veganDotOrg").style = "display:block;";
+  }
+  if (companyData.chooseCrueltyFreeCertified || companyData.chooseCrueltyFreeVegan) {
+    document.getElementById("subscore-chooseCrueltyFree").style = "display:block;";
+  }
+  if (companyData.ethicalElephantCrueltyFree) {
+    document.getElementById("subscore-ethicalElephant").style = "display:block;";
+  }
+  if (companyData.leapingBunnyCertified) {
+    document.getElementById("subscore-leapingBunny").style = "display:block;";
+  }
+  if (!companyData.certifiedHumane && // if no sources are shown
+    !companyData.veganDotOrgCertified &&
+    !companyData.chooseCrueltyFreeCertified &&
+    !companyData.chooseCrueltyFreeVegan &&
+    !companyData.ethicalElephantCrueltyFree &&
+    !companyData.leapingBunnyCertified) {
+    document.getElementById("followingsourcesdesc").style = "display:none;";
+    document.getElementById("manualscore").innerText = "manually";
+  }
 }
 
 function displayUnavailable() {
@@ -107,8 +129,8 @@ function displayUnavailable() {
   document.getElementById("mainStats").style = "padding-bottom: 60px;";
   document.getElementById("expandedStats").style = "display:none; overflow:hidden;";
   document.getElementById("overall-score-desc").innerHTML =
-    'It looks like we don&#39t have any info on that company. We&#39re constantly trying to improve our data coverage, \
+    "It looks like we don&#39t have any info on that company. We&#39re constantly trying to improve our data coverage, \
     but it looks like we&#39ve still got farther to go. Please send us an email at \
-    <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#116;&#104;&#105;&#099;&#108;&#105;&#046;&#099;&#111;&#109;?subject=Ethicli Inquiry" target="_blank">hello@ethicli.com</a> \
-    to let us know if you really want to know more about this company. Thank you for shopping Ethicli ♥';
+    <a href=\"mailto:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#116;&#104;&#105;&#099;&#108;&#105;&#046;&#099;&#111;&#109;?subject=Ethicli Inquiry\" target=\"_blank\">hello@ethicli.com</a> \
+    to let us know if you really want to know more about this company. Thank you for shopping Ethicli ♥";
 }

@@ -1,0 +1,29 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "jquery": true
+    },
+    "extends": [
+        "google",
+        "jquery"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "rules": {
+        "max-len": ["error", { "code": 140 }],
+        "require-jsdoc" : 0,
+        "space-in-parens": ["error", "never"],
+        "no-invalid-this": "off",
+        "lines-around-comment": "off",
+        "object-curly-spacing": ["error", "always"],
+        "comma-dangle": ["error", "only-multiline"],
+        "computed-property-spacing": ["error", "never"]
+    },
+    "globals": {
+        "chrome":"readonly"
+    }
+}
