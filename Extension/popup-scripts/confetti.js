@@ -27,7 +27,8 @@ const confetti = {
   confetti.isPaused = isConfettiPaused;
   confetti.remove = removeConfetti;
   confetti.isRunning = isConfettiRunning;
-  const supportsAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame;
+  const supportsAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame
+      || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame;
   const colors = [ "rgba(224, 122, 95,", "rgba(255, 252, 242,", "rgba(175, 191, 174,", "rgba(120, 150, 117,", "rgba(7, 99, 135,", "rgba(17, 53, 97," ];
   let streamingConfetti = false;
   let animationTimer = null;
@@ -93,12 +94,12 @@ const confetti = {
     const width = window.innerWidth;
     const height = window.innerHeight;
     window.requestAnimationFrame = (function() {
-      return window.requestAnimationFrame ||
-				window.webkitRequestAnimationFrame ||
-				window.mozRequestAnimationFrame ||
-				window.oRequestAnimationFrame ||
-				window.msRequestAnimationFrame ||
-				function(callback) {
+      return window.requestAnimationFrame
+				|| window.webkitRequestAnimationFrame
+				|| window.mozRequestAnimationFrame
+				|| window.oRequestAnimationFrame
+				|| window.msRequestAnimationFrame
+				|| function(callback) {
 				  return window.setTimeout(callback, confetti.frameInterval);
 				};
     })();

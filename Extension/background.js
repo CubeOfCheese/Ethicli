@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener(
 );
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.msgName == "displayOptin") {
+      if (request.msgName === "displayOptin") {
         chrome.browserAction.setPopup({ popup: "popupOptin.html" });
         chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
         chrome.browserAction.setBadgeText({ text: "" });
@@ -20,12 +20,12 @@ chrome.runtime.onMessage.addListener(
 );
 
 function reloadExt(request, sender, sendResponse) {
-  if (request.msgName == "PageEvaluated") {
+  if (request.msgName === "PageEvaluated") {
     const query = { active: true, currentWindow: true };
     chrome.tabs.query(query, function callback(tabs) {
       const currentTab = tabs[0];
 
-      if (request.shoppingPage == true) {
+      if (request.shoppingPage === true) {
         chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTab.id });
         isShoppingPage = true;
 
@@ -34,7 +34,7 @@ function reloadExt(request, sender, sendResponse) {
         const blacklist = [ "google", "bing", "yahoo", "baidu", "aol", "duckduckgo", "yandex", "ecosia" ];
         let notBlacklisted;
         let ethicliBadgeScore;
-        for (b = 0; b < blacklist.length; b++) {
+        for (let b = 0; b < blacklist.length; b++) {
           if (companyName.includes(blacklist[b])) {
             ethicliBadgeScore = "";
             notBlacklisted = false;
@@ -53,7 +53,7 @@ function reloadExt(request, sender, sendResponse) {
             ethicliStats = jsonResponse;
             ethicliBadgeScore = Math.round(jsonResponse.overallScore);
 
-            if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore == 0)) {
+            if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
               ethicliBadgeScore = "";
               chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id });
               reportGA("Background-NoRating");
@@ -92,8 +92,9 @@ chrome.tabs.onActivated.addListener(
           // so this just gets rid of an error that didn't actually break anything
           if (response) {
             isShoppingPage = response.isShoppingPage;
-            // currentTab.url is null for new tab pages when first opened and equal to "chrome://newtab/" when navigated to from another tab.
-            if (isShoppingPage && currentTab.url && (currentTab.url != "chrome://newtab/")) {
+            // currentTab.url is null for new tab pages when first opened
+            // and equal to "chrome://newtab/" when navigated to from another tab.
+            if (isShoppingPage && currentTab.url && (currentTab.url !== "chrome://newtab/")) {
               // data should only be retrieved for actual pages that are shopping pages
               chrome.tabs.sendMessage(tabs[0].id, { msgName: "productIdentified?" }, function(response) {
                 productName = response.productName;
@@ -110,9 +111,9 @@ chrome.tabs.onActivated.addListener(
 );
 
 function urlToCompanyName(url) {
-  if (url.substring(0, 8) == "https://") {
+  if (url.substring(0, 8) === "https://") {
     url = url.substring(8);
-  } else if (url.substring(0, 7) == "http://") {
+  } else if (url.substring(0, 7) === "http://") {
     url = url.substring(7);
   }
   let endOfBaseDomain = url.search(/\//);
@@ -151,7 +152,7 @@ chrome.tabs.onUpdated.addListener(
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.msgName == "ProductIdentified") {
+      if (request.msgName === "ProductIdentified") {
         productName = request.productName;
       }
     }
@@ -159,13 +160,13 @@ chrome.runtime.onMessage.addListener(
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.msgName == "isShoppingPage?") {
+      if (request.msgName === "isShoppingPage?") {
         sendResponse({ shoppingPage: isShoppingPage });
       }
-      if (request.msgName == "whatsMainRating?") {
+      if (request.msgName === "whatsMainRating?") {
         sendResponse({ ethicliStats: ethicliStats });
       }
-      if (request.msgName == "productIdentified?") {
+      if (request.msgName === "productIdentified?") {
         sendResponse({ productName: productName });
       }
     }
@@ -177,7 +178,7 @@ chrome.runtime.onInstalled.addListener(
     function handleInstalled(details) {
       let welcomeTabId;
 
-      if (details.reason == "install") {
+      if (details.reason === "install") {
         chrome.tabs.create({ url: "https://ethicli.com/welcome" }, function(result) {
           welcomeTabId = result.id;
 
@@ -204,9 +205,9 @@ const GA_CLIENT_ID = "4FB5D5BF-B582-41AD-9BDF-1EC789AE6544";
 function reportGA(aType) {
   try {
     const request = new XMLHttpRequest();
-    const message =
-      "v=1&tid=" + GA_TRACKING_ID + "&cid= " + GA_CLIENT_ID + "&aip=1" +
-      "&ds=add-on&t=event&ec=VISITORS&ea=" + aType;
+    const message
+      = "v=1&tid=" + GA_TRACKING_ID + "&cid= " + GA_CLIENT_ID + "&aip=1"
+      + "&ds=add-on&t=event&ec=VISITORS&ea=" + aType;
     request.open("POST", "https://www.google-analytics.com/collect", true);
     request.send(message);
   } catch (e) {

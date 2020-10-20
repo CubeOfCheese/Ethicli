@@ -76,28 +76,28 @@ function loadExtension(ethicliStats) {
   }
 
   function adjustSubscores() {
-    if (ethicliStats.environmentScore == 0.0) {
+    if (ethicliStats.environmentScore === 0.0) {
       document.getElementById("envSection").style = "display:none;";
       numSubscores++;
     }
-    if (ethicliStats.laborScore == 0.0) {
+    if (ethicliStats.laborScore === 0.0) {
       document.getElementById("laborSection").style = "display:none;";
       numSubscores++;
     }
-    if (ethicliStats.animalsScore == 0.0) {
+    if (ethicliStats.animalsScore === 0.0) {
       document.getElementById("animalSection").style = "display:none;";
       numSubscores++;
     }
-    if (ethicliStats.socialScore == 0.0) {
+    if (ethicliStats.socialScore === 0.0) {
       document.getElementById("socialSection").style = "display:none;";
       numSubscores++;
     }
     fullheight = fullheight - numSubscores * 42;
 
-    if (ethicliStats.environmentScore == 0.0 &&
-            ethicliStats.laborScore == 0.0 &&
-            ethicliStats.animalsScore == 0.0 &&
-            ethicliStats.socialScore == 0.0
+    if (ethicliStats.environmentScore === 0.0
+            && ethicliStats.laborScore === 0.0
+            && ethicliStats.animalsScore === 0.0
+            && ethicliStats.socialScore === 0.0
     ) {
       hasSubscore = false;
       document.getElementById("noSubscore").style = "display:block;";
@@ -128,7 +128,7 @@ function loadExtension(ethicliStats) {
 
   // Change sitename
   document.getElementById("siteurl").textContent = ethicliStats.name;
-  if (ethicliStats.name == null || ethicliStats.name == "") {
+  if (ethicliStats.name === null || ethicliStats.name === "") {
     document.getElementById("siteurl").textContent = "Unavailable";
   }
 
@@ -168,8 +168,8 @@ function loadSponsor(productName, ethicliScore) {
     let tempRelevance = 0;
     for (let i = 0; i < nameWords.length; i++) {
       for (let k = 0; k < ads[j].productTags.length; k++) {
-        if (nameWords[i].toLowerCase() == ads[j].productTags[k].tag.toLowerCase() ||
-                    nameWords[i].toLowerCase().substring(0, nameWords[i].length - 1) == ads[j].productTags[k].tag.toLowerCase()) {
+        if (nameWords[i].toLowerCase() === ads[j].productTags[k].tag.toLowerCase()
+                    || nameWords[i].toLowerCase().substring(0, nameWords[i].length - 1) === ads[j].productTags[k].tag.toLowerCase()) {
           tempRelevance = tempRelevance + ads[j].productTags[k].weight;
         }
       }
@@ -297,7 +297,7 @@ window.onload = () => {
       document.getElementById(idname).style = "display:block";
     }
 
-    if (currentTutorial == 6 || currentTutorial == 7) {
+    if (currentTutorial === 6 || currentTutorial === 7) {
       document.getElementById("tutorialNavigation").style = "display:flex; bottom:476px;";
     } else {
       document.getElementById("tutorialNavigation").style = "display:flex; bottom:8px;";
@@ -310,27 +310,27 @@ window.onload = () => {
 };
 
 function fadeLongURL() {
-  document.getElementById("siteurl").addEventListener("mouseover", (event) => {
+  document.getElementById("siteurl").addEventListener("mouseover", () => {
     const siteurlLength = this.innerHTML.length + 16;
     if (siteurlLength > 40) {
       this.style = "margin-left: -" + (siteurlLength) + "px;";
-      document.getElementById("siteurlcontainer").style =
-                "-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%);\
-                mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%)";
+      document.getElementById("siteurlcontainer").style
+                = `-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%);
+                mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%)`;
     }
   });
-  document.getElementById("siteurl").addEventListener("mouseout", (event) => {
+  document.getElementById("siteurl").addEventListener("mouseout", () => {
     this.style = "margin-left: 0px;";
-    document.getElementById("siteurlcontainer").style =
-            "-webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);\
-            mask-image: linear-gradient(to right, black 90%, transparent 100%)";
+    document.getElementById("siteurlcontainer").style
+            = `-webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+            mask-image: linear-gradient(to right, black 90%, transparent 100%)`;
   });
 }
 
 function urlToCompanyName(url) {
-  if (url.substring(0, 8) == "https://") {
+  if (url.substring(0, 8) === "https://") {
     url = url.substring(8);
-  } else if (url.substring(0, 7) == "http://") {
+  } else if (url.substring(0, 7) === "http://") {
     url = url.substring(7);
   }
   let endOfBaseDomain = url.search(/\//);
@@ -367,7 +367,8 @@ function somethingWrong() {
     document.getElementById("sendEmail").href = sendEmail();
 
     function sendEmail() {
-      const emailUrl = "mailto:hello@ethicli.com?subject=Error%20With%20Current%20Website%20&body=Error%20with%20the%20following%20page:%20" + currentTab.url + "%0d%0aPlease%20let%20us%20know%20what%20is%20wrong%20below.";
+      const emailUrl = "mailto:hello@ethicli.com?subject=Error%20With%20Current%20Website%20&body=Error%20with%20the%20following%20page:%20"
+        + currentTab.url + "%0d%0aPlease%20let%20us%20know%20what%20is%20wrong%20below.";
       chrome.tabs.create({ url: emailUrl }, function(tab) {
         setTimeout(() => {
           chrome.tabs.remove(tab.id);
@@ -385,9 +386,9 @@ const GA_CLIENT_ID = "4FB5D5BF-B582-41AD-9BDF-1EC789AE6544";
 function reportGA(aType) {
   try {
     const request = new XMLHttpRequest();
-    const message =
-      "v=1&tid=" + GA_TRACKING_ID + "&cid= " + GA_CLIENT_ID + "&aip=1" +
-      "&ds=add-on&t=event&ec=VISITORS&ea=" + aType;
+    const message
+      = "v=1&tid=" + GA_TRACKING_ID + "&cid= " + GA_CLIENT_ID + "&aip=1"
+      + "&ds=add-on&t=event&ec=VISITORS&ea=" + aType;
     request.open("POST", "https://www.google-analytics.com/collect", true);
     request.send(message);
   } catch (e) {

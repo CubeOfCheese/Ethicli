@@ -175,7 +175,7 @@ function pageEval() {
   ];
 
   let wordTracker = 0;
-  for (i = 0; i < shopWords.length; i++) {
+  for (let i = 0; i < shopWords.length; i++) {
     const inArray = shopWords[i].test(dom);
     if (inArray) { // if words are present, add values.
       wordTracker += 1;
@@ -201,14 +201,14 @@ function identifyProduct() {
     productName = productName + productElements[0].alt + " ";
   }
   productName = productName + document.title;
-  if (productName != "") {
+  if (productName !== "") {
     chrome.runtime.sendMessage({ msgName: "ProductIdentified", productName: productName }, function(response) {});
   }
 }
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.msgName == "isShoppingPage?") {
+      if (request.msgName === "isShoppingPage?") {
         sendResponse({ isShoppingPage: isShoppingPage });
       }
       return true;
@@ -217,10 +217,10 @@ chrome.runtime.onMessage.addListener(
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.msgName == "isShoppingPage?") {
+      if (request.msgName === "isShoppingPage?") {
         sendResponse({ isShoppingPage: isShoppingPage });
       }
-      if (request.msgName == "productIdentified?") {
+      if (request.msgName === "productIdentified?") {
         sendResponse({ productName: productName });
       }
     }
@@ -228,7 +228,7 @@ chrome.runtime.onMessage.addListener(
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.msgName == "reevaluatePage") {
+      if (request.msgName === "reevaluatePage") {
         pageEval();
         sendResponse({ response: "reevaluated" });
       }
@@ -239,7 +239,7 @@ chrome.runtime.onMessage.addListener(
 
 chrome.runtime.onMessage.addListener(
     function(request) {
-      if (request.msgName == "isEthicliWelcomePage") {
+      if (request.msgName === "isEthicliWelcomePage") {
         document.getElementById("optinAccepted").addEventListener(
             "click",
             function() {
