@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = () => {
   const currentUrl = window.location.href;
   const urlCut = currentUrl.search("info") + 5;
   const companyName = currentUrl.substring(urlCut);

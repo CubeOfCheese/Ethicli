@@ -12,7 +12,7 @@ function requestShop() { // runs when user hits "Request this Shop" button
   let userEmailHTML = "";
   userEmailHTML = document.getElementById("emailrequest").value;
   const query = { active: true, currentWindow: true };
-  chrome.tabs.query(query, function callback(tabs) {
+  chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
     const fetchUrlFeedback = "https://ethicli.com/feedback";
     const fetchData = {
@@ -59,9 +59,9 @@ const GA_CLIENT_ID = "4FB5D5BF-B582-41AD-9BDF-1EC789AE6544";
 function reportGA(aType) {
   try {
     const request = new XMLHttpRequest();
-    const message =
-      "v=1&tid=" + GA_TRACKING_ID + "&cid= " + GA_CLIENT_ID + "&aip=1" +
-      "&ds=add-on&t=event&ec=VISITORS&ea=" + aType;
+    const message
+      = "v=1&tid=" + GA_TRACKING_ID + "&cid= " + GA_CLIENT_ID + "&aip=1"
+      + "&ds=add-on&t=event&ec=VISITORS&ea=" + aType;
     request.open("POST", "https://www.google-analytics.com/collect", true);
     request.send(message);
   } catch (e) {

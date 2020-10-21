@@ -1,7 +1,7 @@
 let isShoppingPage;
 let productName = "";
 
-window.onload = function() {
+window.onload = () => {
   chrome.storage.local.get("optIn", function(response) {
     if (response.optIn === true) {
       pageEval();
@@ -240,20 +240,14 @@ chrome.runtime.onMessage.addListener(
 chrome.runtime.onMessage.addListener(
     function(request) {
       if (request.msgName === "isEthicliWelcomePage") {
-        document.getElementById("optinAccepted").addEventListener(
-            "click",
-            function() {
-              pageEval();
-              chrome.storage.local.set({ "optIn": true }, function() {
-              });
-            });
+        document.getElementById("optinAccepted").addEventListener("click", () => {
+          pageEval();
+          chrome.storage.local.set({ "optIn": true });
+        });
 
-        document.getElementById("optinDeclined").addEventListener(
-            "click",
-            function() {
-              chrome.storage.local.set({ "optIn": false }, function() {
-              });
-            });
+        document.getElementById("optinDeclined").addEventListener("click", () => {
+          chrome.storage.local.set({ "optIn": false });
+        });
       }
       return true;
     }

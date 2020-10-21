@@ -22,7 +22,7 @@ chrome.runtime.onMessage.addListener(
 function reloadExt(request, sender, sendResponse) {
   if (request.msgName === "PageEvaluated") {
     const query = { active: true, currentWindow: true };
-    chrome.tabs.query(query, function callback(tabs) {
+    chrome.tabs.query(query, (tabs) => {
       const currentTab = tabs[0];
 
       if (request.shoppingPage === true) {
@@ -48,7 +48,7 @@ function reloadExt(request, sender, sendResponse) {
           const companyRequest = new XMLHttpRequest();
           const url = "https://ethicli.com/score/" + companyName;
           companyRequest.open("GET", url, true);
-          companyRequest.onload = function() {
+          companyRequest.onload = () => {
             const jsonResponse = JSON.parse(this.response);
             ethicliStats = jsonResponse;
             ethicliBadgeScore = Math.round(jsonResponse.overallScore);
@@ -82,33 +82,31 @@ function reloadExt(request, sender, sendResponse) {
   return true;
 }
 
-chrome.tabs.onActivated.addListener(
-    function() {
-      const query = { active: true, currentWindow: true };
-      chrome.tabs.query(query, function callback(tabs) {
-        const currentTab = tabs[0];
-        chrome.tabs.sendMessage(tabs[0].id, { msgName: "isShoppingPage?" }, function(response) {
-          // On first page visit, response is null. This function is only supposed to run after the first visit anyway,
-          // so this just gets rid of an error that didn't actually break anything
-          if (response) {
-            isShoppingPage = response.isShoppingPage;
-            // currentTab.url is null for new tab pages when first opened
-            // and equal to "chrome://newtab/" when navigated to from another tab.
-            if (isShoppingPage && currentTab.url && (currentTab.url !== "chrome://newtab/")) {
-              // data should only be retrieved for actual pages that are shopping pages
-              chrome.tabs.sendMessage(tabs[0].id, { msgName: "productIdentified?" }, function(response) {
-                productName = response.productName;
-              });
-              const request = { msgName: "PageEvaluated", shoppingPage: true };
-              const sender = { tab: { url: "" } };
-              sender.tab.url = currentTab.url;
-              reloadExt(request, sender);
-            }
-          }
-        });
-      });
-    }
-);
+chrome.tabs.onActivated.addListener(() => {
+  const query = { active: true, currentWindow: true };
+  chrome.tabs.query(query, (tabs) => {
+    const currentTab = tabs[0];
+    chrome.tabs.sendMessage(tabs[0].id, { msgName: "isShoppingPage?" }, function(response) {
+      // On first page visit, response is null. This function is only supposed to run after the first visit anyway,
+      // so this just gets rid of an error that didn't actually break anything
+      if (response) {
+        isShoppingPage = response.isShoppingPage;
+        // currentTab.url is null for new tab pages when first opened
+        // and equal to "chrome://newtab/" when navigated to from another tab.
+        if (isShoppingPage && currentTab.url && (currentTab.url !== "chrome://newtab/")) {
+          // data should only be retrieved for actual pages that are shopping pages
+          chrome.tabs.sendMessage(tabs[0].id, { msgName: "productIdentified?" }, function(response) {
+            productName = response.productName;
+          });
+          const request = { msgName: "PageEvaluated", shoppingPage: true };
+          const sender = { tab: { url: "" } };
+          sender.tab.url = currentTab.url;
+          reloadExt(request, sender);
+        }
+      }
+    });
+  });
+});
 
 function urlToCompanyName(url) {
   if (url.substring(0, 8) === "https://") {
@@ -129,26 +127,23 @@ function urlToCompanyName(url) {
   return url;
 }
 
-chrome.tabs.onCreated.addListener(
-    function() {
-      const query = { active: true, currentWindow: true };
-      chrome.tabs.query(query, function callback(tabs) {
-        const currentTab = tabs[0];
-        chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
-        chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
-        chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
-      });
-    }
-);
-chrome.tabs.onUpdated.addListener(
-    function() {
-      const query = { active: true, currentWindow: true };
-      chrome.tabs.query(query, function callback(tabs) {
-        const currentTab = tabs[0];
-        chrome.tabs.sendMessage(currentTab.id, { msgName: "reevaluatePage" });
-      });
-    }
-);
+chrome.tabs.onCreated.addListener(() => {
+  const query = { active: true, currentWindow: true };
+  chrome.tabs.query(query, (tabs) => {
+    const currentTab = tabs[0];
+    chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
+    chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
+    chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
+  });
+});
+
+chrome.tabs.onUpdated.addListener(() => {
+  const query = { active: true, currentWindow: true };
+  chrome.tabs.query(query, (tabs) => {
+    const currentTab = tabs[0];
+    chrome.tabs.sendMessage(currentTab.id, { msgName: "reevaluatePage" });
+  });
+});
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
@@ -179,20 +174,18 @@ chrome.runtime.onInstalled.addListener(
       let welcomeTabId;
 
       if (details.reason === "install") {
-        chrome.tabs.create({ url: "https://ethicli.com/welcome" }, function(result) {
+        chrome.tabs.create({ url: "https://ethicli.com/welcome" }, (result) => {
           welcomeTabId = result.id;
 
-          chrome.tabs.onUpdated.addListener(
-              function() {
-                const query = { active: true, currentWindow: true };
-                chrome.tabs.query(query, function callback(tabs) {
-                  const currentTab = tabs[0];
-                  if (currentTab.id === welcomeTabId) {
-                    chrome.tabs.sendMessage(currentTab.id, { msgName: "isEthicliWelcomePage" });
-                  }
-                });
+          chrome.tabs.onUpdated.addListener(() => {
+            const query = { active: true, currentWindow: true };
+            chrome.tabs.query(query, (tabs) => {
+              const currentTab = tabs[0];
+              if (currentTab.id === welcomeTabId) {
+                chrome.tabs.sendMessage(currentTab.id, { msgName: "isEthicliWelcomePage" });
               }
-          );
+            });
+          });
         });
       }
     }

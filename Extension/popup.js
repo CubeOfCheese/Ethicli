@@ -134,7 +134,7 @@ function loadExtension(ethicliStats) {
 
   // Change "View Details" button routing
   const query = { active: true, currentWindow: true };
-  chrome.tabs.query(query, function callback(tabs) {
+  chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
     const companyName = urlToCompanyName(currentTab.url);
 
@@ -348,7 +348,7 @@ function urlToCompanyName(url) {
 
 function somethingWrong() {
   const query = { active: true, currentWindow: true };
-  chrome.tabs.query(query, function callback(tabs) {
+  chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
     const fetchUrlFeedback = "https://ethicli.com/feedback";
     const fetchData = {
