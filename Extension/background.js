@@ -4,81 +4,64 @@ let isShoppingPage;
 let ethicliStats;
 let productName;
 
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      reloadExt(request, sender, sendResponse);
-    }
-);
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      if (request.msgName === "displayOptin") {
-        chrome.browserAction.setPopup({ popup: "popupOptin.html" });
-        chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
-        chrome.browserAction.setBadgeText({ text: "" });
-      }
-    }
-);
-
 function reloadExt(request, sender, sendResponse) {
-  if (request.msgName === "PageEvaluated") {
-    const query = { active: true, currentWindow: true };
-    chrome.tabs.query(query, (tabs) => {
-      const currentTab = tabs[0];
+  const query = { active: true, currentWindow: true };
+  chrome.tabs.query(query, (tabs) => {
+    const currentTab = tabs[0];
 
-      if (request.shoppingPage === true) {
-        chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTab.id });
-        isShoppingPage = true;
+    if (request.shoppingPage === true) {
+      chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTab.id });
+      isShoppingPage = true;
 
-        const companyName = urlToCompanyName(sender.tab.url);
+      const companyName = urlToCompanyName(sender.tab.url);
 
-        const blacklist = [ "google", "bing", "yahoo", "baidu", "aol", "duckduckgo", "yandex", "ecosia" ];
-        let notBlacklisted;
-        let ethicliBadgeScore;
-        for (let b = 0; b < blacklist.length; b++) {
-          if (companyName.includes(blacklist[b])) {
-            ethicliBadgeScore = "";
-            notBlacklisted = false;
-            break;
-          } else {
-            notBlacklisted = true;
-          }
-        }
-
-        if (notBlacklisted) {
-          const companyRequest = new XMLHttpRequest();
-          const url = "https://ethicli.com/score/" + companyName;
-          companyRequest.open("GET", url, true);
-          companyRequest.onload = () => {
-            const jsonResponse = JSON.parse(this.response);
-            ethicliStats = jsonResponse;
-            ethicliBadgeScore = Math.round(jsonResponse.overallScore);
-
-            if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
-              ethicliBadgeScore = "";
-              chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id });
-              reportGA("Background-NoRating");
-            } else {
-              chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id });
-              reportGA("Background-HasRating");
-            }
-            chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
-          };
-          companyRequest.send();
+      const blacklist = [ "google", "bing", "yahoo", "baidu", "aol", "duckduckgo", "yandex", "ecosia" ];
+      let notBlacklisted;
+      let ethicliBadgeScore;
+      for (let b = 0; b < blacklist.length; b++) {
+        if (companyName.includes(blacklist[b])) {
+          ethicliBadgeScore = "";
+          notBlacklisted = false;
+          break;
         } else {
-          notShop();
+          notBlacklisted = true;
         }
+      }
+
+      if (notBlacklisted) {
+        const companyRequest = new XMLHttpRequest();
+        const url = "https://ethicli.com/score/" + companyName;
+        companyRequest.open("GET", url, true);
+        companyRequest.onload = () => {
+          const jsonResponse = JSON.parse(this.response);
+          ethicliStats = jsonResponse;
+          ethicliBadgeScore = Math.round(jsonResponse.overallScore);
+
+          if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
+            ethicliBadgeScore = "";
+            chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id });
+            reportGA("Background-NoRating");
+          } else {
+            chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id });
+            reportGA("Background-HasRating");
+          }
+          chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
+        };
+        companyRequest.send();
       } else {
         notShop();
       }
+    } else {
+      notShop();
+    }
 
-      function notShop() {
-        isShoppingPage = false;
-        chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
-        chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
-        chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
-      }
-    });
-  }
+    function notShop() {
+      isShoppingPage = false;
+      chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
+      chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
+      chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
+    }
+  });
   return true;
 }
 
@@ -145,28 +128,6 @@ chrome.tabs.onUpdated.addListener(() => {
   });
 });
 
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      if (request.msgName === "ProductIdentified") {
-        productName = request.productName;
-      }
-    }
-);
-
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      if (request.msgName === "isShoppingPage?") {
-        sendResponse({ shoppingPage: isShoppingPage });
-      }
-      if (request.msgName === "whatsMainRating?") {
-        sendResponse({ ethicliStats: ethicliStats });
-      }
-      if (request.msgName === "productIdentified?") {
-        sendResponse({ productName: productName });
-      }
-    }
-);
-
 // onInstalled has a details.reason, for the next update we need to use this value
 // to ensure this only runs when details.reason == "install"
 chrome.runtime.onInstalled.addListener(
@@ -190,6 +151,33 @@ chrome.runtime.onInstalled.addListener(
       }
     }
 );
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  switch (request.msgName) {
+    case "isShoppingPage?":
+      sendResponse({ shoppingPage: isShoppingPage });
+      break;
+    case "whatsMainRating?":
+      sendResponse({ ethicliStats: ethicliStats });
+      break;
+    case "productIdentified?":
+      sendResponse({ productName: productName });
+      break;
+    case "ProductIdentified":
+      productName = request.productName;
+      break;
+    case "PageEvaluated":
+      reloadExt(request, sender);
+      break;
+    case "displayOptin":
+      chrome.browserAction.setPopup({ popup: "popupOptin.html" });
+      chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
+      chrome.browserAction.setBadgeText({ text: "" });
+      break;
+    default:
+      console.error(request, sender);
+  }
+});
 
 // GOOGLE ANALYTICS
 const GA_TRACKING_ID = "UA-173025073-1";

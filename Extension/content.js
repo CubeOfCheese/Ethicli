@@ -206,49 +206,29 @@ function identifyProduct() {
   }
 }
 
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      if (request.msgName === "isShoppingPage?") {
-        sendResponse({ isShoppingPage: isShoppingPage });
-      }
-      return true;
-    }
-);
-
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      if (request.msgName === "isShoppingPage?") {
-        sendResponse({ isShoppingPage: isShoppingPage });
-      }
-      if (request.msgName === "productIdentified?") {
-        sendResponse({ productName: productName });
-      }
-    }
-);
-
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      if (request.msgName === "reevaluatePage") {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  switch (request.msgName) {
+    case "isShoppingPage?":
+      sendResponse({ isShoppingPage: isShoppingPage });
+      break;
+    case "reevaluatePage":
+      pageEval();
+      sendResponse({ response: "reevaluated" });
+      break;
+    case "productIdentified?":
+      sendResponse({ productName: productName });
+      break;
+    case "isEthicliWelcomePage":
+      document.getElementById("optinAccepted").addEventListener("click", () => {
+        chrome.storage.local.set({ "optIn": true });
         pageEval();
-        sendResponse({ response: "reevaluated" });
-      }
-      return true;
-    }
-);
-
-
-chrome.runtime.onMessage.addListener(
-    function(request) {
-      if (request.msgName === "isEthicliWelcomePage") {
-        document.getElementById("optinAccepted").addEventListener("click", () => {
-          pageEval();
-          chrome.storage.local.set({ "optIn": true });
-        });
-
-        document.getElementById("optinDeclined").addEventListener("click", () => {
-          chrome.storage.local.set({ "optIn": false });
-        });
-      }
-      return true;
-    }
-);
+      });
+      document.getElementById("optinDeclined").addEventListener("click", () => {
+        chrome.storage.local.set({ "optIn": false });
+      });
+      break;
+    default:
+      console.error(request, sender);
+  }
+  return true;
+});
