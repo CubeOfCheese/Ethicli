@@ -369,7 +369,7 @@ function somethingWrong() {
     function sendEmail() {
       const emailUrl = "mailto:hello@ethicli.com?subject=Error%20With%20Current%20Website%20&body=Error%20with%20the%20following%20page:%20"
         + currentTab.url + "%0d%0aPlease%20let%20us%20know%20what%20is%20wrong%20below.";
-      chrome.tabs.create({ url: emailUrl }, function(tab) {
+      chrome.tabs.create({ url: emailUrl }, (tab) => {
         setTimeout(() => {
           chrome.tabs.remove(tab.id);
         }, 500);

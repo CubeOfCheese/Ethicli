@@ -2,7 +2,7 @@ let isShoppingPage;
 let productName = "";
 
 window.onload = () => {
-  chrome.storage.local.get("optIn", function(response) {
+  chrome.storage.local.get("optIn", (response) => {
     if (response.optIn === true) {
       pageEval();
     } else {
@@ -183,11 +183,11 @@ function pageEval() {
   }
 
   if (wordTracker > 0) { // if there's at least one shopWord present
-    chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: true }, function(response) {});
+    chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: true });
     identifyProduct();
     isShoppingPage = true;
   } else {
-    chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: false }, function(response) {});
+    chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: false });
     isShoppingPage = false;
   }
 }
@@ -202,7 +202,7 @@ function identifyProduct() {
   }
   productName = productName + document.title;
   if (productName !== "") {
-    chrome.runtime.sendMessage({ msgName: "ProductIdentified", productName: productName }, function(response) {});
+    chrome.runtime.sendMessage({ msgName: "ProductIdentified", productName: productName });
   }
 }
 

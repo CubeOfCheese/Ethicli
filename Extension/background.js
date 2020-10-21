@@ -109,7 +109,7 @@ chrome.tabs.onActivated.addListener(() => {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
-    chrome.tabs.sendMessage(tabs[0].id, { msgName: "isShoppingPage?" }, function(response) {
+    chrome.tabs.sendMessage(tabs[0].id, { msgName: "isShoppingPage?" }, (response) => {
       // On first page visit, response is null. This function is only supposed to run after the first visit anyway,
       // so this just gets rid of an error that didn't actually break anything
       if (response) {
@@ -118,7 +118,7 @@ chrome.tabs.onActivated.addListener(() => {
         // and equal to "chrome://newtab/" when navigated to from another tab.
         if (isShoppingPage && currentTab.url && (currentTab.url !== "chrome://newtab/")) {
           // data should only be retrieved for actual pages that are shopping pages
-          chrome.tabs.sendMessage(tabs[0].id, { msgName: "productIdentified?" }, function(response) {
+          chrome.tabs.sendMessage(tabs[0].id, { msgName: "productIdentified?" }, (response) => {
             productName = response.productName;
           });
           const request = { msgName: "PageEvaluated", shoppingPage: true };

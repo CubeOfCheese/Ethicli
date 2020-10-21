@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
       const query = { active: true, currentWindow: true };
       chrome.tabs.query(query, (tabs) => {
         const currentTab = tabs[0];
-        chrome.tabs.sendMessage(currentTab.id, { msgName: "reevaluatePage" }, function(response) {
+        chrome.tabs.sendMessage(currentTab.id, { msgName: "reevaluatePage" }, (response) => {
           window.close();
         });
       });
