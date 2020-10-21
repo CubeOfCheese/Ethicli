@@ -1,5 +1,6 @@
 package com.example.appengine.springboot;
 
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -19,7 +20,8 @@ public class NotificationService {
     // Controls Feedback Service: If you need to change sender information (email/password)
     // make sure tochange it in resources/application.properties as well
     @PostMapping("/feedback")
-    public String sendNotification(@RequestBody Feedback message) throws MailException {
+    public String sendNotification(@RequestBody Feedback message, HttpServletResponse response) throws MailException {
+        response.addHeader("Access-Control-Allow-Origin", "*");
         SimpleMailMessage mail = new SimpleMailMessage();
         mail.setTo("team.ethicli@gmail.com");
         mail.setFrom("feedback.ethicli@gmail.com");
