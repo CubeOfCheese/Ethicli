@@ -4,66 +4,106 @@ let isShoppingPage;
 let ethicliStats;
 let productName;
 
-function reloadExt(request, sender, sendResponse) {
+function notShop(currentTab) {
+  isShoppingPage = false;
+  chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
+  chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
+  chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
+}
+
+function urlToCompanyName(url) {
+  if (url.substring(0, 8) === "https://") {
+    url = url.substring(8);
+  } else if (url.substring(0, 7) === "http://") {
+    url = url.substring(7);
+  }
+  let endOfBaseDomain = url.search(/\//);
+  if (endOfBaseDomain > -1) {
+    url = url.substring(0, endOfBaseDomain);
+  }
+  const endOfSubDomain = url.lastIndexOf(".", url.lastIndexOf(".") - 1);
+  url = url.substring(endOfSubDomain + 1);
+  endOfBaseDomain = url.search(/\./);
+  if (endOfBaseDomain > -1) {
+    url = url.substring(0, endOfBaseDomain);
+  }
+  return url;
+}
+
+function reloadExt(request, sender) {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
 
-    if (request.shoppingPage === true) {
-      chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTab.id });
-      isShoppingPage = true;
+    if (!request.shoppingPage) {
+      notShop(currentTab);
+    }
+    chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTab.id });
+    isShoppingPage = true;
 
-      const companyName = urlToCompanyName(sender.tab.url);
+    const companyName = urlToCompanyName(sender.tab.url);
 
-      const blacklist = [ "google", "bing", "yahoo", "baidu", "aol", "duckduckgo", "yandex", "ecosia" ];
-      let notBlacklisted;
-      let ethicliBadgeScore;
-      for (let b = 0; b < blacklist.length; b++) {
-        if (companyName.includes(blacklist[b])) {
-          ethicliBadgeScore = "";
-          notBlacklisted = false;
-          break;
-        } else {
-          notBlacklisted = true;
-        }
-      }
-
-      if (notBlacklisted) {
-        const companyRequest = new XMLHttpRequest();
-        const url = "https://ethicli.com/score/" + companyName;
-        companyRequest.open("GET", url, true);
-        companyRequest.onload = () => {
-          const jsonResponse = JSON.parse(this.response);
-          ethicliStats = jsonResponse;
-          ethicliBadgeScore = Math.round(jsonResponse.overallScore);
-
-          if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
-            ethicliBadgeScore = "";
-            chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id });
-            reportGA("Background-NoRating");
-          } else {
-            chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id });
-            reportGA("Background-HasRating");
-          }
-          chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
-        };
-        companyRequest.send();
+    const blocklist = [ "google", "bing", "yahoo", "baidu", "aol", "duckduckgo", "yandex", "ecosia" ];
+    let isBlocklisted;
+    let ethicliBadgeScore;
+    for (let b = 0; b < blocklist.length; b++) {
+      if (companyName.includes(blocklist[b])) {
+        ethicliBadgeScore = "";
+        isBlocklisted = true;
+        break;
       } else {
-        notShop();
+        isBlocklisted = false;
       }
-    } else {
-      notShop();
     }
 
-    function notShop() {
-      isShoppingPage = false;
-      chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
-      chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
-      chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
+    if (isBlocklisted) {
+      notShop(currentTab);
+      return true;
     }
+    const url = "https://ethicli.com/score/" + companyName;
+    return fetch(url).then((response) => response.json()).then((jsonResponse) => {
+      ethicliStats = jsonResponse;
+      ethicliBadgeScore = Math.round(jsonResponse.overallScore);
+
+      if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
+        ethicliBadgeScore = "";
+        chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id });
+        reportGA("Background-NoRating");
+      } else {
+        chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id });
+        reportGA("Background-HasRating");
+      }
+      chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
+    });
   });
-  return true;
 }
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  switch (request.msgName) {
+    case "isShoppingPage?":
+      sendResponse({ shoppingPage: isShoppingPage });
+      break;
+    case "whatsMainRating?":
+      sendResponse({ ethicliStats: ethicliStats });
+      break;
+    case "productIdentified?":
+      sendResponse({ productName: productName });
+      break;
+    case "ProductIdentified":
+      productName = request.productName;
+      break;
+    case "PageEvaluated":
+      reloadExt(request, sender);
+      break;
+    case "displayOptin":
+      chrome.browserAction.setPopup({ popup: "popupOptin.html" });
+      chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
+      chrome.browserAction.setBadgeText({ text: "" });
+      break;
+    default:
+      console.error(request, sender);
+  }
+});
 
 chrome.tabs.onActivated.addListener(() => {
   const query = { active: true, currentWindow: true };
@@ -91,25 +131,6 @@ chrome.tabs.onActivated.addListener(() => {
   });
 });
 
-function urlToCompanyName(url) {
-  if (url.substring(0, 8) === "https://") {
-    url = url.substring(8);
-  } else if (url.substring(0, 7) === "http://") {
-    url = url.substring(7);
-  }
-  let endOfBaseDomain = url.search(/\//);
-  if (endOfBaseDomain > -1) {
-    url = url.substring(0, endOfBaseDomain);
-  }
-  const endOfSubDomain = url.lastIndexOf(".", url.lastIndexOf(".") - 1);
-  url = url.substring(endOfSubDomain + 1);
-  endOfBaseDomain = url.search(/\./);
-  if (endOfBaseDomain > -1) {
-    url = url.substring(0, endOfBaseDomain);
-  }
-  return url;
-}
-
 chrome.tabs.onCreated.addListener(() => {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
@@ -128,55 +149,25 @@ chrome.tabs.onUpdated.addListener(() => {
   });
 });
 
-// onInstalled has a details.reason, for the next update we need to use this value
-// to ensure this only runs when details.reason == "install"
-chrome.runtime.onInstalled.addListener(
-    function handleInstalled(details) {
-      let welcomeTabId;
+chrome.runtime.onInstalled.addListener((details) => {
+  let welcomeTabId;
 
-      if (details.reason === "install") {
-        chrome.tabs.create({ url: "https://ethicli.com/welcome" }, (result) => {
-          welcomeTabId = result.id;
-
-          chrome.tabs.onUpdated.addListener(() => {
-            const query = { active: true, currentWindow: true };
-            chrome.tabs.query(query, (tabs) => {
-              const currentTab = tabs[0];
-              if (currentTab.id === welcomeTabId) {
-                chrome.tabs.sendMessage(currentTab.id, { msgName: "isEthicliWelcomePage" });
-              }
-            });
-          });
-        });
-      }
-    }
-);
-
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  switch (request.msgName) {
-    case "isShoppingPage?":
-      sendResponse({ shoppingPage: isShoppingPage });
-      break;
-    case "whatsMainRating?":
-      sendResponse({ ethicliStats: ethicliStats });
-      break;
-    case "productIdentified?":
-      sendResponse({ productName: productName });
-      break;
-    case "ProductIdentified":
-      productName = request.productName;
-      break;
-    case "PageEvaluated":
-      reloadExt(request, sender);
-      break;
-    case "displayOptin":
-      chrome.browserAction.setPopup({ popup: "popupOptin.html" });
-      chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
-      chrome.browserAction.setBadgeText({ text: "" });
-      break;
-    default:
-      console.error(request, sender);
+  if (details.reason !== "install") {
+    return;
   }
+  chrome.tabs.create({ url: "https://ethicli.com/welcome" }, (result) => {
+    welcomeTabId = result.id;
+
+    chrome.tabs.onUpdated.addListener(() => {
+      const query = { active: true, currentWindow: true };
+      chrome.tabs.query(query, (tabs) => {
+        const currentTab = tabs[0];
+        if (currentTab.id === welcomeTabId) {
+          chrome.tabs.sendMessage(currentTab.id, { msgName: "isEthicliWelcomePage" });
+        }
+      });
+    });
+  });
 });
 
 // GOOGLE ANALYTICS
