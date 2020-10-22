@@ -1,65 +1,51 @@
-// $(document).ready(function() {
-// --- Tutorial --------------------------------------------------------------------------
-//   let startTutorial = false;
-//   let currentTutorial;
-//   $("#hideTutorial").click(function() {
-//     $("#tutorial").toggleClass("hideTutorial");
-//     if (startTutorial) {
-//       $("#tutorial").removeClass("tutorialHeightAdjust");
-//     } else {
-//       $("#tutorial").addClass("tutorialHeightAdjust");
-//     }
-//   });
-
-//   $("#watchTutorial").click(function() {
-//     startTutorial = !startTutorial;
-//     currentTutorial = 1;
-//     if (startTutorial) {
-//       $("#tutorialScreens").css({ "display": "block" });
-//       $("#tutorialNavigation").css({ "display": "flex" });
-//       $("#tutorialScreens img:nth-child(" + currentTutorial + ")").css({ "display": "block" });
-//       $("#tutorial").css({ "height": "624px" });
-//     } else {
-//       $("#tutorialScreens").css({ "display": "none" });
-//       $("#tutorialNavigation").css({ "display": "none" });
-//     }
-//     console.log("After watchTutorial " + currentTutorial);
-//   });
-
-//   $("#tutorialBack").click(function() {
-//     currentTutorial -= 1; tutorialSlideshow();
-//   });
-//   $("#tutorialNext").click(function() {
-//     currentTutorial += 1; tutorialSlideshow();
-//   });
-
-//   function tutorialSlideshow() {
-//     for (let i = 0; i < 7; i++) {
-//       $("#tutorialScreens img:nth-child(" + i + ")").css({ "display": "none" });
-//     }
-//     $("#tutorialScreens img:nth-child(" + currentTutorial + ")").css({ "display": "block" });
-//     if (currentTutorial < 1 || currentTutorial > 7) { // Resets tutorial
-//       startTutorial = false;
-//       currentTutorial = 1;
-//       $("#tutorialScreens").css({ "display": "none" });
-//       $("#tutorialNavigation").css({ "display": "none" });
-//       $("#tutorial").css({ "height": "400px" });
-//     }
-//     if (currentTutorial === 6 || currentTutorial === 7) {
-//       $("#tutorialNavigation").css({ "bottom": "476px" });
-//     } else {
-//       $("#tutorialNavigation").css({ "bottom": "8px" });
-//     }
+window.onload = () => {
+  // --- General Styling --------------------------------------------------------------------------
+//   dropdown();
+//   function dropdown() {
+//     $(".dropdownMenu").click(function() {
+//       $(".dropdownIcon").toggleClass("dropped");
+//       $(".submenu").toggleClass("submenuClicked");
+//     });
 //   }
 
-//   $("#confettiLogo").click(function() {
-//     confetti.start(1000, 150);
-//   });
-// });
+  //   mobileNav(); // allows menu to toggle when starting at a mobile size
+  //   function mobileNav() { // create mobile menu toggle to show navigation links
+  //     $("#triplebar").click(function() {
+  //       $("#navlinks").toggleClass("navClicked");
+  //     });
+  //   }
+  //   $(window).bind("resize", function() {
+  //     if ($(this).width() > 768) {
+  //       $("#navlinks").removeClass("navClicked");
+  //       $(".submenu").removeClass("submenuClicked");
+  //       $(".dropdownIcon").removeClass("dropped");
+  //     }
+  //   }).trigger("resize");
 
+  dropdown();
+  function dropdown() {
+    document.getElementById("dropdownMenu").addEventListener("click", () => {
+      document.getElementById("dropdownIcon").classList.toggle("dropped");
+      document.getElementById("submenu").classList.toggle("submenuClicked");
+    });
+  }
 
-window.onload = () => {
-// --- Optin --------------------------------------------------------------------------
+  mobileNav(); // allows menu to toggle when starting at a mobile size
+  function mobileNav() { // create mobile menu toggle to show navigation links
+    document.getElementById("triplebar").addEventListener("click", () => {
+      document.getElementById("navlinks").classList.toggle("navClicked");
+    });
+  }
+
+  window.addEventListener("onresize", () => {
+    if (window.innerWidth > 768) {
+      document.getElementById("navlinks").classList.remove("navClicked");
+      document.getElementById("submenu").classList.remove("submenuClicked");
+      document.getElementById("dropdownIcon").classList.remove("dropped");
+    }
+  });
+
+  // --- Optin --------------------------------------------------------------------------
   document.getElementById("optinAccepted").addEventListener("click", () => {
     document.getElementById("optinAcceptedResult").style = "display:block;";
     document.getElementById("optinDeclinedResult").style = "display:none;";
