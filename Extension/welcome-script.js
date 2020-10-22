@@ -1,27 +1,5 @@
 window.onload = () => {
   // --- General Styling --------------------------------------------------------------------------
-//   dropdown();
-//   function dropdown() {
-//     $(".dropdownMenu").click(function() {
-//       $(".dropdownIcon").toggleClass("dropped");
-//       $(".submenu").toggleClass("submenuClicked");
-//     });
-//   }
-
-  //   mobileNav(); // allows menu to toggle when starting at a mobile size
-  //   function mobileNav() { // create mobile menu toggle to show navigation links
-  //     $("#triplebar").click(function() {
-  //       $("#navlinks").toggleClass("navClicked");
-  //     });
-  //   }
-  //   $(window).bind("resize", function() {
-  //     if ($(this).width() > 768) {
-  //       $("#navlinks").removeClass("navClicked");
-  //       $(".submenu").removeClass("submenuClicked");
-  //       $(".dropdownIcon").removeClass("dropped");
-  //     }
-  //   }).trigger("resize");
-
   dropdown();
   function dropdown() {
     document.getElementById("dropdownMenu").addEventListener("click", () => {
@@ -76,7 +54,7 @@ window.onload = () => {
     if (startTutorial) {
       document.getElementById("tutorialScreens").style = "display:block;";
       document.getElementById("tutorialNavigation").style = "display:flex;";
-      document.getElementById("tutorialScreens img:nth-child(" + currentTutorial + ")").style = "display:block;";
+      document.querySelector("#tutorialScreens img:nth-child(" + currentTutorial + ")").style = "display:block;";
       document.getElementById("tutorial").style = "height:624px;";
     } else {
       document.getElementById("tutorialScreens").style = "display:none;";
@@ -94,9 +72,9 @@ window.onload = () => {
 
   function tutorialSlideshow() {
     for (let i = 0; i < 7; i++) {
-      document.getElementById("#tutorialScreens img:nth-child(" + i + ")").style = "display:none;";
+      document.querySelector("#tutorialScreens img:nth-child(" + i + ")").style = "display:none;";
     }
-    document.getElementById("#tutorialScreens img:nth-child(" + currentTutorial + ")").style = "display:block;";
+    document.querySelector("#tutorialScreens img:nth-child(" + currentTutorial + ")").style = "display:block;";
     if (currentTutorial < 1 || currentTutorial > 7) { // Resets tutorial
       startTutorial = false;
       currentTutorial = 1;
