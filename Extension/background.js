@@ -155,7 +155,7 @@ chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason !== "install") {
     return;
   }
-  chrome.tabs.create({ url: "https://ethicli.com/welcome" }, (result) => {
+  chrome.tabs.create({ url: "welcome.html" }, (result) => {
     welcomeTabId = result.id;
 
     chrome.tabs.onUpdated.addListener(() => {
