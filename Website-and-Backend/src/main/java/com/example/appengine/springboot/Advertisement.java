@@ -15,12 +15,18 @@ public class Advertisement {
   private String productImageURL;
   private double companyScore;
 
-  public Advertisement() {
+  public Advertisement() {}
 
-  }
-
-  public Advertisement(String id, String productName, String website, String companyName,
-      ProductTag[] productTags, double price, String productURL, String productImageURL, double companyScore) {
+  public Advertisement(
+      String id,
+      String productName,
+      String website,
+      String companyName,
+      ProductTag[] productTags,
+      double price,
+      String productURL,
+      String productImageURL,
+      double companyScore) {
     this.id = id;
     this.productName = productName;
     this.website = website;
