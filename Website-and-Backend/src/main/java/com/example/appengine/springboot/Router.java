@@ -22,11 +22,6 @@ public class Router {
     return "privacy";
   }
 
-  @RequestMapping(value = "/welcome")
-  public String getWelcome() {
-    return "welcome";
-  }
-
   @RequestMapping(value = "/info/{company}")
   public String getInfo(@PathVariable("company") String companyName, Model model) {
     model.addAttribute(
