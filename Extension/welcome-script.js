@@ -1,27 +1,21 @@
 window.onload = () => {
   // --- General Styling --------------------------------------------------------------------------
-  dropdown();
-  function dropdown() {
-    document.getElementById("dropdownMenu").addEventListener("click", () => {
-      document.getElementById("dropdownIcon").classList.toggle("dropped");
-      document.getElementById("submenu").classList.toggle("submenuClicked");
-    });
-  }
+  document.getElementById("dropdownMenu").addEventListener("click", () => {
+    document.getElementById("dropdownIcon").classList.toggle("dropped");
+    document.getElementById("submenu").classList.toggle("submenuClicked");
+  });
 
-  mobileNav(); // allows menu to toggle when starting at a mobile size
-  function mobileNav() { // create mobile menu toggle to show navigation links
-    document.getElementById("triplebar").addEventListener("click", () => {
-      document.getElementById("navlinks").classList.toggle("navClicked");
-    });
-  }
+  document.getElementById("triplebar").addEventListener("click", () => { // allows menu to toggle when starting at a mobile size
+    document.getElementById("navlinks").classList.toggle("navClicked"); // create mobile menu toggle to show navigation links
+  });
 
-  window.addEventListener("onresize", () => {
+  window.onresize = () => {
     if (window.innerWidth > 768) {
       document.getElementById("navlinks").classList.remove("navClicked");
       document.getElementById("submenu").classList.remove("submenuClicked");
       document.getElementById("dropdownIcon").classList.remove("dropped");
     }
-  });
+  };
 
   // --- Optin --------------------------------------------------------------------------
   document.getElementById("optinAccepted").addEventListener("click", () => {

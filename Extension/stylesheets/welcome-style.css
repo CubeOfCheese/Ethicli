@@ -68,7 +68,7 @@ nav a:hover {
     display: none;
 }
 
-.submenu {
+#submenu {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -87,7 +87,7 @@ nav a:hover {
     transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
 }
 
-.submenu.submenuClicked {
+#submenu.submenuClicked {
     top: 0;
     height: 200px;
     opacity: 1;
@@ -102,7 +102,7 @@ nav a:hover {
     transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
 }
 
-.submenu a {
+#submenu a {
     position: relative;
     margin-top: 20px;
     padding: 12px;
@@ -110,7 +110,7 @@ nav a:hover {
     margin-left: auto;
 }
 
-.dropdownIcon.dropped {
+#dropdownIcon.dropped {
     display: inline-block;
     transform: rotate(180deg);
 }
