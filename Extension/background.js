@@ -150,24 +150,10 @@ chrome.tabs.onUpdated.addListener(() => {
 });
 
 chrome.runtime.onInstalled.addListener((details) => {
-  let welcomeTabId;
-
   if (details.reason !== "install") {
     return;
   }
-  chrome.tabs.create({ url: "https://ethicli.com/welcome" }, (result) => {
-    welcomeTabId = result.id;
-
-    chrome.tabs.onUpdated.addListener(() => {
-      const query = { active: true, currentWindow: true };
-      chrome.tabs.query(query, (tabs) => {
-        const currentTab = tabs[0];
-        if (currentTab.id === welcomeTabId) {
-          chrome.tabs.sendMessage(currentTab.id, { msgName: "isEthicliWelcomePage" });
-        }
-      });
-    });
-  });
+  chrome.tabs.create({ url: "welcome.html" });
 });
 
 // GOOGLE ANALYTICS
