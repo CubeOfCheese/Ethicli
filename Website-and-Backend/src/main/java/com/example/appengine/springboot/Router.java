@@ -23,11 +23,6 @@ public class Router {
     return "privacy";
   }
 
-  @RequestMapping(value = "/welcome")
-  public String getWelcome() {
-    return "welcome";
-  }
-
   @RequestMapping(value = "/info/{company}")
   public String getInfo(@PathVariable("company") String companyName, Model model) {
     model.addAttribute("companyName", companyName); // doesn't do anything as of right now. Leaving it in as an example for future thymeleaf use
