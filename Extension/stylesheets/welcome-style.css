@@ -470,11 +470,10 @@ button {
 #tutorialNavigation {
     position: absolute;
     bottom: 8px;
-    width: 272px;
+    width: 278px;
     justify-content: space-between;
     padding: 30px;
     display: none;
-    z-index: 20;
 }
 
 #tutorialBack, #tutorialNext, #tutorialBack::selection, #tutorialNext::selection {

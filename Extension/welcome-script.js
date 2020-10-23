@@ -46,14 +46,13 @@ window.onload = () => {
     }
   });
 
-
-  currentTutorial = 0;
   document.getElementById("watchTutorial").addEventListener("click", () => {
     startTutorial = !startTutorial;
+    currentTutorial = 0;
     if (startTutorial) {
       document.getElementById("tutorialScreens").style = "display:block;";
       document.getElementById("tutorialNavigation").style = "display:flex;";
-      // document.querySelectorAll("#tutorialScreens img:nth-child(" + currentTutorial + ")").style = "display:block;";
+      document.querySelectorAll(".tscreen")[currentTutorial].style = "display:block;";
       document.getElementById("tutorial").style = "height:624px;";
     } else {
       document.getElementById("tutorialScreens").style = "display:none;";
@@ -71,20 +70,23 @@ window.onload = () => {
 
   function tutorialSlideshow() {
     for (let i = 0; i < 7; i++) {
-      document.querySelectorAll("#tutorialScreens img:nth-child(" + i + ")").style = "display:none;";
+      document.querySelectorAll(".tscreen")[i].style = "display:none;";
     }
-    console.log(currentTutorial);
-    document.querySelectorAll("#tutorialScreens img:nth-child(" + currentTutorial + ")").style = "display:block;";
-    if (currentTutorial < 1 || currentTutorial > 7) { // Resets tutorial
-      startTutorial = false;
-      currentTutorial = 1;
-      document.getElementById("tutorialScreens").style = "display:none;";
-      document.getElementById("tutorialNavigation").style = "display:none;";
-      document.getElementById("tutorial").style = "height:400px;";
-    } else if (currentTutorial === 6 || currentTutorial === 7) {
+
+    if (currentTutorial === 5 || currentTutorial === 6) {
       document.getElementById("tutorialNavigation").style = "display:flex;bottom:476px;";
     } else {
       document.getElementById("tutorialNavigation").style = "display:flex;bottom:8px;";
+    }
+
+    if (currentTutorial < 0 || currentTutorial > 6) { // Resets tutorial
+      startTutorial = false;
+      currentTutorial = 0;
+      document.getElementById("tutorialScreens").style = "display:none;";
+      document.getElementById("tutorialNavigation").style = "display:none;";
+      document.getElementById("tutorial").style = "height:400px;";
+    } else {
+      document.querySelectorAll(".tscreen")[currentTutorial].style = "display:block;";
     }
   }
 
