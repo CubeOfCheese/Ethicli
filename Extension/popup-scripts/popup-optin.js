@@ -12,8 +12,6 @@ window.addEventListener("load", () => {
   });
 
   document.getElementById("optinNo").addEventListener("click", () => {
-    chrome.storage.local.set({ "optIn": false }, () => {
-      window.close();
-    });
+    chrome.management.uninstallSelf();
   });
 });

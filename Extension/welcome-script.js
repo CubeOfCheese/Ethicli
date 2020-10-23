@@ -25,14 +25,18 @@ window.onload = () => {
 
   // --- Optin --------------------------------------------------------------------------
   document.getElementById("optinAccepted").addEventListener("click", () => {
-    document.getElementById("optinAcceptedResult").style = "display:block;";
-    document.getElementById("optinDeclinedResult").style = "display:none;";
-    confetti.start(1000, 150);
+    chrome.storage.local.set({ "optIn": true }, () => {
+      document.getElementById("optinAcceptedResult").style = "display:block;";
+      document.getElementById("optinDeclinedResult").style = "display:none;";
+      confetti.start(1000, 150);
+    });
   });
 
   document.getElementById("optinDeclined").addEventListener("click", () => {
-    document.getElementById("optinAcceptedResult").style = "display:none;";
-    document.getElementById("optinDeclinedResult").style = "display:block;";
+    chrome.management.uninstallSelf(() => {
+      document.getElementById("optinAcceptedResult").style = "display:none;";
+      document.getElementById("optinDeclinedResult").style = "display:block;";
+    });
   });
 
   // --- Tutorial --------------------------------------------------------------------------

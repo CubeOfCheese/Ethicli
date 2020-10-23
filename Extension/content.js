@@ -1,15 +1,17 @@
 let isShoppingPage;
 let productName = "";
 
-window.onload = () => {
+window.onload = reevaluatePage();
+
+function reevaluatePage() {
   chrome.storage.local.get("optIn", (response) => {
-    if (response.optIn === true) {
-      pageEval();
-    } else {
+    if (!response.optIn) {
       chrome.runtime.sendMessage({ msgName: "displayOptin" });
+    } else {
+      pageEval();
     }
   });
-};
+}
 
 function pageEval() {
   const dom = document.getElementsByTagName("html")[0].innerHTML;
@@ -212,20 +214,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       sendResponse({ isShoppingPage: isShoppingPage });
       break;
     case "reevaluatePage":
-      pageEval();
+      reevaluatePage();
       sendResponse({ response: "reevaluated" });
       break;
     case "productIdentified?":
       sendResponse({ productName: productName });
-      break;
-    case "isEthicliWelcomePage":
-      document.getElementById("optinAccepted").addEventListener("click", () => {
-        chrome.storage.local.set({ "optIn": true });
-        pageEval();
-      });
-      document.getElementById("optinDeclined").addEventListener("click", () => {
-        chrome.storage.local.set({ "optIn": false });
-      });
       break;
     default:
       console.error(request, sender);
