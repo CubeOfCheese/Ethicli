@@ -333,7 +333,7 @@ button {
 }
 
 /*------------------------------------------------------------------------*/
-/*** welcome/Tutorial *****************************************************/
+/*** Welcome/Tutorial *****************************************************/
 /*------------------------------------------------------------------------*/
 
 #welcome header {
@@ -469,11 +469,12 @@ button {
 
 #tutorialNavigation {
     position: absolute;
-    bottom: 12px;
-    width: 100%;
+    bottom: 8px;
+    width: 272px;
     justify-content: space-between;
     padding: 30px;
     display: none;
+    z-index: 20;
 }
 
 #tutorialBack, #tutorialNext, #tutorialBack::selection, #tutorialNext::selection {
