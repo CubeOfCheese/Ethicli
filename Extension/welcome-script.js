@@ -70,6 +70,11 @@ window.onload = () => {
   });
 
   function tutorialSlideshow() {
+    for (let i = 0; i < 7; i++) {
+      document.querySelectorAll("#tutorialScreens img:nth-child(" + i + ")").style = "display:none;";
+    }
+    console.log(currentTutorial);
+    document.querySelectorAll("#tutorialScreens img:nth-child(" + currentTutorial + ")").style = "display:block;";
     if (currentTutorial < 1 || currentTutorial > 7) { // Resets tutorial
       startTutorial = false;
       currentTutorial = 1;
@@ -78,19 +83,9 @@ window.onload = () => {
       document.getElementById("tutorial").style = "height:400px;";
     } else if (currentTutorial === 6 || currentTutorial === 7) {
       document.getElementById("tutorialNavigation").style = "display:flex;bottom:476px;";
-      aaa();
     } else {
       document.getElementById("tutorialNavigation").style = "display:flex;bottom:8px;";
-      aaa();
     }
-  }
-
-  function aaa() {
-    for (let i = 0; i < 7; i++) {
-      document.querySelectorAll("#tutorialScreens img:nth-child(" + i + ")").style = "display:none;";
-    }
-    console.log(currentTutorial);
-    document.querySelectorAll("#tutorialScreens img:nth-child(" + currentTutorial + ")").style = "display:block;";
   }
 
   document.getElementById("confettiLogo").addEventListener("click", () => {
