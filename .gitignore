@@ -2,3 +2,5 @@ Website-and-Backend/target
 *.DS_Store
 Extension/env.js
 *.zip
+node_modules/
+package-lock.json

@@ -2,7 +2,7 @@
 Browser extension for ethical online shopping
 
 # Social media accounts
-Website: https://www.ethicli.com
+Website: https://ethicli.com
 
 Gmail: team.ethicli@gmail.com
 

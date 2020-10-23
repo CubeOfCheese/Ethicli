@@ -1,0 +1,27 @@
+{
+  "name": "ethicli",
+  "version": "1.0.0",
+  "description": "Browser extension for ethical online shopping",
+  "main": "index.js",
+  "dependencies": {
+    "eslint-plugin-jquery": "^1.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-jquery": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CubeOfCheese/Ethicli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CubeOfCheese/Ethicli/issues"
+  },
+  "homepage": "https://github.com/CubeOfCheese/Ethicli#readme"
+}
