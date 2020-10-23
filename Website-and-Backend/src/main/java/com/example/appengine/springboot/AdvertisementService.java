@@ -21,26 +21,13 @@ public class AdvertisementService {
 
   public Advertisement getAdvertisementByProductTags(Map<String, Object> payload)
       throws IOException {
-    // Advertisement Matches with less than 0.75 will not be returned
     final double WEIGHT_THRESHOLD = 0.75;
-    // Stores the Ids of matching Advertisements. As they are added to the
-    // Hashmap, their respective weights are accumulated.
     HashMap<String, Double> adMap = new HashMap<String, Double>();
-    // takes the input JSON Object, removes the String stored in the variable "name", removes all
-    // punctuation, converts it to lowercase, removes common words, and removes words that ore only
-    // one letter and stores it into a String[] split by " "
     String[] names = Tools.prepareForProductTagQuery(payload.get("name").toString());
-    // Cycles through all of the cleaned up names[]
     for (int a = 0; a < names.length; ++a) {
-      // Runs a regular expression productTag.tag query for each String in names[] stores al matches
-      // in List advertisements
       List<Advertisement> advertisements = regexProductTag(names[a]);
       for (int b = 0; b < advertisements.size(); ++b) {
         for (int c = 0; c < advertisements.get(b).getProductTags().length; ++c) {
-          // If the tag of productTag 'c' of advertisements 'b' contains names 'a' then the id of
-          // advertisements 'b' and the weight of productTag 'c' of advertisements 'b' are stored in
-          // adMap. If there is already existing data for that id then the weight is added to the
-          // weight in the hashmap instead of just being stored.
           if (advertisements.get(b).getProductTags()[c].getTag().contains(names[a])) {
             if (adMap.containsKey(advertisements.get(b).getId())) {
               adMap.put(
@@ -56,9 +43,6 @@ public class AdvertisementService {
         }
       }
     }
-    // If adMap isn't empty and if the largest weight stored in adMap is greater than
-    // weightTheshold(0.75) then the advervisement associated with the id of the lagest weight is
-    // returned, else we return an empty advertisement.
     if (!adMap.isEmpty()) {
       double maxValueInMap = (Collections.max(adMap.values())); // This will return max value
       if (maxValueInMap > WEIGHT_THRESHOLD) {
