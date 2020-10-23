@@ -96,7 +96,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       reloadExt(request, sender);
       break;
     case "displayOptin":
-      chrome.browserAction.setPopup({ popup: "popupOptin.html" }, () => {});
+      chrome.browserAction.setPopup({ popup: "popupOptin.html" });
       chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
       chrome.browserAction.setBadgeText({ text: "" });
       break;
