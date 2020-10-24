@@ -1,21 +1,23 @@
 package com.example.appengine.springboot;
 
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 public class Tools {
 
   // Removes all occurences of char target from String name
   public static String charRemove(String name, char target) {
-    char tempArray[] = name.toCharArray();
+    char[] tempArray = name.toCharArray();
     String output = "";
     for (int a = 0; a < name.length(); ++a) {
-      if (tempArray[a] != target) output += tempArray[a];
+      if (tempArray[a] != target) {
+        output += tempArray[a];
+      }
     }
     return output;
   }
@@ -27,12 +29,12 @@ public class Tools {
     if (business.getWebsite() != null) { // Compares searchTerm with business.website
       String website = business.getWebsite().toLowerCase();
       if (website.contains("http://")) {
-        website = website.substring(7, website.length());
+        website = website.substring(7);
       } else if (website.contains("https://")) {
-        website = website.substring(8, website.length());
+        website = website.substring(8);
       }
       if (website.contains("www.")) {
-        website = website.substring(4, website.length());
+        website = website.substring(4);
       }
       if (website.length() > searchTerm.length()) {
         if (searchTerm.equals(website.substring(0, searchTerm.length()))
@@ -43,13 +45,15 @@ public class Tools {
     }
     // Compare searchTerm with business.name - Checks matches of words in business.name individually
     // and together
-    String nameArray[] = prepareSearchTerm(business.getName().toLowerCase()).split(" ");
+    String[] nameArray = prepareSearchTerm(business.getName().toLowerCase()).split(" ");
     String nameToken;
     for (int a = 0; a < nameArray.length; ++a) {
       nameToken = "";
       for (int b = a; b < nameArray.length; ++b) {
         nameToken += nameArray[b];
-        if (searchTerm.equals(nameToken)) return true;
+        if (searchTerm.equals(nameToken)) {
+          return true;
+        }
       }
     }
     return false;
@@ -62,7 +66,9 @@ public class Tools {
     content = content.replaceAll("\"\"", "@@DOUBLEQUOTES@@");
     splitByComma = content.split(",");
     for (int a = 0; a < splitByComma.length; ++a) {
-      if (splitByComma[a].contains("\"")) quoteDetected = !quoteDetected;
+      if (splitByComma[a].contains("\"")) {
+        quoteDetected = !quoteDetected;
+      }
       if (quoteDetected) {
         output += splitByComma[a] + ",";
       } else {
@@ -110,7 +116,9 @@ public class Tools {
     try {
       br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
       while ((commonWord = br.readLine()) != null) {
-        if (commonWord.equals(word)) return true;
+        if (commonWord.equals(word)) {
+          return true;
+        }
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -127,7 +135,9 @@ public class Tools {
     try {
       br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
       while ((line = br.readLine()) != null) { // cycles through line by line
-        if (companyName.equals(line)) return false;
+        if (companyName.equals(line)) {
+          return false;
+        }
       }
     } catch (IOException e) {
       e.printStackTrace();

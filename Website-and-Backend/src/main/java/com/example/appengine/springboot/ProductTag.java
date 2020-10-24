@@ -1,6 +1,7 @@
 package com.example.appengine.springboot;
 
 public class ProductTag {
+
   private String tag;
   private double weight;
 

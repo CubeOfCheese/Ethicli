@@ -14,7 +14,8 @@ public class AppConfig {
         "mongodb+srv://user:<password>@cluster0.krjxc.gcp.mongodb.net/Ethicli?retryWrites=true&w=majority");
   }
 
-  public @Bean MongoTemplate mongoTemplate() {
+  public @Bean
+  MongoTemplate mongoTemplate() {
     return new MongoTemplate(mongoClient(), "Ethicli");
   }
 }

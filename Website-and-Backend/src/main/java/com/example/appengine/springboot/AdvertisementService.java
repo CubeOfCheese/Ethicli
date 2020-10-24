@@ -3,6 +3,7 @@ package com.example.appengine.springboot;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
@@ -12,15 +13,15 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class AdvertisementService {
 
-  @Autowired private MongoOperations mongoOperations;
+  @Autowired
+  AdvertisementRepository advertisementRepository;
+  @Autowired
+  private MongoOperations mongoOperations;
 
-  public Advertisement getAdvertisementByProductTags(Map<String, Object> payload)
-      throws IOException {
+  public Advertisement getAdvertisementByProductTags(Map<String, Object> payload) throws IOException {
     final double WEIGHT_THRESHOLD = 0.75;
     HashMap<String, Double> adMap = new HashMap<String, Double>();
     String[] names = Tools.prepareForProductTagQuery(payload.get("name").toString());
@@ -55,8 +56,6 @@ public class AdvertisementService {
     }
     return new Advertisement();
   }
-
-  @Autowired AdvertisementRepository advertisementRepository;
 
   public List<Advertisement> getAll() {
     return advertisementRepository.findAll();
