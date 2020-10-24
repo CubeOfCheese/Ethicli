@@ -186,7 +186,7 @@ header {
     min-height: 768px;
 }
 
-#privacy header, #faq header {
+#privacy header, #faq header, #uninstall header {
     min-height: 200px;
 }
 
@@ -226,6 +226,12 @@ header {
 
 .basicbody section {
     margin-bottom: 60px;
+}
+
+#uninstallform, #uninstallform iframe {
+    justify-content: center;
+    min-height: 1160px;
+    height: 100%;
 }
 
 #optinButtonGroup {
@@ -533,7 +539,7 @@ button {
 }
 
 
-/*** Images *****************************************************/
+/*** Images and Video *****************************************************/
 
 #logo {
     position: absolute;
@@ -558,6 +564,13 @@ button {
     width: 39%;
     border-radius: 20px;
     margin-top: 30px;
+}
+
+iframe {
+    max-width: 830px;
+    width: 100%;
+    max-height: 460px;
+    height: 100%;
 }
 
 
