@@ -25,20 +25,20 @@ public class AdvertisementService {
     final double WEIGHT_THRESHOLD = 0.75;
     HashMap<String, Double> adMap = new HashMap<String, Double>();
     String[] names = Tools.prepareForProductTagQuery(payload.get("name").toString());
-    for (int a = 0; a < names.length; ++a) {
-      List<Advertisement> advertisements = regexProductTag(names[a]);
-      for (int b = 0; b < advertisements.size(); ++b) {
-        for (int c = 0; c < advertisements.get(b).getProductTags().length; ++c) {
-          if (advertisements.get(b).getProductTags()[c].getTag().contains(names[a])) {
-            if (adMap.containsKey(advertisements.get(b).getId())) {
+    for (int namesIndex = 0; namesIndex < names.length; ++namesIndex) {
+      List<Advertisement> advertisements = regexProductTag(names[namesIndex]);
+      for (int advertisementsIndex = 0; advertisementsIndex < advertisements.size(); ++advertisementsIndex) {
+        for (int productTagsIndex = 0; productTagsIndex < advertisements.get(advertisementsIndex).getProductTags().length; ++productTagsIndex) {
+          if (advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().contains(names[namesIndex])) {
+            if (adMap.containsKey(advertisements.get(advertisementsIndex).getId())) {
               adMap.put(
-                  advertisements.get(b).getId(),
-                  advertisements.get(b).getProductTags()[c].getWeight()
-                      + adMap.get(advertisements.get(b).getId()).doubleValue());
+                  advertisements.get(advertisementsIndex).getId(),
+                  advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight()
+                      + adMap.get(advertisements.get(advertisementsIndex).getId()).doubleValue());
             } else {
               adMap.put(
-                  advertisements.get(b).getId(),
-                  advertisements.get(b).getProductTags()[c].getWeight());
+                  advertisements.get(advertisementsIndex).getId(),
+                  advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight());
             }
           }
         }
