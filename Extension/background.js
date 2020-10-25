@@ -156,6 +156,10 @@ chrome.runtime.onInstalled.addListener((details) => {
   chrome.tabs.create({ url: "welcome.html" });
 });
 
+if (chrome.runtime.setUninstallURL) {
+  chrome.runtime.setUninstallURL("https://ethicli.com/goodbye");
+}
+
 // GOOGLE ANALYTICS
 const GA_TRACKING_ID = "UA-173025073-1";
 const GA_CLIENT_ID = "4FB5D5BF-B582-41AD-9BDF-1EC789AE6544";
