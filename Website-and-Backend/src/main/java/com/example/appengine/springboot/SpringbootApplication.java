@@ -18,6 +18,7 @@ package com.example.appengine.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 @SpringBootApplication
+@CrossOrigin
 @RestController
 public class SpringbootApplication {
 
@@ -39,7 +41,7 @@ public class SpringbootApplication {
   // Controls Searches of all Data Sources
   @GetMapping("/score/{company}")
   public static Business masterController(@PathVariable("company") String companyName, HttpServletResponse response) throws IOException {
-    response.addHeader("Access-Control-Allow-Origin", "*");
+    // response.addHeader("Access-Control-Allow-Origin", "*");
     Business business = new Business();
     if (Tools.validateURL(companyName)) {
       business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1,  -1, -1,false, false, false, false, false, false, false, false, false, false, false, false));

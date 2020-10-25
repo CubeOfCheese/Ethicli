@@ -14,7 +14,8 @@ function requestShop() { // runs when user hits "Request this Shop" button
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
-    const fetchUrlFeedback = "https://ethicli.com/feedback";
+    const fetchUrlFeedback = "http://localhost:8080/feedback";
+    const authString = "me:itme";
     const fetchData = {
       url: currentTab.url,
       userEmail: userEmailHTML,
@@ -23,7 +24,8 @@ function requestShop() { // runs when user hits "Request this Shop" button
     const fetchParams = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": "Basic " + btoa(authString)
       },
       body: JSON.stringify(fetchData)
     };

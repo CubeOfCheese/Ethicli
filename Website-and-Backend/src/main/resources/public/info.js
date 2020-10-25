@@ -2,8 +2,13 @@ window.onload = () => {
   const currentUrl = window.location.href;
   const urlCut = currentUrl.search("info") + 5;
   const companyName = currentUrl.substring(urlCut);
-  const url = "https://ethicli.com/score/" + companyName;
-  fetch(url)
+  const url = "http://localhost:8080/score/" + companyName;
+  const username = "me";
+  const password = "itme";
+  const authString = `${username}:${password}`;
+  const headers = new Headers();
+  headers.set("Authorization", "Basic " + btoa(authString));
+  fetch(url, { method: "GET", headers: headers })
       .then((response) => response.json())
       .then((data) => {
         if (data.name) {

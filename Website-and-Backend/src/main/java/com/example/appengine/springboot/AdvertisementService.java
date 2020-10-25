@@ -29,7 +29,7 @@ public class AdvertisementService {
     // takes the input JSON Object, removes the String stored in the variable "name", removes all
     // punctuation, converts it to lowercase, removes common words, and removes words that ore only
     // one letter and stores it into a String[] split by " "
-    String[] names = Tools.prepareForProductTagQuery(payload.get("name").toString());
+    String[] names = Tools.prepareForProductTagQuery(payload.get("productName").toString());
     // Cycles through all of the cleaned up names[]
     for (int a = 0; a < names.length; ++a) {
       // Runs a regular expression productTag.tag query for each String in names[] stores al matches

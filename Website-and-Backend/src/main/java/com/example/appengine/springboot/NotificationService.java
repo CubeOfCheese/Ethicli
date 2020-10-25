@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 public class NotificationService {
 
     private JavaMailSender javaMailSender;
@@ -21,7 +22,8 @@ public class NotificationService {
     // make sure tochange it in resources/application.properties as well
     @PostMapping("/feedback")
     public String sendNotification(@RequestBody Feedback message, HttpServletResponse response) throws MailException {
-        response.addHeader("Access-Control-Allow-Origin", "*");
+        // response.addHeader("Access-Control-Allow-Origin", "*");
+        System.out.println("feeeeed");
         SimpleMailMessage mail = new SimpleMailMessage();
         mail.setTo("team.ethicli@gmail.com");
         mail.setFrom("feedback.ethicli@gmail.com");

@@ -55,26 +55,33 @@ function reloadExt(request, sender) {
         isBlocklisted = false;
       }
     }
-
     if (isBlocklisted) {
       notShop(currentTab);
       return true;
     }
-    const url = "https://ethicli.com/score/" + companyName;
-    return fetch(url).then((response) => response.json()).then((jsonResponse) => {
-      ethicliStats = jsonResponse;
-      ethicliBadgeScore = Math.round(jsonResponse.overallScore);
 
-      if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
-        ethicliBadgeScore = "";
-        chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id });
-        reportGA("Background-NoRating");
-      } else {
-        chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id });
-        reportGA("Background-HasRating");
-      }
-      chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
-    });
+    const url = "http://localhost:8080/score/" + companyName;
+    // const url = "https://ethicli.com/score/" + companyName;
+    const authString = "me:itme";
+
+    // const authString = "<username>:<password>";
+    const headers = new Headers();
+    headers.set("Authorization", "Basic " + btoa(authString));
+    fetch(url, { method: "GET", headers: headers })
+        .then((response) => response.json()).then((jsonResponse) => {
+          ethicliStats = jsonResponse;
+          ethicliBadgeScore = Math.round(jsonResponse.overallScore);
+
+          if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
+            ethicliBadgeScore = "";
+            chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id });
+            reportGA("Background-NoRating");
+          } else {
+            chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id });
+            reportGA("Background-HasRating");
+          }
+          chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
+        });
   });
 }
 
