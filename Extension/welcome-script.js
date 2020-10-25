@@ -20,9 +20,15 @@ window.onload = () => {
   // --- Optin --------------------------------------------------------------------------
   document.getElementById("optinAccepted").addEventListener("click", () => {
     chrome.storage.local.set({ "optIn": true }, () => {
-      document.getElementById("optinAcceptedResult").style = "display:block;";
-      document.getElementById("optinDeclinedResult").style = "display:none;";
-      confetti.start(1000, 150);
+      const query = { active: true, currentWindow: true };
+      chrome.tabs.query(query, (tabs) => {
+        const currentTab = tabs[0];
+        chrome.tabs.sendMessage(currentTab.id, { msgName: "reevaluatePage" }, () => {
+          document.getElementById("optinAcceptedResult").style = "display:block;";
+          document.getElementById("optinDeclinedResult").style = "display:none;";
+          confetti.start(1000, 150);
+        });
+      });
     });
   });
 

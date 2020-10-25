@@ -25,7 +25,7 @@ public class AdvertisementService {
   public Advertisement getAdvertisementByProductTags(Map<String, Object> payload) throws IOException {
     final double WEIGHT_THRESHOLD = 0.75;
     HashMap<String, Double> adMap = new HashMap<String, Double>();
-    String[] names = Tools.prepareForProductTagQuery(payload.get("name").toString());
+    String[] names = Tools.prepareForProductTagQuery(payload.get("productName").toString());
     for (int namesIndex = 0; namesIndex < names.length; ++namesIndex) {
       List<Advertisement> advertisements = regexProductTag(names[namesIndex]);
       for (int advertisementsIndex = 0; advertisementsIndex < advertisements.size(); ++advertisementsIndex) {
