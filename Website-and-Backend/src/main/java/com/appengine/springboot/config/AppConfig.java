@@ -1,5 +1,4 @@
-package com.example.appengine.springboot;
-
+package com.appengine.springboot.config;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -11,7 +10,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 public class AppConfig {
 
   public MongoClient mongoClient() {
-    return MongoClients.create("mongodb+srv://user:<password>@cluster0.krjxc.gcp.mongodb.net/Ethicli?retryWrites=true&w=majority");
+    return MongoClients.create(
+        "mongodb+srv://user:<password>@cluster0.krjxc.gcp.mongodb.net/Ethicli?retryWrites=true&w=majority");
   }
 
   public @Bean

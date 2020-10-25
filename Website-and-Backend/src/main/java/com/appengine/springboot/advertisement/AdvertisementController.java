@@ -1,11 +1,9 @@
-package com.example.appengine.springboot;
+package com.appengine.springboot.advertisement;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +23,8 @@ public class AdvertisementController {
   AdvertisementService advertisementService;
 
   @PutMapping("/getByProductTags")
-  public Advertisement getAdvertisementByProductTags(@RequestBody Map<String, Object> payload) throws Exception {
-    // response.addHeader("Access-Control-Allow-Origin", "*");
-    // System.out.println("I'm called!");
+  public Advertisement getAdvertisementByProductTags(@RequestBody Map<String, Object> payload)
+      throws Exception {
     return advertisementService.getAdvertisementByProductTags(payload);
   }
 
