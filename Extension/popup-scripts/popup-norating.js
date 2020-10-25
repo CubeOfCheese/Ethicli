@@ -15,7 +15,7 @@ function requestShop() { // runs when user hits "Request this Shop" button
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
     const fetchUrlFeedback = "https://ethicli.com/feedback";
-    const authString = "me:itme";
+    const authString = "<username>:<password>";
     const fetchData = {
       url: currentTab.url,
       userEmail: userEmailHTML,

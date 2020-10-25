@@ -154,9 +154,7 @@ function loadExtension(ethicliStats) {
 }
 
 function loadSponsor(productName, ethicliScore) {
-  const authString = "me:itme";
-
-  // const authString = "<username>:<password>";
+  const authString = "<username>:<password>";
   const data = {
     "productName": productName
   };
@@ -345,7 +343,7 @@ function somethingWrong() {
       url: currentTab.url
     };
     // const authString = "<username>:<password>";
-    const authString = "me:itme";
+    const authString = "<username>:<password>";
     const fetchParams = {
       method: "POST",
       headers: {

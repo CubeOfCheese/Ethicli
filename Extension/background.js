@@ -61,7 +61,7 @@ function reloadExt(request, sender) {
     }
 
     const url = "https://ethicli.com/score/" + companyName;
-    const authString = "me:itme";
+    const authString = "<username>:<password>";
 
     // const authString = "<username>:<password>";
     const headers = new Headers();

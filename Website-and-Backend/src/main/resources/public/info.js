@@ -3,9 +3,7 @@ window.onload = () => {
   const urlCut = currentUrl.search("info") + 5;
   const companyName = currentUrl.substring(urlCut);
   const url = "https://ethicli.com/score/" + companyName;
-  const username = "me";
-  const password = "itme";
-  const authString = `${username}:${password}`;
+  const authString = "<username>:<password>";
   const headers = new Headers();
   headers.set("Authorization", "Basic " + btoa(authString));
   fetch(url, { method: "GET", headers: headers })

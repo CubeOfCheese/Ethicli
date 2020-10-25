@@ -13,12 +13,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   // Authentication : User --> Roles
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.inMemoryAuthentication()
-        .withUser("me")
-        .password("{noop}itme")
+        .withUser("<username>")
+        .password("{noop}<password>")
         .roles("USER")
         .and()
-        .withUser("admin")
-        .password("{noop}adminpass")
+        .withUser("<admin-username>")
+        .password("{noop}<admin-password>")
         .roles("USER", "ADMIN");
   }
 
