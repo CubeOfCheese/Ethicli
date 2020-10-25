@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import javax.servlet.http.HttpServletResponse;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/Advertisement")
 public class AdvertisementController {
@@ -19,7 +22,7 @@ public class AdvertisementController {
   @Autowired
   AdvertisementService advertisementService;
 
-  @GetMapping(value = "/getByProductTags")
+  @PutMapping("/getByProductTags")
   public Advertisement getAdvertisementByProductTags(@RequestBody Map<String, Object> payload)
       throws Exception {
     return advertisementService.getAdvertisementByProductTags(payload);

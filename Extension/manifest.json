@@ -32,6 +32,5 @@
         "48": "icons/ethicli-48.png",
         "128": "icons/ethicli-128.png"
     },
-    "manifest_version": 2,
-    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
+    "manifest_version": 2
 }

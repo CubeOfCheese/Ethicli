@@ -1,5 +1,3 @@
-import { ads } from "./response.js";
-
 let hasSubscore;
 let numSubscores = 0;
 let newHeight = 360;
@@ -10,7 +8,7 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, (response) => {
     chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, (ratingResponse) => {
       loadExtension(ratingResponse.ethicliStats);
       chrome.runtime.sendMessage({ msgName: "productIdentified?" }, (productResponse) => {
-        if (productResponse) {
+        if (productResponse || ratingResponse.ethicliStats.overallScore > 0) {
           loadSponsor(productResponse.productName, ratingResponse.ethicliStats.overallScore);
         }
       });
@@ -156,51 +154,41 @@ function loadExtension(ethicliStats) {
 }
 
 function loadSponsor(productName, ethicliScore) {
-  const nameWords = productName.split(" ");
-  let adToDisplay;
-  let relevance = 0;
-  const MIN_RELEVANCE = 0.75;
-
-  for (let j = 0; j < ads.length; j++) {
-    if (!ads[j].companyScore > ethicliScore) {
-      continue;
-    }
-    let tempRelevance = 0;
-    for (let i = 0; i < nameWords.length; i++) {
-      for (let k = 0; k < ads[j].productTags.length; k++) {
-        if (nameWords[i].toLowerCase() === ads[j].productTags[k].tag.toLowerCase()
-                    || nameWords[i].toLowerCase().substring(0, nameWords[i].length - 1) === ads[j].productTags[k].tag.toLowerCase()) {
-          tempRelevance = tempRelevance + ads[j].productTags[k].weight;
-        }
+  const authString = "<username>:<password>";
+  const data = {
+    "productName": productName
+  };
+  fetch("https://ethicli.com/Advertisement/getByProductTags", {
+    "method": "PUT",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Basic " + btoa(authString),
+    },
+    "body": JSON.stringify(data)
+  }).then((response) => response.json()).then((adToDisplay) => {
+    if (adToDisplay.productURL) {
+      if (document.getElementById("popupNoRating") !== null) {
+        document.body.style = "height:290px;";
+      } else {
+        fullheight = 540 - numSubscores * 46;
+        newHeight = "height:" + fullheight + "px;";
+        document.body.style = newHeight;
       }
-    }
-    if (tempRelevance > MIN_RELEVANCE && tempRelevance > relevance) {
-      adToDisplay = ads[j];
-      relevance = tempRelevance;
-    }
-  }
-  if (adToDisplay) {
-    if (document.getElementById("popupNoRating") !== null) {
-      document.body.style = "height:290px;";
+      document.getElementById("sponsor").style = "display:block;";
+      document.getElementById("sponsorLink").href = adToDisplay.productURL;
+      document.getElementById("sponsorProductName").textContent = adToDisplay.productName;
+      document.getElementById("sponsorCompany").textContent = adToDisplay.companyName;
+      document.getElementById("sponsorRating").textContent = adToDisplay.companyScore;
+      document.getElementById("sponsorPrice").textContent = adToDisplay.price;
+      document.getElementById("sponsorImg").src = adToDisplay.productImageURL;
+      reportGA("AdDisplayed");
+      document.getElementById("sponsorLink").addEventListener("click", () => {
+        reportGA("AdClicked");
+      });
     } else {
-      fullheight = 540 - numSubscores * 46;
-      newHeight = "height:" + fullheight + "px;";
-      document.body.style = newHeight;
+      document.getElementById("sponsor").style = "display:none;";
     }
-    document.getElementById("sponsor").style = "display:block;";
-    document.getElementById("sponsorLink").href = adToDisplay.productURL;
-    document.getElementById("sponsorProductName").textContent = adToDisplay.productName;
-    document.getElementById("sponsorCompany").textContent = adToDisplay.companyName;
-    document.getElementById("sponsorRating").textContent = adToDisplay.companyScore;
-    document.getElementById("sponsorPrice").textContent = adToDisplay.price;
-    document.getElementById("sponsorImg").src = adToDisplay.productImageURL;
-    reportGA("AdDisplayed");
-    document.getElementById("sponsorLink").addEventListener("click", () => {
-      reportGA("AdClicked");
-    });
-  } else {
-    document.getElementById("sponsor").style = "display:none;";
-  }
+  });
 }
 
 window.onload = () => {
@@ -354,10 +342,12 @@ function somethingWrong() {
     const fetchData = {
       url: currentTab.url
     };
+    const authString = "<username>:<password>";
     const fetchParams = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": "Basic " + btoa(authString)
       },
       body: JSON.stringify(fetchData)
     };
