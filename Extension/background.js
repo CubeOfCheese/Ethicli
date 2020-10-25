@@ -60,8 +60,7 @@ function reloadExt(request, sender) {
       return true;
     }
 
-    const url = "http://localhost:8080/score/" + companyName;
-    // const url = "https://ethicli.com/score/" + companyName;
+    const url = "https://ethicli.com/score/" + companyName;
     const authString = "me:itme";
 
     // const authString = "<username>:<password>";

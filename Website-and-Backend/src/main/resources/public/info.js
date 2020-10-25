@@ -2,7 +2,7 @@ window.onload = () => {
   const currentUrl = window.location.href;
   const urlCut = currentUrl.search("info") + 5;
   const companyName = currentUrl.substring(urlCut);
-  const url = "http://localhost:8080/score/" + companyName;
+  const url = "https://ethicli.com/score/" + companyName;
   const username = "me";
   const password = "itme";
   const authString = `${username}:${password}`;

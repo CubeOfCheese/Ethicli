@@ -160,7 +160,7 @@ function loadSponsor(productName, ethicliScore) {
   const data = {
     "productName": productName
   };
-  fetch("http://localhost:8080/Advertisement/getByProductTags", {
+  fetch("https://ethicli.com/Advertisement/getByProductTags", {
     "method": "PUT",
     "headers": {
       "Content-Type": "application/json",
@@ -340,7 +340,7 @@ function somethingWrong() {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
-    const fetchUrlFeedback = "http://localhost:8080/feedback";
+    const fetchUrlFeedback = "https://ethicli.com/feedback";
     const fetchData = {
       url: currentTab.url
     };
