@@ -1,5 +1,6 @@
-package com.example.appengine.springboot;
+package com.appengine.springboot;
 
+import com.appengine.springboot.business.Business;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +25,7 @@ public class Tools {
 
   // Compares searchTerm with business.website if it exists, if no match is found, it compares with
   // business.name
-  public static boolean compare(String searchTerm, Business business) {
+  public static boolean businessCompare(String searchTerm, Business business) {
     searchTerm = searchTerm.toLowerCase();
     if (business.getWebsite() != null) { // Compares searchTerm with business.website
       String website = business.getWebsite().toLowerCase();
@@ -45,7 +46,7 @@ public class Tools {
     }
     // Compare searchTerm with business.name - Checks matches of words in business.name individually
     // and together
-    String[] nameArray = prepareSearchTerm(business.getName().toLowerCase()).split(" ");
+    String[] nameArray = prepareBusinessSearchTerm(business.getName().toLowerCase()).split(" ");
     String nameToken;
     for (int a = 0; a < nameArray.length; ++a) {
       nameToken = "";
@@ -79,7 +80,7 @@ public class Tools {
   }
 
   // Removes unnecessary characters from searchTerm
-  public static String prepareSearchTerm(String searchTerm) {
+  public static String prepareBusinessSearchTerm(String searchTerm) {
     searchTerm = searchTerm.toLowerCase();
     searchTerm = charRemove(searchTerm, ',');
     searchTerm = charRemove(searchTerm, '\'');

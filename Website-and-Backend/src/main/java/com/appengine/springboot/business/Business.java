@@ -1,4 +1,4 @@
-package com.example.appengine.springboot;
+package com.appengine.springboot.business;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -1,4 +1,4 @@
-package com.example.appengine.springboot;
+package com.appengine.springboot.config;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;

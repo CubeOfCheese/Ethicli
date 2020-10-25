@@ -1,4 +1,4 @@
-package com.example.appengine.springboot;
+package com.appengine.springboot.feedback;
 
 public class Feedback {
 

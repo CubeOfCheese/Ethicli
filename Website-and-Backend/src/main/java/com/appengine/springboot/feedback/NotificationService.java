@@ -1,4 +1,4 @@
-package com.example.appengine.springboot;
+package com.appengine.springboot.feedback;
 
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;

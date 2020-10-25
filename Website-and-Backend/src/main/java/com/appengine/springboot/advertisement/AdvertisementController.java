@@ -1,4 +1,4 @@
-package com.example.appengine.springboot;
+package com.appengine.springboot.advertisement;
 
 import java.util.List;
 import java.util.Map;

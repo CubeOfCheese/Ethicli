@@ -1,4 +1,4 @@
-package com.example.appengine.springboot;
+package com.appengine.springboot.advertisement;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

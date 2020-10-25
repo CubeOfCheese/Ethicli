@@ -1,32 +1,20 @@
-package com.example.appengine.springboot;
+package com.appengine.springboot.business;
 
+import com.appengine.springboot.Tools;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
-@SpringBootApplication
-@RestController
-public class SpringbootApplication {
+@Service
+public class BusinessService {
 
-  public static void main(String[] args) {
-    SpringApplication.run(SpringbootApplication.class, args);
-  }
-
-  // Controls Searches of all Data Sources
-  @GetMapping("/score/{company}")
-  public static Business masterController(@PathVariable("company") String companyName, HttpServletResponse response) throws IOException {
-    response.addHeader("Access-Control-Allow-Origin", "*");
+  public Business getBusinessByWebsite(String companyName) throws IOException {
     Business business = new Business();
     if (Tools.validateURL(companyName)) {
       business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, false));
@@ -52,7 +40,7 @@ public class SpringbootApplication {
 
   // Searches Data Source: Columns of data source should be specified by order 0, 1, 2,.. If column
   // is not present in Data Source write -1.
-  public static Business searchDataSource(
+  public Business searchDataSource(
       String searchTerm,
       String filename,
       final int columnCount,
@@ -277,7 +265,7 @@ public class SpringbootApplication {
             }
           }
         }
-        if (Tools.compare(searchTerm, busTemp)) {
+        if (Tools.businessCompare(searchTerm, busTemp)) {
           business.update(busTemp);
           break;
         }
