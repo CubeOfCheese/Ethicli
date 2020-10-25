@@ -94,7 +94,7 @@
 
 #bcorp.tooltip .tooltiptext, #bluesign.tooltip .tooltiptext, #blackowned.tooltip .tooltiptext, #blmsupport.tooltip .tooltiptext, #vegan.tooltip .tooltiptext, #leapingbunny.tooltip .tooltiptext {
     max-width: 70px;
-    margin-left: -80px;
+    margin-left: -76px;
     margin-top: 20px;
     line-height: 14px;
 }
