@@ -1,4 +1,4 @@
-package com.example.appengine.springboot;
+package com.appengine.springboot.notification;
 
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;

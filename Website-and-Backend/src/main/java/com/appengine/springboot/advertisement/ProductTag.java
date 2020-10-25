@@ -1,4 +1,4 @@
-package com.example.appengine.springboot;
+package com.appengine.springboot.advertisement;
 
 public class ProductTag {
 
