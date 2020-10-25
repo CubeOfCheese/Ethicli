@@ -1,4 +1,4 @@
-package com.appengine.springboot.feedback;
+package com.appengine.springboot.notification;
 
 public class Feedback {
 
