@@ -5,7 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Advertisement {
-  @Id private String id;
+
+  @Id
+  private String id;
   private String productName;
   private String website;
   private String companyName;
@@ -16,11 +18,18 @@ public class Advertisement {
   private double companyScore;
 
   public Advertisement() {
-
   }
 
-  public Advertisement(String id, String productName, String website, String companyName,
-      ProductTag[] productTags, double price, String productURL, String productImageURL, double companyScore) {
+  public Advertisement(
+      String id,
+      String productName,
+      String website,
+      String companyName,
+      ProductTag[] productTags,
+      double price,
+      String productURL,
+      String productImageURL,
+      double companyScore) {
     this.id = id;
     this.productName = productName;
     this.website = website;

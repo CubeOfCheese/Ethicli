@@ -3,6 +3,7 @@ package com.example.appengine.springboot;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
@@ -12,53 +13,37 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class AdvertisementService {
 
-  @Autowired private MongoOperations mongoOperations;
+  @Autowired
+  AdvertisementRepository advertisementRepository;
+  @Autowired
+  private MongoOperations mongoOperations;
 
-  public Advertisement getAdvertisementByProductTags(Map<String, Object> payload)
-      throws IOException {
-    // Advertisement Matches with less than 0.75 will not be returned
+  public Advertisement getAdvertisementByProductTags(Map<String, Object> payload) throws IOException {
     final double WEIGHT_THRESHOLD = 0.75;
-    // Stores the Ids of matching Advertisements. As they are added to the
-    // Hashmap, their respective weights are accumulated.
     HashMap<String, Double> adMap = new HashMap<String, Double>();
-    // takes the input JSON Object, removes the String stored in the variable "name", removes all
-    // punctuation, converts it to lowercase, removes common words, and removes words that ore only
-    // one letter and stores it into a String[] split by " "
     String[] names = Tools.prepareForProductTagQuery(payload.get("name").toString());
-    // Cycles through all of the cleaned up names[]
-    for (int a = 0; a < names.length; ++a) {
-      // Runs a regular expression productTag.tag query for each String in names[] stores al matches
-      // in List advertisements
-      List<Advertisement> advertisements = regexProductTag(names[a]);
-      for (int b = 0; b < advertisements.size(); ++b) {
-        for (int c = 0; c < advertisements.get(b).getProductTags().length; ++c) {
-          // If the tag of productTag 'c' of advertisements 'b' contains names 'a' then the id of
-          // advertisements 'b' and the weight of productTag 'c' of advertisements 'b' are stored in
-          // adMap. If there is already existing data for that id then the weight is added to the
-          // weight in the hashmap instead of just being stored.
-          if (advertisements.get(b).getProductTags()[c].getTag().contains(names[a])) {
-            if (adMap.containsKey(advertisements.get(b).getId())) {
+    for (int namesIndex = 0; namesIndex < names.length; ++namesIndex) {
+      List<Advertisement> advertisements = regexProductTag(names[namesIndex]);
+      for (int advertisementsIndex = 0; advertisementsIndex < advertisements.size(); ++advertisementsIndex) {
+        for (int productTagsIndex = 0; productTagsIndex < advertisements.get(advertisementsIndex).getProductTags().length; ++productTagsIndex) {
+          if (advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().contains(names[namesIndex])) {
+            if (adMap.containsKey(advertisements.get(advertisementsIndex).getId())) {
               adMap.put(
-                  advertisements.get(b).getId(),
-                  advertisements.get(b).getProductTags()[c].getWeight()
-                      + adMap.get(advertisements.get(b).getId()).doubleValue());
+                  advertisements.get(advertisementsIndex).getId(),
+                  advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight()
+                      + adMap.get(advertisements.get(advertisementsIndex).getId()).doubleValue());
             } else {
               adMap.put(
-                  advertisements.get(b).getId(),
-                  advertisements.get(b).getProductTags()[c].getWeight());
+                  advertisements.get(advertisementsIndex).getId(),
+                  advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight());
             }
           }
         }
       }
     }
-    // If adMap isn't empty and if the largest weight stored in adMap is greater than
-    // weightTheshold(0.75) then the advervisement associated with the id of the lagest weight is
-    // returned, else we return an empty advertisement.
     if (!adMap.isEmpty()) {
       double maxValueInMap = (Collections.max(adMap.values())); // This will return max value
       if (maxValueInMap > WEIGHT_THRESHOLD) {
@@ -71,8 +56,6 @@ public class AdvertisementService {
     }
     return new Advertisement();
   }
-
-  @Autowired AdvertisementRepository advertisementRepository;
 
   public List<Advertisement> getAll() {
     return advertisementRepository.findAll();
