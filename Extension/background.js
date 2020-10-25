@@ -62,8 +62,6 @@ function reloadExt(request, sender) {
 
     const url = "https://ethicli.com/score/" + companyName;
     const authString = "<username>:<password>";
-
-    // const authString = "<username>:<password>";
     const headers = new Headers();
     headers.set("Authorization", "Basic " + btoa(authString));
     fetch(url, { method: "GET", headers: headers })

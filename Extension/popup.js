@@ -342,7 +342,6 @@ function somethingWrong() {
     const fetchData = {
       url: currentTab.url
     };
-    // const authString = "<username>:<password>";
     const authString = "<username>:<password>";
     const fetchParams = {
       method: "POST",
