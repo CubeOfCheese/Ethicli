@@ -156,7 +156,8 @@ function loadExtension(ethicliStats) {
 function loadSponsor(productName, ethicliScore) {
   const authString = "<username>:<password>";
   const data = {
-    "productName": productName
+    "productName": productName,
+    "currentCompanyScore": ethicliScore
   };
   fetch("https://ethicli.com/Advertisement/getByProductTags", {
     "method": "PUT",
