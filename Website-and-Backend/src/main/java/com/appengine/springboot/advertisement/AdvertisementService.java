@@ -26,11 +26,13 @@ public class AdvertisementService {
     final double WEIGHT_THRESHOLD = 0.75;
     HashMap<String, Double> adMap = new HashMap<String, Double>();
     String[] names = Tools.prepareForProductTagQuery(payload.get("productName").toString());
+    double currentCompanyScore = ((Number) payload.get("currentCompanyScore")).doubleValue();
     for (int namesIndex = 0; namesIndex < names.length; ++namesIndex) {
       List<Advertisement> advertisements = regexProductTag(names[namesIndex]);
       for (int advertisementsIndex = 0; advertisementsIndex < advertisements.size(); ++advertisementsIndex) {
         for (int productTagsIndex = 0; productTagsIndex < advertisements.get(advertisementsIndex).getProductTags().length; ++productTagsIndex) {
-          if (advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().contains(names[namesIndex])) {
+          if (advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().contains(names[namesIndex])
+              && advertisements.get(advertisementsIndex).getCompanyScore() > currentCompanyScore) {
             if (adMap.containsKey(advertisements.get(advertisementsIndex).getId())) {
               adMap.put(
                   advertisements.get(advertisementsIndex).getId(),
