@@ -26,7 +26,7 @@ public class AdvertisementService {
     final double WEIGHT_THRESHOLD = 0.75;
     HashMap<String, Double> adMap = new HashMap<String, Double>();
     String[] names = Tools.prepareForProductTagQuery(payload.get("productName").toString());
-    double currentCompanyScore = Double.parseDouble(payload.get("currentCompanyScore").toString());
+    double currentCompanyScore = ((Number) payload.get("currentCompanyScore")).doubleValue();
     for (int namesIndex = 0; namesIndex < names.length; ++namesIndex) {
       List<Advertisement> advertisements = regexProductTag(names[namesIndex]);
       for (int advertisementsIndex = 0; advertisementsIndex < advertisements.size(); ++advertisementsIndex) {
