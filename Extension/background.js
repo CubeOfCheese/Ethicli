@@ -37,6 +37,7 @@ function reloadExt(request, sender) {
 
     if (!request.shoppingPage) {
       notShop(currentTab);
+      return;
     }
     chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTab.id });
     isShoppingPage = true;
@@ -57,7 +58,7 @@ function reloadExt(request, sender) {
     }
     if (isBlocklisted) {
       notShop(currentTab);
-      return true;
+      return;
     }
 
     const url = "https://ethicli.com/score/" + companyName;
