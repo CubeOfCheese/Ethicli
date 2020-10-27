@@ -60,6 +60,18 @@ public class Tools {
     return false;
   }
 
+  // Counts number of " in a String
+  public static int doubleQuoteCounter(String content) {
+    int counter = 0;
+    for (int a = 0; a < content.length(); ++a) {
+      if (content.charAt(a) == '\"') {
+        ++counter;
+      }
+    }
+    return counter;
+  }
+
+  // Converts rows in a csv fit to string arrays
   public static String[] csvToStringArray(String content) {
     String[] splitByComma;
     String output = "";
@@ -68,7 +80,9 @@ public class Tools {
     splitByComma = content.split(",");
     for (int a = 0; a < splitByComma.length; ++a) {
       if (splitByComma[a].contains("\"")) {
-        quoteDetected = !quoteDetected;
+        if (doubleQuoteCounter(splitByComma[a]) == 1) {
+          quoteDetected = !quoteDetected;
+        }
       }
       if (quoteDetected) {
         output += splitByComma[a] + ",";
