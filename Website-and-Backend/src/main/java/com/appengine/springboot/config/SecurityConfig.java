@@ -29,13 +29,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .httpBasic()
         .and()
         .authorizeRequests()
+        // USER Role Access:
         .antMatchers(
             "/Advertisement/getByProductTags",
             "/Advertisement/getById",
-            "/Advertisement/tagRegex",
-            "/feedback",
-            "/score/**")
+            "/Advertisement/tagRegex")
         .hasRole("USER")
+        // ADMIN Role Access:
         .antMatchers(
             "/Advertisement/getAll",
             "/Advertisement/add",
