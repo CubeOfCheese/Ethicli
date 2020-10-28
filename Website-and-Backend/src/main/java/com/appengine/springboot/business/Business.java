@@ -692,7 +692,7 @@ public class Business {
         ++environmentalImpactFactors;
         // Turns bcorpEnvironmentScore into a 0 - 10 score in which an average score would earn a
         // 7.5
-        environmentalImpactScore += (this.bcorpEnvironmentScore / (BCORP_ENVIRORNMENT_MEAN / 7.5));
+        environmentalImpactScore += ((this.bcorpEnvironmentScore / BCORP_ENVIRORNMENT_MEAN) * 7.5);
       }
       if (bluesignPartner) {
         if (environmentalImpactFactors == 0) {
@@ -715,13 +715,29 @@ public class Business {
       if (this.bcorpWorkerScore != 0) {
         ++laborImpactFactors;
         // Turns bcorpWorkerScore into a 0 - 10 score in which an average score would earn a 7.5
-        laborImpactScore += (this.bcorpWorkerScore / (BCORP_LABOR_MEAN / 7.5));
+        laborImpactScore += ((this.bcorpWorkerScore / BCORP_LABOR_MEAN) * 7.5);
       }
       if (laborImpactScore != 0 && laborImpactFactors != 0) {
         this.laborScore = laborImpactScore / laborImpactFactors;
       }
       if (this.laborScore > 9.5) {
         this.laborScore = 9.5;
+      }
+
+      // Social Score
+      double socialImpactScore = 0;
+      final double BCORP_SOCIAL_MEAN = 30.5;
+      int socialImpactFactors = 0;
+      if (this.bcorpCommunityScore != 0) {
+        ++socialImpactFactors;
+        // Turns bcorpCommunityScore into a 0 - 10 score in which an average score would earn a 7.5
+        socialImpactScore += ((this.bcorpCommunityScore / BCORP_SOCIAL_MEAN) * 7.5);
+      }
+      if (socialImpactScore != 0 && socialImpactFactors != 0) {
+        this.socialScore = socialImpactScore / socialImpactFactors;
+      }
+      if (this.socialScore > 9.5) {
+        this.socialScore = 9.5;
       }
 
       // Animal Welfare Score
@@ -877,6 +893,10 @@ public class Business {
       if (this.laborScore != 0) {
         ++overallImpactFactors;
         overallImpactScore += this.laborScore;
+      }
+      if (this.socialScore != 0) {
+        ++overallImpactFactors;
+        overallImpactScore += this.socialScore;
       }
       if (this.animalsScore != 0) {
         ++overallImpactFactors;
