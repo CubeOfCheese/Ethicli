@@ -31,7 +31,7 @@ public class AdvertisementService {
       List<Advertisement> advertisements = regexProductTag(names[namesIndex]);
       for (int advertisementsIndex = 0; advertisementsIndex < advertisements.size(); ++advertisementsIndex) {
         for (int productTagsIndex = 0; productTagsIndex < advertisements.get(advertisementsIndex).getProductTags().length; ++productTagsIndex) {
-          if (advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().contains(names[namesIndex])
+          if (advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().toLowerCase().contains(names[namesIndex])
               && advertisements.get(advertisementsIndex).getCompanyScore() > currentCompanyScore) {
             if (adMap.containsKey(advertisements.get(advertisementsIndex).getId())) {
               adMap.put(
@@ -64,12 +64,15 @@ public class AdvertisementService {
     return advertisementRepository.findAll();
   }
 
-  public Advertisement addAdvertisement(Advertisement Advertisement) {
-    return advertisementRepository.insert(Advertisement);
+  public Advertisement addAdvertisement(Advertisement advertisement) {
+    for (int a = 0; a < advertisement.getProductTags().length; ++a) {
+      advertisement.getProductTags()[a].setTag(advertisement.getProductTags()[a].getTag().toLowerCase());
+    }
+    return advertisementRepository.insert(advertisement);
   }
 
-  public Advertisement update(Advertisement Advertisement) {
-    return advertisementRepository.save(Advertisement);
+  public Advertisement update(Advertisement advertisement) {
+    return advertisementRepository.save(advertisement);
   }
 
   public void delete(String id) {
@@ -85,13 +88,17 @@ public class AdvertisementService {
   }
 
   public List<Advertisement> regexProductTag(String tag) {
-    Query query = new Query();
-    query.addCriteria(Criteria.where("productTags.tag").regex(tag));
+    Query query = new Query().addCriteria(Criteria.where("productTags.tag").regex(tag, "i"));
     List<Advertisement> Advertisement = mongoOperations.find(query, Advertisement.class);
     return Advertisement;
   }
 
-  public List<Advertisement> addAllAdvertisements(List<Advertisement> Advertisement) {
-    return advertisementRepository.insert(Advertisement);
+  public List<Advertisement> addAllAdvertisements(List<Advertisement> advertisements) {
+    for (int a = 0; a < advertisements.size(); ++a) {
+      for (int b = 0; b < advertisements.get(a).getProductTags().length; ++b) {
+        advertisements.get(a).getProductTags()[b].setTag(advertisements.get(a).getProductTags()[b].getTag().toLowerCase());
+      }
+    }
+    return advertisementRepository.insert(advertisements);
   }
 }
