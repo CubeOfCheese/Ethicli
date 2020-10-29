@@ -760,6 +760,7 @@ public class Business {
       double certifiedHumaneWeight = 7;
       double chooseCrueltyFreeWeight = 7;
       double numberOfFactorsAnimal = 5;
+      double veganHandicap = 2;
       // Animal Factor Switches (Tells the Positive Factor loop if a factor has been used yet):
       boolean ethicalElephantCrueltyFreeVeganSwitch = true;
       boolean veganDotOrgCertifiedSwitch = true;
@@ -791,19 +792,26 @@ public class Business {
               / numberOfFactorsAnimal;
 
       // Animal Welfare - Positive Factors:
-      for (int a = 0; a < scoreGuideAnimal.length; ++a) {
+      int animalFactorIndex = 0;
+      if (this.ethicalElephantType.equals("Vegan") || this.veganDotOrgCertified || this.chooseCrueltyFreeVegan) {
+        animalFactorIndex += veganHandicap;
+        for (int a = 0; a < veganHandicap; ++a) {
+          cumulativeAnimalScore += scoreGuideAnimal[a];
+        }
+      }
+      for (; animalFactorIndex < scoreGuideAnimal.length; ++animalFactorIndex) {
         if (ethicalElephantCrueltyFreeVeganSwitch
             && this.ethicalElephantCrueltyFree
             && this.ethicalElephantType.equals("Vegan")) {
           cumulativeAnimalScore +=
-              scoreGuideAnimal[a]
+              scoreGuideAnimal[animalFactorIndex]
                   - (rangeAnimal / 2)
                   + (rangeAnimal * (ethicalElephantCrueltyFreeVeganWeight / animalWeightMean) / 2);
           ethicalElephantCrueltyFreeVeganSwitch = false;
           ++animalFactors;
         } else if (veganDotOrgCertifiedSwitch && this.veganDotOrgCertified) {
           cumulativeAnimalScore +=
-              scoreGuideAnimal[a]
+              scoreGuideAnimal[animalFactorIndex]
                   - (rangeAnimal / 2)
                   + (rangeAnimal * (veganDotOrgCertifiedWeight / animalWeightMean) / 2);
           veganDotOrgCertifiedSwitch = false;
@@ -812,7 +820,7 @@ public class Business {
             && this.chooseCrueltyFreeCertified
             && this.chooseCrueltyFreeVegan) {
           cumulativeAnimalScore +=
-              scoreGuideAnimal[a]
+              scoreGuideAnimal[animalFactorIndex]
                   - (rangeAnimal / 2)
                   + (rangeAnimal * (chooseCrueltyFreeVeganWeight / animalWeightMean) / 2);
           chooseCrueltyFreeVeganSwitch = false;
@@ -821,7 +829,7 @@ public class Business {
             && this.ethicalElephantCrueltyFree
             && this.ethicalElephantType.equals("Vegan Options")) {
           cumulativeAnimalScore +=
-              scoreGuideAnimal[a]
+              scoreGuideAnimal[animalFactorIndex]
                   - (rangeAnimal / 2)
                   + (rangeAnimal
                   * (ethicalElephantCrueltyFreeVeganOptionsWeight / animalWeightMean)
@@ -832,21 +840,21 @@ public class Business {
             && this.ethicalElephantCrueltyFree
             && this.ethicalElephantType.equals("")) {
           cumulativeAnimalScore +=
-              scoreGuideAnimal[a]
+              scoreGuideAnimal[animalFactorIndex]
                   - (rangeAnimal / 2)
                   + (rangeAnimal * (ethicalElephantCrueltyFreeWeight / animalWeightMean) / 2);
           ethicalElephantCrueltyFreeSwitch = false;
           ++animalFactors;
         } else if (leapingBunnySwitch && this.leapingBunnyCertified) {
           cumulativeAnimalScore +=
-              scoreGuideAnimal[a]
+              scoreGuideAnimal[animalFactorIndex]
                   - (rangeAnimal / 2)
                   + (rangeAnimal * (leapingBunnyWeight / animalWeightMean) / 2);
           leapingBunnySwitch = false;
           ++animalFactors;
         } else if (certifiedHumaneSwitch && this.certifiedHumane) {
           cumulativeAnimalScore +=
-              scoreGuideAnimal[a]
+              scoreGuideAnimal[animalFactorIndex]
                   - (rangeAnimal / 2)
                   + (rangeAnimal * (certifiedHumaneWeight / animalWeightMean) / 2);
           certifiedHumaneSwitch = false;
@@ -855,13 +863,13 @@ public class Business {
             && this.chooseCrueltyFreeCertified
             && !this.chooseCrueltyFreeVegan) {
           cumulativeAnimalScore +=
-              scoreGuideAnimal[a]
+              scoreGuideAnimal[animalFactorIndex]
                   - (rangeAnimal / 2)
                   + (rangeAnimal * (chooseCrueltyFreeWeight / animalWeightMean) / 2);
           chooseCrueltyFreeSwitch = false;
           ++animalFactors;
         } else {
-          a = scoreGuideAnimal.length;
+          animalFactorIndex = scoreGuideAnimal.length;
         }
       }
 
