@@ -343,12 +343,10 @@ function somethingWrong() {
     const fetchData = {
       url: currentTab.url
     };
-    const authString = "<username>:<password>";
     const fetchParams = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Basic " + btoa(authString)
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(fetchData)
     };
