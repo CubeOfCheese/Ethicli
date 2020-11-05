@@ -45,7 +45,6 @@ function requestShop() { // runs when user hits "Request this Shop" button
         .catch((error) => {
           document.getElementById("ratingPreRequest").classList.add("failed");
           document.getElementById("messageFailed").classList.add("failed");
-          console.log("aw nards: " + error.message); // not necessary
           reportGA("RatingRequestFailed - " + error.message);
         });
   });
