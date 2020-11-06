@@ -94,13 +94,13 @@
         <div class="container">
             <section>
                 <ul id="tabs">
-                        <li id="environmentalStat">Environment</li>
-                        <li id="laborStat">Labor</li>
-                        <li id="animalStat">Animal Rights</li>
-                        <li id="socialStat">Social</li>
+                        <li th:if="${#strings.substring(business.environmentScore,0,3) != '0.0'}" id="environmentalStat">Environment</li>
+                        <li th:if="${#strings.substring(business.laborScore,0,3) != '0.0'}" id="laborStat">Labor</li>
+                        <li th:if="${#strings.substring(business.animalsScore,0,3) != '0.0'}" id="animalStat">Animal Rights</li>
+                        <li th:if="${#strings.substring(business.socialScore,0,3) != '0.0'}" id="socialStat">Social</li>
                 </ul>
 
-                <article  id="environmentalSec">
+                <article th:if="${#strings.substring(business.environmentScore,0,3) != '0.0'}" id="environmentalSec">
                     <div class="statsTop">
                         <div class="substatCircle">
                             <h6 th:if="${#strings.substring(business.environmentScore,0,3) != '0.0'}" th:text = "${#strings.substring(business.environmentScore,0,3)}"></h6>
@@ -135,7 +135,7 @@
                     </div>
                 </article>
 
-                <article id="laborSec" style="display:none">
+                <article th:if="${#strings.substring(business.laborScore,0,3) != '0.0'}" id="laborSec" style="display:none">
                     <div class="statsTop">
                         <div class="substatCircle">
                             <h6 th:if="${#strings.substring(business.laborScore,0,3) != '0.0'}" th:text = "${#strings.substring(business.laborScore,0,3)}"></h6>
@@ -153,7 +153,7 @@
                     </div>
                 </article>
 
-                <article id="animalSec" style="display:none">
+                <article th:if="${#strings.substring(business.animalsScore,0,3) != '0.0'}" id="animalSec" style="display:none">
                     <div class="statsTop">
                         <div class="substatCircle">
                             <h6 th:if="${#strings.substring(business.animalsScore,0,3) != '0.0'}" th:text = "${#strings.substring(business.animalsScore,0,3)}"></h6>
@@ -185,7 +185,7 @@
                     </div>
                 </article>
 
-                <article id="socialSec" style="display:none">
+                <article th:if="${#strings.substring(business.socialScore,0,3) != '0.0'}" id="socialSec" style="display:none">
                     <div class="statsTop">
                         <div class="substatCircle">
                             <h6 th:if="${#strings.substring(business.socialScore,0,3) != '0.0'}" th:text = "${#strings.substring(business.socialScore,0,3)}"></h6>
