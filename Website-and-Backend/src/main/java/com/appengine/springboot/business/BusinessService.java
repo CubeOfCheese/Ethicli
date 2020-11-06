@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BusinessService {
 
-  public Business getBusinessByWebsite(String companyName) throws IOException {
+  public static Business getBusinessByWebsite(String companyName) throws IOException {
     Business business = new Business();
     if (Tools.validateURL(companyName)) {
       business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, false));
@@ -40,7 +40,7 @@ public class BusinessService {
 
   // Searches Data Source: Columns of data source should be specified by order 0, 1, 2,.. If column
   // is not present in Data Source write -1.
-  public Business searchDataSource(
+  public static Business searchDataSource(
       String searchTerm,
       String filename,
       final int columnCount,

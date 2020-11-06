@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -44,38 +44,42 @@
 
     <header id="top">
         <div class="container">
-            <h1><span class="colorDark" id="companyName"></span> <span class="colorBlue">Info</span></h1>
+            <h1><span class="colorDark" th:text = "${business.name}"></span> <span class="colorBlue">Info</span></h1>
+<!--            <h1><span class="colorDark" id="companyName"></span> <span class="colorBlue">Info</span></h1>-->
             <section id="mainStats">
                 <article>
                     <div id="mainRating">
-                        <h6 id="overallRating">0.0</h6>
-                        <p id="outof10">/10</p>
+                        <h6 th:if="${#strings.substring(business.overallScore,0,3) != '0.0'}" th:text = "${#strings.substring(business.overallScore,0,3)}"></h6>
+                        <p th:if="${#strings.substring(business.overallScore,0,3) != '0.0'}">/10</p>
+                        <h6 th:if="${#strings.substring(business.overallScore,0,3) == '0.0'}">N/A</h6>
                     </div>
                     <div>
-                        <p><a target="_blank" id="companyWebsite"><em>Insert URL here</em></a></p>
-                        <p id="overall-score-desc">The overall score is calculated by averaging the <em>environmental</em>,
-                            <em>labor</em>, <em>animal treatment</em>, and <em>social</em> statistics of each company, which is calculated and compared against news media.</p>
+                        <p><a target="_blank" th:text = "${business.website}"><em>Insert URL here</em></a></p>
+                            <span th:if="${business.overallScoreDetails == ''}"><p>The overall score is calculated by averaging the <em>environmental</em>,
+                            <em>labor</em>, <em>animal treatment</em>, and <em>social</em> statistics of each company, which is calculated and compared against news media.</p></span>
+                            <p th:text = "${business.overallScoreDetails}"></p>
                         <div id="badges">
-                            <h6 id="bluesign" class="tooltip">
+                            <h6 th:if="${business.bluesignPartner}" class="tooltip">
                                 <a href="https://www.bluesign.com" target="_blank">BlueSign</a>
                                 <span class="tooltiptext">BlueSign Certified</span>
                             </h6>
-                            <h6 id="bcorp" class="tooltip">
+                            <h6 th:if="${business.bcorpCertified}" class="tooltip">
                                 <a href="https://bcorporation.net/" target="_blank">BCorp</a>
-                                <span class="tooltiptext">BCorp Certified</span></h6>
-                            <h6 id="blackowned" class="tooltip">
+                                <span class="tooltiptext">BCorp Certified</span>
+                            </h6>
+                            <h6 th:if="${business.blackOwnedBusiness}" class="tooltip">
                                 <a href="https://data.world/ethicli/black-owned-businesses" target="_blank">Black-Owned</a>
                                 <span class="tooltiptext">Black-Owned Business</span>
                             </h6>
-                            <h6 id="blmsupport" class="tooltip">
+                            <h6 th:if="${business.supportsBLM}" class="tooltip">
                                 <a href="https://data.world/ethicli/financial-contributions-companies-supporting-blm" target="_blank">Anti-Racism</a>
                                 <span class="tooltiptext">Donates to Anti-Racism Organizations</span>
                             </h6>
-                            <h6 id="vegan" class="tooltip">
+                            <h6 th:if="${business.veganDotOrgCertified}" class="tooltip">
                                 <a href="https://vegan.org/companies-using-our-logo/" target="_blank">Vegan</a>
                                 <span class="tooltiptext">Has a vegan.org certification</span>
                             </h6>
-                            <h6 id="leapingbunny" class="tooltip">
+                            <h6 th:if="${business.leapingBunnyCertified}" class="tooltip">
                                 <a href="https://www.leapingbunny.org/guide/brands" target="_blank">Leaping Bunny</a>
                                 <span class="tooltiptext">Cruelty-free certification from Leaping Bunny</span>
                             </h6>
@@ -90,25 +94,29 @@
         <div class="container">
             <section>
                 <ul id="tabs">
-                    <li id="environmentalStat">Environment</li>
-                    <li id="laborStat">Labor</li>
-                    <li id="animalStat">Animal Rights</li>
-                    <li id="socialStat">Social</li>
+                        <li id="environmentalStat">Environment</li>
+                        <li id="laborStat">Labor</li>
+                        <li id="animalStat">Animal Rights</li>
+                        <li id="socialStat">Social</li>
                 </ul>
 
-                <article id="environmentalSec">
+                <article  id="environmentalSec">
                     <div class="statsTop">
                         <div class="substatCircle">
-                            <h6 id="environmentRating">0.0</h6>
-                            <p>/10</p>
+                            <h6 th:if="${#strings.substring(business.environmentScore,0,3) != '0.0'}" th:text = "${#strings.substring(business.environmentScore,0,3)}"></h6>
+                            <p th:if="${#strings.substring(business.environmentScore,0,3) != '0.0'}">/10</p>
+                            <h6 th:if="${#strings.substring(business.environmentScore,0,3) == '0.0'}">N/A</h6>
                         </div>
                         <div>
                             <h3>Environmental Statistics</h3>
                             <p id="environmentDesc">The environment score is produced using data from <a href="https://bcorporation.net/">B corp</a>,
                                 <a href="https://www.bluesign.com/">Bluesign</a>, and the <a href="https://www.epa.gov/">EPA</a>.<br><br> Data is drawn from multiple sources including certification datasets, articles, and directories. Only reputable sources
                                 are considered in the process. In future updates, we will be detailing these scores more specifically 📈</p>
-                            <p id="greenPower">Percentage of power produced by renewable energies:
-                                <a id="greenPowerPercentage" href="https://www.epa.gov/greenpower/green-power-partner-list"></a>
+                            <p th:if="${#strings.substring(business.greenPowerPercentage,0,3) != '0.0'}" id="greenPower">Percentage of power produced by renewable energies:
+                                <a th:text = "${#strings.substring(business.greenPowerPercentage,0,3)}" href="https://www.epa.gov/greenpower/green-power-partner-list"></a>%
+                            </p>
+                            <p th:if = "${business.environmentScoreSource[0]} != ''">Source:
+                                <a th:each="source : ${business.environmentScoreSource}" th:text="${source}" th:href="@{source}"></a>
                             </p>
                         </div>
                     </div>
@@ -130,13 +138,17 @@
                 <article id="laborSec" style="display:none">
                     <div class="statsTop">
                         <div class="substatCircle">
-                            <h6 id="laborRating">0.0</h6>
-                            <p>/10</p>
+                            <h6 th:if="${#strings.substring(business.laborScore,0,3) != '0.0'}" th:text = "${#strings.substring(business.laborScore,0,3)}"></h6>
+                            <p th:if="${#strings.substring(business.laborScore,0,3) != '0.0'}">/10</p>
+                            <h6 th:if="${#strings.substring(business.laborScore,0,3) == '0.0'}">N/A</h6>
                         </div>
                         <div>
                             <h3>Labor Statistics</h3>
                             <p id="laborDesc">The labor score is produced using data from <a href="https://bcorporation.net/">B corp</a>.<br><br> Data is drawn from multiple sources including certification datasets, articles, and directories. Only reputable sources are
                                 considered in the process. In future updates, we will be detailing these scores more specifically 📈</p>
+                            <p th:if = "${business.laborScoreSource[0]} != ''">Source:
+                                <a th:each="source : ${business.laborScoreSource}" th:text="${source}" th:href="@{source}"></a>
+                            </p>
                         </div>
                     </div>
                 </article>
@@ -144,8 +156,9 @@
                 <article id="animalSec" style="display:none">
                     <div class="statsTop">
                         <div class="substatCircle">
-                            <h6 id="animalRating">0.0</h6>
-                            <p>/10</p>
+                            <h6 th:if="${#strings.substring(business.animalsScore,0,3) != '0.0'}" th:text = "${#strings.substring(business.animalsScore,0,3)}"></h6>
+                            <p th:if="${#strings.substring(business.animalsScore,0,3) != '0.0'}">/10</p>
+                            <h6 th:if="${#strings.substring(business.animalsScore,0,3) == '0.0'}">N/A</h6>
                         </div>
                         <div>
                             <h3>Animal Statistics</h3>
@@ -153,6 +166,11 @@
                                 <p>The Animal Rights score was produced <span id="manualscore">from multiple sources including animal welfare certification datasets, articles, and directories</span>.
                                     <span id="followingsourcesdesc">For this particular source, we've pulled data from the following sources:</span>
                                 </p>
+
+                                <p th:if = "${business.animalScoreSource[0]} != ''">Source:
+                                <a th:each="source : ${business.animalScoreSource}" th:text="${source}" th:href="@{source}"></a>
+                                </p>
+
                                 <ul class="subscoreCertifications">
                                     <li id="subscore-certifiedHumane"><a href="https://certifiedhumane.org/whos-certified-2" target="_blank">Certified Humane</a></li>
                                     <li id="subscore-veganDotOrg"><a href="https://vegan.org/companies-using-our-logo" target="_blank">Certified Vegan</a></li>
@@ -170,14 +188,18 @@
                 <article id="socialSec" style="display:none">
                     <div class="statsTop">
                         <div class="substatCircle">
-                            <h6 id="socialRating">0.0</h6>
-                            <p>/10</p>
+                            <h6 th:if="${#strings.substring(business.socialScore,0,3) != '0.0'}" th:text = "${#strings.substring(business.socialScore,0,3)}"></h6>
+                            <p th:if="${#strings.substring(business.socialScore,0,3) != '0.0'}">/10</p>
+                            <h6 th:if="${#strings.substring(business.socialScore,0,3) == '0.0'}">N/A</h6>
                         </div>
                         <div>
                             <h3>Social Statistics</h3>
                             <p id="socialDesc">The Social score was produced manually using public data and trusted news sources. Social scores cover topics like its response to racism, how their practices effect people of color, if they’ve been caught up in exploitation
                                 lawsuits, etc.<br><br> Data is drawn from multiple sources including certification datasets, articles, and directories. Only reputable sources are considered in the process. In future updates, we will be detailing these
                                 scores more specifically 📈</p>
+                            <p th:if = "${business.socialScoreSource[0]} != ''">Source:
+                                <a th:each="source : ${business.socialScoreSource}" th:text="${source}" th:href="@{source}"></a>
+                            </p>
                         </div>
                     </div>
                 </article>

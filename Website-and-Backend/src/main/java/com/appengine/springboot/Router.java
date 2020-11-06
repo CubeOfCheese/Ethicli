@@ -1,5 +1,7 @@
 package com.appengine.springboot;
 
+import com.appengine.springboot.business.BusinessService;
+import java.io.IOException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,11 +31,8 @@ public class Router {
   }
 
   @RequestMapping(value = "/info/{company}")
-  public String getInfo(@PathVariable("company") String companyName, Model model) {
-    model.addAttribute(
-        "companyName",
-        companyName); // doesn't do anything as of right now. Leaving it in as an example for future
-    // thymeleaf use
+  public String getInfo(@PathVariable("company") String companyName, Model model) throws IOException {
+    model.addAttribute("business", BusinessService.getBusinessByWebsite(companyName));
     return "info";
   }
 }
