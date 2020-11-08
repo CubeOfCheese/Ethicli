@@ -1,5 +1,9 @@
 /** General scoring and popup, confirmed that it's a shop **/
 
+body#popupMain {
+    padding-bottom: 24px;
+}
+
 #shopping {
     display: flex;
     align-items: center;
