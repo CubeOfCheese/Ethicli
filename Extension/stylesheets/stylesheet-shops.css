@@ -177,6 +177,10 @@ body#popupMain {
     align-self: flex-start;
 }
 
+#envSection, #laborSection, #animalSection, #socialSection {
+    display: none;
+}
+
 .label {
     margin-bottom: 12px;
 }
