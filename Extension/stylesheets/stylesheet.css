@@ -270,8 +270,8 @@ p {
 
 #tutorialNavigation {
     position: fixed;
-    bottom: 8px;
-    width: 260px;
+    bottom: 24px;
+    width: 256px;
     justify-content: space-between;
     padding: 0 40px;
     margin: 0;

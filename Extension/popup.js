@@ -8,6 +8,7 @@ const HEIGHT_POPUP_VIEWDETAILS = 36;
 const HEIGHT_POPUP_SUBSCORE = 42;
 const HEIGHT_POPUP_SPONSOR = 174;
 const HEIGHT_TUTORIAL = 600;
+const HEIGHT_NOTSHOP = 136;
 
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, (response) => {
   if (response.shoppingPage) {
@@ -243,7 +244,7 @@ window.onload = () => {
   let currentTutorial;
 
   document.getElementById("watchTutorial").addEventListener("click", () => {
-    // document.body.style = "height: 600px;";
+    document.body.style = "height:" + HEIGHT_TUTORIAL + "px;";
     startTutorial = !startTutorial;
     currentTutorial = 1;
     if (startTutorial) {
@@ -278,26 +279,20 @@ window.onload = () => {
       currentTutorial = 1;
       document.getElementById("tutorial").style = "display:none";
       document.getElementById("tutorialNavigation").style = "display:none";
-      if (document.getElementById("popupMain") != null) { // for shop pages
-        // document.body.style = "height:" + fullheight + "px;";
-      } else if (document.getElementById("popupNoRating") != null) { // for no ratings <<<
-        // document.body.style = "height: 290px;";
-        if (badgeCounter > 0) {
-        // document.body.style = "height: 420px;";
-        }
-      } else if (document.getElementById("popupNotShop") != null) { // for non-shops
-        // document.body.style = "height: 136px;";
+      if (document.getElementById("popupNotShop") != null) { // for non-shops
+        document.body.style = "height:" + HEIGHT_NOTSHOP + "px;";
       } else {
-        // document.body.style = "height: " + newHeight + "px;";
+        document.body.style = "height:" + fullheight + "px;";
       }
     } else {
       document.getElementById(idname).style = "display:block";
+      document.body.style = "height:" + HEIGHT_TUTORIAL + "px;";
     }
 
     if (currentTutorial === 6 || currentTutorial === 7) {
-      document.getElementById("tutorialNavigation").style = "display:flex; bottom:476px;";
+      document.getElementById("tutorialNavigation").style = "display:flex; bottom:496px;";
     } else {
-      document.getElementById("tutorialNavigation").style = "display:flex; bottom:8px;";
+      document.getElementById("tutorialNavigation").style = "display:flex; bottom:24px;";
     }
   }
 
