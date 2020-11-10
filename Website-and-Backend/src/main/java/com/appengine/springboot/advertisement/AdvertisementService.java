@@ -32,7 +32,8 @@ public class AdvertisementService {
       for (int advertisementsIndex = 0; advertisementsIndex < advertisements.size(); ++advertisementsIndex) {
         for (int productTagsIndex = 0; productTagsIndex < advertisements.get(advertisementsIndex).getProductTags().length; ++productTagsIndex) {
           if (advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().toLowerCase().contains(names[namesIndex])
-              && advertisements.get(advertisementsIndex).getCompanyScore() > currentCompanyScore) {
+              && advertisements.get(advertisementsIndex).getCompanyScore() > currentCompanyScore
+          && advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().length() - names[namesIndex].length() <= 1) {
             if (adMap.containsKey(advertisements.get(advertisementsIndex).getId())) {
               adMap.put(
                   advertisements.get(advertisementsIndex).getId(),
