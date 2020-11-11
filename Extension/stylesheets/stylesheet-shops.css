@@ -76,7 +76,7 @@ body#popupMain {
     align-items: flex-end;
     top: 36px;
     left: -158px;
-    font-size: 0.5em; /* CHANGE */
+    font-size: 11px;
     padding: 4px 6px;
 }
 
