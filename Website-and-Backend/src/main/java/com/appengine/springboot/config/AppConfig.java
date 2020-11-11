@@ -11,7 +11,7 @@ public class AppConfig {
 
   public MongoClient mongoClient() {
     return MongoClients.create(
-        "mongodb+srv://user:l4FOpDHMTrkMSKXj@cluster0.krjxc.gcp.mongodb.net/Ethicli?retryWrites=true&w=majority");
+        "mongodb+srv://user:<password>@cluster0.krjxc.gcp.mongodb.net/Ethicli?retryWrites=true&w=majority");
   }
 
   public @Bean
