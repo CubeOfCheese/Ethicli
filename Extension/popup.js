@@ -170,7 +170,7 @@ function loadSponsor(productName, ethicliScore) {
     "productName": productName,
     "currentCompanyScore": ethicliScore
   };
-  fetch("http://localhost:8080/Advertisement/getByProductTags", {
+  fetch("http://ethicli.com/Advertisement/getByProductTags", {
     "method": "PUT",
     "headers": {
       "Content-Type": "application/json",
