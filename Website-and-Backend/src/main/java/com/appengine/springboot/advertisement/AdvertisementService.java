@@ -33,21 +33,21 @@ public class AdvertisementService {
         for (int productTagsIndex = 0; productTagsIndex < advertisements.get(advertisementsIndex).getProductTags().length; ++productTagsIndex) {
           if (advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().toLowerCase().contains(names[namesIndex])
               && advertisements.get(advertisementsIndex).getCompanyScore() > currentCompanyScore) {
-            double sizeScaledWeight;
+            double weight;
             double sizeDifference = advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().length() - names[namesIndex].length();
-            if (sizeDifference == 0) {
-              sizeScaledWeight = advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight();
+            if (sizeDifference <= 1
+                || (sizeDifference == 2 && advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag()
+                .substring(advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().length() - 2,
+                    advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().length()).equals("es"))) {
+              weight = advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight();
             } else {
-              sizeScaledWeight = advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight() / sizeDifference;
+              weight = advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight() / sizeDifference;
             }
             if (adMap.containsKey(advertisements.get(advertisementsIndex).getId())) {
-              adMap.put(
-                  advertisements.get(advertisementsIndex).getId(),
-                  sizeScaledWeight + adMap.get(advertisements.get(advertisementsIndex).getId()).doubleValue());
+              adMap.put(advertisements.get(advertisementsIndex).getId(),
+                  weight + adMap.get(advertisements.get(advertisementsIndex).getId()).doubleValue());
             } else {
-              adMap.put(
-                  advertisements.get(advertisementsIndex).getId(),
-                  sizeScaledWeight);
+              adMap.put(advertisements.get(advertisementsIndex).getId(), weight);
             }
           }
         }
