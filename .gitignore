@@ -1,4 +1,6 @@
 Website-and-Backend/target
+Website-and-Backend/src/main/java/com/appengine/springboot/config
+Website-and-Backend/src/main/resources/application.properties
 *.DS_Store
 Extension/env.js
 *.zip
