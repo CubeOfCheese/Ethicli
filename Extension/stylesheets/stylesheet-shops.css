@@ -1,5 +1,9 @@
 /** General scoring and popup, confirmed that it's a shop **/
 
+body#popupMain {
+    padding-bottom: 24px;
+}
+
 #shopping {
     display: flex;
     align-items: center;
@@ -72,7 +76,7 @@
     align-items: flex-end;
     top: 36px;
     left: -158px;
-    font-size: 0.5em;
+    font-size: 11px;
     padding: 4px 6px;
 }
 
@@ -171,6 +175,10 @@
     display: flex;
     flex-direction: column;
     align-self: flex-start;
+}
+
+#envSection, #laborSection, #animalSection, #socialSection {
+    display: none;
 }
 
 .label {
