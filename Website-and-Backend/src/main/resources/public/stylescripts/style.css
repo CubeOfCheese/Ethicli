@@ -323,6 +323,16 @@ footer p {
     font-size: 14px;
 }
 
+#partners section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#partners article {
+    width: 49%;
+    margin-bottom: 16px;
+}
+
 #partners article span {
     display: block;
     position: relative;
