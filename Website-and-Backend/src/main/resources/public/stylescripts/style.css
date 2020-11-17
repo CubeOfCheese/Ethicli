@@ -256,6 +256,10 @@ footer aside {
     flex-direction: column;
 }
 
+.socials {
+    margin-top: -4px;
+}
+
 .socials li {
     margin: 0 16px 5px 0;
 }

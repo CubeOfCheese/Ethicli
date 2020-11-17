@@ -308,6 +308,10 @@ footer aside {
     flex-direction: column;
 }
 
+.socials {
+    margin-top: -4px;
+}
+
 .socials li {
     margin: 0 16px 13px 0;
 }
