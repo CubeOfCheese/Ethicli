@@ -55,7 +55,7 @@ nav .container {
 nav a {
     display: block;
     border-radius: 100px;
-    margin-left: 24px;
+    margin-left: 16px;
     padding: 16px;
     background: #102340;
     color: #FFFCF2;
@@ -306,6 +306,10 @@ footer .container {
 footer aside {
     display: flex;
     flex-direction: column;
+}
+
+.socials {
+    margin-top: -4px;
 }
 
 .socials li {

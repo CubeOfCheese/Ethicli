@@ -118,7 +118,7 @@ nav .container {
 nav a {
     display: block;
     border-radius: 100px;
-    margin-left: 24px;
+    margin-left: 16px;
     padding: 16px;
     background: #102340;
     color: #FFFCF2;
@@ -256,6 +256,10 @@ footer aside {
     flex-direction: column;
 }
 
+.socials {
+    margin-top: -4px;
+}
+
 .socials li {
     margin: 0 16px 5px 0;
 }
@@ -321,6 +325,16 @@ footer p {
     width: 31%;
     background: #C9D4C6;
     font-size: 14px;
+}
+
+#partners section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#partners article {
+    width: 49%;
+    margin-bottom: 16px;
 }
 
 #partners article span {
