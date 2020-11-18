@@ -202,7 +202,7 @@ header {
 }
 
 #intro {
-    background-image: url("../images/background-intro.png");
+    background-image: url("../images/background-intro.jpg");
     background-position: center;
     background-size: cover;
 }
@@ -212,7 +212,7 @@ header {
 }
 
 #news {
-    background-image: url("../images/background-news.png");
+    background-image: url("../images/background-news.jpg");
     background-position: center;
     background-size: cover;
 }
