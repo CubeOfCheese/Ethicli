@@ -23,6 +23,11 @@ public class Router {
     return "privacy";
   }
 
+  @RequestMapping(value = "/about")
+  public String getAbout() {
+    return "about";
+  }
+
   @RequestMapping(value = "/goodbye")
   public String getGoodbye() {
     return "uninstall";
