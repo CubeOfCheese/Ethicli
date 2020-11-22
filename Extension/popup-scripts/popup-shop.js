@@ -3,36 +3,39 @@
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, (response) => {
   if (response.shoppingPage) {
     chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, (ratingResponse) => {
-      let overalltip;
-      const OVERALLSCORE = ratingResponse.ethicliStats.overallScore;
-      if (OVERALLSCORE < 4) {
-        overalltip = "Could be better!";
-        document.getElementById("overallScoreTooltip").style.background = "#D3A792";
-        document.getElementById("overallScoreTooltip").style.color = "#fff";
-      } else if (OVERALLSCORE >= 4 && OVERALLSCORE < 7) {
-        overalltip = "Average-scoring brand";
-        document.getElementById("overallScoreTooltip").style.background = "#CDBEAC";
-        document.getElementById("overallScoreTooltip").style.color = "#fff";
-      } else if (OVERALLSCORE >= 7 && OVERALLSCORE < 8) {
-        overalltip = "A good rating!";
-        document.getElementById("overallScoreTooltip").style.background = "#CBC7B6";
-      } else if (OVERALLSCORE >= 8 && OVERALLSCORE < 9) {
-        overalltip = "A great rating!";
-        document.getElementById("overallScoreTooltip").style.background = "#C8CFBF";
-      } else if (OVERALLSCORE >= 9 && OVERALLSCORE < 10) {
-        overalltip = "Fantastic score!";
-        document.getElementById("overallScoreTooltip").style.background = "#C6D4C5";
-        document.getElementById("overallScoreGroup").addEventListener("mouseenter", () => {
-          confetti.start(2000, 30);
-        });
-      } else {
-        overalltip = "Something went wrong";
-        document.getElementById("overallScoreTooltip").style.background = "#E07A5F";
-      }
-      document.getElementById("overallScoreTooltip").innerText = overalltip;
+      updateOverallToolTip(ratingResponse.ethicliStats.overallScore);
     });
   }
 });
+
+function updateOverallToolTip(overallscore) {
+  let overalltip;
+  if (overallscore < 4) {
+    overalltip = "Could be better!";
+    document.getElementById("overallScoreTooltip").style.background = "#D3A792";
+    document.getElementById("overallScoreTooltip").style.color = "#fff";
+  } else if (overallscore >= 4 && overallscore < 7) {
+    overalltip = "Average-scoring brand";
+    document.getElementById("overallScoreTooltip").style.background = "#CDBEAC";
+    document.getElementById("overallScoreTooltip").style.color = "#fff";
+  } else if (overallscore >= 7 && overallscore < 8) {
+    overalltip = "A good rating!";
+    document.getElementById("overallScoreTooltip").style.background = "#CBC7B6";
+  } else if (overallscore >= 8 && overallscore < 9) {
+    overalltip = "A great rating!";
+    document.getElementById("overallscoreTooltip").style.background = "#C8CFBF";
+  } else if (overallscore >= 9 && overallscore < 10) {
+    overalltip = "Fantastic score!";
+    document.getElementById("overallScoreTooltip").style.background = "#C6D4C5";
+    document.getElementById("overallScoreGroup").addEventListener("mouseenter", () => {
+      confetti.start(2000, 30);
+    });
+  } else {
+    overalltip = "Something went wrong";
+    document.getElementById("overallScoreTooltip").style.background = "#E07A5F";
+  }
+  document.getElementById("overallScoreTooltip").innerText = overalltip;
+}
 
 // --- Extension Tooltip --------------------------------------------------------------------------
 window.addEventListener("load", () => {
