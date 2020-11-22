@@ -169,6 +169,11 @@ footer p {
     margin-top: 16px;
 }
 
+.fa-envelope {
+    margin-left: -1px;
+    height: 24px;
+}
+
 #backToTop {
     background: #C9D4C6;
     border-radius: 20px;
