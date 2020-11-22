@@ -42,6 +42,14 @@
     object-fit: cover;
 }
 
+#team h3 {
+    text-align: center;
+}
+
+#team p {
+    margin-bottom: 0;
+}
+
 /*** Queries *****************************************************/
 
 @media screen and (max-width: 600px) {
