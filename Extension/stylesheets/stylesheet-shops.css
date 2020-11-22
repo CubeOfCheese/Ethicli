@@ -12,11 +12,36 @@ body#popupMain {
 
 #rating {
     margin: 24px auto 16px 80px;
-    background: #89a387;
     width: 120px;
     height: 120px;
+}
+
+#overallScoreGroup {
+    position: relative;
+    height: 120px;
     border-radius: 100%;
+    background: #89a387;
     text-align: center;
+}
+
+#overallScoreGroup #overallScoreTooltip {
+    display: none;
+}
+
+#overallScoreGroup.showtip #overallScoreTooltip {
+    background: pink;
+    display: block;
+    position: absolute;
+    top: 16px;
+    left: 110px;
+    min-width: 60px;
+    max-width: 76px;
+    padding: 4px;
+    border-radius: 8px;
+    line-height: 14px;
+    font-size: 11px;
+    color: #0A2342;
+    text-shadow: 0px 0px 2px #89a38780;
 }
 
 #overallScore {
@@ -113,9 +138,14 @@ body#popupMain {
     width: 46px;
 }
 
-#blackowned.trueForPage, #leapingbunny.trueForPage {
+#blackowned.trueForPage {
     display: block;
     width: 66px;
+}
+
+#leapingbunny.trueForPage {
+    display: block;
+    width: 76px;
 }
 
 #blmsupport.trueForPage {

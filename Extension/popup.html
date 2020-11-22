@@ -9,6 +9,7 @@
     <link href="stylesheets/stylesheet-shops.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="popup.js"></script>
+    <script src="popup-scripts/confetti.js" rel="text/javascript"></script>
     <script src="popup-scripts/popup-shop.js"></script>
 </head>
 
@@ -48,8 +49,11 @@
     <div id="extension">
         <div id="shopping">
             <div id="rating">
-                <h2 id="overallScore"></h2>
-                <p>/10</p>
+                <div id="overallScoreGroup">
+                    <h2 id="overallScore"></h2>
+                    <p>/10</p>
+                    <span id="overallScoreTooltip"></span>
+                </div>
                 <h6 id="badgeDisplayer" class="tooltip">
                     <span>
                         <img id="badgeIcon" src="images/badge.svg" alt="Badge Icon">

@@ -303,16 +303,17 @@ window.onload = () => {
 
 function fadeLongURL() {
   document.getElementById("siteurl").addEventListener("mouseover", () => {
-    const siteurlLength = this.innerHTML.length + 16;
+    const SHOPNAME = document.getElementById("siteurl").innerHTML;
+    const siteurlLength = SHOPNAME.length + 16;
     if (siteurlLength > 40) {
-      this.style = "margin-left: -" + (siteurlLength) + "px;";
+      document.getElementById("siteurl").style = "margin-left: -" + (siteurlLength) + "px;";
       document.getElementById("siteurlcontainer").style
                 = `-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%);
                 mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%)`;
     }
   });
   document.getElementById("siteurl").addEventListener("mouseout", () => {
-    this.style = "margin-left: 0px;";
+    document.getElementById("siteurl").style = "margin-left: 0px;";
     document.getElementById("siteurlcontainer").style
             = `-webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
             mask-image: linear-gradient(to right, black 90%, transparent 100%)`;
