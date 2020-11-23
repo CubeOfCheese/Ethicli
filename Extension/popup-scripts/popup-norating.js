@@ -68,4 +68,4 @@ function reportGA(aType) {
   }
 }
 
-reportGA("Opened-SomethingWrong");
+reportGA("Opened-NoRating");
