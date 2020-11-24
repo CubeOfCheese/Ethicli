@@ -33,6 +33,11 @@ public class Router {
     return "uninstall";
   }
 
+  @RequestMapping(value = "/amytools-ad")
+  public String getAmyToolsAd() {
+    return "amytools/ad";
+  }
+
   @RequestMapping(value = "/info/{company}")
   public String getInfo(@PathVariable("company") String companyName, Model model) {
     model.addAttribute(
