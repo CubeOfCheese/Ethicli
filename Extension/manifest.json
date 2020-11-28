@@ -1,6 +1,6 @@
 {
     "name": "Ethicli",
-    "version": "0.6.4",
+    "version": "0.6.6",
     "description": "To help you make ethical online shopping choices",
     "background": {
         "scripts": ["background.js"],

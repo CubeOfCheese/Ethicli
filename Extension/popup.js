@@ -1,7 +1,14 @@
 let hasSubscore;
-let numSubscores = 0;
-let newHeight = 360;
-let fullheight = 360;
+let fullheight = 0;
+
+const HEIGHT_NORATING_BADGES = 136;
+const HEIGHT_NORATING_REQUEST = 283;
+const HEIGHT_POPUP_OVERALLSCORE = 160;
+const HEIGHT_POPUP_VIEWDETAILS = 36;
+const HEIGHT_POPUP_SUBSCORE = 42;
+const HEIGHT_POPUP_SPONSOR = 174;
+const HEIGHT_TUTORIAL = 600;
+const HEIGHT_NOTSHOP = 136;
 
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, (response) => {
   if (response.shoppingPage) {
@@ -18,6 +25,7 @@ chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, (response) => {
 
 function loadExtension(ethicliStats) {
   const ethicliScore = (ethicliStats.overallScore).toFixed(1);
+
   // Badges ------------------------------------------------------------------------------------------------
   let badgeCounter = 0;
   if (ethicliStats.bcorpCertified) {
@@ -58,15 +66,8 @@ function loadExtension(ethicliStats) {
       document.getElementById("noBadge").style.display = "none";
       document.getElementById("hasBadge").style.display = "block";
     }
-    document.body.style = "height:190px;";
   }
 
-  if (document.getElementById("popupNoRating") != null) { // for no ratings
-    document.body.style = "height: 290px;";
-    if (badgeCounter > 0) {
-      document.body.style = "height: 420px;";
-    }
-  }
   // End Badges ------------------------------------------------------------------------------------
 
   if (ethicliScore > 0.0) { // This will need to be updated once negative scores are used as default
@@ -74,23 +75,25 @@ function loadExtension(ethicliStats) {
   }
 
   function adjustSubscores() {
-    if (ethicliStats.environmentScore === 0.0) {
-      document.getElementById("envSection").style = "display:none;";
+    let numSubscores = 0;
+    if (ethicliStats.environmentScore !== 0.0) {
+      document.getElementById("envSection").style = "display:block;";
       numSubscores++;
     }
-    if (ethicliStats.laborScore === 0.0) {
-      document.getElementById("laborSection").style = "display:none;";
+    if (ethicliStats.laborScore !== 0.0) {
+      document.getElementById("laborSection").style = "display:block;";
       numSubscores++;
     }
-    if (ethicliStats.animalsScore === 0.0) {
-      document.getElementById("animalSection").style = "display:none;";
+    if (ethicliStats.animalsScore !== 0.0) {
+      document.getElementById("animalSection").style = "display:block;";
       numSubscores++;
     }
-    if (ethicliStats.socialScore === 0.0) {
-      document.getElementById("socialSection").style = "display:none;";
+    if (ethicliStats.socialScore !== 0.0) {
+      document.getElementById("socialSection").style = "display:block;";
       numSubscores++;
     }
-    fullheight = fullheight - numSubscores * 42;
+
+    const SUBSCORE_SECTION_HEIGHT = HEIGHT_POPUP_SUBSCORE * numSubscores;
 
     if (ethicliStats.environmentScore === 0.0
             && ethicliStats.laborScore === 0.0
@@ -99,11 +102,12 @@ function loadExtension(ethicliStats) {
     ) {
       hasSubscore = false;
       document.getElementById("noSubscore").style = "display:block;";
-      document.getElementById("detailsButton").style = "display:none;";
-      fullheight = 160;
     } else {
       hasSubscore = true;
     }
+
+    fullheight = HEIGHT_POPUP_OVERALLSCORE + SUBSCORE_SECTION_HEIGHT + HEIGHT_POPUP_VIEWDETAILS;
+
     // Changes subratings
     document.getElementById("envScore").textContent = ethicliStats.environmentScore.toFixed(1);
     document.getElementById("laborScore").textContent = ethicliStats.laborScore.toFixed(1);
@@ -119,9 +123,6 @@ function loadExtension(ethicliStats) {
     document.getElementById("animalScoreBar").style.width = animalScore + "px";
     const socialScore = ethicliStats.socialScore * 20;
     document.getElementById("socialScoreBar").style.width = socialScore + "px";
-
-    newHeight = "height:" + fullheight + "px;";
-    document.body.style = newHeight;
   }
 
   // Change sitename
@@ -151,6 +152,16 @@ function loadExtension(ethicliStats) {
   if (document.getElementById("overallScore") !== null) { // checks to see if ID even appears on page
     document.getElementById("overallScore").textContent = ethicliScore;
   }
+
+
+  // --- Setting Height --------------------------------------------------------------------------
+  if (document.getElementById("popupNoRating") != null) { // for no ratings
+    fullheight += HEIGHT_NORATING_REQUEST;
+    if (badgeCounter > 0) {
+      fullheight += HEIGHT_NORATING_BADGES;
+    }
+  }
+  document.body.style = "height:" + fullheight + "px;";
 }
 
 function loadSponsor(productName, ethicliScore) {
@@ -168,13 +179,6 @@ function loadSponsor(productName, ethicliScore) {
     "body": JSON.stringify(data)
   }).then((response) => response.json()).then((adToDisplay) => {
     if (adToDisplay.productURL) {
-      if (document.getElementById("popupNoRating") !== null) {
-        document.body.style = "height:290px;";
-      } else {
-        fullheight = 540 - numSubscores * 46;
-        newHeight = "height:" + fullheight + "px;";
-        document.body.style = newHeight;
-      }
       document.getElementById("sponsor").style = "display:block;";
       document.getElementById("sponsorLink").href = adToDisplay.productURL;
       document.getElementById("sponsorProductName").textContent = adToDisplay.productName;
@@ -182,6 +186,8 @@ function loadSponsor(productName, ethicliScore) {
       document.getElementById("sponsorRating").textContent = adToDisplay.companyScore;
       document.getElementById("sponsorPrice").textContent = adToDisplay.price;
       document.getElementById("sponsorImg").src = adToDisplay.productImageURL;
+      fullheight += HEIGHT_POPUP_SPONSOR;
+      document.body.style = "height:" + fullheight + "px;";
       reportGA("AdDisplayed");
       document.getElementById("sponsorLink").addEventListener("click", () => {
         reportGA("AdClicked");
@@ -238,7 +244,7 @@ window.onload = () => {
   let currentTutorial;
 
   document.getElementById("watchTutorial").addEventListener("click", () => {
-    document.body.style = "height: 600px;";
+    document.body.style = "height:" + HEIGHT_TUTORIAL + "px;";
     startTutorial = !startTutorial;
     currentTutorial = 1;
     if (startTutorial) {
@@ -273,23 +279,20 @@ window.onload = () => {
       currentTutorial = 1;
       document.getElementById("tutorial").style = "display:none";
       document.getElementById("tutorialNavigation").style = "display:none";
-      if (document.getElementById("popupMain") != null) { // for shop pages
-        document.body.style = "height:" + fullheight + "px;";
-      } else if (document.getElementById("popupNoRating") != null) { // for no ratings
-        document.body.style = "height: 290px;";
-      } else if (document.getElementById("popupNotShop") != null) { // for non-shops
-        document.body.style = "height: 136px;";
+      if (document.getElementById("popupNotShop") != null) { // for non-shops
+        document.body.style = "height:" + HEIGHT_NOTSHOP + "px;";
       } else {
-        document.body.style = "height: " + newHeight + "px;";
+        document.body.style = "height:" + fullheight + "px;";
       }
     } else {
       document.getElementById(idname).style = "display:block";
+      document.body.style = "height:" + HEIGHT_TUTORIAL + "px;";
     }
 
     if (currentTutorial === 6 || currentTutorial === 7) {
-      document.getElementById("tutorialNavigation").style = "display:flex; bottom:476px;";
+      document.getElementById("tutorialNavigation").style = "display:flex; bottom:496px;";
     } else {
-      document.getElementById("tutorialNavigation").style = "display:flex; bottom:8px;";
+      document.getElementById("tutorialNavigation").style = "display:flex; bottom:24px;";
     }
   }
 
@@ -300,16 +303,17 @@ window.onload = () => {
 
 function fadeLongURL() {
   document.getElementById("siteurl").addEventListener("mouseover", () => {
-    const siteurlLength = this.innerHTML.length + 16;
+    const SHOPNAME = document.getElementById("siteurl").innerHTML;
+    const siteurlLength = SHOPNAME.length + 16;
     if (siteurlLength > 40) {
-      this.style = "margin-left: -" + (siteurlLength) + "px;";
+      document.getElementById("siteurl").style = "margin-left: -" + (siteurlLength) + "px;";
       document.getElementById("siteurlcontainer").style
                 = `-webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%);
                 mask-image: linear-gradient(to right, transparent 0%, black 5%, black 100%, transparent 100%)`;
     }
   });
   document.getElementById("siteurl").addEventListener("mouseout", () => {
-    this.style = "margin-left: 0px;";
+    document.getElementById("siteurl").style = "margin-left: 0px;";
     document.getElementById("siteurlcontainer").style
             = `-webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
             mask-image: linear-gradient(to right, black 90%, transparent 100%)`;
@@ -374,12 +378,15 @@ const GA_CLIENT_ID = "4FB5D5BF-B582-41AD-9BDF-1EC789AE6544";
 
 function reportGA(aType) {
   try {
-    const request = new XMLHttpRequest();
-    const message
-      = "v=1&tid=" + GA_TRACKING_ID + "&cid= " + GA_CLIENT_ID + "&aip=1"
-      + "&ds=add-on&t=event&ec=VISITORS&ea=" + aType;
-    request.open("POST", "https://www.google-analytics.com/collect", true);
-    request.send(message);
+    const url = "https://www.google-analytics.com/collect";
+    const message = `v=1&tid=${GA_TRACKING_ID}&cid=${GA_CLIENT_ID}&aip=1&ds=add-on&t=event&ec=VISITORS&ea=${aType}`;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: message
+    });
   } catch (e) {
     console.error("Error sending report to Google Analytics.\n" + e);
   }

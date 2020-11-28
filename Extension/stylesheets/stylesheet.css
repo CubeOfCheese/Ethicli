@@ -270,8 +270,8 @@ p {
 
 #tutorialNavigation {
     position: fixed;
-    bottom: 8px;
-    width: 260px;
+    bottom: 24px;
+    width: 256px;
     justify-content: space-between;
     padding: 0 40px;
     margin: 0;
@@ -279,7 +279,7 @@ p {
 }
 
 #popupMain #tutorialNavigation, #popupNoRating #tutorialNavigation, #popupNotShop #tutorialNavigation {
-    padding: 0 40px 20px 40px;
+    padding: 0 40px 0px 40px;
 }
 
 #tutorialBack, #tutorialNext, #tutorialBack::selection, #tutorialNext::selection {

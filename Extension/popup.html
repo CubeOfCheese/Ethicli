@@ -9,6 +9,7 @@
     <link href="stylesheets/stylesheet-shops.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="popup.js"></script>
+    <script src="popup-scripts/confetti.js" rel="text/javascript"></script>
     <script src="popup-scripts/popup-shop.js"></script>
 </head>
 
@@ -27,13 +28,13 @@
 
         <div id="tutorial">
             <div id="tutorialScreens">
-                <img src="images/tutorial/tutorial1.png" alt="Tutorial 1" id="tutorial1">
-                <img src="images/tutorial/tutorial2.png" alt="Tutorial 2" id="tutorial2">
-                <img src="images/tutorial/tutorial3.png" alt="Tutorial 3" id="tutorial3">
-                <img src="images/tutorial/tutorial4.png" alt="Tutorial 4" id="tutorial4">
-                <img src="images/tutorial/tutorial5.png" alt="Tutorial 5" id="tutorial5">
-                <img src="images/tutorial/tutorial6.png" alt="Tutorial 6" id="tutorial6">
-                <img src="images/tutorial/tutorial7.png" alt="Tutorial 7" id="tutorial7">
+                <img src="images/tutorial/tutorial1.jpg" alt="Tutorial 1" id="tutorial1">
+                <img src="images/tutorial/tutorial2.jpg" alt="Tutorial 2" id="tutorial2">
+                <img src="images/tutorial/tutorial3.jpg" alt="Tutorial 3" id="tutorial3">
+                <img src="images/tutorial/tutorial4.jpg" alt="Tutorial 4" id="tutorial4">
+                <img src="images/tutorial/tutorial5.jpg" alt="Tutorial 5" id="tutorial5">
+                <img src="images/tutorial/tutorial6.jpg" alt="Tutorial 6" id="tutorial6">
+                <img src="images/tutorial/tutorial7.jpg" alt="Tutorial 7" id="tutorial7">
             </div>
 
             <div id="tutorialNavigation">
@@ -48,8 +49,11 @@
     <div id="extension">
         <div id="shopping">
             <div id="rating">
-                <h2 id="overallScore"></h2>
-                <p>/10</p>
+                <div id="overallScoreGroup">
+                    <h2 id="overallScore"></h2>
+                    <p>/10</p>
+                    <span id="overallScoreTooltip"></span>
+                </div>
                 <h6 id="badgeDisplayer" class="tooltip">
                     <span>
                         <img id="badgeIcon" src="images/badge.svg" alt="Badge Icon">
