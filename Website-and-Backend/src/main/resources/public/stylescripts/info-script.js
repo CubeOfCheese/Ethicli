@@ -56,11 +56,15 @@ $(document).ready(function() {
   switchSection();
 
   // Show Article Previews -----------------------------------------------------------------
-  //   if ($(".articleSource a").length <= 0) {
-  //     $(this).parent().parent().css({ "display": "none" });
-  //   }
+
+  for (let i = 0; i < $(".articleSource a").length; i++) {
+    $(".articleSource a[href='']").each(function() {
+      $(this).parent().parent().css({ "display": "none" });
+    });
+  }
+
   $(".articleSource a").on("mouseover", function() {
-    if ($(this).src !== "undefined" && $(this).src !== "unknown") {
+    if ($(this).src !== "undefined" && $(this).src !== "(unknown)") { // .on("error", function(){
       console.log($(this).src);
       $(this).parent().addClass("showPreview");
     }
