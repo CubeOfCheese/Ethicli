@@ -41,11 +41,6 @@ $(document).ready(function() {
     }
   }).trigger("resize");
 
-
-  // Tabs Initial Setup -------------------------------------------------------------------------
-  // $("#expandedStats article").css({"border-radius":"0 20px 20px 20px"})
-
-
   // Miling List and Tab Switch -----------------------------------------------------------------
 
   $("#mailingListSubmit").click(function() {

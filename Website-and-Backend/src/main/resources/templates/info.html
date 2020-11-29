@@ -51,22 +51,30 @@
 
     <header id="top">
         <div class="container">
-            <h1><span class="colorDark" th:text = "${business.name}"></span> <span class="colorBlue">Info</span></h1>
-            <!--<h1><span class="colorDark" id="companyName"></span> <span class="colorBlue">Info</span></h1>-->
+            <h1 th:if="${business.name == ''}"><span class="colorDark">No Info</span> <span class="colorBlue">Available</span></h1>
+            <h1 th:unless="${business.name == ''}"><span class="colorDark" th:text = "${business.name}"></span> <span class="colorBlue">Info</span></h1>
             <section id="mainStats">
                 <article>
                     <div id="mainRating">
-                        <h6 th:if="${#strings.substring(business.overallScore,0,3) != '0.0'}" th:text = "${#strings.substring(business.overallScore,0,3)}"></h6>
+                        <h6 th:if="${#strings.substring(business.overallScore,0,3) == '0.0'}">🙊</h6>
+                        <h6 th:unless="${#strings.substring(business.overallScore,0,3) == '0.0'}" th:text = "${#strings.substring(business.overallScore,0,3)}"></h6>
                         <p th:if="${#strings.substring(business.overallScore,0,3) != '0.0'}">/10</p>
-                        <h6 th:if="${#strings.substring(business.overallScore,0,3) == '0.0'}">N/A</h6>
                     </div>
                     <div>
-                        <p><a target="_blank" th:text = "${business.website}"><em>Insert URL here</em></a></p>
-                            <span th:if="${business.overallScoreDetails == ''}">
-                                <p>The overall score is calculated by averaging the <em>environmental</em>,
-                                <em>labor</em>, <em>animal treatment</em>, and <em>social</em> statistics of each company, which is calculated and compared against news media.</p>
-                            </span>
-                            <p th:text = "${business.overallScoreDetails}"></p>
+                        <p><a th:href="${business.website}" target="_blank" th:text = "${business.website}"><em>Insert URL here</em></a></p>
+                        <span th:if="${business.overallScoreDetails == '' and #strings.substring(business.overallScore,0,3) != '0.0'}">
+                            <p>The overall score is calculated by averaging the <em>environmental</em>,
+                            <em>labor</em>, <em>animal treatment</em>, and <em>social</em> statistics of each company, which is calculated and compared against news media.</p>
+                        </span>
+                        <span th:unless="${business.overallScoreDetails == '' and #strings.substring(business.overallScore,0,3) != '0.0'}"><p th:text = "${business.overallScoreDetails}"></p></span>
+
+                        <p th:if="${#strings.substring(business.overallScore,0,3) == '0.0'}">
+                            It looks like we don&#39t have any info on that company. We&#39re constantly trying to improve our data coverage, 
+                            but it looks like we&#39ve still got farther to go.<br>Please send us an email at 
+                            <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#116;&#104;&#105;&#099;&#108;&#105;&#046;&#099;&#111;&#109;?subject=Ethicli Inquiry" target="_blank">hello@ethicli.com</a> 
+                            to let us know if you really want to know more about this company. Thank you for shopping Ethicli ♥
+                        </p>
+
                         <div id="badges">
                             <h6 th:if="${business.bluesignPartner}" class="tooltip" id="bluesign">
                                 <a href="https://www.bluesign.com" target="_blank">BlueSign</a>
@@ -127,12 +135,11 @@
                         </div>
                     </div>
                     <div class="statsBottom">
-                        <h3>Sources</h3>
                         <div th:if="${business.environmentScoreSource[0]} != ''">
+                            <h3>Sources</h3>
                             <div th:each="source : ${business.environmentScoreSource}" class="articleList">
                                 <div class="articleSource">
                                     <a th:text="${source}" th:href="${source}"></a>
-                                    <!-- <iframe th:src="${source}" class="preview"></iframe> -->
                                 </div>
                             </div>
                         </div>
@@ -153,12 +160,11 @@
                         </div>
                     </div>
                     <div class="statsBottom">
-                        <h3>Sources</h3>
                         <div th:if="${business.laborScoreSource[0]} != ''">
+                            <h3>Sources</h3>
                             <div th:each="source : ${business.laborScoreSource}" class="articleList">
                                 <div class="articleSource">
                                     <a th:text="${source}" th:href="${source}"></a>
-                                    <!-- <iframe th:src="${source}" class="preview"></iframe> -->
                                 </div>
                             </div>
                         </div>
@@ -190,12 +196,11 @@
                         </div>
                     </div>
                     <div class="statsBottom">
-                        <h3>Sources</h3>
                         <div th:if="${business.animalScoreSource[0]} != ''">
+                            <h3>Sources</h3>
                             <div th:each="source : ${business.animalScoreSource}" class="articleList">
                                 <div class="articleSource">
                                     <a th:text="${source}" th:href="${source}"></a>
-                                    <!-- <iframe th:src="${source}" class="preview"></iframe> -->
                                 </div>
                             </div>
                         </div>
@@ -217,12 +222,11 @@
                         </div>
                     </div>
                     <div class="statsBottom">
-                        <h3>Sources</h3>
                         <div th:if = "${business.socialScoreSource[0]} != ''">
+                            <h3>Sources</h3>
                             <div th:each="source : ${business.socialScoreSource}" class="articleList">
                                 <div class="articleSource">
                                     <a th:text="${source}" th:href="${source}"></a>
-                                    <!-- <iframe th:src="${source}" class="preview"></iframe> -->
                                 </div>
                             </div>
                         </div>
