@@ -54,6 +54,20 @@ $(document).ready(function() {
 
   initialTabSetup();
   switchSection();
+
+  // Show Article Previews -----------------------------------------------------------------
+  //   if ($(".articleSource a").length <= 0) {
+  //     $(this).parent().parent().css({ "display": "none" });
+  //   }
+  $(".articleSource a").on("mouseover", function() {
+    if ($(this).src !== "undefined" && $(this).src !== "unknown") {
+      console.log($(this).src);
+      $(this).parent().addClass("showPreview");
+    }
+  });
+  $(".articleSource").on("mouseleave", function() {
+    $(this).removeClass("showPreview");
+  });
 });
 
 function switchSection() {

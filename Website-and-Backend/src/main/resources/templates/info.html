@@ -125,12 +125,12 @@
                         </div>
                     </div>
                     <div class="statsBottom">
-                        <h3>Articles</h3>
+                        <h3>Sources</h3>
                         <div th:if="${business.environmentScoreSource[0]} != ''">
                             <div th:each="source : ${business.environmentScoreSource}" class="articleList">
                                 <div class="articleSource">
-                                    <p>Source: <a th:text="${source}" th:href="@{source}"></a></p> 
-                                    <iframe th:src="@{source}" class="preview"></iframe>
+                                    <a th:text="${source}" th:href="${source}"></a>
+                                    <iframe th:src="${source}" class="preview"></iframe>
                                 </div>
                                 <!-- <div class="articleRatings">
                                     <h4>Media Rating</h4>
@@ -152,21 +152,16 @@
                             <h3>Labor Statistics</h3>
                             <p id="laborDesc">The labor score is produced using data from <a href="https://bcorporation.net/">B corp</a>.<br><br> Data is drawn from multiple sources including certification datasets, articles, and directories. Only reputable sources are
                                 considered in the process. In future updates, we will be detailing these scores more specifically 📈</p>
-                            <p th:if = "${business.laborScoreSource[0]} != ''">Source:
-                                <a th:each="source : ${business.laborScoreSource}" th:text="${source}" th:href="@{source}"></a>
-                            </p>
                         </div>
                     </div>
                     <div class="statsBottom">
-                        <h3>Articles</h3>
-                        <div class="articleList">
-                            <div class="articleSource">
-                                <h4>Article Title</h4>
-                                <p>Article Contents</p>
-                            </div>
-                            <div class="articleRatings">
-                                <h4>Media Rating</h4>
-                                <p><span>News Source</span> ⭑⭑⭑⭒⭒</p>
+                        <h3>Sources</h3>
+                        <div th:if="${business.laborScoreSource[0]} != ''">
+                            <div th:each="source : ${business.laborScoreSource}" class="articleList">
+                                <div class="articleSource">
+                                    <a th:text="${source}" th:href="${source}"></a>
+                                    <iframe th:src="${source}" class="preview"></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -182,14 +177,7 @@
                         <div>
                             <h3>Animal Statistics</h3>
                             <span id="animalDesc">
-                                <p>The Animal Rights score was produced <span id="manualscore">from multiple sources including animal welfare certification datasets, articles, and directories</span>.
-                                    <span id="followingsourcesdesc">For this particular source, we've pulled data from the following sources:</span>
-                                </p>
-
-                                <p th:if = "${business.animalScoreSource[0]} != ''">Source:
-                                <a th:each="source : ${business.animalScoreSource}" th:text="${source}" th:href="@{source}"></a>
-                                </p>
-
+                                <p>The Animal Rights score was produced <span id="manualscore">from multiple sources including animal welfare certification datasets, articles, and directories</span>.</p>
                                 <ul class="subscoreCertifications">
                                     <li id="subscore-certifiedHumane"><a href="https://certifiedhumane.org/whos-certified-2" target="_blank">Certified Humane</a></li>
                                     <li id="subscore-veganDotOrg"><a href="https://vegan.org/companies-using-our-logo" target="_blank">Certified Vegan</a></li>
@@ -198,20 +186,19 @@
                                     <li id="subscore-leapingBunny"><a href="https://www.leapingbunny.org/guide/brands" target="_blank">Leaping Bunny</a></li>
                                 </ul><br>
                                 <p>These sources focus on materials used, testing practices, and if the products are vegan or vegetarian.
-                                Only reputable sources are considered in the process. In future updates, we will be detailing these scores more specifically 📈</p>
+                                Only reputable sources are considered in the process. In future updates, we will be detailing these scores more specifically 📈. 
+                                <span id="followingsourcesdesc">For this particular source, we've pulled data from the following sources:</span></p>
                             </span>
                         </div>
                     </div>
                     <div class="statsBottom">
-                        <h3>Articles</h3>
-                        <div class="articleList">
-                            <div class="articleSource">
-                                <h4>Article Title</h4>
-                                <p>Article Contents</p>
-                            </div>
-                            <div class="articleRatings">
-                                <h4>Media Rating</h4>
-                                <p><span>News Source</span> ⭑⭑⭑⭒⭒</p>
+                        <h3>Sources</h3>
+                        <div th:if="${business.animalScoreSource[0]} != ''">
+                            <div th:each="source : ${business.animalScoreSource}" class="articleList">
+                                <div class="articleSource">
+                                    <a th:text="${source}" th:href="${source}"></a>
+                                    <iframe th:src="${source}" class="preview"></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -229,21 +216,16 @@
                             <p id="socialDesc">The Social score was produced manually using public data and trusted news sources. Social scores cover topics like its response to racism, how their practices effect people of color, if they’ve been caught up in exploitation
                                 lawsuits, etc.<br><br> Data is drawn from multiple sources including certification datasets, articles, and directories. Only reputable sources are considered in the process. In future updates, we will be detailing these
                                 scores more specifically 📈</p>
-                            <p th:if = "${business.socialScoreSource[0]} != ''">Source:
-                                <a th:each="source : ${business.socialScoreSource}" th:text="${source}" th:href="@{source}"></a>
-                            </p>
                         </div>
                     </div>
                     <div class="statsBottom">
-                        <h3>Articles</h3>
-                        <div class="articleList">
-                            <div class="articleSource">
-                                <h4>Article Title</h4>
-                                <p>Article Contents</p>
-                            </div>
-                            <div class="articleRatings">
-                                <h4>Media Rating</h4>
-                                <p><span>News Source</span> ⭑⭑⭑⭒⭒</p>
+                        <h3>Sources</h3>
+                        <div th:if = "${business.socialScoreSource[0]} != ''">
+                            <div th:each="source : ${business.socialScoreSource}" class="articleList">
+                                <div class="articleSource">
+                                    <a th:text="${source}" th:href="${source}"></a>
+                                    <iframe th:src="${source}" class="preview"></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
