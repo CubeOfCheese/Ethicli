@@ -52,7 +52,7 @@
     <header id="top">
         <div class="container">
             <h1><span class="colorDark" th:text = "${business.name}"></span> <span class="colorBlue">Info</span></h1>
-<!--            <h1><span class="colorDark" id="companyName"></span> <span class="colorBlue">Info</span></h1>-->
+            <!--<h1><span class="colorDark" id="companyName"></span> <span class="colorBlue">Info</span></h1>-->
             <section id="mainStats">
                 <article>
                     <div id="mainRating">
@@ -66,27 +66,27 @@
                             <em>labor</em>, <em>animal treatment</em>, and <em>social</em> statistics of each company, which is calculated and compared against news media.</p></span>
                             <p th:text = "${business.overallScoreDetails}"></p>
                         <div id="badges">
-                            <h6 th:if="${business.bluesignPartner}" class="tooltip">
+                            <h6 th:if="${business.bluesignPartner}" class="tooltip" id="bluesign">
                                 <a href="https://www.bluesign.com" target="_blank">BlueSign</a>
                                 <span class="tooltiptext">BlueSign Certified</span>
                             </h6>
-                            <h6 th:if="${business.bcorpCertified}" class="tooltip">
+                            <h6 th:if="${business.bcorpCertified}" class="tooltip" id="bcorp">
                                 <a href="https://bcorporation.net/" target="_blank">BCorp</a>
                                 <span class="tooltiptext">BCorp Certified</span>
                             </h6>
-                            <h6 th:if="${business.blackOwnedBusiness}" class="tooltip">
+                            <h6 th:if="${business.blackOwnedBusiness}" class="tooltip" id="blackowned">
                                 <a href="https://data.world/ethicli/black-owned-businesses" target="_blank">Black-Owned</a>
                                 <span class="tooltiptext">Black-Owned Business</span>
                             </h6>
-                            <h6 th:if="${business.supportsBLM}" class="tooltip">
+                            <h6 th:if="${business.supportsBLM}" class="tooltip" id="blmsupport">
                                 <a href="https://data.world/ethicli/financial-contributions-companies-supporting-blm" target="_blank">Anti-Racism</a>
                                 <span class="tooltiptext">Donates to Anti-Racism Organizations</span>
                             </h6>
-                            <h6 th:if="${business.veganDotOrgCertified}" class="tooltip">
+                            <h6 th:if="${business.veganDotOrgCertified}" class="tooltip" id="vegan">
                                 <a href="https://vegan.org/companies-using-our-logo/" target="_blank">Vegan</a>
                                 <span class="tooltiptext">Has a vegan.org certification</span>
                             </h6>
-                            <h6 th:if="${business.leapingBunnyCertified}" class="tooltip">
+                            <h6 th:if="${business.leapingBunnyCertified}" class="tooltip" id="leapingbunny">
                                 <a href="https://www.leapingbunny.org/guide/brands" target="_blank">Leaping Bunny</a>
                                 <span class="tooltiptext">Cruelty-free certification from Leaping Bunny</span>
                             </h6>
@@ -101,10 +101,10 @@
         <div class="container">
             <section>
                 <ul id="tabs">
-                        <li th:if="${#strings.substring(business.environmentScore,0,3) != '0.0'}" id="environmentalStat">Environment</li>
-                        <li th:if="${#strings.substring(business.laborScore,0,3) != '0.0'}" id="laborStat">Labor</li>
-                        <li th:if="${#strings.substring(business.animalsScore,0,3) != '0.0'}" id="animalStat">Animal Rights</li>
-                        <li th:if="${#strings.substring(business.socialScore,0,3) != '0.0'}" id="socialStat">Social</li>
+                    <li th:if="${#strings.substring(business.environmentScore,0,3) != '0.0'}" id="environmentalStat">Environment</li>
+                    <li th:if="${#strings.substring(business.laborScore,0,3) != '0.0'}" id="laborStat">Labor</li>
+                    <li th:if="${#strings.substring(business.animalsScore,0,3) != '0.0'}" id="animalStat">Animal Rights</li>
+                    <li th:if="${#strings.substring(business.socialScore,0,3) != '0.0'}" id="socialStat">Social</li>
                 </ul>
 
                 <article th:if="${#strings.substring(business.environmentScore,0,3) != '0.0'}" id="environmentalSec">
