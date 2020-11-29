@@ -57,17 +57,14 @@ $(document).ready(function() {
 
   // Show Article Previews -----------------------------------------------------------------
 
-  for (let i = 0; i < $(".articleSource a").length; i++) {
+  for (let i = 0; i < $(".articleSource a").length; i++) { // hides .articleSource sections that don't have hrefs
     $(".articleSource a[href='']").each(function() {
       $(this).parent().parent().css({ "display": "none" });
     });
   }
 
   $(".articleSource a").on("mouseover", function() {
-    if ($(this).src !== "undefined" && $(this).src !== "(unknown)") { // .on("error", function(){
-      console.log($(this).src);
-      $(this).parent().addClass("showPreview");
-    }
+    $(this).parent().addClass("showPreview");
   });
   $(".articleSource").on("mouseleave", function() {
     $(this).removeClass("showPreview");
