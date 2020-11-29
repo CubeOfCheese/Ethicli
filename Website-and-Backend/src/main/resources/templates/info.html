@@ -62,8 +62,10 @@
                     </div>
                     <div>
                         <p><a target="_blank" th:text = "${business.website}"><em>Insert URL here</em></a></p>
-                            <span th:if="${business.overallScoreDetails == ''}"><p>The overall score is calculated by averaging the <em>environmental</em>,
-                            <em>labor</em>, <em>animal treatment</em>, and <em>social</em> statistics of each company, which is calculated and compared against news media.</p></span>
+                            <span th:if="${business.overallScoreDetails == ''}">
+                                <p>The overall score is calculated by averaging the <em>environmental</em>,
+                                <em>labor</em>, <em>animal treatment</em>, and <em>social</em> statistics of each company, which is calculated and compared against news media.</p>
+                            </span>
                             <p th:text = "${business.overallScoreDetails}"></p>
                         <div id="badges">
                             <h6 th:if="${business.bluesignPartner}" class="tooltip" id="bluesign">
