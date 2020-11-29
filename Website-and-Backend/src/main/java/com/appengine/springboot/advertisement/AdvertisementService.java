@@ -29,6 +29,7 @@ public class AdvertisementService {
     double currentCompanyScore = ((Number) payload.get("currentCompanyScore")).doubleValue();
     for (int namesIndex = 0; namesIndex < names.length; ++namesIndex) {
       List<Advertisement> advertisements = regexProductTag(names[namesIndex]);
+      advertisements.addAll(regexNegativeProductTag(names[namesIndex]));
       for (int advertisementsIndex = 0; advertisementsIndex < advertisements.size(); ++advertisementsIndex) {
         for (int productTagsIndex = 0; productTagsIndex < advertisements.get(advertisementsIndex).getProductTags().length; ++productTagsIndex) {
           if (advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().toLowerCase().contains(names[namesIndex])
@@ -42,6 +43,27 @@ public class AdvertisementService {
               weight = advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight();
             } else {
               weight = advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight() / sizeDifference;
+            }
+            if (adMap.containsKey(advertisements.get(advertisementsIndex).getId())) {
+              adMap.put(advertisements.get(advertisementsIndex).getId(),
+                  weight + adMap.get(advertisements.get(advertisementsIndex).getId()).doubleValue());
+            } else {
+              adMap.put(advertisements.get(advertisementsIndex).getId(), weight);
+            }
+          }
+        }
+        for (int negativeProductTagsIndex = 0; negativeProductTagsIndex < advertisements.get(advertisementsIndex).getNegativeProductTags().length; ++negativeProductTagsIndex) {
+          if (advertisements.get(advertisementsIndex).getNegativeProductTags()[negativeProductTagsIndex].getTag().toLowerCase().contains(names[namesIndex])
+              && advertisements.get(advertisementsIndex).getCompanyScore() > currentCompanyScore) {
+            double weight;
+            double sizeDifference = advertisements.get(advertisementsIndex).getNegativeProductTags()[negativeProductTagsIndex].getTag().length() - names[namesIndex].length();
+            if (sizeDifference <= 1
+                || (sizeDifference == 2 && advertisements.get(advertisementsIndex).getNegativeProductTags()[negativeProductTagsIndex].getTag()
+                .substring(advertisements.get(advertisementsIndex).getNegativeProductTags()[negativeProductTagsIndex].getTag().length() - 2,
+                    advertisements.get(advertisementsIndex).getNegativeProductTags()[negativeProductTagsIndex].getTag().length()).equals("es"))) {
+              weight = advertisements.get(advertisementsIndex).getNegativeProductTags()[negativeProductTagsIndex].getWeight();
+            } else {
+              weight = advertisements.get(advertisementsIndex).getNegativeProductTags()[negativeProductTagsIndex].getWeight() / sizeDifference;
             }
             if (adMap.containsKey(advertisements.get(advertisementsIndex).getId())) {
               adMap.put(advertisements.get(advertisementsIndex).getId(),
@@ -99,10 +121,20 @@ public class AdvertisementService {
     return Advertisement;
   }
 
+  public List<Advertisement> regexNegativeProductTag(String tag) {
+    Query query = new Query().addCriteria(Criteria.where("negativeProductTags.tag").regex(tag, "i"));
+    List<Advertisement> Advertisement = mongoOperations.find(query, Advertisement.class);
+    return Advertisement;
+  }
+
   public List<Advertisement> addAllAdvertisements(List<Advertisement> advertisements) {
     for (int a = 0; a < advertisements.size(); ++a) {
       for (int b = 0; b < advertisements.get(a).getProductTags().length; ++b) {
         advertisements.get(a).getProductTags()[b].setTag(advertisements.get(a).getProductTags()[b].getTag().toLowerCase());
+      }
+      for (int b = 0; b < advertisements.get(a).getNegativeProductTags().length; ++b) {
+        advertisements.get(a).getNegativeProductTags()[b].setTag(advertisements.get(a).getNegativeProductTags()[b].getTag().toLowerCase());
+        advertisements.get(a).getNegativeProductTags()[b].setWeight(-1 * Math.abs(advertisements.get(a).getNegativeProductTags()[b].getWeight()));
       }
     }
     return advertisementRepository.insert(advertisements);
