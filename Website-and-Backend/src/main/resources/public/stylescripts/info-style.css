@@ -280,7 +280,7 @@ header .container article div {
 /*** Subscore Certifications *****************************************************/
 
 #subscore-certifiedHumane, #subscore-veganDotOrg, #subscore-chooseCrueltyFree, #subscore-ethicalElephant, #subscore-leapingBunny {
-    display:none;
+    display:block;
 }
 
 /*** Tabs *****************************************************/
@@ -451,7 +451,7 @@ button {
     cursor: pointer;
 }
 
-.colorBlue, #top a, #mainStats a, #environmentalSec a, #laborSec a, #animalSec a, #socialSec a {
+.colorBlue, #top a, #mainStats a, #environmentalSec a, #laborSec a, #animalSec a, #socialSec a, .subscoreCertifications li{
     color: #2B6589;
 }
 
