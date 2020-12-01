@@ -74,7 +74,21 @@ $(document).ready(function() {
         });
       });
     }
+    showPlantDude();
   });
+
+  showPlantDude();
+  function showPlantDude() {
+    if ($(window).width() < 768) {
+      $("#countdownPrompt").addClass("hide");
+    } else {
+      if (($(this).scrollTop() > 600)) {
+        $("#countdownPrompt").addClass("hide");
+      } else {
+        $("#countdownPrompt").removeClass("hide");
+      }
+    }
+  }
 
   dropdown();
   function dropdown() {
@@ -96,6 +110,7 @@ $(document).ready(function() {
       $(".submenu").removeClass("submenuClicked");
       $(".dropdownIcon").removeClass("dropped");
     }
+    showPlantDude();
   }).trigger("resize");
 
   $("#mailingListSubmit").click(function() {
