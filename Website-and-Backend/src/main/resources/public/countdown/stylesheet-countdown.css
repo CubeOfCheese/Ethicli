@@ -441,6 +441,11 @@ a, #popup a {
     right: 10vw;
     width: 80vw;
   }
+
+  #popupLocked .closePopup {
+    right: 10vw;
+    margin: 16px 16px 0 0;
+  }
 }
 
 
