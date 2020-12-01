@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ethicli's 2020 Countdown</title>
+    <link rel="icon" type="image/png" href="images/favicon-48x48.png">
+    <link href="stylescripts/reset.css" rel="stylesheet">
+    <link href="countdown/stylesheet-countdown.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="stylescripts/confetti.js"></script>
+    <script src="countdown/snow.js"></script>
+    <script src="countdown/script-countdown.js"></script>
+</head>
+
+<body>
+    <img id="hero" src="countdown/celebration.jpg" alt="Header Image">
+    <nav>
+        <div class="container">
+            <a href="https://ethicli.com" target="_blank" id="logo"><img src="images/ethicli-logo.png" alt="Extension image in Header"></a>
+            <div id="navlinks">
+                <img src="images/menu.svg" alt="triplebar" height="50" width="50" id="triplebar">
+                <a href="https://cash.app/$Ethicli" target="_blank">Donate</a>
+                <a href="http://blog.ethicli.com" target="_blank">Blog</a>
+                <a href="https://ethicli.com/faq" target="_blank">FAQ</a>
+                <a href="https://ethicli.com/about">About Us</a>
+                <div class="dropdownMenu">
+                    <a>Download <span class="dropdownIcon">▾</span></a>
+                    <div class="submenu">
+                        <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Chrome</a>
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/ethicli" target="_blank">Firefox</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div>
+        <header>
+            <h1>Ethicli's December Countdown</h1>
+            <p>Count down with us to 2021 with recipes, ethical DIYs, and more fun stuff!</p>
+        </header>
+
+        <section id="calendar">
+            <article id="day1" class="day">
+                <h3>Day <span id="daytitle"></span></h3>
+            </article>
+        </section>
+
+        <div id="popup">
+            <span class="closePopup">x</span>
+            <p><span class="popupNotice">Plant Guy says:</span> <span id="popupDailyMessage"></span></p>
+            <p>
+                <span class="popupNotice">Daily Feature:</span> 
+                <a id="popupSocialURL" target="_blank"><span id="popupSocialName"></span></a>! 
+                <span id="popupSocialDescription"></span> 
+                Check <span id="popupSocialName2"></span> out <a id="popupSocialURL2" target="_blank">here</a>!
+            </p>
+            <p><span class="popupNotice">Today's Countdown Feature:</span> <a id="popupLink" target="_blank"><span id="popupName"></span></a></p>
+            <iframe id="popupPreview"></iframe>
+        </div>
+
+        <div id="popupLocked">
+            <span class="closePopup">x</span>
+            <h3>Day not yet unlocked</h3>
+            <p>Come back later to see the new goodies. In the meantime, you can download Ethicli’s browser extension to help with your holiday shopping.</p>
+            <a class="downloadEthicli" href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Download Ethicli for Chrome</a>
+            <a class="downloadEthicli" href="https://addons.mozilla.org/en-US/firefox/addon/ethicli" target="_blank">Download Ethicli for Firefox</a>
+        </div>
+
+        <span id="toggleSnow">
+            <div>
+                <span>On</span>
+                <span>Off</span>
+            </div>
+            <span id="snowman">⛄</span>
+        </span>
+
+        <footer>
+        </footer>
+        
+        <img id="ogplantdude" src="countdown/plantdudes/plantdude-og.png" alt="OG Plant Dude">
+    </div>
+</body>
+
+</html>

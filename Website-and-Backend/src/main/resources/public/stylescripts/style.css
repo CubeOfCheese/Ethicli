@@ -61,7 +61,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
 }
 
 
-/*** Ethicli Button *****************************************************/
+/*** Ethicli Buttons *****************************************************/
 
 #mainCTA {
     position: fixed;
@@ -85,6 +85,86 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     color: #FFFCF2;
 }
 
+#countdownPrompt {
+    position: fixed;
+    right: -40px;
+    top: 120px;
+    display: flex;
+    transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+#countdownPrompt.hide {
+    right: -300px;
+}
+
+#ogplantdude {
+    transform: rotate(-20deg);
+    cursor: pointer;
+    transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+#countdownPrompt.hide #ogplantdude {
+    transform: rotate(20deg);
+}
+
+#countdownPrompt p {
+    display: block;
+	position: relative;
+    background: #FEFCF2;
+    color: #2B6589;
+    border-radius: 20px;
+    margin: 30px 8px auto 0;
+    padding: 8px;
+    max-width: 100px;
+    line-height: 16px;
+    font-size: 14px;
+    text-align: center;
+    hyphens: none;
+}
+
+#countdownPrompt p:after {
+    content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-left-color: #FEFCF2;
+	border-right: 0;
+	border-bottom: 0;
+	margin-top: -10px;
+	margin-right: -20px;
+}
+
+#ogplantdude:hover {
+    -webkit-animation: wiggle 0.5s infinite;
+    -moz-animation: wiggle 0.5s infinite;
+    animation: wiggle 0.5s infinite;
+}
+
+/* safari and chrome */
+@-webkit-keyframes wiggle {
+	0% {-webkit-transform:rotate(-20deg);}
+	50% {-webkit-transform:rotate(-24deg);}
+	100% {-webkit-transform:rotate(-16deg);}
+}
+
+/* firefox */
+@-moz-keyframes wiggle {
+	0% {-moz-transform:rotate(-20deg);}
+	50% {-moz-transform:rotate(-24deg);}
+	100% {-moz-transform:rotate(-16deg);}
+}
+
+/* anyone brave enough to implement the ideal method */
+@keyframes wiggle {
+	0% {transform:rotate(-20deg);}
+	50% {transform:rotate(-24deg);}
+	100% {transform:rotate(-16deg);}
+}
 
 /*** Nav **************************************************************/
 

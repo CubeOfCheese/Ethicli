@@ -35,6 +35,11 @@ public class Router {
     return "uninstall";
   }
 
+  @RequestMapping(value = "/countdown-2021")
+  public String getCountdown2021() {
+    return "events/countdown";
+  }
+
   @RequestMapping(value = "/info/{company}")
   public String getInfo(@PathVariable("company") String companyName, Model model) throws IOException {
     model.addAttribute("business", BusinessService.getBusinessByWebsite(companyName));
