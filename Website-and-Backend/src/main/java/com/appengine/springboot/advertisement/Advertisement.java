@@ -12,6 +12,7 @@ public class Advertisement {
   private String website;
   private String companyName;
   private ProductTag[] productTags;
+  private ProductTag[] negativeProductTags;
   private double price;
   private String productURL;
   private String productImageURL;
@@ -26,6 +27,7 @@ public class Advertisement {
       String website,
       String companyName,
       ProductTag[] productTags,
+      ProductTag[] negativeProductTags,
       double price,
       String productURL,
       String productImageURL,
@@ -35,6 +37,7 @@ public class Advertisement {
     this.website = website;
     this.companyName = companyName;
     this.productTags = productTags;
+    this.negativeProductTags = negativeProductTags;
     this.price = price;
     this.productURL = productURL;
     this.productImageURL = productImageURL;
@@ -71,6 +74,14 @@ public class Advertisement {
 
   public void setProductTags(ProductTag[] productTags) {
     this.productTags = productTags;
+  }
+
+  public ProductTag[] getNegativeProductTags() {
+    return negativeProductTags;
+  }
+
+  public void setNegativeProductTags(ProductTag[] negativeProductTags) {
+    this.negativeProductTags = negativeProductTags;
   }
 
   public double getPrice() {

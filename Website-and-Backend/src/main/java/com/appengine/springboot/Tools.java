@@ -1,5 +1,6 @@
 package com.appengine.springboot;
 
+import com.appengine.springboot.advertisement.ProductTag;
 import com.appengine.springboot.business.Business;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -158,5 +159,15 @@ public class Tools {
       e.printStackTrace();
     }
     return true;
+  }
+
+  public static double compareToProductTag(ProductTag productTag, String descriptor) {
+    double sizeDifference = productTag.getTag().length() - descriptor.length();
+    if (sizeDifference <= 1
+        || (sizeDifference == 2 && productTag.getTag().substring(productTag.getTag().length() - 2, productTag.getTag().length()).equals("es"))) {
+      return productTag.getWeight();
+    } else {
+      return productTag.getWeight() / sizeDifference;
+    }
   }
 }
