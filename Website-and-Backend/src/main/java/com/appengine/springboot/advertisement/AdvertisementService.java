@@ -37,27 +37,29 @@ public class AdvertisementService {
     }
     for (String productDescription : productDescriptions) {
       for (Advertisement masterAdvertisement : masterAdvertisements) {
-        if (masterAdvertisement.getCompanyScore() > currentCompanyScore) {
-          double weight = 0;
-          for (int posPtIndex = 0; posPtIndex < masterAdvertisement.getProductTags().length; ++posPtIndex) {
-            ProductTag positiveProductTag = masterAdvertisement.getProductTags()[posPtIndex];
-            if (positiveProductTag.getTag().contains(productDescription)) {
-              weight += Tools.compareToProductTag(positiveProductTag, productDescription);
-            }
+        if (masterAdvertisement.getCompanyScore() < currentCompanyScore) {
+          System.out.println("test");
+          continue;
+        }
+        double weight = 0;
+        for (int posPTIndex = 0; posPTIndex < masterAdvertisement.getProductTags().length; ++posPTIndex) {
+          ProductTag positiveProductTag = masterAdvertisement.getProductTags()[posPTIndex];
+          if (positiveProductTag.getTag().contains(productDescription)) {
+            weight += Tools.compareToProductTag(positiveProductTag, productDescription);
           }
-          for (int negPtIndex = 0; masterAdvertisement.getNegativeProductTags() != null && negPtIndex < masterAdvertisement.getNegativeProductTags().length;
-              ++negPtIndex) {
-            ProductTag negativeProductTag = masterAdvertisement.getNegativeProductTags()[negPtIndex];
-            if (negativeProductTag.getTag().contains(productDescription)) {
-              weight += Tools.compareToProductTag(negativeProductTag, productDescription);
-            }
+        }
+        for (int negPtIndex = 0; masterAdvertisement.getNegativeProductTags() != null && negPtIndex < masterAdvertisement.getNegativeProductTags().length;
+            ++negPtIndex) {
+          ProductTag negativeProductTag = masterAdvertisement.getNegativeProductTags()[negPtIndex];
+          if (negativeProductTag.getTag().contains(productDescription)) {
+            weight += Tools.compareToProductTag(negativeProductTag, productDescription);
           }
-          if (weight != 0) {
-            if (adMap.containsKey(masterAdvertisement.getId())) {
-              adMap.put(masterAdvertisement.getId(), weight + adMap.get(masterAdvertisement.getId()));
-            } else {
-              adMap.put(masterAdvertisement.getId(), weight);
-            }
+        }
+        if (weight != 0) {
+          if (adMap.containsKey(masterAdvertisement.getId())) {
+            adMap.put(masterAdvertisement.getId(), weight + adMap.get(masterAdvertisement.getId()));
+          } else {
+            adMap.put(masterAdvertisement.getId(), weight);
           }
         }
       }
