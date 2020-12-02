@@ -1,9 +1,13 @@
 package com.appengine.springboot.business;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Business {
-
+  @Id
+  private String id;
   private boolean bcorpCertified;
   private boolean blackOwnedBusiness;
   private boolean bluesignPartner;
@@ -185,12 +189,18 @@ public class Business {
     this.overallScore = overallScore;
   }
 
-  // Getters:
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
   public boolean isBcorpCertified() {
     return bcorpCertified;
   }
 
-  // Setters:
   public void setBcorpCertified(boolean certified) {
     this.bcorpCertified = certified;
   }
@@ -540,6 +550,10 @@ public class Business {
       }
     }
     if (update) {
+      if (this.id == null) {
+        this.id = business.getId();
+      }
+
       if (this.bcorpCertified == false) {
         this.bcorpCertified = business.isBcorpCertified();
       }

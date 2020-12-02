@@ -7,12 +7,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BusinessService {
+
+  @Autowired
+  BusinessRepository businessRepository;
 
   public static Business getBusinessByWebsite(String companyName) throws IOException {
     Business business = new Business();
@@ -285,5 +290,29 @@ public class BusinessService {
       }
     }
     return business;
+  }
+
+  public Business getByWebsite(String website) {
+    return businessRepository.getByWebsite(website);
+  }
+
+  public List<Business> insertAll(List<Business> business) {
+    return businessRepository.insert(business);
+  }
+
+  public Business insert(Business business) {
+    return businessRepository.insert(business);
+  }
+
+  public List<Business> updateAll(List<Business> business) {
+    for (Business value : business) {
+      Business tempBusiness = getByWebsite(value.getWebsite());
+      value.setId(tempBusiness.getId());
+    }
+    return businessRepository.saveAll(business);
+  }
+
+  public Business update(Business business) {
+    return businessRepository.save(business);
   }
 }
