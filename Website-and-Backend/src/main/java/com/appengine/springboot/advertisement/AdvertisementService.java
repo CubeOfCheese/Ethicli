@@ -37,7 +37,7 @@ public class AdvertisementService {
     }
     for (String productDescription : productDescriptions) {
       for (Advertisement masterAdvertisement : masterAdvertisements) {
-        if (masterAdvertisement.getCompanyScore() < currentCompanyScore) {
+        if (masterAdvertisement.getCompanyScore() <= currentCompanyScore) {
           continue;
         }
         double weight = 0;
