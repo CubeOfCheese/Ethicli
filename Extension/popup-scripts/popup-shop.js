@@ -23,7 +23,7 @@ function updateOverallToolTip(overallscore) {
     document.getElementById("overallScoreTooltip").style.background = "#CBC7B6";
   } else if (overallscore >= 8 && overallscore < 9) {
     overalltip = "A great rating!";
-    document.getElementById("overallscoreTooltip").style.background = "#C8CFBF";
+    document.getElementById("overallScoreTooltip").style.background = "#C8CFBF";
   } else if (overallscore >= 9 && overallscore < 10) {
     overalltip = "Fantastic score!";
     document.getElementById("overallScoreTooltip").style.background = "#C6D4C5";
