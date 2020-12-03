@@ -35,7 +35,7 @@ public class Router {
     return "uninstall";
   }
 
-  @RequestMapping(value = "/countdown-2021")
+  @RequestMapping(value = "/countdown-2020")
   public String getCountdown2021() {
     return "events/countdown";
   }
