@@ -210,14 +210,14 @@ nav a:hover{
   position: fixed;
   display: none;
   flex-direction: column;
-  top: 120px;
+  top: 16vh;
   right: 10vw;
   margin-left: 10vw;
   padding: 30px;
   border-radius: 20px;
   background: #89a387;
   width: 80vw;
-  height: 500px;
+  height: 80vh;
   overflow: scroll;
 }
 
@@ -243,7 +243,7 @@ nav a:hover{
 #popup p {
   font-family: 'Laila', serif;
   margin-bottom: 24px;
-  color: #d8e4d7;
+  color: #102340;
   line-height: 24px;
 }
 
@@ -252,7 +252,7 @@ nav a:hover{
   line-height: 24px;
 }
 
-#popupLink, #popupDailyMessage, #popupLocked h3 {
+#popupLink, #popupLocked h3 {
   text-decoration: none;
   margin-right: auto;
   font-family: 'Laila', serif;
@@ -260,7 +260,7 @@ nav a:hover{
   color: #FFFCF2;
 }
 
-#popupLink:hover, .closePopup:hover, #popupLocked .closePopup:hover, #popupSocialURL:hover, #popupSocialURL2:hover {
+#popupLink:hover, .closePopup:hover, #popupLocked .closePopup:hover, #popupName:hover, #popupSocialURL:hover, #popupSocialURL2:hover {
   color: #c6d4c5;
 }
 
@@ -273,9 +273,9 @@ nav a:hover{
 .closePopup {
   font-family: 'Laila', serif;
   position: fixed;
-  top: 136px;
+  top: 16vh;
   right: 10vw;
-  margin-right: 16px;
+  margin: 16px 16px 0 0;
   padding: 8px 12px;
   border-radius: 8px;
   background: #89a38780;
@@ -339,20 +339,22 @@ nav a:hover{
 }
 
 a, #popup a {
+  text-decoration: none;
   cursor: pointer;
 }
 
-#popupSocialURL, #popupSocialURL2 {
-  color: #fff;
+#popupName, #popupSocialURL, #popupSocialURL2 {
+  color: #2B6589;
+  font-size: 16px;
 }
 
 .popupNotice {
-  color: #fff;
+  color: #FFFCF2;
 }
 
 ::selection {
   background: #2B6589;
-  color: #fff;
+  color: #FFFCF2;
 }
 
 /*** Animations ********************************************************************************/
@@ -445,6 +447,10 @@ a, #popup a {
   #popupLocked .closePopup {
     right: 10vw;
     margin: 16px 16px 0 0;
+  }
+  header h1 {
+    font-size: 48px;
+    line-height: 54px;
   }
 }
 
