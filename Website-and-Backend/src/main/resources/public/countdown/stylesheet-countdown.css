@@ -448,6 +448,10 @@ a, #popup a {
     right: 10vw;
     margin: 16px 16px 0 0;
   }
+  header h1 {
+    font-size: 48px;
+    line-height: 54px;
+  }
 }
 
 
