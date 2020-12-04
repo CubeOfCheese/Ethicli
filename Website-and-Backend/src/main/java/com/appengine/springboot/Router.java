@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class Router {
 
-  @RequestMapping({"/", "/home"})
+  @RequestMapping(value = "/faq")
   public String getHome() {
     return "index";
   }
