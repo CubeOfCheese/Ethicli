@@ -4,7 +4,7 @@ let tagIndex = 0;
 function start() {
   console.log("window onload running");
 
-  document.getElementById("addproduct").addEventListener("click", duplicateProduct);
+  // document.getElementById("addproduct").addEventListener("click", duplicateProduct);
   console.log(document.getElementById("addtag"));
   document.getElementById("addtag").addEventListener("click", duplicateTag);
 }
