@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import javax.servlet.http.HttpServletResponse;
 
 @CrossOrigin
@@ -38,10 +40,17 @@ public class AdvertisementController {
     return advertisementService.getById(id);
   }
 
-  @PutMapping("/add")
-  public Advertisement addAdvertisement(@RequestBody Advertisement Advertisement) {
-    return advertisementService.addAdvertisement(Advertisement);
+  @PostMapping("/add")
+  public String addAdvertisement(@ModelAttribute Advertisement Advertisement) {
+    System.out.println("/add called");
+    System.out.println(Advertisement.getCompanyName());
+    return "redirect:/AmysTools/ad";
   }
+
+  // @PutMapping("/add")
+  // public Advertisement addAdvertisement(@RequestBody Advertisement Advertisement) {
+  //   return advertisementService.addAdvertisement(Advertisement);
+  // }
 
   @PutMapping("/addAll")
   public List<Advertisement> addAllAdvertisements(@RequestBody List<Advertisement> Advertisement) {

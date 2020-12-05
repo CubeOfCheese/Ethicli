@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
-    <title>Shop Organizer</title>
+    <title>Ad Adder - Amy's Tools</title>
     <link href="stylescripts/reset.css" rel="stylesheet">
-    <link href="amytools/stylesheet-ad.css" rel="stylesheet">
-    <script src="amytools/script-ad.js"></script>
+    <link href="AmysTools/stylesheet-ad.css" rel="stylesheet">
+    <script src="AmysTools/script-ad.js"></script>
 </head>
 
 <body>
     <div>
         <header><h1>Ad Form</h1></header>
 
-        <form action="#" method="POST" enctype="multipart/form-data"> <!-- Will have to be changed to method="post" once linked with background -->
+        <form action="#" th:action="@{/Advertisement/adder}" th:object="${Advertisement}" method="POST">
             <div id="companygroup"> <!-- Main Company Info -->
                 <h2>Main Company Info</h2>
-                <label for="companyname">Comapny Name: <input name="companyname" id="companyname" placeholder="Clean Bean Cafe" input type="text" spellcheck="true"></label>
-                <label for="companyurl">Company Website: <input name="companyurl" id="companyurl" placeholder="https://cbcafe.com" input type="text" spellcheck="true"></label>
-                <label for="companyscore">Company Score: <input name="companyscore" id="companyscore" placeholder="8.0" input type="text"></label>
+                <label for="companyname">Company Name: <input th:field="*{companyName}" id="companyname" placeholder="Clean Bean Cafe" input type="text" spellcheck="true"></label>
+                <label for="companyurl">Company Website: <input th:field="*{website}" id="companyurl" placeholder="https://cbcafe.com" input type="text" spellcheck="true"></label>
+                <label for="companyscore">Company Score: <input th:field="*{companyScore}" id="companyscore" placeholder="8.0" input type="text"></label>
             </div>
 
             <div> <!-- Products -->
@@ -26,10 +26,10 @@
                 <span class="productcontainer">
                     <div id="productgroup">
                         <h3>Product <span id="numproducts">1</span></h3>
-                        <label for="productname">Product Name: <input name="productname" id="productname" placeholder="Teracotta Mug" type="text" spellcheck="true"></label>
-                        <label for="productprice">Price($): <input name="productprice" id="productprice" placeholder="10" type="text" spellcheck="true"></label>
-                        <label for="producturl">Product URL: <input name="producturl" id="producturl" placeholder="https://cbcafe.com/merch" type="text"></label>
-                        <label for="productimageurl">Product Image: <input name="productimageurl" id="productimageurl" placeholder="https://cbcafe.com/mug.jpg"></label>
+                        <label for="productname">Product Name: <input th:field="*{productName}" id="productname" placeholder="Teracotta Mug" type="text" spellcheck="true"></label>
+                        <label for="productprice">Price($): <input th:field="*{price}" id="productprice" placeholder="10" type="text" spellcheck="true"></label>
+                        <label for="producturl">Product URL: <input th:field="*{productURL}" id="producturl" placeholder="https://cbcafe.com/merch" type="text"></label>
+                        <label for="productimageurl">Product Image: <input th:field="*{productImageURL}" id="productimageurl" placeholder="https://cbcafe.com/mug.jpg"></label>
                         <span class="producttaggroup">
                             <span id="ptags">
                                 <label for="producttag">Tag: <input name="producttag" id="producttag" placeholder="legging" type="text"></label>
