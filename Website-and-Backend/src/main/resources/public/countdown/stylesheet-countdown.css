@@ -404,6 +404,52 @@ a, #popup a {
   right: 16px;
 }
 
+/*** Socials Sharing *********************************************************************/
+
+#shareToSocials {
+  position: fixed;
+  bottom: 16px;
+  left: 8px;
+}
+
+#shareToSocials p {
+  display: block;
+  position: absolute;
+  top: -124px;
+  left: -90px;
+  width: 200px;
+  color: #89a387;
+  transform: rotate(-90deg);
+  font-size: 14px;
+}
+
+.shareBtnLink svg {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.shareBtnLink {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.sharebtn {
+  background: #05668D;
+  fill: #c6d4c5;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.sharebtn:hover {
+  opacity: 0.6;
+  -webkit-animation: wiggle 0.5s infinite;
+	-moz-animation: wiggle 0.5s infinite;
+	animation: wiggle 0.5s infinite;
+}
+
+
 /*** Queries ********************************************************************************/
 
 @media screen and (max-width: 1160px) {
@@ -449,8 +495,12 @@ a, #popup a {
     margin: 16px 16px 0 0;
   }
   header h1 {
-    font-size: 48px;
-    line-height: 54px;
+    font-size: 40px;
+    line-height: 48px;
+    margin-bottom: 20px;
+  }
+  header p {
+    font-size: 14px;
   }
 }
 
@@ -464,55 +514,7 @@ a, #popup a {
   .break {
       display: inline;
   }
+  #shareToSocials p {
+    color: #c6d4c5;
+  }
 }
-
-/*** Socials Sharing *********************************************************************/
-
-#shareToSocials {
-  position: fixed;
-  bottom: 16px;
-  left: 8px;
-}
-
-#shareToSocials p {
-  display: block;
-  position: absolute;
-  top: -124px;
-  left: -90px;
-  width: 200px;
-  color: #89a387;
-  transform: rotate(-90deg);
-  font-size: 14px;
-}
-
-.shareBtnLink svg {
-  width: 16px;
-  height: 16px;
-  margin: 0;
-  vertical-align: middle;
-}
-
-.shareBtnLink {
-  display: block;
-  margin-bottom: 16px;
-  /* fill: #fff; */
-}
-
-/* .sharebtn--twitter { fill: #55acee; }
-.sharebtn--pinterest { fill: #bd081c; }
-.sharebtn--facebook { fill: #3b5998; }
-.sharebtn--reddit { fill: #FF5700; }
-.sharebtn--linkedin { fill: #0077b5; }
-.sharebtn--email { fill: #777; } */
-
-.sharebtn {
-  background: #05668D;
-  fill: #c6d4c5;
-  padding: 2px;
-  border-radius: 4px;
-}
-
-.sharebtn:hover {
-  opacity: 0.6;
-}
-
