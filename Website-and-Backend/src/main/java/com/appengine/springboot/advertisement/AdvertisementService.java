@@ -24,31 +24,41 @@ public class AdvertisementService {
 
   public Advertisement getAdvertisementByProductTags(Map<String, Object> payload) throws IOException {
     final double WEIGHT_THRESHOLD = 0.75;
+    String[] productDescriptions = Tools.prepareForProductTagQuery(payload.get("productName").toString());
+    List<Advertisement> masterAdvertisements = null;
     HashMap<String, Double> adMap = new HashMap<String, Double>();
-    String[] names = Tools.prepareForProductTagQuery(payload.get("productName").toString());
     double currentCompanyScore = ((Number) payload.get("currentCompanyScore")).doubleValue();
-    for (int namesIndex = 0; namesIndex < names.length; ++namesIndex) {
-      List<Advertisement> advertisements = regexProductTag(names[namesIndex]);
-      for (int advertisementsIndex = 0; advertisementsIndex < advertisements.size(); ++advertisementsIndex) {
-        for (int productTagsIndex = 0; productTagsIndex < advertisements.get(advertisementsIndex).getProductTags().length; ++productTagsIndex) {
-          if (advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().toLowerCase().contains(names[namesIndex])
-              && advertisements.get(advertisementsIndex).getCompanyScore() > currentCompanyScore) {
-            double weight;
-            double sizeDifference = advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().length() - names[namesIndex].length();
-            if (sizeDifference <= 1
-                || (sizeDifference == 2 && advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag()
-                .substring(advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().length() - 2,
-                    advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getTag().length()).equals("es"))) {
-              weight = advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight();
-            } else {
-              weight = advertisements.get(advertisementsIndex).getProductTags()[productTagsIndex].getWeight() / sizeDifference;
-            }
-            if (adMap.containsKey(advertisements.get(advertisementsIndex).getId())) {
-              adMap.put(advertisements.get(advertisementsIndex).getId(),
-                  weight + adMap.get(advertisements.get(advertisementsIndex).getId()).doubleValue());
-            } else {
-              adMap.put(advertisements.get(advertisementsIndex).getId(), weight);
-            }
+    for (String description : productDescriptions) {
+      if (masterAdvertisements == null) {
+        masterAdvertisements = regexProductTag(description);
+      } else {
+        masterAdvertisements.addAll(regexProductTag(description));
+      }
+    }
+    for (String productDescription : productDescriptions) {
+      for (Advertisement masterAdvertisement : masterAdvertisements) {
+        if (masterAdvertisement.getCompanyScore() <= currentCompanyScore) {
+          continue;
+        }
+        double weight = 0;
+        for (int posPTIndex = 0; posPTIndex < masterAdvertisement.getProductTags().length; ++posPTIndex) {
+          ProductTag positiveProductTag = masterAdvertisement.getProductTags()[posPTIndex];
+          if (positiveProductTag.getTag().contains(productDescription)) {
+            weight += Tools.compareToProductTag(positiveProductTag, productDescription);
+          }
+        }
+        for (int negPtIndex = 0; masterAdvertisement.getNegativeProductTags() != null && negPtIndex < masterAdvertisement.getNegativeProductTags().length;
+            ++negPtIndex) {
+          ProductTag negativeProductTag = masterAdvertisement.getNegativeProductTags()[negPtIndex];
+          if (negativeProductTag.getTag().contains(productDescription)) {
+            weight += Tools.compareToProductTag(negativeProductTag, productDescription);
+          }
+        }
+        if (weight != 0) {
+          if (adMap.containsKey(masterAdvertisement.getId())) {
+            adMap.put(masterAdvertisement.getId(), weight + adMap.get(masterAdvertisement.getId()));
+          } else {
+            adMap.put(masterAdvertisement.getId(), weight);
           }
         }
       }
@@ -95,14 +105,17 @@ public class AdvertisementService {
 
   public List<Advertisement> regexProductTag(String tag) {
     Query query = new Query().addCriteria(Criteria.where("productTags.tag").regex(tag, "i"));
-    List<Advertisement> Advertisement = mongoOperations.find(query, Advertisement.class);
-    return Advertisement;
+    return mongoOperations.find(query, Advertisement.class);
   }
 
   public List<Advertisement> addAllAdvertisements(List<Advertisement> advertisements) {
-    for (int a = 0; a < advertisements.size(); ++a) {
-      for (int b = 0; b < advertisements.get(a).getProductTags().length; ++b) {
-        advertisements.get(a).getProductTags()[b].setTag(advertisements.get(a).getProductTags()[b].getTag().toLowerCase());
+    for (Advertisement advertisement : advertisements) {
+      for (int b = 0; b < advertisement.getProductTags().length; ++b) {
+        advertisement.getProductTags()[b].setTag(advertisement.getProductTags()[b].getTag().toLowerCase());
+      }
+      for (int b = 0; b < advertisement.getNegativeProductTags().length; ++b) {
+        advertisement.getNegativeProductTags()[b].setTag(advertisement.getNegativeProductTags()[b].getTag().toLowerCase());
+        advertisement.getNegativeProductTags()[b].setWeight(-1 * Math.abs(advertisement.getNegativeProductTags()[b].getWeight()));
       }
     }
     return advertisementRepository.insert(advertisements);

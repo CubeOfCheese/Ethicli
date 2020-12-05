@@ -18,6 +18,7 @@ var confetti = {
 };
 
 (function() {
+	confetti.special = specialConfetti;
 	confetti.start = startConfetti;
 	confetti.stop = stopConfetti;
 	confetti.toggle = toggleConfetti;
@@ -37,12 +38,20 @@ var confetti = {
 	var waveAngle = 0;
 	var context = null;
 
+	function specialConfetti(special) {
+		if (special === "xmas") {
+			colors = ["rgba(224, 122, 95,", "rgba(255, 252, 242,", "rgba(175, 191, 174,", "rgba(120, 150, 117,"];
+		} else if (special === "newyears") {
+			colors = ["rgba(251, 137, 137,", "rgba(255, 224, 205,", "rgba(242, 234, 170,", "rgba(184, 232, 156,", "rgba(142, 219, 220,", "rgba(244, 225, 246,"];
+		}
+	}
+
 	function resetParticle(particle, width, height) {
 		particle.color = colors[(Math.random() * colors.length) | 0] + (confetti.alpha + ")");
 		particle.color2 = colors[(Math.random() * colors.length) | 0] + (confetti.alpha + ")");
 		particle.x = Math.random() * width;
 		particle.y = Math.random() * height - height;
-		particle.diameter = Math.random() * 10 + 5;
+		particle.diameter = Math.random() * 10 + 2;
 		particle.tilt = Math.random() * 10 - 10;
 		particle.tiltAngleIncrement = Math.random() * 0.07 + 0.05;
 		particle.tiltAngle = Math.random() * Math.PI;

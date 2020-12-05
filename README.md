@@ -21,10 +21,10 @@ Reddit: https://www.reddit.com/r/Ethicli/
 Data.world: https://data.world/ethicli
 
 # Current Published Versions (commit id)
-Firefox: 76323b561abf31916670215316b9f7477c11cedb
+Firefox: 4a87814793c67bcf14cd2f22f739744e76226d75
 
-Chrome: 76323b561abf31916670215316b9f7477c11cedb
+Chrome: 4a87814793c67bcf14cd2f22f739744e76226d75
 
-Backend: 76323b561abf31916670215316b9f7477c11cedb
+Backend: 4a87814793c67bcf14cd2f22f739744e76226d75
 
-Website: 76323b561abf31916670215316b9f7477c11cedb
+Website: 4a87814793c67bcf14cd2f22f739744e76226d75
