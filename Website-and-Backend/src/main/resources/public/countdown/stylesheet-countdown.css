@@ -454,7 +454,6 @@ a, #popup a {
   }
 }
 
-
 @media screen and (max-width: 450px) {
   footer {
       padding-bottom: 54px;
@@ -466,3 +465,54 @@ a, #popup a {
       display: inline;
   }
 }
+
+/*** Socials Sharing *********************************************************************/
+
+#shareToSocials {
+  position: fixed;
+  bottom: 16px;
+  left: 8px;
+}
+
+#shareToSocials p {
+  display: block;
+  position: absolute;
+  top: -124px;
+  left: -90px;
+  width: 200px;
+  color: #89a387;
+  transform: rotate(-90deg);
+  font-size: 14px;
+}
+
+.shareBtnLink svg {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.shareBtnLink {
+  display: block;
+  margin-bottom: 16px;
+  /* fill: #fff; */
+}
+
+/* .sharebtn--twitter { fill: #55acee; }
+.sharebtn--pinterest { fill: #bd081c; }
+.sharebtn--facebook { fill: #3b5998; }
+.sharebtn--reddit { fill: #FF5700; }
+.sharebtn--linkedin { fill: #0077b5; }
+.sharebtn--email { fill: #777; } */
+
+.sharebtn {
+  background: #05668D;
+  fill: #c6d4c5;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.sharebtn:hover {
+  opacity: 0.6;
+}
+
