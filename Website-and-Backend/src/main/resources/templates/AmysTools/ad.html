@@ -25,23 +25,36 @@
                 <span class="productcontainer">
                     <div id="productgroup">
                         <h3>Product <span id="numproducts">1</span></h3>
-                        <img id="productUrlPreview"/>
                         <label for="productname">Product Name: <input th:field="*{productName}" id="productname" placeholder="Teracotta Mug" type="text" spellcheck="true" required></label>
                         <label for="productprice">Price($): <input th:field="*{price}" id="productprice" placeholder="10" type="number" step="0.01" required></label>
                         <label for="producturl">Product URL: <input th:field="*{productURL}" id="producturl" placeholder="https://cbcafe.com/merch" type="url" required></label>
                         <label for="productimageurl">Product Image: <input th:field="*{productImageURL}" id="productimageurl" placeholder="https://cbcafe.com/mug.jpg" type="url" required></label>
-                        <span th:each="productTags, i: ${Advertisement.productTags}" class="producttaggroup">
-                            <span id="ptags">
-                                <label for="producttag">Tag: </label>
-                                <input th:field="*{productTags[__${i.index}__].tag}" id="producttag" placeholder="legging" type="text" spellcheck="true" required>
-                                <label for="producttagweight">Weight: </label>
-                                <input th:field="*{productTags[__${i.index}__].weight}" id="producttagweight" placeholder="1" type="number" step="0.01" required>
+                        <img id="productUrlPreview" src=""  alt="Product Image Preview">
+
+                        <span class="productgroupbottom">
+                            <span th:each="productTags, i: ${Advertisement.productTags}" class="producttaggroup">
+                                <span id="ptags">
+                                    <span>
+                                        <label for="producttag">Tag: </label>
+                                        <input th:field="*{productTags[__${i.index}__].tag}" id="producttag" placeholder="legging" type="text" spellcheck="true" required>
+                                    </span>
+                                    <span>
+                                        <label for="producttagweight">Weight: </label>
+                                        <input th:field="*{productTags[__${i.index}__].weight}" id="producttagweight" placeholder="1" type="number" step="0.01" required>
+                                    </span>
+                                </span>
+                            </span>
+                            <span id="changetag">
+                                <svg id="addtag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
+                                <svg id="deletetag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
                             </span>
                         </span>
-                        <span id="addtag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg></span>
                     </div>
                 </span>
-                <!-- <span id="addproduct"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg></span> -->
+                <!-- <span id="changeproduct">
+                    <svg id="addproduct" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
+                    <svg id="deleteproduct" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
+                </span> -->
             </div>
 
             <!-- <div id="productsection"></div> -->

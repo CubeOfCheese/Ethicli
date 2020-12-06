@@ -75,37 +75,50 @@ form label input {
   /* display: none; */
 }
 
+.productgroupbottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 /** Tags **/
 
 .producttaggroup {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-right: 40px;
+  margin-right: 100px;
 }
 
-#addtag, #addtag svg,
-#addproduct, #addproduct svg{
+#changetag, #changetag svg,
+#changeproduct, #changeproduct svg{
   width: 30px;
   margin-left: 14px;
   padding: 0;
   border: none;
 }
 
-#addproduct {
+#changeproduct {
   position: relative;
   right: 20px;
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
 }
 
-#addtag {
+#changetag {
   position: absolute;
-  bottom: 20px;
-  right: 34px;
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  right: 24px;
 }
 
 .producttaggroup > span {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
   margin-top: 16px;
@@ -128,6 +141,10 @@ form label input {
 #producttag {
   min-width: 100px;
   margin-right: 10px;
+}
+
+#producttag, #producttagweight {
+  margin: 0 8px 8px 8px;
 }
 
 #submit {
@@ -162,7 +179,7 @@ h3 {
   font-size: 18px;
 }
 
-#addproduct:hover, #addtag:hover, #submit:hover {
+#addproduct:hover, #deleteproduct:hover, #addtag:hover, #deletetag:hover, #submit:hover {
   opacity: 0.5;
 }
 
@@ -173,4 +190,16 @@ h3 {
 ::selection {
   background-color: #333;
   color: #fff;
+}
+
+/** Images **/
+
+#productUrlPreview {
+  display: block;
+  max-width: 120px;
+  border-radius: 8px;
+}
+
+#productUrlPreview[src=""] {
+  display:none;
 }

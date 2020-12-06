@@ -36,7 +36,7 @@ public class Router {
     return "uninstall";
   }
 
-  @RequestMapping(value = "/amystools-ad")
+  @RequestMapping(value = "/amys-tools-ad")
   public String getAmyToolsAd(Model model) {
     Advertisement Advertisement = new Advertisement();
 		model.addAttribute("Advertisement", Advertisement);

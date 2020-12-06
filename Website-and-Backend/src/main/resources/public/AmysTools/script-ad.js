@@ -2,11 +2,10 @@ let productIndex = 0;
 let tagIndex = 0;
 
 function start() {
-  console.log("window onload running");
-
   // document.getElementById("addproduct").addEventListener("click", duplicateProduct);
-  console.log(document.getElementById("addtag"));
+  // document.getElementById("deleteproduct").addEventListener("click", deleteProduct);
   document.getElementById("addtag").addEventListener("click", duplicateTag);
+  document.getElementById("deletetag").addEventListener("click", deleteTag);
   document.getElementById("productimageurl").addEventListener("change", previewImage);
 }
 
@@ -33,6 +32,12 @@ function duplicateTag() {
 
 function previewImage() {
   document.getElementById("productUrlPreview").src = document.getElementById("productimageurl").value;
+}
+
+function deleteProduct() {} // Code to Delete Product
+
+function deleteTag() {
+  // Code to Delete Tag
 }
 
 console.log("I'm running");
