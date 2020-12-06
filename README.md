@@ -14,7 +14,7 @@ Twitter: @Shop_Ethicli
 
 LinkedIn: https://www.linkedin.com/company/ethicli
 
-Blog: http://blog.ethicli.com
+Blog: https://blog.ethicli.com
 
 Reddit: https://www.reddit.com/r/Ethicli/
 
