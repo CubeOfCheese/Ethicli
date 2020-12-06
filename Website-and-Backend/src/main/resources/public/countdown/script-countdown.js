@@ -103,7 +103,17 @@ $(document).ready(() => {
           $("#popupDailyMessage").text(popupDailyMessage[i]);
           $("#popupSocialName, #popupSocialName2").text(popupSocialName[i]);
           $("#popupSocialDescription").text(popupSocialDescription[i]);
-          $("#popupSocialURL, #popupSocialURL2").attr("href", popupSocialURL[i]);
+
+          const socialurl = popupSocialURL[i];
+          if (socialurl.includes("youtube")) {
+            const updatedSocialURL = socialurl.replace("watch?v=", "embed/");
+            $("#popupSocialURL, #popupSocialURL2").attr("src", updatedSocialURL);
+            $("#popupSocialURL, #popupSocialURL2")
+                .attr("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
+            $("#popupSocialURL, #popupSocialURL2").attr("frameborder", "0");
+          } else {
+            $("#popupSocialURL, #popupSocialURL2").attr("href", socialurl);
+          }
 
           $("#popup").addClass("show");
           $("#popupLocked").removeClass("show");
