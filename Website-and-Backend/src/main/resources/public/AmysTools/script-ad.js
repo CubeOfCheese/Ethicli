@@ -7,6 +7,7 @@ function start() {
   // document.getElementById("addproduct").addEventListener("click", duplicateProduct);
   console.log(document.getElementById("addtag"));
   document.getElementById("addtag").addEventListener("click", duplicateTag);
+  document.getElementById("productimageurl").addEventListener("change", previewImage);
 }
 
 function duplicateProduct() {
@@ -28,6 +29,10 @@ function duplicateTag() {
   clone.childNodes[3].name = "productTags[" + tagIndex + "].tag";
   clone.childNodes[7].name = "productTags[" + tagIndex + "].weight";
   originalTag.parentNode.appendChild(clone);
+}
+
+function previewImage() {
+  document.getElementById("productUrlPreview").src = document.getElementById("productimageurl").value;
 }
 
 console.log("I'm running");
