@@ -25,8 +25,9 @@ function duplicateTag() {
   const clone = originalTag.cloneNode(true);
   clone.id = "ptags" + tagIndex;
   console.log(clone.childNodes);
-  clone.childNodes[3].name = "productTags[" + tagIndex + "].tag";
-  clone.childNodes[7].name = "productTags[" + tagIndex + "].weight";
+  console.log();
+  clone.childNodes[1].childNodes[3].name = "productTags[" + tagIndex + "].tag";
+  clone.childNodes[3].childNodes[3].name = "productTags[" + tagIndex + "].weight";
   originalTag.parentNode.appendChild(clone);
 }
 
@@ -34,10 +35,14 @@ function previewImage() {
   document.getElementById("productUrlPreview").src = document.getElementById("productimageurl").value;
 }
 
-function deleteProduct() {} // Code to Delete Product
+function deleteProduct() {
+
+} // Code to Delete Product
 
 function deleteTag() {
-  // Code to Delete Tag
+  const posProductTagList = document.getElementById("productTagList");
+  const lastProductTag = posProductTagList.lastChild;
+  lastProductTag.remove();
 }
 
 console.log("I'm running");

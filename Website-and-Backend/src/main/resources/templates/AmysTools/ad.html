@@ -32,7 +32,7 @@
                         <img id="productUrlPreview" src=""  alt="Product Image Preview">
 
                         <span class="productgroupbottom">
-                            <span th:each="productTags, i: ${Advertisement.productTags}" class="producttaggroup">
+                            <span id="productTagList" th:each="productTags, i: ${Advertisement.productTags}" class="producttaggroup">
                                 <span id="ptags">
                                     <span>
                                         <label for="producttag">Tag: </label>
