@@ -10,12 +10,8 @@ div {
   flex-direction: column;
 }
 
-#companygroup label {
+#companyGroup label {
   max-width: 360px;
-}
-
-#othergroup label{
-  max-width: 280px;
 }
 
 /** Form **/
@@ -53,7 +49,7 @@ form label input {
   margin-left: 20px;
 }
 
-.productcontainer {
+.productContainer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -63,7 +59,7 @@ form label input {
   overflow: scroll;
 }
 
-.productcontainer > div { /* AKA #productgroup */
+.productContainer > div { /* AKA #productgroup */
   position: relative;
   margin: 20px;
   padding: 24px;
@@ -71,11 +67,11 @@ form label input {
   border-radius: 8px;
 }
 
-.productcontainer > div:first-of-type { /* First "template" div doesn't show up */
+.productContainer > div:first-of-type { /* First "template" div doesn't show up */
   /* display: none; */
 }
 
-.productgroupbottom {
+.productGroupBottom {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -83,22 +79,22 @@ form label input {
 
 /** Tags **/
 
-.producttaggroup {
+.productTagGroup {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-right: 100px;
 }
 
-#changetag, #changetag svg,
-#changeproduct, #changeproduct svg{
+#changeTag, #changeTag svg,
+#changeProduct, #changeProduct svg{
   width: 30px;
   margin-left: 14px;
   padding: 0;
   border: none;
 }
 
-#changeproduct {
+#changeProduct {
   position: relative;
   right: 20px;
   width: 80px;
@@ -106,7 +102,7 @@ form label input {
   justify-content: space-between;
 }
 
-#changetag {
+#changeTag {
   position: absolute;
   width: 80px;
   display: flex;
@@ -115,7 +111,7 @@ form label input {
   right: 24px;
 }
 
-.producttaggroup > span {
+.productTagGroup > span {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -127,23 +123,23 @@ form label input {
   border-radius: 8px;
 }
 
-.producttaggroup > span label {
+.productTagGroup > span label {
   display: flex;
   width: auto;
 }
 
-.producttaggroup > span label input {
+.productTagGroup > span label input {
   min-width: 0px;
   width: 60px;
   margin-left: 10px;
 }
 
-#producttag {
+#productTag {
   min-width: 100px;
   margin-right: 10px;
 }
 
-#producttag, #producttagweight {
+#productTag, #productTagWeight {
   margin: 0 8px 8px 8px;
 }
 
@@ -179,7 +175,7 @@ h3 {
   font-size: 18px;
 }
 
-#addproduct:hover, #deleteproduct:hover, #addtag:hover, #deletetag:hover, #submit:hover {
+#addProduct:hover, #deleteProduct:hover, #addTag:hover, #deleteTag:hover, #submit:hover {
   opacity: 0.5;
 }
 

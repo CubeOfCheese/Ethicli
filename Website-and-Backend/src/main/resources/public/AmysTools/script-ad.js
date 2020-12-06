@@ -2,11 +2,11 @@ let productIndex = 0;
 let tagIndex = 0;
 
 function start() {
-  // document.getElementById("addproduct").addEventListener("click", duplicateProduct);
-  // document.getElementById("deleteproduct").addEventListener("click", deleteProduct);
-  document.getElementById("addtag").addEventListener("click", duplicateTag);
-  document.getElementById("deletetag").addEventListener("click", deleteTag);
-  document.getElementById("productimageurl").addEventListener("change", previewImage);
+  // document.getElementById("addProduct").addEventListener("click", duplicateProduct);
+  // document.getElementById("deleteProduct").addEventListener("click", deleteProduct);
+  document.getElementById("addTag").addEventListener("click", duplicateTag);
+  document.getElementById("deleteTag").addEventListener("click", deleteTag);
+  document.getElementById("productImageUrl").addEventListener("change", previewImage);
 }
 
 function duplicateProduct() {
@@ -32,7 +32,7 @@ function duplicateTag() {
 }
 
 function previewImage() {
-  document.getElementById("productUrlPreview").src = document.getElementById("productimageurl").value;
+  document.getElementById("productUrlPreview").src = document.getElementById("productImageUrl").value;
 }
 
 function deleteProduct() {
