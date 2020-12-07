@@ -53,4 +53,10 @@ public class BusinessController {
   public Business getById(@PathVariable("website") String website) {
     return businessService.getByWebsite(website);
   }
+
+  @GetMapping("/getAll")
+  public List<Business> getAll() {
+    return businessService.getAll();
+  }
+
 }

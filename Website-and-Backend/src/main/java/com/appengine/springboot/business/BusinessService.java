@@ -1,6 +1,7 @@
 package com.appengine.springboot.business;
 
 import com.appengine.springboot.Tools;
+import com.appengine.springboot.advertisement.Advertisement;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,10 +12,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BusinessService {
+
+  @Autowired
+  private MongoOperations mongoOperations;
 
   @Autowired
   BusinessRepository businessRepository;
@@ -305,14 +312,41 @@ public class BusinessService {
   }
 
   public List<Business> updateAll(List<Business> business) {
-    for (Business value : business) {
-      Business tempBusiness = getByWebsite(value.getWebsite());
-      value.setId(tempBusiness.getId());
+    for (int a = 0; a < business.size(); ++a) {
+      boolean original = true;
+      for (int b = 0; b < a; ++b) {
+        if (business.get(a).getWebsite().equals(business.get(b).getWebsite())) {
+          original = false;
+        }
+      }
+      if (original)
+        System.out.println(business.get(a).getWebsite());
+      update(business.get(a));
     }
-    return businessRepository.saveAll(business);
+
+    return business;
   }
 
   public Business update(Business business) {
-    return businessRepository.save(business);
+    Business temp = getByWebsite(business.getWebsite());
+    if (temp != null) {
+      business.setId(temp.getId());
+      business.setBlackOwnedBusiness(temp.isBlackOwnedBusiness());
+    business.setPocOwnedBusiness(temp.isPocOwnedBusiness());
+    business.setVeganDotOrgCertified(temp.isVeganDotOrgCertified());
+    business.setWildlifeFriendlyCertified(temp.isWildlifeFriendlyCertified());
+      return businessRepository.save(business);
+    }
+    return businessRepository.insert(business);
+  }
+
+  public List<Business> websiteRegex(String website) {
+    Query query = new Query().addCriteria(Criteria.where("productTags.tag").regex(website, "i"));
+    List<Business> business = mongoOperations.find(query, Business.class);
+    return business;
+  }
+
+  public List<Business> getAll() {
+    return businessRepository.findAll();
   }
 }
