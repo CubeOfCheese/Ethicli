@@ -335,13 +335,14 @@ public class BusinessService {
     business.setPocOwnedBusiness(temp.isPocOwnedBusiness());
     business.setVeganDotOrgCertified(temp.isVeganDotOrgCertified());
     business.setWildlifeFriendlyCertified(temp.isWildlifeFriendlyCertified());
+    business.setNativeOwnedBusiness(temp.isNativeOwnedBusiness());
       return businessRepository.save(business);
     }
     return businessRepository.insert(business);
   }
 
   public List<Business> websiteRegex(String website) {
-    Query query = new Query().addCriteria(Criteria.where("productTags.tag").regex(website, "i"));
+    Query query = new Query().addCriteria(Criteria.where("website").regex(website, "i"));
     List<Business> business = mongoOperations.find(query, Business.class);
     return business;
   }

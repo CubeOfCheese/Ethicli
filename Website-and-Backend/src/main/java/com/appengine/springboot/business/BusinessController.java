@@ -28,6 +28,11 @@ public class BusinessController {
     return businessService.getByWebsite(companyName);
   }
 
+  @GetMapping("/regex/{company}")
+  public List<Business> regexBusinessByWebsite(@PathVariable("company") String companyName, HttpServletResponse response) throws IOException {
+    return businessService.websiteRegex(companyName);
+  }
+
   @PutMapping("/insertAll")
   public List<Business> insertAllBusiness(@RequestBody List<Business> business) {
     return businessService.insertAll(business);
