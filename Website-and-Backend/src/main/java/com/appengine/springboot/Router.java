@@ -2,6 +2,7 @@ package com.appengine.springboot;
 
 import com.appengine.springboot.business.BusinessService;
 import java.io.IOException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class Router {
+
+  @Autowired
+  BusinessService businessService;
 
   @RequestMapping(value = "/")
   public String getHome() {
@@ -42,7 +46,7 @@ public class Router {
 
   @RequestMapping(value = "/info/{company}")
   public String getInfo(@PathVariable("company") String companyName, Model model) throws IOException {
-    model.addAttribute("business", BusinessService.getBusinessByWebsite(companyName));
+    model.addAttribute("business", businessService.getBusinessByWebsite(companyName));
     return "info";
   }
 }
