@@ -336,6 +336,10 @@ public class BusinessService {
     business.setVeganDotOrgCertified(temp.isVeganDotOrgCertified());
     business.setWildlifeFriendlyCertified(temp.isWildlifeFriendlyCertified());
     business.setNativeOwnedBusiness(temp.isNativeOwnedBusiness());
+    business.setChooseCrueltyFreeCertified(temp.isChooseCrueltyFreeCertified());
+    business.setChooseCrueltyFreeVegan(temp.isChooseCrueltyFreeVegan());
+    business.setCompanyType(temp.getCompanyType());
+
       return businessRepository.save(business);
     }
     return businessRepository.insert(business);
