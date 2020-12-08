@@ -266,7 +266,7 @@ header {
     min-height: 768px;
 }
 
-#privacy header, #faq header, #uninstall header {
+#privacy header, #faq header, #presskit header, #uninstall header {
     min-height: 200px;
     padding-top: 24px;
 }
@@ -571,6 +571,11 @@ p, ul {
     opacity: 0.6;
 }
 
+#presskit .basicbody ul li {
+    list-style-type: circle;
+    line-height: 1.5em;
+}
+
 a {
     text-decoration: none;
     cursor: pointer;
@@ -586,7 +591,7 @@ em {
     font-weight: 700;
 }
 
-.readmore:hover, #backToTop:hover, #pitchdeck:hover {
+.readmore:hover, #backToTop:hover, #pitchdeck:hover, .featuredButton:hover {
     opacity: 0.8;
 }
 
@@ -624,6 +629,7 @@ button {
     padding: 12px 16px;
     border-radius: 100px;
     background: #D27F65;
+    color: #FEFCF2;
 }
 
 #howToUse p, #news a {
@@ -634,7 +640,7 @@ button {
     color: #C9D4C6;
 }
 
-.colorCream, nav a:hover, #pitchdeck, #faq #pitchdeck, #featured h3, .readmore:hover a, footer a {
+.colorCream, nav a:hover, .featuredButton:hover, #featured h3, .readmore:hover a, footer a {
     color: #FEFCF2;
 }
 
@@ -684,6 +690,20 @@ button {
     border-radius: 20px;
 }
 
+.gallery {
+    margin-top: 24px;
+    width: 100%;
+    display: flex; 
+    flex-wrap: wrap;
+}
+
+.gallery img {
+    max-height: 200px;
+    width: auto;
+    max-width: 200px;
+    margin: 0 16px 16px 0;
+    border-radius: 8px;
+}
 
 /*** Queries *****************************************************/
 
