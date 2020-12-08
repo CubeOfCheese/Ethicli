@@ -31,6 +31,6 @@ public class AdvertisementControllerFake {
     }
     System.out.println(Advertisement);
     advertisementService.addAdvertisement(Advertisement);
-    return "redirect:/amystools-ad";
+    return "redirect:/amys-tools-ad";
   }
 }
