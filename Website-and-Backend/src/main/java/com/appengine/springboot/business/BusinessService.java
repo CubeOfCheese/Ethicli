@@ -338,7 +338,8 @@ public class BusinessService {
     business.setNativeOwnedBusiness(temp.isNativeOwnedBusiness());
     business.setChooseCrueltyFreeCertified(temp.isChooseCrueltyFreeCertified());
     business.setChooseCrueltyFreeVegan(temp.isChooseCrueltyFreeVegan());
-    business.setCompanyType(temp.getCompanyType());
+//    business.setCompanyType(temp.getCompanyType());
+    business.setCertifiedHumane(temp.isCertifiedHumane());
 
       return businessRepository.save(business);
     }
