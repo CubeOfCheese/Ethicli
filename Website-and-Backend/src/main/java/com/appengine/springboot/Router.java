@@ -35,6 +35,11 @@ public class Router {
     return "uninstall";
   }
 
+  @RequestMapping(value = "/presskit")
+  public String getPresskit() {
+    return "presskit";
+  }
+
   @RequestMapping(value = "/countdown-2021")
   public String getCountdown2021() {
     return "events/countdown";

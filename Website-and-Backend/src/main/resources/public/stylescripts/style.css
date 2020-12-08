@@ -618,7 +618,7 @@ button {
     color: #102340;
 }
 
-#pitchdeck {
+#pitchdeck, .featuredButton {
     display: inline-block;
     margin-top: 16px;
     padding: 12px 16px;
