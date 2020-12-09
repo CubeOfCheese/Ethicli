@@ -266,7 +266,7 @@ header {
     min-height: 768px;
 }
 
-#privacy header, #faq header, #presskit header, #uninstall header {
+#privacy header, #faq header, #press header, #uninstall header {
     min-height: 200px;
     padding-top: 24px;
 }
@@ -571,7 +571,7 @@ p, ul {
     opacity: 0.6;
 }
 
-#presskit .basicbody ul li {
+#press .basicbody ul li {
     list-style-type: circle;
     line-height: 1.5em;
 }
@@ -690,14 +690,14 @@ button {
     border-radius: 20px;
 }
 
-.gallery {
+#press .gallery {
     margin-top: 24px;
     width: 100%;
     display: flex; 
     flex-wrap: wrap;
 }
 
-.gallery img {
+#press .gallery img {
     max-height: 200px;
     width: auto;
     max-width: 200px;
