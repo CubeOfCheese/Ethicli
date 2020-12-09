@@ -4,8 +4,14 @@ let tagIndex = 0;
 function start() {
   // document.getElementById("addProduct").addEventListener("click", duplicateProduct);
   // document.getElementById("deleteProduct").addEventListener("click", deleteProduct);
-  document.getElementById("addTag").addEventListener("click", duplicateTag);
-  document.getElementById("deleteTag").addEventListener("click", deleteTag);
+  const originalPositiveProductTag = document.getElementById("pTag");
+  const originalNegativeProductTag = document.getElementById("negPTag");
+  const positiveProductTagList = document.getElementById("productTagList");
+  const negativeProductTagList = document.getElementById("negativeProductTagList");
+  document.getElementById("addTag").addEventListener("click", duplicateTag(originalPositiveProductTag));
+  document.getElementById("deleteTag").addEventListener("click", deleteTag(positiveProductTagList));
+  document.getElementById("addNegativeTag").addEventListener("click", duplicateTag(originalNegativeProductTag));
+  document.getElementById("deleteNegativeTag").addEventListener("click", deleteTag(negativeProductTagList));
   document.getElementById("productImageUrl").addEventListener("change", previewImage);
 }
 
@@ -18,10 +24,14 @@ function duplicateProduct() {
   document.getElementById("numproducts").innerText = productIndex + 1;
 }
 
-function duplicateTag() {
+function deleteProduct() {
+
+} // Code to Delete Product
+
+
+function duplicateTag(originalTag) {
   tagIndex++;
   console.log("duplicateTag called");
-  const originalTag = document.getElementById("ptags");
   const clone = originalTag.cloneNode(true);
   clone.id = "ptags" + tagIndex;
   console.log(clone.childNodes);
@@ -31,18 +41,14 @@ function duplicateTag() {
   originalTag.parentNode.appendChild(clone);
 }
 
-function previewImage() {
-  document.getElementById("productUrlPreview").src = document.getElementById("productImageUrl").value;
+function deleteTag(productTagList) {
+  const lastProductTag = productTagList.lastChild;
+  lastProductTag.remove();
 }
 
-function deleteProduct() {
 
-} // Code to Delete Product
-
-function deleteTag() {
-  const posProductTagList = document.getElementById("productTagList");
-  const lastProductTag = posProductTagList.lastChild;
-  lastProductTag.remove();
+function previewImage() {
+  document.getElementById("productUrlPreview").src = document.getElementById("productImageUrl").value;
 }
 
 console.log("I'm running");
