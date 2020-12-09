@@ -35,9 +35,9 @@ public class Router {
     return "uninstall";
   }
 
-  @RequestMapping(value = "/presskit")
+  @RequestMapping(value = "/press")
   public String getPresskit() {
-    return "presskit";
+    return "press";
   }
 
   @RequestMapping(value = "/countdown-2021")
