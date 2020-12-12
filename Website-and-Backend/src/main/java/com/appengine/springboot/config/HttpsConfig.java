@@ -7,10 +7,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 public class HttpsConfig {
   @Bean
   SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-    http
-        // ...
-        .redirectToHttps()
-        .httpsRedirectWhen(e -> e.getRequest().getHeaders().containsKey("X-Forwarded-Proto"));
+    http.redirectToHttps();
     return http.build();
   }
 }
