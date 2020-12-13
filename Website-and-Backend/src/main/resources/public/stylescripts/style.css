@@ -695,14 +695,20 @@ button {
     width: 100%;
     display: flex; 
     flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 #press .gallery img {
-    max-height: 200px;
+    height: auto;
+    max-height: 400px;
     width: auto;
-    max-width: 200px;
+    max-width: 400px;
     margin: 0 16px 16px 0;
     border-radius: 8px;
+}
+
+#press .gallery.mediaAssets img {
+    max-height: 200px;
 }
 
 /*** Queries *****************************************************/
