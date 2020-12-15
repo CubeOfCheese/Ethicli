@@ -98,21 +98,21 @@ $(document).ready(() => {
       if ($(this).is(day)) {
         if (today.getDate() > i || year > 2020) { // only "unlocks" days up till the current day
           $("#popupName").text(popupName[i]);
-          $("#popupLink").attr("href", popupLink[i]);
           $("#popupPreview").attr("src", popupLink[i]);
           $("#popupDailyMessage").text(popupDailyMessage[i]);
           $("#popupSocialName, #popupSocialName2").text(popupSocialName[i]);
+          $("#popupSocialURL, #popupSocialURL2").attr("href", popupSocialURL[i]);
           $("#popupSocialDescription").text(popupSocialDescription[i]);
 
-          const socialurl = popupSocialURL[i];
-          if (socialurl.includes("youtube")) {
-            const updatedSocialURL = socialurl.replace("watch?v=", "embed/");
-            $("#popupSocialURL, #popupSocialURL2").attr("src", updatedSocialURL);
-            $("#popupSocialURL, #popupSocialURL2")
+          const ActivityURL = popupLink[i];
+          if (ActivityURL.includes("youtube")) {
+            const updatedActivityURL = ActivityURL.replace("watch?v=", "embed/");
+            $("#popupLink, #popupPreview").attr("src", updatedActivityURL);
+            $("#popupLink, #popupPreview")
                 .attr("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
-            $("#popupSocialURL, #popupSocialURL2").attr("frameborder", "0");
+            $("#popupLink, #popupPreview").attr("frameborder", "0");
           } else {
-            $("#popupSocialURL, #popupSocialURL2").attr("href", socialurl);
+            $("#popupLink, #popupPreview").attr("href", ActivityURL);
           }
 
           $("#popup").addClass("show");
