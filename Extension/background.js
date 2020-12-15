@@ -1,3 +1,5 @@
+// import psl from "./psl.min.js";
+import { getDomainWithoutSuffix } from "../node_modules/tldts/dist/index.esm.min.js";
 chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
 
 let isShoppingPage;
@@ -5,6 +7,7 @@ let ethicliStats;
 let productName;
 
 function notShop(currentTab) {
+  console.log("NotSHop");
   isShoppingPage = false;
   chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
   chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
@@ -12,30 +15,35 @@ function notShop(currentTab) {
 }
 
 function urlToCompanyName(url) {
-  if (url.substring(0, 8) === "https://") {
-    url = url.substring(8);
-  } else if (url.substring(0, 7) === "http://") {
-    url = url.substring(7);
-  }
-  let endOfBaseDomain = url.search(/\//);
-  if (endOfBaseDomain > -1) {
-    url = url.substring(0, endOfBaseDomain);
-  }
-  const endOfSubDomain = url.lastIndexOf(".", url.lastIndexOf(".") - 1);
-  url = url.substring(endOfSubDomain + 1);
-  endOfBaseDomain = url.search(/\./);
-  if (endOfBaseDomain > -1) {
-    url = url.substring(0, endOfBaseDomain);
-  }
-  return url;
+  // console.log(psl.parse(url));
+  console.log(getDomainWithoutSuffix(url));
+  // if (url.substring(0, 8) === "https://") {
+  //   url = url.substring(8);
+  // } else if (url.substring(0, 7) === "http://") {
+  //   url = url.substring(7);
+  // }
+  // let endOfBaseDomain = url.search(/\//);
+  // if (endOfBaseDomain > -1) {
+  //   url = url.substring(0, endOfBaseDomain);
+  // }
+  // const endOfSubDomain = url.lastIndexOf(".", url.lastIndexOf(".") - 1);
+  // url = url.substring(endOfSubDomain + 1);
+  // endOfBaseDomain = url.search(/\./);
+  // if (endOfBaseDomain > -1) {
+  //   url = url.substring(0, endOfBaseDomain);
+  // }
+  return getDomainWithoutSuffix(url);
 }
 
 function reloadExt(request, sender) {
+  console.log("reloadExt");
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
+    console.log(tabs);
     const currentTab = tabs[0];
 
     if (!request.shoppingPage) {
+      console.log("notShop at 43");
       notShop(currentTab);
       return;
     }
@@ -57,6 +65,7 @@ function reloadExt(request, sender) {
       }
     }
     if (isBlocklisted) {
+      console.log("notshop at blocklisted");
       notShop(currentTab);
       return;
     }
