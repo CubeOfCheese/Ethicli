@@ -1,5 +1,5 @@
 // import psl from "./psl.min.js";
-import { getDomainWithoutSuffix } from "../node_modules/tldts/dist/index.esm.min.js";
+import { getDomainWithoutSuffix } from "../node_modules/tldts-experimental/dist/index.esm.min.js";
 chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
 
 let isShoppingPage;

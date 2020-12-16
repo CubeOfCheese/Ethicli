@@ -1,3 +1,5 @@
+import { getDomainWithoutSuffix } from "../node_modules/tldts-experimental/dist/index.esm.min.js";
+
 let hasSubscore;
 let fullheight = 0;
 
@@ -321,22 +323,22 @@ function fadeLongURL() {
 }
 
 function urlToCompanyName(url) {
-  if (url.substring(0, 8) === "https://") {
-    url = url.substring(8);
-  } else if (url.substring(0, 7) === "http://") {
-    url = url.substring(7);
-  }
-  let endOfBaseDomain = url.search(/\//);
-  if (endOfBaseDomain > -1) {
-    url = url.substring(0, endOfBaseDomain);
-  }
-  const endOfSubDomain = url.lastIndexOf(".", url.lastIndexOf(".") - 1);
-  url = url.substring(endOfSubDomain + 1);
-  endOfBaseDomain = url.search(/\./);
-  if (endOfBaseDomain > -1) {
-    url = url.substring(0, endOfBaseDomain);
-  }
-  return url;
+  // if (url.substring(0, 8) === "https://") {
+  //   url = url.substring(8);
+  // } else if (url.substring(0, 7) === "http://") {
+  //   url = url.substring(7);
+  // }
+  // let endOfBaseDomain = url.search(/\//);
+  // if (endOfBaseDomain > -1) {
+  //   url = url.substring(0, endOfBaseDomain);
+  // }
+  // const endOfSubDomain = url.lastIndexOf(".", url.lastIndexOf(".") - 1);
+  // url = url.substring(endOfSubDomain + 1);
+  // endOfBaseDomain = url.search(/\./);
+  // if (endOfBaseDomain > -1) {
+  //   url = url.substring(0, endOfBaseDomain);
+  // }
+  return getDomainWithoutSuffix(url);
 }
 
 function somethingWrong() {
