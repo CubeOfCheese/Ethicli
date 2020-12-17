@@ -406,9 +406,8 @@ footer p {
     width: 49%;
 }
 
-#partners article {
+#partners article, #news article {
     width: 31%;
-    background: #C9D4C6;
     font-size: 14px;
 }
 
@@ -420,6 +419,7 @@ footer p {
 #partners article {
     width: 49%;
     margin-bottom: 16px;
+    background: #C9D4C6;
 }
 
 #partners article span {
