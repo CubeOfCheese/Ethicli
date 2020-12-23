@@ -12,7 +12,7 @@
         "js": ["content.js"]
     }],
     "browser_action": {
-        "default_popup": "popupNotShop.html",
+        "default_popup": "views/popupNotShop.html",
         "default_title": "Ethicli",
         "default_icon": {
             "16": "icons/ethicli-16.png",
