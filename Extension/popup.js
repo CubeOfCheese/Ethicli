@@ -137,7 +137,7 @@ function loadExtension(ethicliStats) {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
-    const companyName = urlToCompanyName(currentTab.url);
+    const companyName = getDomainWithoutSuffix(currentTab.url);
 
     const infoLink = document.createElement("a");
     infoLink.href = "https://ethicli.com/info/" + companyName;
@@ -320,25 +320,6 @@ function fadeLongURL() {
             = `-webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
             mask-image: linear-gradient(to right, black 90%, transparent 100%)`;
   });
-}
-
-function urlToCompanyName(url) {
-  // if (url.substring(0, 8) === "https://") {
-  //   url = url.substring(8);
-  // } else if (url.substring(0, 7) === "http://") {
-  //   url = url.substring(7);
-  // }
-  // let endOfBaseDomain = url.search(/\//);
-  // if (endOfBaseDomain > -1) {
-  //   url = url.substring(0, endOfBaseDomain);
-  // }
-  // const endOfSubDomain = url.lastIndexOf(".", url.lastIndexOf(".") - 1);
-  // url = url.substring(endOfSubDomain + 1);
-  // endOfBaseDomain = url.search(/\./);
-  // if (endOfBaseDomain > -1) {
-  //   url = url.substring(0, endOfBaseDomain);
-  // }
-  return getDomainWithoutSuffix(url);
 }
 
 function somethingWrong() {
