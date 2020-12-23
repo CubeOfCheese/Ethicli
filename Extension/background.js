@@ -7,7 +7,6 @@ let ethicliStats;
 let productName;
 
 function notShop(currentTab) {
-  console.log("NotSHop");
   isShoppingPage = false;
   chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
   chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
@@ -15,14 +14,11 @@ function notShop(currentTab) {
 }
 
 function reloadExt(request, sender) {
-  console.log("reloadExt");
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
-    console.log(tabs);
     const currentTab = tabs[0];
 
     if (!request.shoppingPage) {
-      console.log("notShop at 43");
       notShop(currentTab);
       return;
     }
@@ -44,7 +40,6 @@ function reloadExt(request, sender) {
       }
     }
     if (isBlocklisted) {
-      console.log("notshop at blocklisted");
       notShop(currentTab);
       return;
     }

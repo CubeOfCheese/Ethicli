@@ -185,7 +185,6 @@ function pageEval() {
   }
 
   if (wordTracker > 0) { // if there's at least one shopWord present
-    // console.log("shopping page yessirs");
     chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: true });
     identifyProduct();
     isShoppingPage = true;
