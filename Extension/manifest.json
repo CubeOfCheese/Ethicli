@@ -3,8 +3,7 @@
     "version": "0.6.7",
     "description": "To help you make ethical online shopping choices",
     "background": {
-        "scripts": ["background.js"],
-        "persistent": false
+        "page": "background.html"
     },
     "content_scripts": [{
         "matches": [
