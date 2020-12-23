@@ -6,7 +6,7 @@ let productName;
 
 function notShop(currentTab) {
   isShoppingPage = false;
-  chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
+  chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTab.id });
   chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
   chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
 }
@@ -69,10 +69,10 @@ function reloadExt(request, sender) {
 
           if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
             ethicliBadgeScore = "";
-            chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id });
+            chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: currentTab.id });
             reportGA("Background-NoRating");
           } else {
-            chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id });
+            chrome.browserAction.setPopup({ popup: "views/popup.html", tabId: currentTab.id });
             reportGA("Background-HasRating");
           }
           chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
@@ -98,7 +98,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       reloadExt(request, sender);
       break;
     case "displayOptin":
-      chrome.browserAction.setPopup({ popup: "popupOptin.html" });
+      chrome.browserAction.setPopup({ popup: "views/popupOptin.html" });
       chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
       chrome.browserAction.setBadgeText({ text: "" });
       break;
@@ -137,7 +137,7 @@ chrome.tabs.onCreated.addListener(() => {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
-    chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
+    chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTab.id });
     chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
     chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
   });
