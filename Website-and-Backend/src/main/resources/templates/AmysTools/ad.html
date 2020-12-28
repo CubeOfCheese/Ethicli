@@ -32,40 +32,43 @@
                         <img id="productUrlPreview" src=""  alt="Product Image Preview">
 
                         <span class="productGroupBottom">
-                            <h4>Positive Product Tags</h4>
-                            <span id="productTagList" th:each="productTags, i: ${Advertisement.productTags}" class="productTagGroup">
-                                <span id="pTag">
-                                    <span>
-                                        <label for="productTag">Tag: </label>
-                                        <input th:field="*{productTags[__${i.index}__].tag}" id="productTag" placeholder="legging" type="text" spellcheck="true" required>
-                                    </span>
-                                    <span>
-                                        <label for="productTagWeight">Weight: </label>
-                                        <input th:field="*{productTags[__${i.index}__].weight}" id="productTagWeight" placeholder="1" type="number" step="0.01" required>
-                                    </span>
-                                </span>
-                            </span>
-                            <span id="changeTag">
-                                <svg id="addTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
-                                <svg id="deleteTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
-                            </span>
-
-                            <h4>Negative Product Tags</h4>
-                            <span id="negativeProductTagList" th:each="negativeProductTags, i: ${Advertisement.negativeProductTags}" class="productTagGroup">
-                                <span id="negPTag">
-                                    <span>
-                                        <label for="negativeProductTag">Tag: </label>
-                                        <input th:field="*{negativeProductTags[__${i.index}__].tag}" id="negativeProductTag" placeholder="legging" type="text" spellcheck="true" required>
-                                    </span>
-                                    <span>
-                                        <label for="negativeProductTagWeight">Weight: </label>
-                                        <input th:field="*{negativeProductTags[__${i.index}__].weight}" id="negativeProductTagWeight" placeholder="1" type="number" step="0.01" required>
+                            <span>
+                                <h4>Positive Product Tags</h4>
+                                <span id="productTagList" th:each="productTags, i: ${Advertisement.productTags}" class="productTagGroup">
+                                    <span id="pTag">
+                                        <span>
+                                            <label for="productTag">Tag: </label>
+                                            <input th:field="*{productTags[__${i.index}__].tag}" id="productTag" placeholder="legging" type="text" spellcheck="true" required>
+                                        </span>
+                                        <span>
+                                            <label for="productTagWeight">Weight: </label>
+                                            <input th:field="*{productTags[__${i.index}__].weight}" id="productTagWeight" placeholder="1" type="number" step="0.01" required>
+                                        </span>
                                     </span>
                                 </span>
+                                <span id="changeTag">
+                                    <svg id="addTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
+                                    <svg id="deleteTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
+                                </span>
                             </span>
-                            <span id="negativeChangeTag">
-                                <svg id="addNegativeTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
-                                <svg id="deleteNegativeTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
+                            <span>
+                                <h4>Negative Product Tags</h4>
+                                <span id="negativeProductTagList" th:each="negativeProductTags, i: ${Advertisement.negativeProductTags}" class="productTagGroup">
+                                    <span id="negPTag">
+                                        <span>
+                                            <label for="negativeProductTag">Tag: </label>
+                                            <input th:field="*{negativeProductTags[__${i.index}__].tag}" id="negativeProductTag" placeholder="legging" type="text" spellcheck="true" required>
+                                        </span>
+                                        <span>
+                                            <label for="negativeProductTagWeight">Weight: </label>
+                                            <input th:field="*{negativeProductTags[__${i.index}__].weight}" id="negativeProductTagWeight" placeholder="1" type="number" step="0.01" required>
+                                        </span>
+                                    </span>
+                                </span>
+                                <span id="negativeChangeTag">
+                                    <svg id="addNegativeTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path fill="#E07A5F" d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
+                                    <svg id="deleteNegativeTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path fill="#E07A5F" d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
+                                </span>
                             </span>
                         </span>
                     </div>

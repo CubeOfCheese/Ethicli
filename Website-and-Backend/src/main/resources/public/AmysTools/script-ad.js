@@ -1,5 +1,6 @@
 let productIndex = 0;
 let tagIndex = 0;
+let negTagIndex = 0;
 
 function start() {
   // document.getElementById("addProduct").addEventListener("click", duplicateProduct);
@@ -10,7 +11,7 @@ function start() {
   const negativeProductTagList = document.getElementById("negativeProductTagList");
   document.getElementById("addTag").addEventListener("click", duplicateTag(originalPositiveProductTag));
   document.getElementById("deleteTag").addEventListener("click", deleteTag(positiveProductTagList));
-  document.getElementById("addNegativeTag").addEventListener("click", duplicateTag(originalNegativeProductTag));
+  document.getElementById("addNegativeTag").addEventListener("click", duplicateNegTag(originalNegativeProductTag));
   document.getElementById("deleteNegativeTag").addEventListener("click", deleteTag(negativeProductTagList));
   document.getElementById("productImageUrl").addEventListener("change", previewImage);
 }
@@ -31,13 +32,21 @@ function deleteProduct() {
 
 function duplicateTag(originalTag) {
   tagIndex++;
-  console.log("duplicateTag called");
   const clone = originalTag.cloneNode(true);
   clone.id = "ptags" + tagIndex;
   console.log(clone.childNodes);
-  console.log();
   clone.childNodes[1].childNodes[3].name = "productTags[" + tagIndex + "].tag";
   clone.childNodes[3].childNodes[3].name = "productTags[" + tagIndex + "].weight";
+  originalTag.parentNode.appendChild(clone);
+}
+
+function duplicateNegTag(originalTag) {
+  negTagIndex++;
+  const clone = originalTag.cloneNode(true);
+  clone.id = "negptags" + negTagIndex;
+  console.log(clone.childNodes);
+  clone.childNodes[1].childNodes[3].name = "negativeProductTags[" + negTagIndex + "].tag";
+  clone.childNodes[3].childNodes[3].name = "negativeProductTags[" + negTagIndex + "].weight";
   originalTag.parentNode.appendChild(clone);
 }
 
@@ -45,7 +54,6 @@ function deleteTag(productTagList) {
   const lastProductTag = productTagList.lastChild;
   lastProductTag.remove();
 }
-
 
 function previewImage() {
   document.getElementById("productUrlPreview").src = document.getElementById("productImageUrl").value;

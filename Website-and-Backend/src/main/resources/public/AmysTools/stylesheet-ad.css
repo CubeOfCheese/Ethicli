@@ -73,8 +73,22 @@ form label input {
 
 .productGroupBottom {
   display: flex;
+  flex-direction: column;
+}
+
+.productGroupBottom > span {
+  display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.productGroupBottom > span:last-of-type {
+  margin-top: 30px;
+  color: #E07A5F;
+}
+
+.productGroupBottom > span:last-of-type .productTagGroup > span {
+  border: 1px solid #E07A5F;
 }
 
 /** Tags **/
@@ -87,6 +101,7 @@ form label input {
 }
 
 #changeTag, #changeTag svg,
+#negativeChangeTag, #negativeChangeTag svg,
 #changeProduct, #changeProduct svg{
   width: 30px;
   margin-left: 14px;
@@ -102,7 +117,7 @@ form label input {
   justify-content: space-between;
 }
 
-#changeTag {
+#changeTag, #negativeChangeTag{
   position: absolute;
   width: 80px;
   display: flex;
@@ -134,12 +149,13 @@ form label input {
   margin-left: 10px;
 }
 
-#productTag {
+#productTag, #negativeProductTag {
   min-width: 100px;
   margin-right: 10px;
 }
 
-#productTag, #productTagWeight {
+#productTag, #negativeProductTag, 
+#productTagWeight, #negativeProductTagWeight {
   margin: 0 8px 8px 8px;
 }
 
@@ -175,7 +191,13 @@ h3 {
   font-size: 18px;
 }
 
-#addProduct:hover, #deleteProduct:hover, #addTag:hover, #deleteTag:hover, #submit:hover {
+.productGroupBottom h4 {
+  margin-right: 16px;
+}
+
+#addProduct:hover, #deleteProduct:hover, 
+#addNegativeTag:hover, #deleteNegativeTag:hover,
+#addTag:hover, #deleteTag:hover, #submit:hover {
   opacity: 0.5;
 }
 
