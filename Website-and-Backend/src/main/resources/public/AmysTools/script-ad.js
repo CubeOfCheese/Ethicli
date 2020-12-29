@@ -1,4 +1,4 @@
-let productIndex = 0;
+// let productIndex = 0;
 let tagIndex = 0;
 let negTagIndex = 0;
 
@@ -9,29 +9,40 @@ function start() {
   const originalNegativeProductTag = document.getElementById("negPTag");
   const positiveProductTagList = document.getElementById("productTagList");
   const negativeProductTagList = document.getElementById("negativeProductTagList");
-  document.getElementById("addTag").addEventListener("click", duplicateTag(originalPositiveProductTag));
-  document.getElementById("deleteTag").addEventListener("click", deleteTag(positiveProductTagList));
-  document.getElementById("addNegativeTag").addEventListener("click", duplicateNegTag(originalNegativeProductTag));
-  document.getElementById("deleteNegativeTag").addEventListener("click", deleteTag(negativeProductTagList));
-  document.getElementById("productImageUrl").addEventListener("change", previewImage);
+  document.getElementById("addTag").addEventListener("click", () => {
+    duplicateTag(originalPositiveProductTag);
+  });
+  document.getElementById("deleteTag").addEventListener("click", () => {
+    deleteTag(positiveProductTagList);
+  });
+  document.getElementById("addNegativeTag").addEventListener("click", () => {
+    duplicateNegTag(originalNegativeProductTag);
+  });
+  document.getElementById("deleteNegativeTag").addEventListener("click", () => {
+    deleteTag(negativeProductTagList);
+  });
+  document.getElementById("productImageUrl").addEventListener("change", () => {
+    previewImage();
+  });
 }
 
-function duplicateProduct() {
-  productIndex++;
-  const originalProduct = document.getElementById("productgroup");
-  const clone = originalProduct.cloneNode(true); // "deep" clone; copies node AND its descendents
-  clone.id = "productgroup" + productIndex; // or clone.id = ""; if the divs don't need an ID
-  originalProduct.parentNode.appendChild(clone);
-  document.getElementById("numproducts").innerText = productIndex + 1;
-}
+// function duplicateProduct() {
+//   productIndex++;
+//   const originalProduct = document.getElementById("productgroup");
+//   const clone = originalProduct.cloneNode(true); // "deep" clone; copies node AND its descendents
+//   clone.id = "productgroup" + productIndex; // or clone.id = ""; if the divs don't need an ID
+//   originalProduct.parentNode.appendChild(clone);
+//   document.getElementById("numproducts").innerText = productIndex + 1;
+// }
 
-function deleteProduct() {
+// function deleteProduct() {
 
-} // Code to Delete Product
+// } // Code to Delete Product
 
 
 function duplicateTag(originalTag) {
   tagIndex++;
+  alert(tagIndex);
   const clone = originalTag.cloneNode(true);
   clone.id = "ptags" + tagIndex;
   console.log(clone.childNodes);
@@ -58,7 +69,5 @@ function deleteTag(productTagList) {
 function previewImage() {
   document.getElementById("productUrlPreview").src = document.getElementById("productImageUrl").value;
 }
-
-console.log("I'm running");
 
 window.addEventListener("load", start);
