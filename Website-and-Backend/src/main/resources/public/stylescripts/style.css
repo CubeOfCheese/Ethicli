@@ -266,7 +266,7 @@ header {
     min-height: 768px;
 }
 
-#privacy header, #faq header, #press header, #uninstall header {
+#privacy header, #partners header, #faq header, #press header, #uninstall header {
     min-height: 200px;
     padding-top: 24px;
 }
@@ -441,7 +441,8 @@ footer p {
     margin-top: 0;
 } 
 
-#partners article:nth-child(3) span img {
+#partners article:nth-child(3) span img,
+#partners article:nth-child(5) span img {
     margin-top: -20%;
 }
 
