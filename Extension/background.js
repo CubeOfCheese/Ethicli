@@ -138,7 +138,7 @@ chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason !== "install") {
     return;
   }
-  chrome.tabs.create({ url: "welcome.html" });
+  chrome.tabs.create({ url: "views/welcome.html" });
 });
 
 chrome.runtime.setUninstallURL("https://ethicli.com/goodbye");
