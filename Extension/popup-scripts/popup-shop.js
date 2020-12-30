@@ -3,7 +3,8 @@
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, (response) => {
   if (response.shoppingPage) {
     chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, (ratingResponse) => {
-      updateOverallToolTip(ratingResponse.ethicliStats.overallScore);
+      const roundedOverall = ratingResponse.ethicliStats.overallScore.toFixed(1);
+      updateOverallToolTip(roundedOverall);
     });
   }
 });
