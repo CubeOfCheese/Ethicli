@@ -1,4 +1,6 @@
 // for popup.html
+import mixpanel from "mixpanel-browser";
+mixpanel.init("db3fa3fa397bb591b339887d12b1c13e", {api_host:"https://api.mixpanel.com"});
 
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, (response) => {
   if (response.shoppingPage) {
@@ -48,4 +50,4 @@ window.addEventListener("load", () => {
   });
 });
 
-// Opened-ShopHasRating analytics event
+mixpanel.track("Opened-ShopHasRating");

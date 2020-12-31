@@ -1,4 +1,6 @@
-import { getDomainWithoutSuffix } from "../node_modules/tldts-experimental/dist/index.esm.min.js";
+import { getDomainWithoutSuffix } from "tldts-experimental";
+import mixpanel from "mixpanel-browser";
+mixpanel.init("db3fa3fa397bb591b339887d12b1c13e", {api_host:"https://api.mixpanel.com"});
 
 chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
 
@@ -53,10 +55,10 @@ function reloadExt(request, sender) {
           if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
             ethicliBadgeScore = "";
             chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: currentTab.id });
-            // Background-NoRating analytics event
+            mixpanel.track("Background-NoRating");
           } else {
             chrome.browserAction.setPopup({ popup: "views/popup.html", tabId: currentTab.id });
-            // Background-HasRating analytics event
+            mixpanel.track("Background-HasRating");
           }
           chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
         });

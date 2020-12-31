@@ -1,4 +1,5 @@
 Extension/target
+Extension/build
 Website-and-Backend/target
 *.DS_Store
 Extension/env.js

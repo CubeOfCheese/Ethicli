@@ -1,4 +1,6 @@
-import { getDomainWithoutSuffix } from "../node_modules/tldts-experimental/dist/index.esm.min.js";
+import { getDomainWithoutSuffix } from "tldts-experimental";
+import mixpanel from "mixpanel-browser";
+mixpanel.init("db3fa3fa397bb591b339887d12b1c13e", {api_host:"https://api.mixpanel.com"});
 
 let hasSubscore;
 let fullheight = 0;
@@ -146,7 +148,7 @@ function loadExtension(ethicliStats) {
     if (document.getElementById("detailsButton") !== null) {
       document.getElementById("detailsButton").append(infoLink);
       document.getElementById("detailsButton").addEventListener("click", () => {
-        // ViewDetailsClicked analytics event
+        mixpanel.track("ViewDetailsClicked");
       });
     }
   });
@@ -190,9 +192,9 @@ function loadSponsor(productName, ethicliScore) {
       document.getElementById("sponsorImg").src = adToDisplay.productImageURL;
       fullheight += HEIGHT_POPUP_SPONSOR;
       document.body.style = "height:" + fullheight + "px;";
-      // AdDisplayed analytics event
+      mixpanel.track("AdDisplayed");
       document.getElementById("sponsorLink").addEventListener("click", () => {
-        // AdClicked analytics event
+        mixpanel.track("AdClicked");
       });
     } else {
       document.getElementById("sponsor").style = "display:none;";
@@ -211,7 +213,7 @@ window.onload = () => {
 
   document.getElementById("somethingWrong").addEventListener("click", () => {
     somethingWrong();
-    // SomethingWrong analytics event
+    mixpanel.track("SomethingWrong");
   });
   if (document.getElementById("badgeDisplayer") !== null) {
     document.getElementById("badgeDisplayer").addEventListener("click", () => {
@@ -257,7 +259,7 @@ window.onload = () => {
       document.getElementById("tutorialScreens").style = "display:none";
       document.getElementById("tutorialNavigation").style = "display:none";
     }
-    // TutorialViewed analytics event
+    mixpanel.track("TutorialViewed");
   });
 
   let idname = "tutorial1";
@@ -299,7 +301,7 @@ window.onload = () => {
   }
 
   document.getElementById("visitWebsite").addEventListener("click", () => {
-    // VisitedWebsite analytics event
+    mixpanel.track("VisitedWebsite");
   });
 };
 
