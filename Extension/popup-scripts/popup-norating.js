@@ -1,6 +1,6 @@
 // for popupNoRating.html
 import mixpanel from "mixpanel-browser";
-mixpanel.init("db3fa3fa397bb591b339887d12b1c13e", {api_host:"https://api.mixpanel.com"});
+mixpanel.init("db3fa3fa397bb591b339887d12b1c13e", { api_host: "https://api.mixpanel.com" });
 
 document.addEventListener("DOMContentLoaded", windowOnload, false);
 
@@ -52,4 +52,4 @@ function requestShop() { // runs when user hits "Request this Shop" button
   });
   mixpanel.track("ShopRequested");
 }
-mixpanel.track("Opened-NoRating")
+mixpanel.track("Opened-NoRating");
