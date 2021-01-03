@@ -133,6 +133,7 @@ header {
 
 .switch {
     margin-top: 16px;
+    align-items: center;
 }
 
 #analyticsToggle {
