@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Business {
   @Id
   private String id;
+  private boolean betterCottonMember;
   private boolean bcorpCertified;
   private boolean blackOwnedBusiness;
   private boolean bluesignPartner;
@@ -40,6 +41,7 @@ public class Business {
   private String bcorpProfile;
   private String betterBusinessBureau;
   private String companyType;
+  private String country;
   private String ethicalElephantType;
   private String name;
   private String overallScoreDetails;
@@ -53,6 +55,7 @@ public class Business {
   private String[] socialScoreSource;
 
   public Business() {
+    this.betterCottonMember = false;
     this.bcorpCertified = false;
     this.blackOwnedBusiness = false;
     this.bluesignPartner = false;
@@ -85,6 +88,7 @@ public class Business {
     this.bcorpProfile = "";
     this.betterBusinessBureau = "";
     this.companyType = "";
+    this.country = "";
     this.ethicalElephantType = "";
     this.name = "";
     this.overallScoreDetails = "";
@@ -102,6 +106,7 @@ public class Business {
       @JsonProperty("name") String name, // Business Profile:
       @JsonProperty("website") String website,
       @JsonProperty("companyType") String companyType,
+    @JsonProperty("country") String country,
       @JsonProperty("bcorpCertYear") int bcorpCertYear,
       @JsonProperty("bcorpProfile") String bcorpProfile,
       @JsonProperty("blackOwnedBusiness") boolean blackOwnedBusiness,
@@ -123,6 +128,7 @@ public class Business {
       @JsonProperty("greenPowerPercentage") double greenPowerPercentage,
       @JsonProperty("betterBusinessBureau")
           String betterBusinessBureau, // Boolean Data for Calculation:
+    @JsonProperty("betterCottonMember") boolean betterCottonMember,
       @JsonProperty("bcorpCertified") boolean bcorpCertified,
       @JsonProperty("bluesignPartner") boolean bluesignPartner,
       @JsonProperty("certifiedHumane") boolean certifiedHumane,
@@ -147,6 +153,7 @@ public class Business {
     this.name = name;
     this.website = website;
     this.companyType = companyType;
+    this.country = country;
     this.bcorpCertYear = bcorpCertYear;
     this.bcorpProfile = bcorpProfile;
     this.blackOwnedBusiness = blackOwnedBusiness;
@@ -165,6 +172,7 @@ public class Business {
     this.corporateCriticScore = corporateCriticScore;
     this.goodOnYouScore = goodOnYouScore;
     this.greenPowerPercentage = greenPowerPercentage;
+    this.betterCottonMember = betterCottonMember;
     this.betterBusinessBureau = betterBusinessBureau;
     this.bcorpCertified = bcorpCertified;
     this.bluesignPartner = bluesignPartner;
@@ -187,6 +195,22 @@ public class Business {
     this.socialScore = socialScore;
     this.textileScore = textileScore;
     this.overallScore = overallScore;
+  }
+
+  public boolean isBetterCottonMember() {
+    return betterCottonMember;
+  }
+
+  public void setBetterCottonMember(boolean betterCottonMember) {
+    this.betterCottonMember = betterCottonMember;
+  }
+
+  public String getCountry() {
+    return country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
   }
 
   public String getId() {
@@ -550,6 +574,14 @@ public class Business {
       }
     }
     if (update) {
+      if (this.country.equals("")) {
+        this.country = business.getCountry();
+      }
+
+      if (this.betterCottonMember == false) {
+        this.betterCottonMember = business.isBetterCottonMember();
+      }
+
       if (this.id == null) {
         this.id = business.getId();
       }

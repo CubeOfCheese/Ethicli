@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -304,6 +305,9 @@ public class BusinessService {
   }
 
   public List<Business> insertAll(List<Business> business) {
+for (int a = 0; a < business.size(); ++a) {
+  business.get(a).setWebsite(business.get(a).getWebsite().toLowerCase());
+}
     return businessRepository.insert(business);
   }
 
@@ -340,6 +344,14 @@ public class BusinessService {
     business.setChooseCrueltyFreeVegan(temp.isChooseCrueltyFreeVegan());
 //    business.setCompanyType(temp.getCompanyType());
     business.setCertifiedHumane(temp.isCertifiedHumane());
+    business.setBcorpCertified(temp.isBcorpCertified());
+    business.setBcorpCertYear(temp.getBcorpCertYear());
+    business.setBcorpCommunityScore(temp.getBcorpCommunityScore());
+    business.setBcorpEnvironmentScore(temp.getBcorpEnvironmentScore());
+    business.setBcorpGovernanceScore(temp.getBcorpGovernanceScore());
+    business.setBcorpProfile(temp.getBcorpProfile());
+    business.setBcorpScore(temp.getBcorpScore());
+    business.setBcorpWorkerScore(temp.getBcorpWorkerScore());
 
       return businessRepository.save(business);
     }
