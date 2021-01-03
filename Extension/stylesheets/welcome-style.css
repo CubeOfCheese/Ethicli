@@ -124,6 +124,19 @@ header {
 
 #optinButtonGroup {
     display: flex;
+    flex-direction: column;
+}
+
+#optinButtonGroup span {
+    display: flex;
+}
+
+.switch {
+    margin-top: 16px;
+}
+
+#analyticsToggle {
+    opacity: 0.8;
 }
 
 /*** Footer *****************************************************/
@@ -348,6 +361,7 @@ button {
 #privacyPolicyDescription {
     width: 50%;
     margin-bottom: 16px;
+    hyphens: none;
 }
 
 #tutorial {
@@ -439,7 +453,7 @@ button {
 }
 
 #optinAccepted {
-    margin: 8px 0 8px 24px;
+    margin: 8px 0 8px 16px;
 }
 
 #watchTutorial{
