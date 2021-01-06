@@ -1,9 +1,14 @@
 package com.appengine.springboot.business;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Business {
 
+  @Id
+  private String id;
+  private boolean betterCottonMember;
   private boolean bcorpCertified;
   private boolean blackOwnedBusiness;
   private boolean bluesignPartner;
@@ -36,6 +41,7 @@ public class Business {
   private String bcorpProfile;
   private String betterBusinessBureau;
   private String companyType;
+  private String country;
   private String ethicalElephantType;
   private String name;
   private String overallScoreDetails;
@@ -49,6 +55,7 @@ public class Business {
   private String[] socialScoreSource;
 
   public Business() {
+    this.betterCottonMember = false;
     this.bcorpCertified = false;
     this.blackOwnedBusiness = false;
     this.bluesignPartner = false;
@@ -81,6 +88,7 @@ public class Business {
     this.bcorpProfile = "";
     this.betterBusinessBureau = "";
     this.companyType = "";
+    this.country = "";
     this.ethicalElephantType = "";
     this.name = "";
     this.overallScoreDetails = "";
@@ -95,54 +103,55 @@ public class Business {
   }
 
   public Business(
-      @JsonProperty("name") String name, // Business Profile:
-      @JsonProperty("website") String website,
-      @JsonProperty("companyType") String companyType,
-      @JsonProperty("bcorpCertYear") int bcorpCertYear,
-      @JsonProperty("bcorpProfile") String bcorpProfile,
-      @JsonProperty("blackOwnedBusiness") boolean blackOwnedBusiness,
-      @JsonProperty("ethicalElephantType") String ethicalElephantType,
-      @JsonProperty("nativeOwnedBusiness") boolean nativeOwnedBusiness,
-      @JsonProperty("pocOwnedBusiness") boolean pocOwnedBusiness,
-      @JsonProperty("supportsBLM") boolean supportsBLM,
-      @JsonProperty("supportsBLMContribution") String supportsBLMContribution,
-      @JsonProperty("supportsBLMEntity") String supportsBLMEntity,
-      @JsonProperty("supportsBLMSource") String supportsBLMSource,
-      @JsonProperty("bcorpCommunityScore")
-          double bcorpCommunityScore, // Numerical Data for Calculation:
-      @JsonProperty("bcorpEnvironmentScore") double bcorpEnvironmentScore,
-      @JsonProperty("bcorpGovernanceScore") double bcorpGovernanceScore,
-      @JsonProperty("bcorpScore") double bcorpScore,
-      @JsonProperty("bcorpWorkerScore") double bcorpWorkerScore,
-      @JsonProperty("corporateCriticScore") double corporateCriticScore,
-      @JsonProperty("goodOnYouScore") double goodOnYouScore,
-      @JsonProperty("greenPowerPercentage") double greenPowerPercentage,
-      @JsonProperty("betterBusinessBureau")
-          String betterBusinessBureau, // Boolean Data for Calculation:
-      @JsonProperty("bcorpCertified") boolean bcorpCertified,
-      @JsonProperty("bluesignPartner") boolean bluesignPartner,
-      @JsonProperty("certifiedHumane") boolean certifiedHumane,
-      @JsonProperty("chooseCrueltyFreeCertified") boolean chooseCrueltyFreeCertified,
-      @JsonProperty("chooseCrueltyFreeVegan") boolean chooseCrueltyFreeVegan,
-      @JsonProperty("ethicalElephantCrueltyFree") boolean ethicalElephantCrueltyFree,
-      @JsonProperty("ethicalElephantTestsOnAnimals") boolean ethicalElephantTestsOnAnimals,
-      @JsonProperty("leapingBunnyCertified") boolean leapingBunnyCertified,
-      @JsonProperty("veganDotOrgCertified") boolean veganDotOrgCertified,
-      @JsonProperty("wildlifeFriendlyCertified") boolean wildlifeFriendlyCertified,
-      @JsonProperty("animalScoreSource") String[] animalScoreSource, // Business Info:
-      @JsonProperty("environmentalScoreSource") String[] environmentScoreSource,
-      @JsonProperty("laborScoreSource") String[] laborScoreSource,
-      @JsonProperty("socialScoreSource") String[] socialScoreSource,
-      @JsonProperty("overallScoreDetails") String overallScoreDetails,
-      @JsonProperty("animalsScore") double animalsScore, // Ethicli Scores:
-      @JsonProperty("environmentScore") double environmentScore,
-      @JsonProperty("laborScore") double laborScore,
-      @JsonProperty("socialScore") double socialScore,
-      @JsonProperty("textileScore") double textileScore,
-      @JsonProperty("overallScore") double overallScore) {
+    String name, // Business Profile:
+    String website,
+    String companyType,
+    String country,
+    int bcorpCertYear,
+    String bcorpProfile,
+    boolean blackOwnedBusiness,
+    String ethicalElephantType,
+    boolean nativeOwnedBusiness,
+    boolean pocOwnedBusiness,
+    boolean supportsBLM,
+    String supportsBLMContribution,
+    String supportsBLMEntity,
+    String supportsBLMSource,
+    double bcorpCommunityScore, // Numerical Data for Calculation:
+    double bcorpEnvironmentScore,
+    double bcorpGovernanceScore,
+    double bcorpScore,
+    double bcorpWorkerScore,
+    double corporateCriticScore,
+    double goodOnYouScore,
+    double greenPowerPercentage,
+    String betterBusinessBureau, // Boolean Data for Calculation:
+    boolean betterCottonMember,
+    boolean bcorpCertified,
+    boolean bluesignPartner,
+    boolean certifiedHumane,
+    boolean chooseCrueltyFreeCertified,
+    boolean chooseCrueltyFreeVegan,
+    boolean ethicalElephantCrueltyFree,
+    boolean ethicalElephantTestsOnAnimals,
+    boolean leapingBunnyCertified,
+    boolean veganDotOrgCertified,
+    boolean wildlifeFriendlyCertified,
+    String[] animalScoreSource, // Business Info:
+    String[] environmentScoreSource,
+    String[] laborScoreSource,
+    String[] socialScoreSource,
+    String overallScoreDetails,
+    double animalsScore, // Ethicli Scores:
+    double environmentScore,
+    double laborScore,
+    double socialScore,
+    double textileScore,
+    double overallScore) {
     this.name = name;
     this.website = website;
     this.companyType = companyType;
+    this.country = country;
     this.bcorpCertYear = bcorpCertYear;
     this.bcorpProfile = bcorpProfile;
     this.blackOwnedBusiness = blackOwnedBusiness;
@@ -161,6 +170,7 @@ public class Business {
     this.corporateCriticScore = corporateCriticScore;
     this.goodOnYouScore = goodOnYouScore;
     this.greenPowerPercentage = greenPowerPercentage;
+    this.betterCottonMember = betterCottonMember;
     this.betterBusinessBureau = betterBusinessBureau;
     this.bcorpCertified = bcorpCertified;
     this.bluesignPartner = bluesignPartner;
@@ -185,12 +195,34 @@ public class Business {
     this.overallScore = overallScore;
   }
 
-  // Getters:
+  public boolean isBetterCottonMember() {
+    return betterCottonMember;
+  }
+
+  public void setBetterCottonMember(boolean betterCottonMember) {
+    this.betterCottonMember = betterCottonMember;
+  }
+
+  public String getCountry() {
+    return country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
   public boolean isBcorpCertified() {
     return bcorpCertified;
   }
 
-  // Setters:
   public void setBcorpCertified(boolean certified) {
     this.bcorpCertified = certified;
   }
@@ -540,6 +572,18 @@ public class Business {
       }
     }
     if (update) {
+      if (this.country.equals("")) {
+        this.country = business.getCountry();
+      }
+
+      if (this.betterCottonMember == false) {
+        this.betterCottonMember = business.isBetterCottonMember();
+      }
+
+      if (this.id == null) {
+        this.id = business.getId();
+      }
+
       if (this.bcorpCertified == false) {
         this.bcorpCertified = business.isBcorpCertified();
       }
