@@ -1,10 +1,9 @@
 {
     "name": "Ethicli",
-    "version": "0.6.7",
+    "version": "0.6.8",
     "description": "To help you make ethical online shopping choices",
     "background": {
-        "scripts": ["background.js"],
-        "persistent": false
+        "page": "background.html"
     },
     "content_scripts": [{
         "matches": [
@@ -13,7 +12,7 @@
         "js": ["content.js"]
     }],
     "browser_action": {
-        "default_popup": "popupNotShop.html",
+        "default_popup": "views/popupNotShop.html",
         "default_title": "Ethicli",
         "default_icon": {
             "16": "icons/ethicli-16.png",

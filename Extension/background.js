@@ -1,3 +1,5 @@
+import { getDomainWithoutSuffix } from "../node_modules/tldts-experimental/dist/index.esm.min.js";
+
 chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
 
 let isShoppingPage;
@@ -6,28 +8,9 @@ let productName;
 
 function notShop(currentTab) {
   isShoppingPage = false;
-  chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
+  chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTab.id });
   chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
   chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
-}
-
-function urlToCompanyName(url) {
-  if (url.substring(0, 8) === "https://") {
-    url = url.substring(8);
-  } else if (url.substring(0, 7) === "http://") {
-    url = url.substring(7);
-  }
-  let endOfBaseDomain = url.search(/\//);
-  if (endOfBaseDomain > -1) {
-    url = url.substring(0, endOfBaseDomain);
-  }
-  const endOfSubDomain = url.lastIndexOf(".", url.lastIndexOf(".") - 1);
-  url = url.substring(endOfSubDomain + 1);
-  endOfBaseDomain = url.search(/\./);
-  if (endOfBaseDomain > -1) {
-    url = url.substring(0, endOfBaseDomain);
-  }
-  return url;
 }
 
 function reloadExt(request, sender) {
@@ -42,7 +25,7 @@ function reloadExt(request, sender) {
     chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTab.id });
     isShoppingPage = true;
 
-    const companyName = urlToCompanyName(sender.tab.url);
+    const companyName = getDomainWithoutSuffix(sender.tab.url);
 
     const blocklist = [ "google", "bing", "yahoo", "baidu", "aol", "duckduckgo", "yandex", "ecosia" ];
     let isBlocklisted;
@@ -69,11 +52,11 @@ function reloadExt(request, sender) {
 
           if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
             ethicliBadgeScore = "";
-            chrome.browserAction.setPopup({ popup: "popupNoRating.html", tabId: currentTab.id });
-            reportGA("Background-NoRating");
+            chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: currentTab.id });
+            // Background-NoRating analytics event
           } else {
-            chrome.browserAction.setPopup({ popup: "popup.html", tabId: currentTab.id });
-            reportGA("Background-HasRating");
+            chrome.browserAction.setPopup({ popup: "views/popup.html", tabId: currentTab.id });
+            // Background-HasRating analytics event
           }
           chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
         });
@@ -98,7 +81,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       reloadExt(request, sender);
       break;
     case "displayOptin":
-      chrome.browserAction.setPopup({ popup: "popupOptin.html" });
+      chrome.browserAction.setPopup({ popup: "views/popupOptin.html" });
       chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
       chrome.browserAction.setBadgeText({ text: "" });
       break;
@@ -137,7 +120,7 @@ chrome.tabs.onCreated.addListener(() => {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
-    chrome.browserAction.setPopup({ popup: "popupNotShop.html", tabId: currentTab.id });
+    chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTab.id });
     chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
     chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
   });
@@ -155,27 +138,7 @@ chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason !== "install") {
     return;
   }
-  chrome.tabs.create({ url: "welcome.html" });
+  chrome.tabs.create({ url: "views/welcome.html" });
 });
 
 chrome.runtime.setUninstallURL("https://ethicli.com/goodbye");
-
-// GOOGLE ANALYTICS
-const GA_TRACKING_ID = "UA-173025073-1";
-const GA_CLIENT_ID = "4FB5D5BF-B582-41AD-9BDF-1EC789AE6544";
-
-function reportGA(aType) {
-  try {
-    const url = "https://www.google-analytics.com/collect";
-    const message = `v=1&tid=${GA_TRACKING_ID}&cid=${GA_CLIENT_ID}&aip=1&ds=add-on&t=event&ec=VISITORS&ea=${aType}`;
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: message
-    });
-  } catch (e) {
-    console.error("Error sending report to Google Analytics.\n" + e);
-  }
-}

@@ -266,7 +266,7 @@ header {
     min-height: 768px;
 }
 
-#privacy header, #faq header, #uninstall header {
+#privacy header, #partners header, #faq header, #press header, #uninstall header {
     min-height: 200px;
     padding-top: 24px;
 }
@@ -406,9 +406,8 @@ footer p {
     width: 49%;
 }
 
-#partners article {
+#partners article, #news article {
     width: 31%;
-    background: #C9D4C6;
     font-size: 14px;
 }
 
@@ -420,6 +419,7 @@ footer p {
 #partners article {
     width: 49%;
     margin-bottom: 16px;
+    background: #C9D4C6;
 }
 
 #partners article span {
@@ -441,7 +441,8 @@ footer p {
     margin-top: 0;
 } 
 
-#partners article:nth-child(3) span img {
+#partners article:nth-child(3) span img,
+#partners article:nth-child(5) span img {
     margin-top: -20%;
 }
 
@@ -571,6 +572,11 @@ p, ul {
     opacity: 0.6;
 }
 
+#press .basicbody ul li {
+    list-style-type: circle;
+    line-height: 1.5em;
+}
+
 a {
     text-decoration: none;
     cursor: pointer;
@@ -586,7 +592,7 @@ em {
     font-weight: 700;
 }
 
-.readmore:hover, #backToTop:hover, #pitchdeck:hover {
+.readmore:hover, #backToTop:hover, #pitchdeck:hover, .featuredButton:hover {
     opacity: 0.8;
 }
 
@@ -618,12 +624,13 @@ button {
     color: #102340;
 }
 
-#pitchdeck {
+#pitchdeck, .featuredButton {
     display: inline-block;
     margin-top: 16px;
     padding: 12px 16px;
     border-radius: 100px;
     background: #D27F65;
+    color: #FEFCF2;
 }
 
 #howToUse p, #news a {
@@ -634,7 +641,7 @@ button {
     color: #C9D4C6;
 }
 
-.colorCream, nav a:hover, #pitchdeck, #faq #pitchdeck, #featured h3, .readmore:hover a, footer a {
+.colorCream, nav a:hover, .featuredButton:hover, #featured h3, .readmore:hover a, footer a {
     color: #FEFCF2;
 }
 
@@ -684,6 +691,26 @@ button {
     border-radius: 20px;
 }
 
+#press .gallery {
+    margin-top: 24px;
+    width: 100%;
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#press .gallery img {
+    height: auto;
+    max-height: 400px;
+    width: auto;
+    max-width: 400px;
+    margin: 0 16px 16px 0;
+    border-radius: 8px;
+}
+
+#press .gallery.mediaAssets img {
+    max-height: 200px;
+}
 
 /*** Queries *****************************************************/
 

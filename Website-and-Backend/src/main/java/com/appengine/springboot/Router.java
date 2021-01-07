@@ -2,6 +2,7 @@ package com.appengine.springboot;
 
 import com.appengine.springboot.business.BusinessService;
 import java.io.IOException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,9 @@ import com.appengine.springboot.advertisement.Advertisement;
 
 @Controller
 public class Router {
+
+  @Autowired
+  BusinessService businessService;
 
   @RequestMapping(value = "/")
   public String getHome() {
@@ -26,6 +30,11 @@ public class Router {
     return "privacy";
   }
 
+  @RequestMapping(value = "/partners")
+  public String getPartners() {
+    return "partners";
+  }
+
   @RequestMapping(value = "/about")
   public String getAbout() {
     return "about";
@@ -36,11 +45,9 @@ public class Router {
     return "uninstall";
   }
 
-  @RequestMapping(value = "/amys-tools/ad-adder")
-  public String getAmyToolsAd(Model model) {
-    Advertisement Advertisement = new Advertisement();
-		model.addAttribute("Advertisement", Advertisement);
-    return "AmysTools/ad";
+  @RequestMapping(value = "/press")
+  public String getPresskit() {
+    return "press";
   }
 
   @RequestMapping(value = "/countdown-2021")
@@ -50,7 +57,14 @@ public class Router {
 
   @RequestMapping(value = "/info/{company}")
   public String getInfo(@PathVariable("company") String companyName, Model model) throws IOException {
-    model.addAttribute("business", BusinessService.getBusinessByWebsite(companyName));
+    model.addAttribute("business", businessService.getBusinessByWebsite(companyName));
     return "info";
+  }
+
+  @RequestMapping(value = "/amys-tools/ad-adder")
+  public String getAmyToolsAd(Model model) {
+    Advertisement Advertisement = new Advertisement();
+		model.addAttribute("Advertisement", Advertisement);
+    return "AmysTools/ad";
   }
 }
