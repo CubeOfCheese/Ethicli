@@ -56,7 +56,7 @@ form label input {
   justify-content: space-evenly;
   max-width: 960px;
   width: 100%;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .productContainer > div { /* AKA #productgroup */

@@ -9,6 +9,8 @@ function start() {
   const originalNegativeProductTag = document.getElementById("negPTag");
   const positiveProductTagList = document.getElementById("productTagList");
   const negativeProductTagList = document.getElementById("negativeProductTagList");
+  originalNegativeProductTag.style = "display:none";
+
   document.getElementById("addTag").addEventListener("click", () => {
     duplicateTag(originalPositiveProductTag);
   });
@@ -42,10 +44,8 @@ function start() {
 
 function duplicateTag(originalTag) {
   tagIndex++;
-  alert(tagIndex);
   const clone = originalTag.cloneNode(true);
   clone.id = "ptags" + tagIndex;
-  console.log(clone.childNodes);
   clone.childNodes[1].childNodes[3].name = "productTags[" + tagIndex + "].tag";
   clone.childNodes[3].childNodes[3].name = "productTags[" + tagIndex + "].weight";
   originalTag.parentNode.appendChild(clone);
@@ -55,7 +55,7 @@ function duplicateNegTag(originalTag) {
   negTagIndex++;
   const clone = originalTag.cloneNode(true);
   clone.id = "negptags" + negTagIndex;
-  console.log(clone.childNodes);
+  clone.style = "display:flex";
   clone.childNodes[1].childNodes[3].name = "negativeProductTags[" + negTagIndex + "].tag";
   clone.childNodes[3].childNodes[3].name = "negativeProductTags[" + negTagIndex + "].weight";
   originalTag.parentNode.appendChild(clone);
@@ -63,7 +63,9 @@ function duplicateNegTag(originalTag) {
 
 function deleteTag(productTagList) {
   const lastProductTag = productTagList.lastChild;
-  lastProductTag.remove();
+  if (document.getElementsByClassName(lastProductTag.className).length > 1) {
+    lastProductTag.remove();
+  }
 }
 
 function previewImage() {
