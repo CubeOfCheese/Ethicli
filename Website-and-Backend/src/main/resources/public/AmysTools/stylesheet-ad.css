@@ -212,10 +212,16 @@ h3 {
 
 /** Images **/
 
-#productUrlPreview {
+#productUrlPreviewGroup {
   display: block;
-  max-width: 120px;
+  margin-left: 0;
+}
+
+#productUrlPreview {
+  width: 260px;
+  height: 150px;
   border-radius: 8px;
+  object-fit: cover;
 }
 
 #productUrlPreview[src=""] {
