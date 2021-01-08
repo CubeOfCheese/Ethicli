@@ -686,7 +686,7 @@ public class Business {
       if (this.environmentScoreSource[0].equals("")) {
         this.environmentScoreSource = business.getEnvironmentScoreSource();
       }
-      if (this.ethicalElephantType == "") {
+      if (this.ethicalElephantType.equals("")) {
         this.ethicalElephantType = business.getEthicalElephantType();
       }
       if (this.laborScoreSource[0].equals("")) {
@@ -772,7 +772,6 @@ public class Business {
         + ((chooseCrueltyFreeVeganWeight + chooseCrueltyFreeVeganWeight) / 2)
         + leapingBunnyWeight)
         / numberOfFactorsAnimal;
-
     // Animal Welfare - Positive Factors:
     int animalFactorIndex = 0;
     if (this.ethicalElephantType.equals("Vegan") || this.veganDotOrgCertified || this.chooseCrueltyFreeVegan) {
@@ -854,7 +853,6 @@ public class Business {
         animalFactorIndex = scoreGuideAnimal.length;
       }
     }
-
     // Animal Welfare - Negative Factors:
     if (this.ethicalElephantTestsOnAnimals) {
       if (cumulativeAnimalScore == 0) {
@@ -866,41 +864,35 @@ public class Business {
         cumulativeAnimalScore -= testsOnAnimalsWithFactors;
       }
     }
-
-    // Animal Welfare - Score:
-    if (cumulativeAnimalScore > 10) {
-      cumulativeAnimalScore = 10;
-    }
-    this.animalsScore = cumulativeAnimalScore;
+    this.animalsScore = Math.min(cumulativeAnimalScore, 10);
   }
 
   private void calculateEnvironmentScore() {
     // Mean scores based on number of animal factors (0 - 10):
     final double BCORP_ENVIRORNMENT_MEAN = 17.8; // Mean of all bcorpWorkerScore data
+    final double GREEN_POWER_MAX = 200;
     double oneFactorEnvironment = 6;
     double twoFactorEnvironment = 8;
     double threeFactorEnvironment = 9;
     double fourFactorEnvironment = 9.5;
     double fiveFactorEnvironment = 9.75;
+    // Ranges determine the amount scores can fluctuate from their base score
     double environmentRange = 1;
-    double bCorpRange = 2;
-
+    double bCorpRange = 4;
+    double greenPowerRange = 3;
     // Weights for Environment Factors (1 - 10):
-    double bluesignWeight = 9;
-    double greenPowerWeight = 8;
-    double bCorpEnvWeight = 7;
-    double betterCottonWeight = 3;
-
-    double numberOfFactorsAnimal = 4;
-    double environmentHandicap = 2;
-
+    double bCorpEnvWeight = 9;
+    double bluesignWeight = 8;
+    double greenPowerWeight = 7;
+    double betterCottonWeight = 2;
     // Environment Factor Switches (Tells the Positive Factor loop if a factor has been used yet):
     boolean bluesignSwitch = true;
     boolean greenPowerSwitch = true;
     boolean bCorpEnvSwitch = true;
     boolean betterCottonSwitch = true;
-
     // Environment Calculation Variables:
+    double numberOfFactorsEnvironment = 4;
+    double environmentHandicap = 2;
     double[] scoreGuideEnvironment = {
       oneFactorEnvironment,
       twoFactorEnvironment - oneFactorEnvironment,
@@ -908,12 +900,10 @@ public class Business {
       fourFactorEnvironment - threeFactorEnvironment,
       fiveFactorEnvironment - fourFactorEnvironment
     };
-
     double cumulativeEnvironmentScore = 0;
     double environmentWeightMean =
       (bluesignWeight + greenPowerWeight + bCorpEnvWeight + betterCottonWeight)
-        / numberOfFactorsAnimal;
-
+        / numberOfFactorsEnvironment;
     // Environment - Positive Factors:
     int environmentFactorIndex = 0;
     if (this.bluesignPartner) {
@@ -922,9 +912,16 @@ public class Business {
         cumulativeEnvironmentScore += scoreGuideEnvironment[a];
       }
     }
-
     for (; environmentFactorIndex < scoreGuideEnvironment.length; ++environmentFactorIndex) {
-      if (bluesignSwitch && this.bluesignPartner) {
+      if (bCorpEnvSwitch && this.bcorpEnvironmentScore != 0) {
+        cumulativeEnvironmentScore +=
+          scoreGuideEnvironment[environmentFactorIndex]
+            - (environmentRange / 2)
+            + (environmentRange * (bCorpEnvWeight / environmentWeightMean) / 2);
+        cumulativeEnvironmentScore +=
+            + (bCorpRange * (this.bcorpEnvironmentScore / BCORP_ENVIRORNMENT_MEAN) / 2);
+        bCorpEnvSwitch = false;
+      } else if (bluesignSwitch && this.bluesignPartner) {
         cumulativeEnvironmentScore +=
           scoreGuideEnvironment[environmentFactorIndex]
             - (environmentRange / 2)
@@ -935,16 +932,11 @@ public class Business {
           scoreGuideEnvironment[environmentFactorIndex]
             - (environmentRange / 2)
             + (environmentRange * (greenPowerWeight / environmentWeightMean) / 2);
-        greenPowerSwitch = false;
-      } else if (bCorpEnvSwitch && this.bcorpEnvironmentScore != 0) {
+        double greenPowerCapped = Math.min(this.greenPowerPercentage, GREEN_POWER_MAX) / 100;
         cumulativeEnvironmentScore +=
-          scoreGuideEnvironment[environmentFactorIndex]
-            - (environmentRange / 2)
-            + (environmentRange * (bCorpEnvWeight / environmentWeightMean) / 2);
-        cumulativeEnvironmentScore +=
-            - (bCorpRange / 2)
-            + (bCorpRange * (this.bcorpEnvironmentScore / BCORP_ENVIRORNMENT_MEAN) / 2);
-        bCorpEnvSwitch = false;
+          - (greenPowerRange / 2) + 0.5
+          + (greenPowerRange * greenPowerCapped / 2);
+          greenPowerSwitch = false;
       } else if (betterCottonSwitch && this.betterCottonMember) {
         cumulativeEnvironmentScore +=
           scoreGuideEnvironment[environmentFactorIndex]
@@ -955,12 +947,7 @@ public class Business {
         environmentFactorIndex = scoreGuideEnvironment.length;
       }
     }
-
-    // Environment - Score:
-    if (cumulativeEnvironmentScore > 10) {
-      cumulativeEnvironmentScore = 10;
-    }
-    this.environmentScore = cumulativeEnvironmentScore;
+    this.environmentScore = Math.min(cumulativeEnvironmentScore, 10);
   }
 
   private void calculateLaborScore() {
@@ -973,16 +960,13 @@ public class Business {
       // Turns bcorpWorkerScore into a 0 - 10 score in which an average score would earn a 7.5
       laborImpactScore += ((this.bcorpWorkerScore / BCORP_LABOR_MEAN) * 7.5);
     }
-    if (laborImpactScore != 0 && laborImpactFactors != 0) {
+    if (laborImpactScore != 0) {
       this.laborScore = laborImpactScore / laborImpactFactors;
     }
-    if (this.laborScore > 9.5) {
-      this.laborScore = 9.5;
-    }
+    this.laborScore = Math.min(this.laborScore, 10);
   }
 
   private void calculateSocialScore() {
-    // Social Score
     double socialImpactScore = 0;
     final double BCORP_SOCIAL_MEAN = 30.5;
     int socialImpactFactors = 0;
@@ -991,12 +975,10 @@ public class Business {
       // Turns bcorpCommunityScore into a 0 - 10 score in which an average score would earn a 7.5
       socialImpactScore += ((this.bcorpCommunityScore / BCORP_SOCIAL_MEAN) * 7.5);
     }
-    if (socialImpactScore != 0 && socialImpactFactors != 0) {
+    if (socialImpactScore != 0) {
       this.socialScore = socialImpactScore / socialImpactFactors;
     }
-    if (this.socialScore > 9.5) {
-      this.socialScore = 9.5;
-    }
+    this.socialScore = Math.min(this.socialScore, 10);
   }
 
   public void calculate() {
@@ -1005,7 +987,6 @@ public class Business {
       calculateEnvironmentScore();
       calculateSocialScore();
       calculateLaborScore();
-
       // Overall Score
       double overallImpactScore = 0;
       int overallImpactFactors = 0;
@@ -1025,12 +1006,10 @@ public class Business {
         ++overallImpactFactors;
         overallImpactScore += this.animalsScore;
       }
-      if (overallImpactScore != 0 && overallImpactFactors != 0) {
+      if (overallImpactScore != 0) {
         this.overallScore = overallImpactScore / overallImpactFactors;
       }
-      if (this.overallScore > 9.5) {
-        this.overallScore = 9.5;
-      }
+      this.overallScore = Math.min(this.overallScore, 10);
     }
   }
 }
