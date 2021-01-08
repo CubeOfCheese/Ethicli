@@ -6,7 +6,6 @@ div {
   position: relative;
   margin: auto;
   display: flex;
-  /* align-items: center; */
   flex-direction: column;
 }
 
@@ -56,6 +55,7 @@ form label input {
   justify-content: space-evenly;
   max-width: 960px;
   width: 100%;
+  /* Will be implemented in the future */
   /* overflow: scroll; */
 }
 
@@ -65,10 +65,6 @@ form label input {
   padding: 24px;
   border: 1px solid #888;
   border-radius: 8px;
-}
-
-.productContainer > div:first-of-type { /* First "template" div doesn't show up */
-  /* display: none; */
 }
 
 .productGroupBottom {

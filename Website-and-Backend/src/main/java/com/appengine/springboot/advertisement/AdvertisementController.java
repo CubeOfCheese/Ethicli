@@ -42,8 +42,6 @@ public class AdvertisementController {
 
   @PostMapping("/add")
   public String addAdvertisement(@ModelAttribute Advertisement Advertisement) {
-    System.out.println("/add called");
-    System.out.println(Advertisement.getCompanyName());
     return "redirect:/AmysTools/ad";
   }
 

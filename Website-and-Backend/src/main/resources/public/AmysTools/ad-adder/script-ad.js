@@ -45,7 +45,7 @@ function start() {
 function duplicateTag(originalTag) {
   tagIndex++;
   const clone = originalTag.cloneNode(true);
-  clone.id = "ptags" + tagIndex;
+  clone.id = "pTag" + tagIndex;
   clone.childNodes[1].childNodes[3].name = "productTags[" + tagIndex + "].tag";
   clone.childNodes[3].childNodes[3].name = "productTags[" + tagIndex + "].weight";
   originalTag.parentNode.appendChild(clone);
@@ -54,7 +54,7 @@ function duplicateTag(originalTag) {
 function duplicateNegTag(originalTag) {
   negTagIndex++;
   const clone = originalTag.cloneNode(true);
-  clone.id = "negptags" + negTagIndex;
+  clone.id = "negPTag" + negTagIndex;
   clone.style = "display:flex";
   clone.childNodes[1].childNodes[3].name = "negativeProductTags[" + negTagIndex + "].tag";
   clone.childNodes[3].childNodes[3].name = "negativeProductTags[" + negTagIndex + "].weight";

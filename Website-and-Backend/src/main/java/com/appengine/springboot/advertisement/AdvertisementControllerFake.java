@@ -23,13 +23,6 @@ public class AdvertisementControllerFake {
 
   @PostMapping(path = "/adder", consumes = "application/x-www-form-urlencoded")
   public String addAdvertisement(Advertisement Advertisement) {
-    System.out.println("/add called");
-    System.out.println(Advertisement.getCompanyName());
-    for (ProductTag tag : Advertisement.getProductTags()) {
-      System.out.println(tag.getTag());
-      System.out.println(tag.getWeight());
-    }
-    System.out.println(Advertisement);
     advertisementService.addAdvertisement(Advertisement);
     return "redirect:/amys-tools-ad";
   }
