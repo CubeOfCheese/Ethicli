@@ -871,6 +871,7 @@ public class Business {
     // Mean scores based on number of animal factors (0 - 10):
     final double BCORP_ENVIRORNMENT_MEAN = 17.8; // Mean of all bcorpWorkerScore data
     final double GREEN_POWER_MAX = 200;
+    final double GREEN_POWER_SKEW = 0.5;
     double oneFactorEnvironment = 6;
     double twoFactorEnvironment = 8;
     double threeFactorEnvironment = 9;
@@ -934,7 +935,7 @@ public class Business {
             + (environmentRange * (greenPowerWeight / environmentWeightMean) / 2);
         double greenPowerCapped = Math.min(this.greenPowerPercentage, GREEN_POWER_MAX) / 100;
         cumulativeEnvironmentScore +=
-          - (greenPowerRange / 2) + 0.5
+          - (greenPowerRange / 2) + GREEN_POWER_SKEW
           + (greenPowerRange * greenPowerCapped / 2);
           greenPowerSwitch = false;
       } else if (betterCottonSwitch && this.betterCottonMember) {
