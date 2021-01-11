@@ -180,7 +180,7 @@ nav .container {
     position: relative;
     display: flex;
     justify-content: flex-end;
-    padding: 0 30px;
+    padding: 0 38px;
 }
 
 #navlinks {
@@ -189,10 +189,6 @@ nav .container {
     align-items: flex-start;
     top: 36px;
     height: 48px;
-}
-
-#logo {
-    top: 236px;
 }
 
 nav a {
@@ -580,7 +576,6 @@ p, ul {
 a {
     text-decoration: none;
     cursor: pointer;
-
     color:#2B6589;
 }
 
@@ -655,7 +650,8 @@ button {
 
 #logo {
     position: absolute;
-    left: 30px;
+    top: 236px;
+    left: 22px;
     background: none;
     margin: 0;
     padding: 0;
