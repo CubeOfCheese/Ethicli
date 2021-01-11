@@ -5,26 +5,22 @@
 
 #partners article {
     position: relative;
-    background: #FFFCF2;
+    margin-bottom: 16px;
+    background: #C9D4C6;
     padding: 24px 24px 48px 24px;
     border-radius: 20px;
     width: 49%;
+    font-size: 14px;
 }
 
-#partners article {
+#index #partners article {
     width: 31%;
-    font-size: 14px;
+    margin-bottom: 24px;
 }
 
 #partners section {
     display: flex;
     flex-wrap: wrap;
-}
-
-#partners article {
-    width: 49%;
-    margin-bottom: 16px;
-    background: #C9D4C6;
 }
 
 #partners article span {
@@ -39,6 +35,12 @@
 
 #partners article span img {
     width: 100%;
+    margin-top: -20%;
+}
+
+#partners #girlfriendCollective span img,
+#partners #tentree span img {
+    width: 100%;
     margin-top: -50%;
 }
  
@@ -46,11 +48,8 @@
     margin-top: 0;
 } 
 
-#partners #madeTrade span img, 
-#partners #tentree span img,
-#partners #truEarth span img,
-#partners #pela span img {
-    margin-top: -20%;
+#index #partners article span img {
+    margin-top: 0%;
 }
 
 #partners .readmore a {
@@ -69,13 +68,23 @@
     #partners section {
         flex-direction: column;
     }
-    #partners article {
+    #partners article, #index #partners article {
         width: 100%;
+        margin-bottom: 24px;
+    }
+    #partners article {
         margin-bottom: 24px;
     }
     #partners article span {
         height: 200px;
     }
+    #index #partners #girlfriendCollective span img,
+    #partners #girlfriendCollective span img,
+    #index #partners #tentree span img,
+    #partners #tentree span img {
+        margin-top: -55%;
+    }
+    #index #partners article span img, 
     #partners #madeTrade span img {
         margin-top: -30%;
     }
