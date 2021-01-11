@@ -19,8 +19,10 @@ public class Business {
   private boolean ethicalElephantTestsOnAnimals;
   private boolean leapingBunnyCertified;
   private boolean nativeOwnedBusiness;
+  private boolean notAddressingUyghur;
   private boolean pocOwnedBusiness;
   private boolean supportsBLM;
+  private boolean usesUyghurSlaveLabor;
   private boolean veganDotOrgCertified;
   private boolean wildlifeFriendlyCertified;
   private double animalsScore;
@@ -63,8 +65,10 @@ public class Business {
     this.ethicalElephantTestsOnAnimals = false;
     this.leapingBunnyCertified = false;
     this.nativeOwnedBusiness = false;
+    this.notAddressingUyghur = false;
     this.pocOwnedBusiness = false;
     this.supportsBLM = false;
+    this.usesUyghurSlaveLabor = false;
     this.veganDotOrgCertified = false;
     this.wildlifeFriendlyCertified = false;
     this.animalsScore = 0;
@@ -127,6 +131,8 @@ public class Business {
     boolean ethicalElephantCrueltyFree,
     boolean ethicalElephantTestsOnAnimals,
     boolean leapingBunnyCertified,
+    boolean notAddressingUyghur,
+    boolean usesUyghurSlaveLabor,
     boolean veganDotOrgCertified,
     boolean wildlifeFriendlyCertified,
     String[] animalScoreSource, // Business Info:
@@ -169,6 +175,8 @@ public class Business {
     this.ethicalElephantCrueltyFree = ethicalElephantCrueltyFree;
     this.ethicalElephantTestsOnAnimals = ethicalElephantTestsOnAnimals;
     this.leapingBunnyCertified = leapingBunnyCertified;
+    this.notAddressingUyghur = notAddressingUyghur;
+    this.usesUyghurSlaveLabor = usesUyghurSlaveLabor;
     this.veganDotOrgCertified = veganDotOrgCertified;
     this.wildlifeFriendlyCertified = wildlifeFriendlyCertified;
     this.animalScoreSource = animalScoreSource;
@@ -181,6 +189,22 @@ public class Business {
     this.laborScore = laborScore;
     this.socialScore = socialScore;
     this.overallScore = overallScore;
+  }
+
+  public boolean isNotAddressingUyghur() {
+    return notAddressingUyghur;
+  }
+
+  public void setNotAddressingUyghur(boolean notAddressingUyghur) {
+    this.notAddressingUyghur = notAddressingUyghur;
+  }
+
+  public boolean isUsesUyghurSlaveLabor() {
+    return usesUyghurSlaveLabor;
+  }
+
+  public void setUsesUyghurSlaveLabor(boolean usesUyghurSlaveLabor) {
+    this.usesUyghurSlaveLabor = usesUyghurSlaveLabor;
   }
 
   public boolean isBetterCottonMember() {
@@ -539,15 +563,12 @@ public class Business {
       if (this.country.equals("")) {
         this.country = business.getCountry();
       }
-
       if (!this.betterCottonMember) {
         this.betterCottonMember = business.isBetterCottonMember();
       }
-
       if (this.id == null) {
         this.id = business.getId();
       }
-
       if (!this.bcorpCertified) {
         this.bcorpCertified = business.isBcorpCertified();
       }
@@ -578,8 +599,14 @@ public class Business {
       if (!this.nativeOwnedBusiness) {
         this.nativeOwnedBusiness = business.isNativeOwnedBusiness();
       }
+      if (!this.notAddressingUyghur) {
+        this.notAddressingUyghur = business.isNotAddressingUyghur();
+      }
       if (!this.pocOwnedBusiness) {
         this.pocOwnedBusiness = business.isPocOwnedBusiness();
+      }
+      if (!this.usesUyghurSlaveLabor) {
+        this.usesUyghurSlaveLabor = business.isUsesUyghurSlaveLabor();
       }
       if (!this.supportsBLM) {
         this.supportsBLM = business.isSupportsBLM();
