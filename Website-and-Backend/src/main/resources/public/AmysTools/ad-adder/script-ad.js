@@ -52,13 +52,14 @@ function duplicateTag(originalTag) {
 }
 
 function duplicateNegTag(originalTag) {
-  negTagIndex++;
   const clone = originalTag.cloneNode(true);
   clone.id = "negPTag" + negTagIndex;
   clone.style = "display:flex";
+  clone.required = true;
   clone.childNodes[1].childNodes[3].name = "negativeProductTags[" + negTagIndex + "].tag";
   clone.childNodes[3].childNodes[3].name = "negativeProductTags[" + negTagIndex + "].weight";
   originalTag.parentNode.appendChild(clone);
+  negTagIndex++;
 }
 
 function deleteTag(productTagList) {
