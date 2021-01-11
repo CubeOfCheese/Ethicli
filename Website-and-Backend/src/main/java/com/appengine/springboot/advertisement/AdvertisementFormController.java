@@ -16,14 +16,14 @@ import com.appengine.springboot.advertisement.AdvertisementService;
 @CrossOrigin
 @Controller
 @RequestMapping("/Advertisement")
-public class AdvertisementControllerFake {
+public class AdvertisementFormController {
 
   @Autowired
   AdvertisementService advertisementService;
 
-  @PostMapping(path = "/adder", consumes = "application/x-www-form-urlencoded")
+  @PostMapping(path = "/add-desde-form", consumes = "application/x-www-form-urlencoded")
   public String addAdvertisement(Advertisement Advertisement) {
     advertisementService.addAdvertisement(Advertisement);
-    return "redirect:/amys-tools-ad";
+    return "redirect:/amys-tools/ad-adder";
   }
 }

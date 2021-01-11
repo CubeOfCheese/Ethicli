@@ -12,12 +12,12 @@
     <div>
         <header><h1>🙆🏼‍♀️🛠 - Ad Adder</h1></header>
 
-        <form action="#" th:action="@{/Advertisement/adder}" th:object="${Advertisement}" method="POST">
+        <form action="#" th:action="@{/Advertisement/add-desde-form}" th:object="${Advertisement}" method="POST">
             <div id="companyGroup"> <!-- Main Company Info -->
                 <h2>Main Company Info</h2>
                 <label for="companyname">Company Name: <input th:field="*{companyName}" id="companyname" placeholder="Clean Bean Cafe" type="text" spellcheck="true" required></label>
                 <label for="companyurl">Company Website: <input th:field="*{website}" id="companyurl" placeholder="https://cbcafe.com" type="url" required></label>
-                <label for="companyscore">Company Score: <input th:field="*{companyScore}" id="companyscore" placeholder="8.0" type="text" required></label>
+                <label for="companyscore">Company Score: <input th:field="*{companyScore}" id="companyscore" placeholder="8.0" type="number" step="0.01" required></label>
             </div>
 
             <div> <!-- Products -->

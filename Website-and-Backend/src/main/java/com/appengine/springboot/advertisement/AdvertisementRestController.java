@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 @CrossOrigin
 @RestController
 @RequestMapping("/Advertisement")
-public class AdvertisementController {
+public class AdvertisementRestController {
 
   @Autowired
   AdvertisementService advertisementService;
