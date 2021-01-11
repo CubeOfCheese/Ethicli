@@ -40,15 +40,10 @@ public class AdvertisementRestController {
     return advertisementService.getById(id);
   }
 
-  @PostMapping("/add")
-  public String addAdvertisement(@ModelAttribute Advertisement Advertisement) {
-    return "redirect:/AmysTools/ad";
+  @PutMapping("/add")
+  public Advertisement addAdvertisement(@RequestBody Advertisement Advertisement) {
+    return advertisementService.addAdvertisement(Advertisement);
   }
-
-  // @PutMapping("/add")
-  // public Advertisement addAdvertisement(@RequestBody Advertisement Advertisement) {
-  //   return advertisementService.addAdvertisement(Advertisement);
-  // }
 
   @PutMapping("/addAll")
   public List<Advertisement> addAllAdvertisements(@RequestBody List<Advertisement> Advertisement) {
