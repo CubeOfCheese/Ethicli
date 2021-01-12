@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.appengine.springboot.advertisement.Advertisement;
 
 @Controller
 public class Router {
@@ -58,5 +59,12 @@ public class Router {
   public String getInfo(@PathVariable("company") String companyName, Model model) throws IOException {
     model.addAttribute("business", businessService.getBusinessByWebsite(companyName));
     return "info";
+  }
+
+  @RequestMapping(value = "/amys-tools/ad-adder")
+  public String getAmyToolsAd(Model model) {
+    Advertisement Advertisement = new Advertisement();
+		model.addAttribute("Advertisement", Advertisement);
+    return "AmysTools/ad";
   }
 }
