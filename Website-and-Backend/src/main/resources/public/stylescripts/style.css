@@ -180,7 +180,7 @@ nav .container {
     position: relative;
     display: flex;
     justify-content: flex-end;
-    padding: 0 30px;
+    padding: 0 38px;
 }
 
 #navlinks {
@@ -189,10 +189,6 @@ nav .container {
     align-items: flex-start;
     top: 36px;
     height: 48px;
-}
-
-#logo {
-    top: 236px;
 }
 
 nav a {
@@ -466,10 +462,6 @@ footer p {
     font-size: 14px;
 }
 
-#partners .readmore a {
-    background: #2B6589;
-}
-
 /*** Mailing List *****************************************************/
 
 form {
@@ -580,7 +572,6 @@ p, ul {
 a {
     text-decoration: none;
     cursor: pointer;
-
     color:#2B6589;
 }
 
@@ -655,7 +646,8 @@ button {
 
 #logo {
     position: absolute;
-    left: 30px;
+    top: 236px;
+    left: 22px;
     background: none;
     margin: 0;
     padding: 0;
@@ -714,12 +706,6 @@ button {
 
 /*** Queries *****************************************************/
 
-@media screen and (max-width: 870px) {
-    #partners article span {
-        height: 172px;
-    }
-}
-
 @media screen and (max-width: 768px) {
     #triplebar {
         display: block;
@@ -736,20 +722,14 @@ button {
     #navlinks.navClicked a {
         display: block;
     }
-    .half, .threes, #partners section, #news section, #featured section {
+    .half, .threes, #news section, #featured section {
         flex-direction: column;
     }
-    #headerInfo, .half article, .threes article, #partners article, #news article, #featured article {
+    #headerInfo, .half article, .threes article, #news article, #featured article {
         width: 100%;
     }
-    #partners article, #news article, #featured article {
+    #news article, #featured article {
         margin-bottom: 24px;
-    }
-    #partners article span {
-        height: 200px;
-    }
-    #partners article:nth-child(2) span img, #partners article:nth-child(3) span img {
-        margin-top: -50%;
     }
     #news article:last-child, #featured article:last-child {
         margin-bottom: 0;
@@ -774,13 +754,6 @@ button {
 @media screen and (max-width: 450px) {
     #mainCTA {
         font-size: 0.7em;
-    }
-    #partners article:nth-child(2) span img{
-        margin-top: -20%;
-    }
-    
-    #partners article:nth-child(3) span img {
-        margin-top: -30%;
     }
     footer {
         padding-bottom: 54px;
