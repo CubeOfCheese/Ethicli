@@ -110,8 +110,14 @@ public class AdvertisementService {
 
   public List<Advertisement> addAllAdvertisements(List<Advertisement> advertisements) {
     for (Advertisement advertisement : advertisements) {
+      if (advertisement.getProductTags() == null) {
+        continue;
+      }
       for (int b = 0; b < advertisement.getProductTags().length; ++b) {
         advertisement.getProductTags()[b].setTag(advertisement.getProductTags()[b].getTag().toLowerCase());
+      }
+      if (advertisement.getNegativeProductTags() == null) {
+        continue;
       }
       for (int b = 0; b < advertisement.getNegativeProductTags().length; ++b) {
         advertisement.getNegativeProductTags()[b].setTag(advertisement.getNegativeProductTags()[b].getTag().toLowerCase());

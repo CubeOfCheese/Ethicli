@@ -29,14 +29,8 @@ public class BusinessService {
   public Business getBusinessByWebsite(String companyName) throws IOException {
     Business business = new Business();
     if (Tools.validateURL(companyName)) {
-      business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, false));
-      business.update(searchDataSource(companyName, "Manual Scores - Sheet1.csv", 14, 1, -1, 2, 9, 11, 10, 12, 13, -1, -1, -1, -1, -1, -1, 3, -1, 4, -1, 5, 6, 7, 8, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, false));
-      business.update(searchDataSource(companyName, "EPA's Green Power Partners - Sheet1.csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, -1, -1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, false));
-      business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, 4, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, true, false, false, false, false, false, false, false, false, false, false));
-      business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, true, false, false, false, false, false, false, false, false, false, false, false));
-      business.update(searchDataSource(companyName, "Cruelty-Free (Ethical Elephant Directory).csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, false, false, false, false, false, false, true, false, false, false, false, false));
-      business.update(searchDataSource(companyName, "Companies that test on animals.csv", 2, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, true, false));
-      business.update(searchDataSource(companyName, "Leaping Bunny Approved Brands.csv", 3, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, true));
+      business.update(searchDataSource(companyName, "Corrections - Sheet1.csv", 2, 0, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, false));
+      business.update(searchDataSource(companyName, "Manual Scores - Sheet1.csv", 14, 1, -1, 2, 9, 11, 10, 12, 13, -1, -1, -1, -1,   3, -1, 4,  5, 6, 7, 8, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, false));
       List<Business> businessList = regexWebsite(companyName);
       for (Business value : businessList) {
         if (companyName.equals(value.getWebsite().split("\\.")[0])) {
@@ -44,6 +38,12 @@ public class BusinessService {
           break;
         }
       }
+      business.update(searchDataSource(companyName, "EPA's Green Power Partners - Sheet1.csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1,  -1, 2, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, false));
+      business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, 4, 1, 2, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, true, false, false, false, false, false, false, false, false, false, false));
+      business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, true, false, false, false, false, false, false, false, false, false, false, false));
+      business.update(searchDataSource(companyName, "Cruelty-Free (Ethical Elephant Directory).csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, false, false, false, false, false, false, true, false, false, false, false, false));
+      business.update(searchDataSource(companyName, "Companies that test on animals.csv", 2, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, true, false));
+      business.update(searchDataSource(companyName, "Leaping Bunny Approved Brands.csv", 3, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, true));
       business.calculate();
     }
     return business;
@@ -67,12 +67,9 @@ public class BusinessService {
       int supportsBLMEntityColumn,
       int supportsBLMContributionColumn,
       int companyTypeColumn,
-      int betterBusinessBureauColumn,
-      int corporateCriticScoreColumn,
       int goodOnYouScoreColumn,
       int greenPowerPercentageColumn,
       int environmentScoreColumn,
-      int textilesScoreColumn,
       int animalsScoreColumn,
       int laborScoreColumn,
       int socialScoreColumn,
@@ -161,14 +158,6 @@ public class BusinessService {
               busTemp.setSupportsBLMContribution(Tools.charRemove(dataToken, '"'));
             } else if (column == companyTypeColumn) {
               busTemp.setCompanyType(dataToken);
-            } else if (column == betterBusinessBureauColumn) {
-              busTemp.setBetterBusinessBureau(dataToken);
-            } else if (column == corporateCriticScoreColumn) {
-              try {
-                busTemp.setCorporateCriticScore(Double.parseDouble(dataToken));
-              } catch (NumberFormatException e) {
-                e.printStackTrace();
-              }
             } else if (column == goodOnYouScoreColumn) {
               try {
                 busTemp.setGoodOnYouScore(Double.parseDouble(dataToken));
@@ -185,12 +174,6 @@ public class BusinessService {
             } else if (column == environmentScoreColumn) {
               try {
                 busTemp.setEnvironmentScore(Double.parseDouble(dataToken));
-              } catch (NumberFormatException e) {
-                e.printStackTrace();
-              }
-            } else if (column == textilesScoreColumn) {
-              try {
-                busTemp.setTextileScore(Double.parseDouble(dataToken));
               } catch (NumberFormatException e) {
                 e.printStackTrace();
               }
@@ -264,11 +247,7 @@ public class BusinessService {
                 busTemp.setBcorpProfile(dataToken);
               }
             } else if (column == ethicalElephantTypeColumn) {
-              if (dataToken.isEmpty()) {
-                busTemp.setEthicalElephantType("");
-              } else {
-                busTemp.setEthicalElephantType(dataToken);
-              }
+              busTemp.setEthicalElephantType(dataToken);
             } else if (column == chooseCrueltyFreeVeganColumn) {
               if (dataToken.contains("vegan")) {
                 busTemp.setChooseCrueltyFreeVegan(true);
