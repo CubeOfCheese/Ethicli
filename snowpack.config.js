@@ -1,6 +1,6 @@
 module.exports = {
   buildOptions: {
-    metaDir: "snowpack",
+    metaUrlPath: "snowpack",
     out: "ExtensionBuild"
   },
   mount: {
