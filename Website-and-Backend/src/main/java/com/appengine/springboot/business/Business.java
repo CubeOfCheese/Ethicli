@@ -566,7 +566,7 @@ public class Business {
       if (!this.betterCottonMember) {
         this.betterCottonMember = business.isBetterCottonMember();
       }
-      if (this.id == null) {
+      if (this.id == null || this.id.equals("")) {
         this.id = business.getId();
       }
       if (!this.bcorpCertified) {

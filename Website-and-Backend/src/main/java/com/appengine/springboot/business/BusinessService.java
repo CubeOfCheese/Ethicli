@@ -1,11 +1,13 @@
 package com.appengine.springboot.business;
 
 import com.appengine.springboot.Tools;
+import com.appengine.springboot.advertisement.AdvertisementRepository;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -19,7 +21,12 @@ import org.springframework.stereotype.Service;
 public class BusinessService {
 
   @Autowired
+  BusinessRepository businessRepository;
+
+  @Autowired
   private MongoOperations mongoOperations;
+
+  List<Business> db;
 
   public List<Business> regexWebsite(String website) {
     Query query = new Query().addCriteria(Criteria.where("website").regex(website, "i"));
@@ -273,5 +280,40 @@ public class BusinessService {
       }
     }
     return business;
+  }
+
+  public List<Business> getAll() {
+    return businessRepository.findAll();
+  }
+
+  public Business insert(Business business) {
+    return businessRepository.insert(business);
+  }
+
+  public List<Business> insertAll(List<Business> businesses) {
+    return businessRepository.insert(businesses);
+  }
+
+  public Business update(Business business) {
+    return businessRepository.save(business);
+  }
+
+  public List<Business> updateAll(List<Business> businesses) {
+    if (db == null) {
+      System.out.println("test");
+      db = getAll();
+    }
+
+    for (int a = 0; a < businesses.size(); ++a) {
+      System.out.println(businesses.get(a).getName());
+      for (int b = 0; b < db.size(); ++b) {
+        if (businesses.get(a).getWebsite().equals(db.get(b).getWebsite())) {
+          businesses.get(a).setName(db.get(b).getName());
+          businesses.get(a).setWebsite(db.get(b).getWebsite());
+          businesses.get(a).update(db.get(b));
+        }
+      }
+    }
+    return businessRepository.saveAll(businesses);
   }
 }
