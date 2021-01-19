@@ -40,10 +40,8 @@ public class BusinessService {
       }
       business.update(searchDataSource(companyName, "EPA's Green Power Partners - Sheet1.csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1,  -1, 2, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, false));
       business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, 4, 1, 2, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, true, false, false, false, false, false, false, false, false, false, false));
-      business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, true, false, false, false, false, false, false, false, false, false, false, false));
       business.update(searchDataSource(companyName, "Cruelty-Free (Ethical Elephant Directory).csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, false, false, false, false, false, false, true, false, false, false, false, false));
       business.update(searchDataSource(companyName, "Companies that test on animals.csv", 2, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, true, false));
-      business.update(searchDataSource(companyName, "Leaping Bunny Approved Brands.csv", 3, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, true));
       business.calculate();
     }
     return business;
