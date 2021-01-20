@@ -47,10 +47,6 @@ public class BusinessService {
       }
       business.update(searchDataSource(companyName, "EPA's Green Power Partners - Sheet1.csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1,  -1, 2, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, false));
       business.update(searchDataSource(companyName, "Financial Contributions-Companies Supporting Black Lives.csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, 4, 1, 2, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, true, false, false, false, false, false, false, false, false, false, false));
-      business.update(searchDataSource(companyName, "bluesign-reference-list.txt", 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, true, false, false, false, false, false, false, false, false, false, false, false));
-      business.update(searchDataSource(companyName, "Cruelty-Free (Ethical Elephant Directory).csv", 5, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, false, false, false, false, false, false, true, false, false, false, false, false));
-      business.update(searchDataSource(companyName, "Companies that test on animals.csv", 2, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, true, false));
-      business.update(searchDataSource(companyName, "Leaping Bunny Approved Brands.csv", 3, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,   -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, false, false, false, false, false, false, false, false, false, false, false, true));
       business.calculate();
     }
     return business;
@@ -300,12 +296,9 @@ public class BusinessService {
 
   public List<Business> updateAll(List<Business> businesses) {
     if (db == null) {
-      System.out.println("test");
       db = getAll();
     }
-
     for (int a = 0; a < businesses.size(); ++a) {
-      System.out.println(businesses.get(a).getName());
       for (int b = 0; b < db.size(); ++b) {
         if (businesses.get(a).getWebsite().equals(db.get(b).getWebsite())) {
           businesses.get(a).setName(db.get(b).getName());

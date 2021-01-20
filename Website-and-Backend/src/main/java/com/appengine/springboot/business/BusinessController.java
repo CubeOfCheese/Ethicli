@@ -1,6 +1,5 @@
 package com.appengine.springboot.business;
 
-import com.appengine.springboot.advertisement.Advertisement;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;

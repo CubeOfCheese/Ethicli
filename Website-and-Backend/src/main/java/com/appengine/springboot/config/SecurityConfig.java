@@ -41,7 +41,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/Advertisement/add",
             "/Advertisement/addAll",
             "/Advertisement/update",
-            "/Advertisement/delete")
+            "/Advertisement/delete",
+            "/Business/getAll",
+            "/Business/insert",
+            "/Business/insertAll",
+            "/Business/update",
+            "/Business/updateAll")
         .hasRole("ADMIN")
         .and()
         .csrf()
