@@ -10,6 +10,7 @@ const HEIGHT_POPUP_VIEWDETAILS = 36;
 const HEIGHT_POPUP_SUBSCORE = 42;
 const HEIGHT_POPUP_SPONSOR = 174;
 const HEIGHT_TUTORIAL = 600;
+const HEIGHT_MESSAGING = 600;
 const HEIGHT_NOTSHOP = 136;
 
 chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, (response) => {
@@ -213,6 +214,7 @@ window.onload = () => {
     somethingWrong();
     // SomethingWrong analytics event
   });
+
   if (document.getElementById("badgeDisplayer") !== null) {
     document.getElementById("badgeDisplayer").addEventListener("click", () => {
       document.getElementById("popupMain").classList.toggle("badgesExpanded");
@@ -298,6 +300,33 @@ window.onload = () => {
     }
   }
 
+  document.getElementById("closeMessaging").addEventListener("click", () => { // closes messaging system
+    document.getElementById("messaging").classList.remove("show");
+    document.getElementById("menuPanel").classList.remove("hide");
+  });
+
+  document.getElementById("messagingReason").addEventListener("change", () => { // closes messaging system
+    const messagingReason = document.getElementById("messagingReason").option;
+    let messagePrefill;
+    switch (messagingReason) {
+      case "This should be a shop":
+        messagePrefill = "";
+        break;
+      case "No shop rating":
+        messagePrefill = "";
+        break;
+      case "Incorrect shop name":
+        messagePrefill = "";
+        break;
+      case "Other":
+        messagePrefill = "";
+        break;
+      default:
+        messagePrefill = "";
+    }
+    document.getElementById("messageContent").value = messagePrefill;
+  });
+
   document.getElementById("visitWebsite").addEventListener("click", () => {
     // VisitedWebsite analytics event
   });
@@ -323,33 +352,37 @@ function fadeLongURL() {
 }
 
 function somethingWrong() {
-  const query = { active: true, currentWindow: true };
-  chrome.tabs.query(query, (tabs) => {
-    const currentTab = tabs[0];
-    const fetchUrlFeedback = "https://ethicli.com/feedback";
-    const fetchData = {
-      url: currentTab.url
-    };
-    const fetchParams = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(fetchData)
-    };
-    fetch(fetchUrlFeedback, fetchParams);
+  document.getElementById("messaging").classList.add("show");
+  document.body.style = "height:" + HEIGHT_MESSAGING + "px;";
+  document.getElementById("menuPanel").classList.add("hide");
 
-    // Pulls and sets email
-    document.getElementById("sendEmail").href = sendEmail();
+  // const query = { active: true, currentWindow: true };
+  // chrome.tabs.query(query, (tabs) => {
+  //   const currentTab = tabs[0];
+  //   const fetchUrlFeedback = "https://ethicli.com/feedback";
+  //   const fetchData = {
+  //     url: currentTab.url
+  //   };
+  //   const fetchParams = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(fetchData)
+  //   };
+  //   fetch(fetchUrlFeedback, fetchParams);
 
-    function sendEmail() {
-      const emailUrl = "mailto:hello@ethicli.com?subject=Error%20With%20Current%20Website%20&body=Error%20with%20the%20following%20page:%20"
-        + currentTab.url + "%0d%0aPlease%20let%20us%20know%20what%20is%20wrong%20below.";
-      chrome.tabs.create({ url: emailUrl }, (tab) => {
-        setTimeout(() => {
-          chrome.tabs.remove(tab.id);
-        }, 500);
-      });
-    }
-  });
+  //   // Pulls and sets email
+  //   document.getElementById("sendEmail").href = sendEmail();
+
+  //   function sendEmail() {
+  //     const emailUrl = "mailto:hello@ethicli.com?subject=Error%20With%20Current%20Website%20&body=Error%20with%20the%20following%20page:%20"
+  //       + currentTab.url + "%0d%0aPlease%20let%20us%20know%20what%20is%20wrong%20below.";
+  //     chrome.tabs.create({ url: emailUrl }, (tab) => {
+  //       setTimeout(() => {
+  //         chrome.tabs.remove(tab.id);
+  //       }, 500);
+  //     });
+  //   }
+  // });
 }
