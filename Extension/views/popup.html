@@ -18,12 +18,33 @@
         <p id="sitename">Shop: <span id="siteurlcontainer"><span id="siteurl"></span></span></p>
         <div id="menuPanel">
             <div id="menuBacking"></div>
-            <button class="tooltip" id="somethingWrong">
-                <a id="sendEmail" target="_blank">Something Looks Wrong</a>
-                <span class="tooltiptext" id="somethingWrongTip">If a new tab doesn’t open after pressing this button, please tell us the issue at hello@ethicli.com instead.</span>
-            </button>
-            <button id="visitWebsite"><a href="https://ethicli.com" target="_blank">Ethicli Website</a></button>
-            <button><span id="watchTutorial">Watch Tutorial</span></button>
+            <span>
+                <button class="tooltip" id="somethingWrong">
+                    <a id="sendEmail" target="_blank">Something Looks Wrong</a>
+                    <span class="tooltiptext" id="somethingWrongTip">If a new tab doesn’t open after pressing this button, please tell us the issue at hello@ethicli.com instead.</span>
+                </button>
+                <button id="visitWebsite"><a href="https://ethicli.com" target="_blank">Ethicli Website</a></button>
+                <button><span id="watchTutorial">Watch Tutorial</span></button>
+            </span>
+            <span>
+                <form id="messaging">
+                    <h3>Something looks Wrong</h3>
+                    <p>If you leave your email, we will send you a personalized response.</p>
+                    <label for="uemail">Your Email:</label><input type="text" id="uemail" name="uemail">
+                    <label for="umessage">Message:</label><input type="text" id="umessage" name="umessage">
+                    <input type="submit" value="Submit">
+                </form>
+                <span id="messageSubmitted">
+                    <h3>Thank you for your message!</h3>
+                    <p><span id="withemail">We will send an email to <span id="uemail"></span> and will get back to you as soon as possible. </span>Hope you have a good day!</p>
+                    <img src="../images/happyplantdude.svg" alt="Happy Plant Dude">
+                </span>
+                <span id="messageFailed">
+                    <h3>Hmm... Something went wrong, and the message couldn't be sent.</h3>
+                    <p>Please try again, and if it still doesn't work, please send us an email at <a href="mailto:hello@ethicli.com?subject=Ethicli Inquiry" target="_blank">hello@ethicli.com</a> with your request!</p>
+                    <img src="../images/sadplantdude.svg" alt="Sad Plant Guy" id="sadplantdude">
+                </span>
+            </span>
         </div>
 
         <div id="tutorial">
