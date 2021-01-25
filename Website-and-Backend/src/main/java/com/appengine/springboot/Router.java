@@ -35,6 +35,11 @@ public class Router {
     return "shops";
   }
 
+  @RequestMapping(value = "/partners")
+  public String getPartners() {
+    return "partners";
+  }
+
   @RequestMapping(value = "/about")
   public String getAbout() {
     return "about";

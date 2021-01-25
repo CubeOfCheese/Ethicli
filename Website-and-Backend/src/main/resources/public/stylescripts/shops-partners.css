@@ -1,33 +1,33 @@
+#shops section
 #partners section {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
+#shops article,
 #partners article {
     position: relative;
     margin-bottom: 16px;
     background: #C9D4C6;
     padding: 24px 24px 48px 24px;
     border-radius: 20px;
-    width: 49%;
+    width: 48.5%;
     font-size: 14px;
 }
 
-#index #partners article:nth-child(4),
-#index #partners article:nth-child(5) {
-    width: 49%;
+#shops article:nth-child(odd),
+#partners article:nth-child(odd){
+    margin-right: 2%;
 }
 
-#index #partners article {
-    width: 31%;
-    margin-bottom: 24px;
-}
-
+#shops section,
 #partners section {
     display: flex;
     flex-wrap: wrap;
 }
 
+#shops article span,
 #partners article span {
     display: block;
     position: relative;
@@ -38,25 +38,31 @@
     overflow: hidden;
 }
 
-#partners article span img {
+#shops article span img {
     width: 100%;
     margin-top: -20%;
 }
 
-#partners #girlfriendCollective span img,
-#partners #tentree span img {
+#partners article span img {
+    width: 100%;
+    margin-top: -50%;
+    position:absolute;
+    margin:auto;
+    top:0;
+    bottom:0;
+}
+
+#shops #girlfriendCollective span img,
+#shops #tentree span img {
     width: 100%;
     margin-top: -50%;
 }
  
-#partners #uncommonGoods span img {
+#shops #uncommonGoods span img {
     margin-top: 0;
 } 
 
-#index #partners article span img {
-    margin-top: 0%;
-}
-
+#shops .readmore a,
 #partners .readmore a {
     background: #2B6589;
 }
@@ -64,52 +70,46 @@
 /*** Queries *****************************************************/
 
 @media screen and (max-width: 870px) {
+    #shops article span,
     #partners article span {
         height: 172px;
     }
 }
 
 @media screen and (max-width: 768px) {
+    #shops section,
     #partners section {
         flex-direction: column;
     }
-    #partners article, #index #partners article {
+    #index #shops article {
         width: 100%;
         margin-bottom: 24px;
     }
+    #shops article,
     #partners article {
+        width: 100%;
         margin-bottom: 24px;
     }
-    #index #partners article:nth-child(4),
-    #index #partners article:nth-child(5){
-        width: 100%;
-    }
+    #shops article span,
     #partners article span {
         height: 200px;
     }
-    #index #partners #girlfriendCollective span img,
-    #partners #girlfriendCollective span img,
-    #index #partners #tentree span img,
-    #partners #tentree span img {
-        margin-top: -55%;
-    }
-    #index #partners article span img, 
-    #partners #madeTrade span img {
+    #shops #madeTrade span img {
         margin-top: -30%;
     }
-    #partners #uncommonGoods span img {
+    #shops #uncommonGoods span img {
         margin-top: -50%;
     }
 }
 
 @media screen and (max-width: 450px) {
-    #partners #madeTrade span img, 
-    #partners #uncommonGoods span img,
-    #partners #pela span img {
+    #shops #madeTrade span img, 
+    #shops #uncommonGoods span img,
+    #shops #pela span img {
         margin-top: -20%;
     }
     
-    #partners #tentree span img {
+    #shops #tentree span img {
         margin-top: -30%;
     }
 }

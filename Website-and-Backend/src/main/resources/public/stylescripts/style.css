@@ -282,7 +282,7 @@ header {
     min-height: 768px;
 }
 
-#privacy header, #partners header, #faq header, #press header, #uninstall header {
+#privacy header, #shops header, #partners header, #faq header, #press header, #uninstall header {
     min-height: 200px;
     padding-top: 24px;
 }
@@ -409,12 +409,12 @@ footer p {
 
 /*** News and Featured Sections *****************************************************/
 
-#partners section, #news section, #featured section {
+#news section, #featured section {
     display: flex;
     justify-content: space-between;
 }
 
-#partners article, #news article, #featured article {
+#news article, #featured article {
     position: relative;
     background: #FFFCF2;
     padding: 24px 24px 48px 24px;
@@ -422,44 +422,9 @@ footer p {
     width: 49%;
 }
 
-#partners article, #news article {
+#news article {
     width: 31%;
     font-size: 14px;
-}
-
-#partners section {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#partners article {
-    width: 49%;
-    margin-bottom: 16px;
-    background: #C9D4C6;
-}
-
-#partners article span {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 200px;
-    margin-bottom: 16px;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-#partners article span img {
-    width: 100%;
-    margin-top: -50%;
-}
-
-#partners article:nth-child(2) span img {
-    margin-top: 0;
-} 
-
-#partners article:nth-child(3) span img,
-#partners article:nth-child(5) span img {
-    margin-top: -20%;
 }
 
 #featured article {
