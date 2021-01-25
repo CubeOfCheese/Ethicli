@@ -17,10 +17,13 @@ public class Business {
   private boolean chooseCrueltyFreeVegan;
   private boolean ethicalElephantCrueltyFree;
   private boolean ethicalElephantTestsOnAnimals;
+  private boolean greenPowerOrganizationWidePartner;
   private boolean leapingBunnyCertified;
   private boolean nativeOwnedBusiness;
+  private boolean notAddressingUyghur;
   private boolean pocOwnedBusiness;
   private boolean supportsBLM;
+  private boolean usesUyghurSlaveLabor;
   private boolean veganDotOrgCertified;
   private boolean wildlifeFriendlyCertified;
   private double animalsScore;
@@ -36,10 +39,12 @@ public class Business {
   private double overallScore;
   private double socialScore;
   private int bcorpCertYear;
+  private long greenPowerKwhPerYear;
   private String bcorpProfile;
   private String companyType;
   private String country;
   private String ethicalElephantType;
+  private String greenPowerDate;
   private String name;
   private String overallScoreDetails;
   private String supportsBLMContribution;
@@ -61,10 +66,13 @@ public class Business {
     this.chooseCrueltyFreeVegan = false;
     this.ethicalElephantCrueltyFree = false;
     this.ethicalElephantTestsOnAnimals = false;
+    this.greenPowerOrganizationWidePartner = false;
     this.leapingBunnyCertified = false;
     this.nativeOwnedBusiness = false;
+    this.notAddressingUyghur = false;
     this.pocOwnedBusiness = false;
     this.supportsBLM = false;
+    this.usesUyghurSlaveLabor = false;
     this.veganDotOrgCertified = false;
     this.wildlifeFriendlyCertified = false;
     this.animalsScore = 0;
@@ -80,10 +88,12 @@ public class Business {
     this.overallScore = 0;
     this.socialScore = 0;
     this.bcorpCertYear = 0;
+    this.greenPowerKwhPerYear = 0;
     this.bcorpProfile = "";
     this.companyType = "";
     this.country = "";
     this.ethicalElephantType = "";
+    this.greenPowerDate = "";
     this.name = "";
     this.overallScoreDetails = "";
     this.supportsBLMContribution = "";
@@ -105,6 +115,7 @@ public class Business {
     String bcorpProfile,
     boolean blackOwnedBusiness,
     String ethicalElephantType,
+    String greenPowerDate,
     boolean nativeOwnedBusiness,
     boolean pocOwnedBusiness,
     boolean supportsBLM,
@@ -117,6 +128,7 @@ public class Business {
     double bcorpScore,
     double bcorpWorkerScore,
     double goodOnYouScore,
+    long greenPowerKwhPerYear,
     double greenPowerPercentage,
     boolean betterCottonMember, // Boolean Data for Calculation:
     boolean bcorpCertified,
@@ -126,7 +138,10 @@ public class Business {
     boolean chooseCrueltyFreeVegan,
     boolean ethicalElephantCrueltyFree,
     boolean ethicalElephantTestsOnAnimals,
+    boolean greenPowerOrganizationWidePartner,
     boolean leapingBunnyCertified,
+    boolean notAddressingUyghur,
+    boolean usesUyghurSlaveLabor,
     boolean veganDotOrgCertified,
     boolean wildlifeFriendlyCertified,
     String[] animalScoreSource, // Business Info:
@@ -147,6 +162,7 @@ public class Business {
     this.bcorpProfile = bcorpProfile;
     this.blackOwnedBusiness = blackOwnedBusiness;
     this.ethicalElephantType = ethicalElephantType;
+    this.greenPowerDate = greenPowerDate;
     this.nativeOwnedBusiness = nativeOwnedBusiness;
     this.pocOwnedBusiness = pocOwnedBusiness;
     this.supportsBLM = supportsBLM;
@@ -159,6 +175,7 @@ public class Business {
     this.bcorpGovernanceScore = bcorpGovernanceScore;
     this.bcorpWorkerScore = bcorpWorkerScore;
     this.goodOnYouScore = goodOnYouScore;
+    this.greenPowerKwhPerYear = greenPowerKwhPerYear;
     this.greenPowerPercentage = greenPowerPercentage;
     this.betterCottonMember = betterCottonMember;
     this.bcorpCertified = bcorpCertified;
@@ -168,7 +185,10 @@ public class Business {
     this.chooseCrueltyFreeVegan = chooseCrueltyFreeVegan;
     this.ethicalElephantCrueltyFree = ethicalElephantCrueltyFree;
     this.ethicalElephantTestsOnAnimals = ethicalElephantTestsOnAnimals;
+    this.greenPowerOrganizationWidePartner = greenPowerOrganizationWidePartner;
     this.leapingBunnyCertified = leapingBunnyCertified;
+    this.notAddressingUyghur = notAddressingUyghur;
+    this.usesUyghurSlaveLabor = usesUyghurSlaveLabor;
     this.veganDotOrgCertified = veganDotOrgCertified;
     this.wildlifeFriendlyCertified = wildlifeFriendlyCertified;
     this.animalScoreSource = animalScoreSource;
@@ -181,6 +201,46 @@ public class Business {
     this.laborScore = laborScore;
     this.socialScore = socialScore;
     this.overallScore = overallScore;
+  }
+
+  public boolean isGreenPowerOrganizationWidePartner() {
+    return greenPowerOrganizationWidePartner;
+  }
+
+  public void setGreenPowerOrganizationWidePartner(boolean greenPowerOrganizationWidePartner) {
+    this.greenPowerOrganizationWidePartner = greenPowerOrganizationWidePartner;
+  }
+
+  public long getGreenPowerKwhPerYear() {
+    return greenPowerKwhPerYear;
+  }
+
+  public void setGreenPowerKwhPerYear(long greenPowerKwhPerYear) {
+    this.greenPowerKwhPerYear = greenPowerKwhPerYear;
+  }
+
+  public String getGreenPowerDate() {
+    return greenPowerDate;
+  }
+
+  public void setGreenPowerDate(String greenPowerDate) {
+    this.greenPowerDate = greenPowerDate;
+  }
+
+  public boolean isNotAddressingUyghur() {
+    return notAddressingUyghur;
+  }
+
+  public void setNotAddressingUyghur(boolean notAddressingUyghur) {
+    this.notAddressingUyghur = notAddressingUyghur;
+  }
+
+  public boolean isUsesUyghurSlaveLabor() {
+    return usesUyghurSlaveLabor;
+  }
+
+  public void setUsesUyghurSlaveLabor(boolean usesUyghurSlaveLabor) {
+    this.usesUyghurSlaveLabor = usesUyghurSlaveLabor;
   }
 
   public boolean isBetterCottonMember() {
@@ -531,23 +591,29 @@ public class Business {
     boolean update = true;
     if (business.getWebsite() != null && this.website != null) {
       if (!(business.getWebsite().contains(this.website)
-          || this.website.contains(business.getWebsite()))) {
+        || this.website.contains(business.getWebsite()))) {
         update = false;
       }
     }
     if (update) {
+      if (!this.greenPowerOrganizationWidePartner) {
+        this.greenPowerOrganizationWidePartner = business.isGreenPowerOrganizationWidePartner();
+      }
+      if (this.greenPowerKwhPerYear == 0) {
+        this.greenPowerKwhPerYear = business.getGreenPowerKwhPerYear();
+      }
+      if (this.greenPowerDate.equals("")) {
+        this.greenPowerDate = business.greenPowerDate;
+      }
       if (this.country.equals("")) {
         this.country = business.getCountry();
       }
-
       if (!this.betterCottonMember) {
         this.betterCottonMember = business.isBetterCottonMember();
       }
-
       if (this.id == null) {
         this.id = business.getId();
       }
-
       if (!this.bcorpCertified) {
         this.bcorpCertified = business.isBcorpCertified();
       }
@@ -578,8 +644,14 @@ public class Business {
       if (!this.nativeOwnedBusiness) {
         this.nativeOwnedBusiness = business.isNativeOwnedBusiness();
       }
+      if (!this.notAddressingUyghur) {
+        this.notAddressingUyghur = business.isNotAddressingUyghur();
+      }
       if (!this.pocOwnedBusiness) {
         this.pocOwnedBusiness = business.isPocOwnedBusiness();
+      }
+      if (!this.usesUyghurSlaveLabor) {
+        this.usesUyghurSlaveLabor = business.isUsesUyghurSlaveLabor();
       }
       if (!this.supportsBLM) {
         this.supportsBLM = business.isSupportsBLM();
@@ -677,219 +749,272 @@ public class Business {
     }
   }
 
+  private void calculateAnimalScore() {
+    // Mean scores based on number of animal factors (0 - 10):
+    double testsOnAnimalsNoFactors = 3;
+    double testsOnAnimalsWithFactors = .55;
+    double oneFactorAnimal = 6;
+    double twoFactorAnimal = 8;
+    double threeFactorAnimal = 9;
+    double fourFactorAnimal = 9.5;
+    double fiveFactorAnimal = 9.75;
+    double rangeAnimal = 1;
+    // Weights for Animal Factors (1 - 10):
+    double ethicalElephantCrueltyFreeVeganWeight = 9;
+    double veganDotOrgCertifiedWeight = 9;
+    double chooseCrueltyFreeVeganWeight = 9;
+    double ethicalElephantCrueltyFreeVeganOptionsWeight = 8.5;
+    double ethicalElephantCrueltyFreeWeight = 8;
+    double leapingBunnyWeight = 8;
+    double certifiedHumaneWeight = 7;
+    double chooseCrueltyFreeWeight = 7;
+    double numberOfFactorsAnimal = 5;
+    double veganHandicap = 2;
+    // Animal Factor Switches (Tells the Positive Factor loop if a factor has been used yet):
+    boolean ethicalElephantCrueltyFreeVeganSwitch = true;
+    boolean veganDotOrgCertifiedSwitch = true;
+    boolean chooseCrueltyFreeVeganSwitch = true;
+    boolean ethicalElephantCrueltyFreeVeganOptionsSwitch = true;
+    boolean ethicalElephantCrueltyFreeSwitch = true;
+    boolean leapingBunnySwitch = true;
+    boolean certifiedHumaneSwitch = true;
+    boolean chooseCrueltyFreeSwitch = true;
+    // Animal Calculation Variables:
+    double[] scoreGuideAnimal = {
+      oneFactorAnimal,
+      twoFactorAnimal - oneFactorAnimal,
+      threeFactorAnimal - twoFactorAnimal,
+      fourFactorAnimal - threeFactorAnimal,
+      fiveFactorAnimal - fourFactorAnimal
+    };
+    double cumulativeAnimalScore = 0;
+    double animalFactors = 0;
+    double animalWeightMean =
+      (certifiedHumaneWeight
+        + veganDotOrgCertifiedWeight
+        + ((ethicalElephantCrueltyFreeVeganWeight
+        + ethicalElephantCrueltyFreeVeganOptionsWeight
+        + ethicalElephantCrueltyFreeWeight)
+        / 3)
+        + ((chooseCrueltyFreeVeganWeight + chooseCrueltyFreeVeganWeight) / 2)
+        + leapingBunnyWeight)
+        / numberOfFactorsAnimal;
+    // Animal Welfare - Positive Factors:
+    int animalFactorIndex = 0;
+    if (this.ethicalElephantType.equals("Vegan") || this.veganDotOrgCertified || this.chooseCrueltyFreeVegan) {
+      animalFactorIndex += veganHandicap;
+      for (int a = 0; a < veganHandicap; ++a) {
+        cumulativeAnimalScore += scoreGuideAnimal[a];
+      }
+    }
+    for (; animalFactorIndex < scoreGuideAnimal.length; ++animalFactorIndex) {
+      if (ethicalElephantCrueltyFreeVeganSwitch
+        && this.ethicalElephantCrueltyFree
+        && this.ethicalElephantType.equals("Vegan")) {
+        cumulativeAnimalScore +=
+          scoreGuideAnimal[animalFactorIndex]
+            - (rangeAnimal / 2)
+            + (rangeAnimal * (ethicalElephantCrueltyFreeVeganWeight / animalWeightMean) / 2);
+        ethicalElephantCrueltyFreeVeganSwitch = false;
+        ++animalFactors;
+      } else if (veganDotOrgCertifiedSwitch && this.veganDotOrgCertified) {
+        cumulativeAnimalScore +=
+          scoreGuideAnimal[animalFactorIndex]
+            - (rangeAnimal / 2)
+            + (rangeAnimal * (veganDotOrgCertifiedWeight / animalWeightMean) / 2);
+        veganDotOrgCertifiedSwitch = false;
+        ++animalFactors;
+      } else if (chooseCrueltyFreeVeganSwitch
+        && this.chooseCrueltyFreeCertified
+        && this.chooseCrueltyFreeVegan) {
+        cumulativeAnimalScore +=
+          scoreGuideAnimal[animalFactorIndex]
+            - (rangeAnimal / 2)
+            + (rangeAnimal * (chooseCrueltyFreeVeganWeight / animalWeightMean) / 2);
+        chooseCrueltyFreeVeganSwitch = false;
+        ++animalFactors;
+      } else if (ethicalElephantCrueltyFreeVeganOptionsSwitch
+        && this.ethicalElephantCrueltyFree
+        && this.ethicalElephantType.equals("Vegan Options")) {
+        cumulativeAnimalScore +=
+          scoreGuideAnimal[animalFactorIndex]
+            - (rangeAnimal / 2)
+            + (rangeAnimal
+            * (ethicalElephantCrueltyFreeVeganOptionsWeight / animalWeightMean)
+            / 2);
+        ethicalElephantCrueltyFreeVeganOptionsSwitch = false;
+        ++animalFactors;
+      } else if (ethicalElephantCrueltyFreeSwitch
+        && this.ethicalElephantCrueltyFree
+        && this.ethicalElephantType.equals("")) {
+        cumulativeAnimalScore +=
+          scoreGuideAnimal[animalFactorIndex]
+            - (rangeAnimal / 2)
+            + (rangeAnimal * (ethicalElephantCrueltyFreeWeight / animalWeightMean) / 2);
+        ethicalElephantCrueltyFreeSwitch = false;
+        ++animalFactors;
+      } else if (leapingBunnySwitch && this.leapingBunnyCertified) {
+        cumulativeAnimalScore +=
+          scoreGuideAnimal[animalFactorIndex]
+            - (rangeAnimal / 2)
+            + (rangeAnimal * (leapingBunnyWeight / animalWeightMean) / 2);
+        leapingBunnySwitch = false;
+        ++animalFactors;
+      } else if (certifiedHumaneSwitch && this.certifiedHumane) {
+        cumulativeAnimalScore +=
+          scoreGuideAnimal[animalFactorIndex]
+            - (rangeAnimal / 2)
+            + (rangeAnimal * (certifiedHumaneWeight / animalWeightMean) / 2);
+        certifiedHumaneSwitch = false;
+        ++animalFactors;
+      } else if (chooseCrueltyFreeSwitch
+        && this.chooseCrueltyFreeCertified
+        && !this.chooseCrueltyFreeVegan) {
+        cumulativeAnimalScore +=
+          scoreGuideAnimal[animalFactorIndex]
+            - (rangeAnimal / 2)
+            + (rangeAnimal * (chooseCrueltyFreeWeight / animalWeightMean) / 2);
+        chooseCrueltyFreeSwitch = false;
+        ++animalFactors;
+      } else {
+        animalFactorIndex = scoreGuideAnimal.length;
+      }
+    }
+    // Animal Welfare - Negative Factors:
+    if (this.ethicalElephantTestsOnAnimals) {
+      if (cumulativeAnimalScore == 0) {
+        cumulativeAnimalScore = testsOnAnimalsNoFactors;
+      } else {
+        for (int a = 0; a < animalFactors; ++a) {
+          testsOnAnimalsWithFactors = Math.sqrt(testsOnAnimalsWithFactors);
+        }
+        cumulativeAnimalScore -= testsOnAnimalsWithFactors;
+      }
+    }
+    this.animalsScore = Math.min(cumulativeAnimalScore, 10);
+  }
+
+  private void calculateEnvironmentScore() {
+    // Mean scores based on number of animal factors (0 - 10):
+    final double BCORP_ENVIRORNMENT_MEAN = 17.8; // Mean of all bcorpWorkerScore data
+    final double GREEN_POWER_MAX = 200;
+    final double GREEN_POWER_SKEW = 0.5;
+    double oneFactorEnvironment = 6;
+    double twoFactorEnvironment = 8;
+    double threeFactorEnvironment = 9;
+    double fourFactorEnvironment = 9.5;
+    double fiveFactorEnvironment = 9.75;
+    // Ranges determine the amount scores can fluctuate from their base score
+    double environmentRange = 1;
+    double bCorpRange = 4;
+    double greenPowerRange = 3;
+    // Weights for Environment Factors (1 - 10):
+    double bCorpEnvWeight = 9;
+    double bluesignWeight = 8;
+    double greenPowerWeight = 7;
+    double betterCottonWeight = 2;
+    // Environment Factor Switches (Tells the Positive Factor loop if a factor has been used yet):
+    boolean bluesignSwitch = true;
+    boolean greenPowerSwitch = true;
+    boolean bCorpEnvSwitch = true;
+    boolean betterCottonSwitch = true;
+    // Environment Calculation Variables:
+    double numberOfFactorsEnvironment = 4;
+    double environmentHandicap = 2;
+    double[] scoreGuideEnvironment = {
+      oneFactorEnvironment,
+      twoFactorEnvironment - oneFactorEnvironment,
+      threeFactorEnvironment - twoFactorEnvironment,
+      fourFactorEnvironment - threeFactorEnvironment,
+      fiveFactorEnvironment - fourFactorEnvironment
+    };
+    double cumulativeEnvironmentScore = 0;
+    double environmentWeightMean =
+      (bluesignWeight + greenPowerWeight + bCorpEnvWeight + betterCottonWeight)
+        / numberOfFactorsEnvironment;
+    // Environment - Positive Factors:
+    int environmentFactorIndex = 0;
+    if (this.bluesignPartner) {
+      environmentFactorIndex += environmentHandicap;
+      for (int a = 0; a < environmentHandicap; ++a) {
+        cumulativeEnvironmentScore += scoreGuideEnvironment[a];
+      }
+    }
+    for (; environmentFactorIndex < scoreGuideEnvironment.length; ++environmentFactorIndex) {
+      if (bCorpEnvSwitch && this.bcorpEnvironmentScore != 0) {
+        cumulativeEnvironmentScore +=
+          scoreGuideEnvironment[environmentFactorIndex]
+            - (environmentRange / 2)
+            + (environmentRange * (bCorpEnvWeight / environmentWeightMean) / 2);
+        cumulativeEnvironmentScore +=
+            + (bCorpRange * (this.bcorpEnvironmentScore / BCORP_ENVIRORNMENT_MEAN) / 2);
+        bCorpEnvSwitch = false;
+      } else if (bluesignSwitch && this.bluesignPartner) {
+        cumulativeEnvironmentScore +=
+          scoreGuideEnvironment[environmentFactorIndex]
+            - (environmentRange / 2)
+            + (environmentRange * (bluesignWeight / environmentWeightMean) / 2);
+        bluesignSwitch = false;
+      } else if (greenPowerSwitch && this.greenPowerPercentage != 0) {
+        cumulativeEnvironmentScore +=
+          scoreGuideEnvironment[environmentFactorIndex]
+            - (environmentRange / 2)
+            + (environmentRange * (greenPowerWeight / environmentWeightMean) / 2);
+        double greenPowerCapped = Math.min(this.greenPowerPercentage, GREEN_POWER_MAX) / 100;
+        cumulativeEnvironmentScore +=
+          - (greenPowerRange / 2) + GREEN_POWER_SKEW
+          + (greenPowerRange * greenPowerCapped / 2);
+          greenPowerSwitch = false;
+      } else if (betterCottonSwitch && this.betterCottonMember) {
+        cumulativeEnvironmentScore +=
+          scoreGuideEnvironment[environmentFactorIndex]
+            - (environmentRange / 2)
+            + (environmentRange * (betterCottonWeight / environmentWeightMean) / 2);
+        betterCottonSwitch = false;
+      } else {
+        environmentFactorIndex = scoreGuideEnvironment.length;
+      }
+    }
+    this.environmentScore = Math.min(cumulativeEnvironmentScore, 10);
+  }
+
+  private void calculateLaborScore() {
+    // Labor Practice Score
+    double laborImpactScore = 0;
+    final double BCORP_LABOR_MEAN = 20.8;
+    int laborImpactFactors = 0;
+    if (this.bcorpWorkerScore != 0) {
+      ++laborImpactFactors;
+      // Turns bcorpWorkerScore into a 0 - 10 score in which an average score would earn a 7.5
+      laborImpactScore += ((this.bcorpWorkerScore / BCORP_LABOR_MEAN) * 7.5);
+    }
+    if (laborImpactScore != 0) {
+      this.laborScore = laborImpactScore / laborImpactFactors;
+    }
+    this.laborScore = Math.min(this.laborScore, 10);
+  }
+
+  private void calculateSocialScore() {
+    double socialImpactScore = 0;
+    final double BCORP_SOCIAL_MEAN = 30.5;
+    int socialImpactFactors = 0;
+    if (this.bcorpCommunityScore != 0) {
+      ++socialImpactFactors;
+      // Turns bcorpCommunityScore into a 0 - 10 score in which an average score would earn a 7.5
+      socialImpactScore += ((this.bcorpCommunityScore / BCORP_SOCIAL_MEAN) * 7.5);
+    }
+    if (socialImpactScore != 0) {
+      this.socialScore = socialImpactScore / socialImpactFactors;
+    }
+    this.socialScore = Math.min(this.socialScore, 10);
+  }
+
   public void calculate() {
     if (this.overallScore == 0) {
-      // Environmental Impact Score
-      double environmentalImpactScore = 0;
-      final double BCORP_ENVIRORNMENT_MEAN = 17.8; // Mean of all bcorpWorkerScore data
-      int environmentalImpactFactors = 0;
-      if (this.greenPowerPercentage != 0) {
-        ++environmentalImpactFactors;
-        environmentalImpactScore += (5 + ((this.greenPowerPercentage / 100) * 2.5));
-      }
-      if (this.bcorpEnvironmentScore != 0) {
-        ++environmentalImpactFactors;
-        // Turns bcorpEnvironmentScore into a 0 - 10 score in which an average score would earn a
-        // 7.5
-        environmentalImpactScore += ((this.bcorpEnvironmentScore / BCORP_ENVIRORNMENT_MEAN) * 7.5);
-      }
-      if (bluesignPartner) {
-        if (environmentalImpactFactors == 0) {
-          ++environmentalImpactFactors;
-          environmentalImpactScore += 7.5;
-        } else {
-          environmentalImpactScore += environmentalImpactFactors;
-        }
-      }
-      if (environmentalImpactScore != 0 && environmentalImpactFactors != 0) {
-        this.environmentScore = environmentalImpactScore / environmentalImpactFactors;
-      }
-      if (this.environmentScore > 9.5) {
-        this.environmentScore = 9.5;
-      }
-      // Labor Practice Score
-      double laborImpactScore = 0;
-      final double BCORP_LABOR_MEAN = 20.8;
-      int laborImpactFactors = 0;
-      if (this.bcorpWorkerScore != 0) {
-        ++laborImpactFactors;
-        // Turns bcorpWorkerScore into a 0 - 10 score in which an average score would earn a 7.5
-        laborImpactScore += ((this.bcorpWorkerScore / BCORP_LABOR_MEAN) * 7.5);
-      }
-      if (laborImpactScore != 0 && laborImpactFactors != 0) {
-        this.laborScore = laborImpactScore / laborImpactFactors;
-      }
-      if (this.laborScore > 9.5) {
-        this.laborScore = 9.5;
-      }
-
-      // Social Score
-      double socialImpactScore = 0;
-      final double BCORP_SOCIAL_MEAN = 30.5;
-      int socialImpactFactors = 0;
-      if (this.bcorpCommunityScore != 0) {
-        ++socialImpactFactors;
-        // Turns bcorpCommunityScore into a 0 - 10 score in which an average score would earn a 7.5
-        socialImpactScore += ((this.bcorpCommunityScore / BCORP_SOCIAL_MEAN) * 7.5);
-      }
-      if (socialImpactScore != 0 && socialImpactFactors != 0) {
-        this.socialScore = socialImpactScore / socialImpactFactors;
-      }
-      if (this.socialScore > 9.5) {
-        this.socialScore = 9.5;
-      }
-
-      // Animal Welfare Score
-      // Mean scores based on number of animal factors (0 - 10):
-      double testsOnAnimalsNoFactors = 3;
-      double testsOnAnimalsWithFactors = .55;
-      double oneFactorAnimal = 6;
-      double twoFactorAnimal = 8;
-      double threeFactorAnimal = 9;
-      double fourFactorAnimal = 9.5;
-      double fiveFactorAnimal = 9.75;
-      double rangeAnimal = 1;
-      // Weights for Animal Factors (1 - 10):
-      double ethicalElephantCrueltyFreeVeganWeight = 9;
-      double veganDotOrgCertifiedWeight = 9;
-      double chooseCrueltyFreeVeganWeight = 9;
-      double ethicalElephantCrueltyFreeVeganOptionsWeight = 8.5;
-      double ethicalElephantCrueltyFreeWeight = 8;
-      double leapingBunnyWeight = 8;
-      double certifiedHumaneWeight = 7;
-      double chooseCrueltyFreeWeight = 7;
-      double numberOfFactorsAnimal = 5;
-      double veganHandicap = 2;
-      // Animal Factor Switches (Tells the Positive Factor loop if a factor has been used yet):
-      boolean ethicalElephantCrueltyFreeVeganSwitch = true;
-      boolean veganDotOrgCertifiedSwitch = true;
-      boolean chooseCrueltyFreeVeganSwitch = true;
-      boolean ethicalElephantCrueltyFreeVeganOptionsSwitch = true;
-      boolean ethicalElephantCrueltyFreeSwitch = true;
-      boolean leapingBunnySwitch = true;
-      boolean certifiedHumaneSwitch = true;
-      boolean chooseCrueltyFreeSwitch = true;
-      // Animal Calculation Variables:
-      double[] scoreGuideAnimal = {
-          oneFactorAnimal,
-          twoFactorAnimal - oneFactorAnimal,
-          threeFactorAnimal - twoFactorAnimal,
-          fourFactorAnimal - threeFactorAnimal,
-          fiveFactorAnimal - fourFactorAnimal
-      };
-      double cumulativeAnimalScore = 0;
-      double animalFactors = 0;
-      double animalWeightMean =
-          (certifiedHumaneWeight
-              + veganDotOrgCertifiedWeight
-              + ((ethicalElephantCrueltyFreeVeganWeight
-              + ethicalElephantCrueltyFreeVeganOptionsWeight
-              + ethicalElephantCrueltyFreeWeight)
-              / 3)
-              + ((chooseCrueltyFreeVeganWeight + chooseCrueltyFreeVeganWeight) / 2)
-              + leapingBunnyWeight)
-              / numberOfFactorsAnimal;
-
-      // Animal Welfare - Positive Factors:
-      int animalFactorIndex = 0;
-      if (this.ethicalElephantType.equals("Vegan") || this.veganDotOrgCertified || this.chooseCrueltyFreeVegan) {
-        animalFactorIndex += veganHandicap;
-        for (int a = 0; a < veganHandicap; ++a) {
-          cumulativeAnimalScore += scoreGuideAnimal[a];
-        }
-      }
-      for (; animalFactorIndex < scoreGuideAnimal.length; ++animalFactorIndex) {
-        if (ethicalElephantCrueltyFreeVeganSwitch
-            && this.ethicalElephantCrueltyFree
-            && this.ethicalElephantType.equals("Vegan")) {
-          cumulativeAnimalScore +=
-              scoreGuideAnimal[animalFactorIndex]
-                  - (rangeAnimal / 2)
-                  + (rangeAnimal * (ethicalElephantCrueltyFreeVeganWeight / animalWeightMean) / 2);
-          ethicalElephantCrueltyFreeVeganSwitch = false;
-          ++animalFactors;
-        } else if (veganDotOrgCertifiedSwitch && this.veganDotOrgCertified) {
-          cumulativeAnimalScore +=
-              scoreGuideAnimal[animalFactorIndex]
-                  - (rangeAnimal / 2)
-                  + (rangeAnimal * (veganDotOrgCertifiedWeight / animalWeightMean) / 2);
-          veganDotOrgCertifiedSwitch = false;
-          ++animalFactors;
-        } else if (chooseCrueltyFreeVeganSwitch
-            && this.chooseCrueltyFreeCertified
-            && this.chooseCrueltyFreeVegan) {
-          cumulativeAnimalScore +=
-              scoreGuideAnimal[animalFactorIndex]
-                  - (rangeAnimal / 2)
-                  + (rangeAnimal * (chooseCrueltyFreeVeganWeight / animalWeightMean) / 2);
-          chooseCrueltyFreeVeganSwitch = false;
-          ++animalFactors;
-        } else if (ethicalElephantCrueltyFreeVeganOptionsSwitch
-            && this.ethicalElephantCrueltyFree
-            && this.ethicalElephantType.equals("Vegan Options")) {
-          cumulativeAnimalScore +=
-              scoreGuideAnimal[animalFactorIndex]
-                  - (rangeAnimal / 2)
-                  + (rangeAnimal
-                  * (ethicalElephantCrueltyFreeVeganOptionsWeight / animalWeightMean)
-                  / 2);
-          ethicalElephantCrueltyFreeVeganOptionsSwitch = false;
-          ++animalFactors;
-        } else if (ethicalElephantCrueltyFreeSwitch
-            && this.ethicalElephantCrueltyFree
-            && this.ethicalElephantType.equals("")) {
-          cumulativeAnimalScore +=
-              scoreGuideAnimal[animalFactorIndex]
-                  - (rangeAnimal / 2)
-                  + (rangeAnimal * (ethicalElephantCrueltyFreeWeight / animalWeightMean) / 2);
-          ethicalElephantCrueltyFreeSwitch = false;
-          ++animalFactors;
-        } else if (leapingBunnySwitch && this.leapingBunnyCertified) {
-          cumulativeAnimalScore +=
-              scoreGuideAnimal[animalFactorIndex]
-                  - (rangeAnimal / 2)
-                  + (rangeAnimal * (leapingBunnyWeight / animalWeightMean) / 2);
-          leapingBunnySwitch = false;
-          ++animalFactors;
-        } else if (certifiedHumaneSwitch && this.certifiedHumane) {
-          cumulativeAnimalScore +=
-              scoreGuideAnimal[animalFactorIndex]
-                  - (rangeAnimal / 2)
-                  + (rangeAnimal * (certifiedHumaneWeight / animalWeightMean) / 2);
-          certifiedHumaneSwitch = false;
-          ++animalFactors;
-        } else if (chooseCrueltyFreeSwitch
-            && this.chooseCrueltyFreeCertified
-            && !this.chooseCrueltyFreeVegan) {
-          cumulativeAnimalScore +=
-              scoreGuideAnimal[animalFactorIndex]
-                  - (rangeAnimal / 2)
-                  + (rangeAnimal * (chooseCrueltyFreeWeight / animalWeightMean) / 2);
-          chooseCrueltyFreeSwitch = false;
-          ++animalFactors;
-        } else {
-          animalFactorIndex = scoreGuideAnimal.length;
-        }
-      }
-
-      // Animal Welfare - Negative Factors:
-      if (this.ethicalElephantTestsOnAnimals) {
-        if (cumulativeAnimalScore == 0) {
-          cumulativeAnimalScore = testsOnAnimalsNoFactors;
-        } else {
-          for (int a = 0; a < animalFactors; ++a) {
-            testsOnAnimalsWithFactors = Math.sqrt(testsOnAnimalsWithFactors);
-          }
-          cumulativeAnimalScore -= testsOnAnimalsWithFactors;
-        }
-      }
-
-      // Animal Welfare - Score:
-      if (cumulativeAnimalScore > 10) {
-        cumulativeAnimalScore = 10;
-      }
-      this.animalsScore = cumulativeAnimalScore;
-
+      calculateAnimalScore();
+      calculateEnvironmentScore();
+      calculateSocialScore();
+      calculateLaborScore();
       // Overall Score
       double overallImpactScore = 0;
       int overallImpactFactors = 0;
@@ -909,12 +1034,10 @@ public class Business {
         ++overallImpactFactors;
         overallImpactScore += this.animalsScore;
       }
-      if (overallImpactScore != 0 && overallImpactFactors != 0) {
+      if (overallImpactScore != 0) {
         this.overallScore = overallImpactScore / overallImpactFactors;
       }
-      if (this.overallScore > 9.5) {
-        this.overallScore = 9.5;
-      }
+      this.overallScore = Math.min(this.overallScore, 10);
     }
   }
 }

@@ -19,6 +19,9 @@ public class Advertisement {
   private double companyScore;
 
   public Advertisement() {
+    ProductTag emptyTag = new ProductTag();
+    ProductTag[] initialArray = {emptyTag};
+    this.productTags = initialArray;
   }
 
   public Advertisement(

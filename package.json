@@ -5,13 +5,13 @@
   "main": "index.js",
   "dependencies": {
     "eslint-plugin-jquery": "^1.5.1",
+    "snowpack": "^3.0.11",
     "tldts-experimental": "^5.6.80"
   },
   "devDependencies": {
     "eslint": "^7.16.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-config-jquery": "^3.0.0",
-    "rollup": "^2.35.1"
+    "eslint-config-jquery": "^3.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

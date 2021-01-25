@@ -1,4 +1,4 @@
-import { getDomainWithoutSuffix } from "../node_modules/tldts-experimental/dist/index.esm.min.js";
+import { getDomainWithoutSuffix } from "tldts-experimental";
 
 chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
 
