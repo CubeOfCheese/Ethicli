@@ -549,6 +549,13 @@ p, ul {
     opacity: 0.6;
 }
 
+.disclaimer {
+    line-height: 1.5em;
+    font-size: 0.85em;
+    opacity: 0.6;
+    max-width: 80%;
+}
+
 #press .basicbody ul li {
     list-style-type: circle;
     line-height: 1.5em;
@@ -730,6 +737,9 @@ button {
         display: block;
         margin: 81px auto 0 auto;
         width: 300px;
+    }
+    .disclaimer {
+        max-width: 100%;
     }
     .break2 {
         display: none;
