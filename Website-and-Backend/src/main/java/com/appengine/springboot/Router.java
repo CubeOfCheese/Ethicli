@@ -30,6 +30,11 @@ public class Router {
     return "privacy";
   }
 
+  @RequestMapping(value = "/shops")
+  public String getShops() {
+    return "shops";
+  }
+
   @RequestMapping(value = "/partners")
   public String getPartners() {
     return "partners";
