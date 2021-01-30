@@ -19,23 +19,20 @@
         <p id="sitename">Shop: <span id="siteurlcontainer"><span id="siteurl"></span></span></p>
         <div id="menuPanel">
             <div id="menuBacking"></div>
-            <button class="tooltip" id="somethingWrong">
-                <a id="sendEmail" target="_blank">Something Looks Wrong</a>
-                <span class="tooltiptext" id="somethingWrongTip">If a new tab doesn’t open after pressing this button, please tell us the issue at hello@ethicli.com instead.</span>
-            </button>
+            <button class="tooltip" id="somethingWrong"><a id="sendEmail">Report an Issue</a></button>
             <button id="visitWebsite"><a href="https://ethicli.com" target="_blank">Ethicli Website</a></button>
             <button><span id="watchTutorial">Watch Tutorial</span></button>
             <span id="messaging">
                 <span id="closeMessaging">x</span>
                 <span id="messagingForm">
                     <form>
-                        <h3>Something looks Wrong</h3>
+                        <h3>Report an Issue</h3>
                         <p>If you leave your email, we will send you a personalized response.</p>
                         <label for="messagingName">Your Name</label><input type="text" id="messagingName" name="messagingName">
                         <label for="messagingEmail">Your Email</label><input type="email" id="messagingEmail" name="messagingEmail">
-                        <label for="messagingReason">Your Name<span class="requiredField"> *</span></label>
-                            <input type="text" list="messagingReason" required>
-                            <datalist id="messagingReason">
+                        <label for="messagingReason">Category<span class="requiredField"> *</span></label>
+                            <input id="messagingReason" type="text" list="messageOptions" required>
+                            <datalist id="messageOptions">
                                 <option>This should be a shop</option>
                                 <option>No shop rating</option>
                                 <option>Incorrect shop name</option>
@@ -43,7 +40,7 @@
                             </datalist>
                         <label for="messageContent">Message<span class="requiredField"> *</span></label><textarea type="text" id="messageContent" name="messageContent" required></textarea>
                     </form>
-                    <input type="submit" value="Send Message">
+                    <input id="sendMessageButton" type="submit" value="Send Message">
                 </span>
                 <!-- <span id="messageSubmitted">
                     <h3>Thank you for your message!</h3>

@@ -211,8 +211,13 @@ window.onload = () => {
   });
 
   document.getElementById("somethingWrong").addEventListener("click", () => {
-    somethingWrong();
+    document.getElementById("messaging").classList.add("show");
+    document.body.style = "height:" + HEIGHT_MESSAGING + "px;";
+    document.getElementById("menuPanel").classList.add("hide");
     // SomethingWrong analytics event
+  });
+  document.getElementById("sendMessageButton").addEventListener("click", () => {
+    sendMessage();
   });
 
   if (document.getElementById("badgeDisplayer") !== null) {
@@ -300,31 +305,35 @@ window.onload = () => {
     }
   }
 
+  // --- Feedback ---------------------------------------------------------------------------
+
   document.getElementById("closeMessaging").addEventListener("click", () => { // closes messaging system
     document.getElementById("messaging").classList.remove("show");
     document.getElementById("menuPanel").classList.remove("hide");
   });
 
   document.getElementById("messagingReason").addEventListener("change", () => { // closes messaging system
-    const messagingReason = document.getElementById("messagingReason").option;
+    const messagingReason = document.getElementById("messagingReason").value;
     let messagePrefill;
     switch (messagingReason) {
       case "This should be a shop":
-        messagePrefill = "";
+        messagePrefill = "This should be a shop";
         break;
       case "No shop rating":
-        messagePrefill = "";
+        messagePrefill = "No shop rating";
         break;
       case "Incorrect shop name":
-        messagePrefill = "";
+        messagePrefill = "Incorrect shop name";
         break;
       case "Other":
-        messagePrefill = "";
+        messagePrefill = "Other";
         break;
       default:
         messagePrefill = "";
     }
-    document.getElementById("messageContent").value = messagePrefill;
+    if (document.getElementById("messageContent").value === "") {
+      document.getElementById("messageContent").value = messagePrefill;
+    }
   });
 
   document.getElementById("visitWebsite").addEventListener("click", () => {
@@ -351,17 +360,15 @@ function fadeLongURL() {
   });
 }
 
-function somethingWrong() {
-  document.getElementById("messaging").classList.add("show");
-  document.body.style = "height:" + HEIGHT_MESSAGING + "px;";
-  document.getElementById("menuPanel").classList.add("hide");
 
+function sendMessage() {
   // const query = { active: true, currentWindow: true };
   // chrome.tabs.query(query, (tabs) => {
   //   const currentTab = tabs[0];
   //   const fetchUrlFeedback = "https://ethicli.com/feedback";
   //   const fetchData = {
-  //     url: currentTab.url
+  //     url: currentTab.url,
+  //     message: userMessage
   //   };
   //   const fetchParams = {
   //     method: "POST",
@@ -371,18 +378,5 @@ function somethingWrong() {
   //     body: JSON.stringify(fetchData)
   //   };
   //   fetch(fetchUrlFeedback, fetchParams);
-
-  //   // Pulls and sets email
-  //   document.getElementById("sendEmail").href = sendEmail();
-
-  //   function sendEmail() {
-  //     const emailUrl = "mailto:hello@ethicli.com?subject=Error%20With%20Current%20Website%20&body=Error%20with%20the%20following%20page:%20"
-  //       + currentTab.url + "%0d%0aPlease%20let%20us%20know%20what%20is%20wrong%20below.";
-  //     chrome.tabs.create({ url: emailUrl }, (tab) => {
-  //       setTimeout(() => {
-  //         chrome.tabs.remove(tab.id);
-  //       }, 500);
-  //     });
-  //   }
   // });
 }
