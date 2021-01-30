@@ -1,13 +1,207 @@
-// for popup.html
+import { getDomainWithoutSuffix } from "tldts-experimental";
 
-chrome.runtime.sendMessage({ msgName: "isShoppingPage?" }, (response) => {
-  if (response.shoppingPage) {
-    chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, (ratingResponse) => {
-      const roundedOverall = ratingResponse.ethicliStats.overallScore.toFixed(1);
-      updateOverallToolTip(roundedOverall);
-    });
-  }
+let fullheight = 0;
+let hasSubscore;
+
+const HEIGHT_POPUP_OVERALLSCORE = 160;
+const HEIGHT_POPUP_VIEWDETAILS = 36;
+const HEIGHT_POPUP_SUBSCORE = 42;
+const HEIGHT_POPUP_SPONSOR = 174;
+
+window.addEventListener("load", () => {
+  // --- Extension Tooltip --------------------------------------------------------------------------
+  document.getElementById("overallScoreGroup").addEventListener("mouseenter", () => {
+    document.getElementById("overallScoreGroup").classList.add("showtip");
+  });
+  document.getElementById("overallScoreGroup").addEventListener("mouseleave", () => {
+    document.getElementById("overallScoreGroup").classList.remove("showtip");
+  });
+  
+  document.getElementById("scores").onmouseover = () => {
+    if (hasSubscore) {
+      document.getElementById("subscoreTip").style.left = (event.clientX - 30) + "px";
+      document.getElementById("subscoreTip").style.top = (event.clientY - 30) + "px";
+    } else {
+      document.getElementById("subscoreTip").style = "display:none;";
+    }
+  };
+
+  document.getElementById("badgeDisplayer").addEventListener("click", () => {
+    document.getElementById("popupMain").classList.toggle("badgesExpanded");
+    if (document.getElementById("popupMain").classList.contains("badgesExpanded")) {
+      document.getElementById("badgeDisplayerTooltip").textContent = "Click to return to score breakdowns";
+      document.getElementById("badgeIcon").src = "images/badge-dark.svg";
+    } else {
+      document.getElementById("badgeDisplayerTooltip").textContent = "Click to view expanded badges";
+      document.getElementById("badgeIcon").src = "images/badge.svg";
+    }
+  });
+}
+
+chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, (ratingResponse) => {
+  loadExtension(ratingResponse.ethicliStats);
+  const roundedOverall = ratingResponse.ethicliStats.overallScore.toFixed(1);
+  updateOverallToolTip(roundedOverall);
+  chrome.runtime.sendMessage({ msgName: "productIdentified?" }, (productResponse) => {
+    if (productResponse || ratingResponse.ethicliStats.overallScore > 0) {
+      loadSponsor(productResponse.productName, ratingResponse.ethicliStats.overallScore);
+    }
+  });
 });
+
+
+function loadExtension(ethicliStats) {
+  const ethicliScore = (ethicliStats.overallScore).toFixed(1);
+
+  // Badges ------------------------------------------------------------------------------------------------
+  let badgeCounter = 0;
+  if (ethicliStats.bcorpCertified) {
+    document.getElementById("bcorp").classList.add("trueForPage");
+    badgeCounter++;
+  }
+  if (ethicliStats.bluesignPartner) {
+    document.getElementById("bluesign").classList.add("trueForPage");
+    badgeCounter++;
+  }
+  if (ethicliStats.blackOwnedBusiness) {
+    document.getElementById("blackowned").classList.add("trueForPage");
+    badgeCounter++;
+  }
+  if (ethicliStats.supportsBLM) {
+    document.getElementById("blmsupport").classList.add("trueForPage");
+    badgeCounter++;
+  }
+  if (ethicliStats.veganDotOrgCertified) {
+    document.getElementById("vegan").classList.add("trueForPage");
+    badgeCounter++;
+  }
+  if (ethicliStats.leapingBunnyCertified) {
+    document.getElementById("leapingbunny").classList.add("trueForPage");
+    badgeCounter++;
+  }
+  if (badgeCounter <= 3) {
+    document.getElementById("badges").classList.add("lessThanThreeBadges");
+    document.getElementById("badgeDisplayer").style.display = "none";
+  }
+  if (badgeCounter > 0) {
+    document.getElementById("numBadges").textContent = badgeCounter;
+  }
+
+  // End Badges ------------------------------------------------------------------------------------
+
+  if (ethicliScore > 0.0) { // This will need to be updated once negative scores are used as default
+    adjustSubscores();
+  }
+
+  function adjustSubscores() {
+    let numSubscores = 0;
+    if (ethicliStats.environmentScore !== 0.0) {
+      document.getElementById("envSection").style = "display:block;";
+      numSubscores++;
+    }
+    if (ethicliStats.laborScore !== 0.0) {
+      document.getElementById("laborSection").style = "display:block;";
+      numSubscores++;
+    }
+    if (ethicliStats.animalsScore !== 0.0) {
+      document.getElementById("animalSection").style = "display:block;";
+      numSubscores++;
+    }
+    if (ethicliStats.socialScore !== 0.0) {
+      document.getElementById("socialSection").style = "display:block;";
+      numSubscores++;
+    }
+
+    const SUBSCORE_SECTION_HEIGHT = HEIGHT_POPUP_SUBSCORE * numSubscores;
+
+    if (ethicliStats.environmentScore === 0.0
+            && ethicliStats.laborScore === 0.0
+            && ethicliStats.animalsScore === 0.0
+            && ethicliStats.socialScore === 0.0
+    ) {
+      hasSubscore = false;
+      document.getElementById("noSubscore").style = "display:block;";
+    } else {
+      hasSubscore = true;
+    }
+
+    fullheight = HEIGHT_POPUP_OVERALLSCORE + SUBSCORE_SECTION_HEIGHT + HEIGHT_POPUP_VIEWDETAILS;
+
+    // Changes subratings
+    document.getElementById("envScore").textContent = ethicliStats.environmentScore.toFixed(1);
+    document.getElementById("laborScore").textContent = ethicliStats.laborScore.toFixed(1);
+    document.getElementById("animalScore").textContent = ethicliStats.animalsScore.toFixed(1);
+    document.getElementById("socialScore").textContent = ethicliStats.socialScore.toFixed(1);
+
+    // Changes subratings scorebar
+    const envScore = ethicliStats.environmentScore * 20;
+    document.getElementById("envScoreBar").style.width = envScore + "px";
+    const laborScore = ethicliStats.laborScore * 20;
+    document.getElementById("laborScoreBar").style.width = laborScore + "px";
+    const animalScore = ethicliStats.animalsScore * 20;
+    document.getElementById("animalScoreBar").style.width = animalScore + "px";
+    const socialScore = ethicliStats.socialScore * 20;
+    document.getElementById("socialScoreBar").style.width = socialScore + "px";
+  }
+
+  // Change sitename
+  document.getElementById("siteurl").textContent = ethicliStats.name;
+  if (ethicliStats.name === null || ethicliStats.name === "") {
+    document.getElementById("siteurl").textContent = "Unavailable";
+  }
+
+  // Change "View Details" button routing
+  const query = { active: true, currentWindow: true };
+  chrome.tabs.query(query, (tabs) => {
+    const currentTab = tabs[0];
+    const companyName = getDomainWithoutSuffix(currentTab.url);
+
+    const infoLink = document.createElement("a");
+    infoLink.href = "https://ethicli.com/info/" + companyName;
+    infoLink.target = "_blank";
+    infoLink.textContent = "View Details";
+    document.getElementById("detailsButton").append(infoLink);
+    document.getElementById("detailsButton").addEventListener("click", () => {
+      // ViewDetailsClicked analytics event
+    });
+  });
+
+  document.getElementById("overallScore").textContent = ethicliScore;
+}
+
+function loadSponsor(productName, ethicliScore) {
+  const authString = "<username>:<password>";
+  const data = {
+    "productName": productName,
+    "currentCompanyScore": ethicliScore
+  };
+  fetch("https://ethicli.com/Advertisement/getByProductTags", {
+    "method": "PUT",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Basic " + btoa(authString),
+    },
+    "body": JSON.stringify(data)
+  }).then((response) => response.json()).then((adToDisplay) => {
+    if (adToDisplay.productURL) {
+      document.getElementById("sponsor").style = "display:block;";
+      document.getElementById("sponsorLink").href = adToDisplay.productURL;
+      document.getElementById("sponsorProductName").textContent = adToDisplay.productName;
+      document.getElementById("sponsorCompany").textContent = adToDisplay.companyName;
+      document.getElementById("sponsorRating").textContent = adToDisplay.companyScore;
+      document.getElementById("sponsorPrice").textContent = adToDisplay.price;
+      document.getElementById("sponsorImg").src = adToDisplay.productImageURL;
+      fullheight += HEIGHT_POPUP_SPONSOR;
+      document.body.style = "height:" + fullheight + "px;";
+      // AdDisplayed analytics event
+      document.getElementById("sponsorLink").addEventListener("click", () => {
+        // AdClicked analytics event
+      });
+    } else {
+      document.getElementById("sponsor").style = "display:none;";
+    }
+  });
+}
 
 function updateOverallToolTip(overallscore) {
   let overalltip;
@@ -37,15 +231,5 @@ function updateOverallToolTip(overallscore) {
   }
   document.getElementById("overallScoreTooltip").innerText = overalltip;
 }
-
-// --- Extension Tooltip --------------------------------------------------------------------------
-window.addEventListener("load", () => {
-  document.getElementById("overallScoreGroup").addEventListener("mouseenter", () => {
-    document.getElementById("overallScoreGroup").classList.add("showtip");
-  });
-  document.getElementById("overallScoreGroup").addEventListener("mouseleave", () => {
-    document.getElementById("overallScoreGroup").classList.remove("showtip");
-  });
-});
 
 // Opened-ShopHasRating analytics event
