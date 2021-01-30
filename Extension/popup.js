@@ -362,21 +362,29 @@ function fadeLongURL() {
 
 
 function sendMessage() {
-  // const query = { active: true, currentWindow: true };
-  // chrome.tabs.query(query, (tabs) => {
-  //   const currentTab = tabs[0];
-  //   const fetchUrlFeedback = "https://ethicli.com/feedback";
-  //   const fetchData = {
-  //     url: currentTab.url,
-  //     message: userMessage
-  //   };
-  //   const fetchParams = {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(fetchData)
-  //   };
-  //   fetch(fetchUrlFeedback, fetchParams);
-  // });
+  const userName = document.getElementById("messagingName").value;
+  const userMessage = document.getElementById("messageContent").value;
+  const userEmail = document.getElementById("messagingEmail").value;
+  const userMessageReason = document.getElementById("messagingReason").value;
+
+  const query = { active: true, currentWindow: true };
+  chrome.tabs.query(query, (tabs) => {
+    const currentTab = tabs[0];
+    const fetchUrlFeedback = "https://ethicli.com/feedback";
+    const fetchData = {
+      url: currentTab.url,
+      userName: userName,
+      userEmail: userEmail,
+      message: userMessage,
+      messageType: userMessageReason
+    };
+    const fetchParams = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(fetchData)
+    };
+    fetch(fetchUrlFeedback, fetchParams);
+  });
 }
