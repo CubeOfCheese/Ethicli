@@ -116,4 +116,6 @@ $(document).ready(function() {
   $("#mailingListSubmit").click(function() {
     alert("Our mailing list isn't available yet, but thank you for considering to subscribe!");
   });
+
+  $("#currentYear").text(new Date().getFullYear()); // updates copyright with current year
 });

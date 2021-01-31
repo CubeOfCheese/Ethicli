@@ -17,6 +17,7 @@ public class Business {
   private boolean chooseCrueltyFreeVegan;
   private boolean ethicalElephantCrueltyFree;
   private boolean ethicalElephantTestsOnAnimals;
+  private boolean greenPowerOrganizationWidePartner;
   private boolean leapingBunnyCertified;
   private boolean nativeOwnedBusiness;
   private boolean notAddressingUyghur;
@@ -38,10 +39,12 @@ public class Business {
   private double overallScore;
   private double socialScore;
   private int bcorpCertYear;
+  private long greenPowerKwhPerYear;
   private String bcorpProfile;
   private String companyType;
   private String country;
   private String ethicalElephantType;
+  private String greenPowerDate;
   private String name;
   private String overallScoreDetails;
   private String supportsBLMContribution;
@@ -63,6 +66,7 @@ public class Business {
     this.chooseCrueltyFreeVegan = false;
     this.ethicalElephantCrueltyFree = false;
     this.ethicalElephantTestsOnAnimals = false;
+    this.greenPowerOrganizationWidePartner = false;
     this.leapingBunnyCertified = false;
     this.nativeOwnedBusiness = false;
     this.notAddressingUyghur = false;
@@ -84,10 +88,12 @@ public class Business {
     this.overallScore = 0;
     this.socialScore = 0;
     this.bcorpCertYear = 0;
+    this.greenPowerKwhPerYear = 0;
     this.bcorpProfile = "";
     this.companyType = "";
     this.country = "";
     this.ethicalElephantType = "";
+    this.greenPowerDate = "";
     this.name = "";
     this.overallScoreDetails = "";
     this.supportsBLMContribution = "";
@@ -109,6 +115,7 @@ public class Business {
     String bcorpProfile,
     boolean blackOwnedBusiness,
     String ethicalElephantType,
+    String greenPowerDate,
     boolean nativeOwnedBusiness,
     boolean pocOwnedBusiness,
     boolean supportsBLM,
@@ -121,6 +128,7 @@ public class Business {
     double bcorpScore,
     double bcorpWorkerScore,
     double goodOnYouScore,
+    long greenPowerKwhPerYear,
     double greenPowerPercentage,
     boolean betterCottonMember, // Boolean Data for Calculation:
     boolean bcorpCertified,
@@ -130,6 +138,7 @@ public class Business {
     boolean chooseCrueltyFreeVegan,
     boolean ethicalElephantCrueltyFree,
     boolean ethicalElephantTestsOnAnimals,
+    boolean greenPowerOrganizationWidePartner,
     boolean leapingBunnyCertified,
     boolean notAddressingUyghur,
     boolean usesUyghurSlaveLabor,
@@ -153,6 +162,7 @@ public class Business {
     this.bcorpProfile = bcorpProfile;
     this.blackOwnedBusiness = blackOwnedBusiness;
     this.ethicalElephantType = ethicalElephantType;
+    this.greenPowerDate = greenPowerDate;
     this.nativeOwnedBusiness = nativeOwnedBusiness;
     this.pocOwnedBusiness = pocOwnedBusiness;
     this.supportsBLM = supportsBLM;
@@ -165,6 +175,7 @@ public class Business {
     this.bcorpGovernanceScore = bcorpGovernanceScore;
     this.bcorpWorkerScore = bcorpWorkerScore;
     this.goodOnYouScore = goodOnYouScore;
+    this.greenPowerKwhPerYear = greenPowerKwhPerYear;
     this.greenPowerPercentage = greenPowerPercentage;
     this.betterCottonMember = betterCottonMember;
     this.bcorpCertified = bcorpCertified;
@@ -174,6 +185,7 @@ public class Business {
     this.chooseCrueltyFreeVegan = chooseCrueltyFreeVegan;
     this.ethicalElephantCrueltyFree = ethicalElephantCrueltyFree;
     this.ethicalElephantTestsOnAnimals = ethicalElephantTestsOnAnimals;
+    this.greenPowerOrganizationWidePartner = greenPowerOrganizationWidePartner;
     this.leapingBunnyCertified = leapingBunnyCertified;
     this.notAddressingUyghur = notAddressingUyghur;
     this.usesUyghurSlaveLabor = usesUyghurSlaveLabor;
@@ -189,6 +201,30 @@ public class Business {
     this.laborScore = laborScore;
     this.socialScore = socialScore;
     this.overallScore = overallScore;
+  }
+
+  public boolean isGreenPowerOrganizationWidePartner() {
+    return greenPowerOrganizationWidePartner;
+  }
+
+  public void setGreenPowerOrganizationWidePartner(boolean greenPowerOrganizationWidePartner) {
+    this.greenPowerOrganizationWidePartner = greenPowerOrganizationWidePartner;
+  }
+
+  public long getGreenPowerKwhPerYear() {
+    return greenPowerKwhPerYear;
+  }
+
+  public void setGreenPowerKwhPerYear(long greenPowerKwhPerYear) {
+    this.greenPowerKwhPerYear = greenPowerKwhPerYear;
+  }
+
+  public String getGreenPowerDate() {
+    return greenPowerDate;
+  }
+
+  public void setGreenPowerDate(String greenPowerDate) {
+    this.greenPowerDate = greenPowerDate;
   }
 
   public boolean isNotAddressingUyghur() {
@@ -560,6 +596,15 @@ public class Business {
       }
     }
     if (update) {
+      if (!this.greenPowerOrganizationWidePartner) {
+        this.greenPowerOrganizationWidePartner = business.isGreenPowerOrganizationWidePartner();
+      }
+      if (this.greenPowerKwhPerYear == 0) {
+        this.greenPowerKwhPerYear = business.getGreenPowerKwhPerYear();
+      }
+      if (this.greenPowerDate.equals("")) {
+        this.greenPowerDate = business.greenPowerDate;
+      }
       if (this.country.equals("")) {
         this.country = business.getCountry();
       }

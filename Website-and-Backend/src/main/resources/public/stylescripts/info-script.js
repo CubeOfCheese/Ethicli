@@ -64,6 +64,8 @@ $(document).ready(function() {
   $(".articleSource").on("mouseleave", function() {
     $(this).removeClass("showPreview");
   });
+
+  $("#currentYear").text(new Date().getFullYear()); // updates copyright with current year
 });
 
 function switchSection() {

@@ -111,4 +111,6 @@ window.onload = () => {
   document.getElementById("confettiLogo").addEventListener("click", () => {
     confetti.start(1000, 150);
   });
+
+  $("#currentYear").text(new Date().getFullYear()); // updates copyright with current year
 };
