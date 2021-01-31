@@ -19,6 +19,7 @@ public class Business {
   private boolean ethicalElephantTestsOnAnimals;
   private boolean greenPowerOrganizationWidePartner;
   private boolean leapingBunnyCertified;
+  private boolean manuallyScored;
   private boolean nativeOwnedBusiness;
   private boolean notAddressingUyghur;
   private boolean pocOwnedBusiness;
@@ -68,6 +69,7 @@ public class Business {
     this.ethicalElephantTestsOnAnimals = false;
     this.greenPowerOrganizationWidePartner = false;
     this.leapingBunnyCertified = false;
+    this.manuallyScored = false;
     this.nativeOwnedBusiness = false;
     this.notAddressingUyghur = false;
     this.pocOwnedBusiness = false;
@@ -140,6 +142,7 @@ public class Business {
     boolean ethicalElephantTestsOnAnimals,
     boolean greenPowerOrganizationWidePartner,
     boolean leapingBunnyCertified,
+    boolean manuallyScored,
     boolean notAddressingUyghur,
     boolean usesUyghurSlaveLabor,
     boolean veganDotOrgCertified,
@@ -187,6 +190,7 @@ public class Business {
     this.ethicalElephantTestsOnAnimals = ethicalElephantTestsOnAnimals;
     this.greenPowerOrganizationWidePartner = greenPowerOrganizationWidePartner;
     this.leapingBunnyCertified = leapingBunnyCertified;
+    this.manuallyScored = manuallyScored;
     this.notAddressingUyghur = notAddressingUyghur;
     this.usesUyghurSlaveLabor = usesUyghurSlaveLabor;
     this.veganDotOrgCertified = veganDotOrgCertified;
@@ -203,7 +207,15 @@ public class Business {
     this.overallScore = overallScore;
   }
 
-  public boolean isGreenPowerOrganizationWidePartner() {
+	public boolean isManuallyScored() {
+		return manuallyScored;
+	}
+
+	public void setManuallyScored(boolean manuallyScored) {
+		this.manuallyScored = manuallyScored;
+	}
+
+	public boolean isGreenPowerOrganizationWidePartner() {
     return greenPowerOrganizationWidePartner;
   }
 
@@ -596,6 +608,9 @@ public class Business {
       }
     }
     if (update) {
+    	if (!this.manuallyScored) {
+    		this.manuallyScored = business.isManuallyScored();
+	    }
       if (!this.greenPowerOrganizationWidePartner) {
         this.greenPowerOrganizationWidePartner = business.isGreenPowerOrganizationWidePartner();
       }
