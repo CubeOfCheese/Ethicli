@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
   document.getElementById("overallScoreGroup").addEventListener("mouseleave", () => {
     document.getElementById("overallScoreGroup").classList.remove("showtip");
   });
-  
+
   document.getElementById("scores").onmouseover = () => {
     if (hasSubscore) {
       document.getElementById("subscoreTip").style.left = (event.clientX - 30) + "px";
@@ -36,7 +36,7 @@ window.addEventListener("load", () => {
       document.getElementById("badgeIcon").src = "images/badge.svg";
     }
   });
-}
+});
 
 chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, (ratingResponse) => {
   loadExtension(ratingResponse.ethicliStats);
