@@ -1,7 +1,5 @@
 const HEIGHT_TUTORIAL = 600;
 
-let previousHeight;
-
 window.addEventListener("load", () => {
   document.getElementById("menu").addEventListener("click", () => {
     document.getElementById("menuPanel").classList.toggle("menuClicked");
@@ -24,6 +22,7 @@ window.addEventListener("load", () => {
   // --- Tutorial --------------------------------------------------------------------------
   let startTutorial = false;
   let currentTutorial;
+  let previousHeight;
 
   document.getElementById("watchTutorial").addEventListener("click", () => {
     previousHeight = document.body.style.height;

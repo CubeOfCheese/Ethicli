@@ -1,8 +1,5 @@
 import { getDomainWithoutSuffix } from "tldts-experimental";
 
-let fullheight = 0;
-let hasSubscore;
-
 const HEIGHT_POPUP_OVERALLSCORE = 160;
 const HEIGHT_POPUP_VIEWDETAILS = 36;
 const HEIGHT_POPUP_SUBSCORE = 42;
@@ -16,15 +13,6 @@ window.addEventListener("load", () => {
   document.getElementById("overallScoreGroup").addEventListener("mouseleave", () => {
     document.getElementById("overallScoreGroup").classList.remove("showtip");
   });
-
-  document.getElementById("scores").onmouseover = () => {
-    if (hasSubscore) {
-      document.getElementById("subscoreTip").style.left = (event.clientX - 30) + "px";
-      document.getElementById("subscoreTip").style.top = (event.clientY - 30) + "px";
-    } else {
-      document.getElementById("subscoreTip").style = "display:none;";
-    }
-  };
 
   document.getElementById("badgeDisplayer").addEventListener("click", () => {
     document.getElementById("popupMain").classList.toggle("badgesExpanded");
@@ -119,13 +107,17 @@ function loadExtension(ethicliStats) {
             && ethicliStats.animalsScore === 0.0
             && ethicliStats.socialScore === 0.0
     ) {
-      hasSubscore = false;
+      document.getElementById("subscoreTip").style = "display:none;";
       document.getElementById("noSubscore").style = "display:block;";
     } else {
-      hasSubscore = true;
+      document.getElementById("scores").onmouseover = () => {
+        document.getElementById("subscoreTip").style.left = (event.clientX - 30) + "px";
+        document.getElementById("subscoreTip").style.top = (event.clientY - 30) + "px";
+      };
     }
 
-    fullheight = HEIGHT_POPUP_OVERALLSCORE + SUBSCORE_SECTION_HEIGHT + HEIGHT_POPUP_VIEWDETAILS;
+    const fullheight = HEIGHT_POPUP_OVERALLSCORE + SUBSCORE_SECTION_HEIGHT + HEIGHT_POPUP_VIEWDETAILS;
+    document.body.style = "height:" + fullheight + "px;";
 
     // Changes subratings
     document.getElementById("envScore").textContent = ethicliStats.environmentScore.toFixed(1);
@@ -191,7 +183,7 @@ function loadSponsor(productName, ethicliScore) {
       document.getElementById("sponsorRating").textContent = adToDisplay.companyScore;
       document.getElementById("sponsorPrice").textContent = adToDisplay.price;
       document.getElementById("sponsorImg").src = adToDisplay.productImageURL;
-      fullheight += HEIGHT_POPUP_SPONSOR;
+      const fullheight = document.body.style.height.slice(0, -2) + HEIGHT_POPUP_SPONSOR;
       document.body.style = "height:" + fullheight + "px;";
       // AdDisplayed analytics event
       document.getElementById("sponsorLink").addEventListener("click", () => {
