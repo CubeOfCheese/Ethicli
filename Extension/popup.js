@@ -12,15 +12,15 @@ window.addEventListener("load", () => {
   });
 
   document.getElementById("somethingWrong").addEventListener("click", () => {
+    previousHeight = document.body.style.height;
     document.getElementById("messaging").classList.add("show");
     document.body.style = "height:" + HEIGHT_MESSAGING + "px;";
     document.getElementById("menuPanel").classList.add("hide");
     // SomethingWrong analytics event
   });
   document.getElementById("sendMessageButton").addEventListener("click", () => {
-    sendMessage();
+    sendMessage(previousHeight);
   });
-
 
   if (document.getElementById("sitename") != null) {
     fadeLongURL();
@@ -93,16 +93,16 @@ window.addEventListener("load", () => {
     let messagePrefill;
     switch (messagingReason) {
       case "This should be a shop":
-        messagePrefill = "This should be a shop";
+        messagePrefill = "This is a shop page but isn't recognized";
         break;
       case "No shop rating":
-        messagePrefill = "No shop rating";
+        messagePrefill = "I would like to see a rating for this shop";
         break;
       case "Incorrect shop name":
         messagePrefill = "Incorrect shop name";
         break;
       case "Other":
-        messagePrefill = "Other";
+        messagePrefill = "";
         break;
       default:
         messagePrefill = "";
@@ -137,7 +137,7 @@ function fadeLongURL() {
 }
 
 
-function sendMessage() {
+function sendMessage(previousHeight) {
   const userName = document.getElementById("messagingName").value;
   const userMessage = document.getElementById("messageContent").value;
   const userEmail = document.getElementById("messagingEmail").value;
@@ -161,6 +161,11 @@ function sendMessage() {
       },
       body: JSON.stringify(fetchData)
     };
-    fetch(fetchUrlFeedback, fetchParams);
+    fetch(fetchUrlFeedback, fetchParams)
+        .then(() => {
+          document.body.style = "height:" + previousHeight;
+          // display response then fade away @Linda this is all you
+          document.getElementById("messageSubmitted").style = "display:block;";
+        });
   });
 }

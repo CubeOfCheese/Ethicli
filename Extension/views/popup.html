@@ -31,23 +31,23 @@
                         <label for="messagingName">Your Name</label><input type="text" id="messagingName" name="messagingName">
                         <label for="messagingEmail">Your Email</label><input type="email" id="messagingEmail" name="messagingEmail">
                         <label for="messagingReason">Category<span class="requiredField"> *</span></label>
-                            <input id="messagingReason" type="text" list="messageOptions" required>
-                            <datalist id="messageOptions">
-                                <option>This should be a shop</option>
-                                <option>No shop rating</option>
-                                <option>Incorrect shop name</option>
-                                <option>Other</option>
-                            </datalist>
+                        <select name="messagingReason" id="messagingReason" required>
+                          <option disabled selected value> -- select an option -- </option>
+                          <option value="This should be a shop">This should be a shop</option>
+                          <option value="No shop rating">No shop rating</option>
+                          <option value="Incorrect shop name">Incorrect shop name</option>
+                          <option value="Other">Other</option>
+                        </select>
                         <label for="messageContent">Message<span class="requiredField"> *</span></label><textarea type="text" id="messageContent" name="messageContent" required></textarea>
                     </form>
                     <input id="sendMessageButton" type="submit" value="Send Message">
                 </span>
-                <!-- <span id="messageSubmitted">
+                <span id="messageSubmitted" style="display:none">
                     <h3>Thank you for your message!</h3>
                     <p><span id="withemail">We will send an email to <span id="uemail"></span> and will get back to you as soon as possible. </span>Hope you have a good day!</p>
                     <img src="../images/happyplantdude.svg" alt="Happy Plant Dude">
                 </span>
-                <span id="messageFailed">
+                <!-- <span id="messageFailed">
                     <h3>Hmm... Something went wrong, and the message couldn't be sent.</h3>
                     <p>Please try again, and if it still doesn't work, please send us an email at <a href="mailto:hello@ethicli.com?subject=Ethicli Inquiry" target="_blank">hello@ethicli.com</a> with your request!</p>
                     <img src="../images/sadplantdude.svg" alt="Sad Plant Guy" id="sadplantdude">
