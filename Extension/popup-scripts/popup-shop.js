@@ -1,7 +1,7 @@
 import { getDomainWithoutSuffix } from "tldts-experimental";
 
 const HEIGHT_POPUP_OVERALLSCORE = 160;
-const HEIGHT_POPUP_VIEWDETAILS = 36;
+const HEIGHT_POPUP_VIEWDETAILS = 36 + 42;
 const HEIGHT_POPUP_SUBSCORE = 42;
 const HEIGHT_POPUP_SPONSOR = 174;
 

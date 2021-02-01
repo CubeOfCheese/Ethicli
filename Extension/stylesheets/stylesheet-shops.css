@@ -251,10 +251,34 @@ body#popupMain {
     margin-left: 14px;
 }
 
-#detailsButton {
+#detailsButton, #requestProduct {
     align-self: flex-end;
     padding: 6px;
     font-size: 12px;
+    cursor: pointer;
+}
+
+#requestProduct {
+    margin-top: 16px;
+    padding: 6px 10px;
+}
+
+/** No Sponsor **/
+
+#noSponsor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    Height: 100%;
+    background: #c6d4c5;
+}
+
+#noSponsorPlantDude {
+    width: 120px;
+    position: absolute;
+    bottom: 0;
+    margin-left: 70px;
 }
 
 
