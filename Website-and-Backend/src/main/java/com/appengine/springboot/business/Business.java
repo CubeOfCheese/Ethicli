@@ -608,7 +608,7 @@ public class Business {
       }
     }
     if (update) {
-    	if (!this.manuallyScored) {
+      if (!this.manuallyScored) {
         this.manuallyScored = business.isManuallyScored();
       }
       if (!this.greenPowerOrganizationWidePartner) {
