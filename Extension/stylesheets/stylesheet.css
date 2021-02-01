@@ -97,6 +97,12 @@ body {
     line-height: 1.4em;
 }
 
+#lookslikeshop {
+    margin-top: 16px;
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
 /** Typography **/
 
 #sitename {
