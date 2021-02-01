@@ -103,6 +103,22 @@ body {
     font-size: 12px;
 }
 
+#notShopMessage #notShopBeforeRequestMessage {
+    display: block;
+}
+
+#notShopMessage #notShopAfterRequestMessage {
+    display: none;
+}
+
+#notShopMessage.requestedShop #notShopBeforeRequestMessage {
+    display: none;
+}
+
+#notShopMessage.requestedShop #notShopAfterRequestMessage {
+    display: block;
+}
+
 /** Typography **/
 
 #sitename {

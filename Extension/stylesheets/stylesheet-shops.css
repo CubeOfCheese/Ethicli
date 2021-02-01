@@ -251,36 +251,41 @@ body#popupMain {
     margin-left: 14px;
 }
 
-#detailsButton, #requestProduct {
+#detailsButton, #requestProductButton {
     align-self: flex-end;
+    margin-right: 10px;
     padding: 6px;
     font-size: 12px;
     cursor: pointer;
 }
 
 #requestProduct {
-    margin-top: 16px;
+    display: flex;
+    width: 250px;
+    margin-top: 8px;
     padding: 6px 10px;
 }
 
-/** No Sponsor **/
-
-#noSponsor {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    Height: 100%;
-    background: #c6d4c5;
+#requestProductButton {
+    padding: 6px 10px;
+    margin: 0 0 0 auto;
 }
 
-#noSponsorPlantDude {
-    width: 120px;
-    position: absolute;
-    bottom: 0;
-    margin-left: 70px;
+#requestProductMessage {
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
 }
 
+#requestProduct #requestProductMessage,
+#requestProduct.requestedProduct #requestProductButton {
+    display: none;
+}
+
+#requestProduct.requestedProduct #requestProductMessage,
+#requestProduct #requestProductButton {
+    display: block;
+}
 
 /** Sponsored **/
 

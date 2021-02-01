@@ -24,6 +24,12 @@ window.addEventListener("load", () => {
       document.getElementById("badgeIcon").src = "images/badge.svg";
     }
   });
+
+  // --- Request Recommended Product --------------------------------------------------------------------------
+  document.getElementById("requestProductButton").onclick = () => {
+    document.getElementById("requestProduct").classList.add("requestedProduct");
+    // Requested Product Here
+  };
 });
 
 chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, (ratingResponse) => {
@@ -189,6 +195,7 @@ function loadSponsor(productName, ethicliScore) {
       document.getElementById("sponsorLink").addEventListener("click", () => {
         // AdClicked analytics event
       });
+      document.getElementById("requestProductButton").style = "display:none";
     } else {
       document.getElementById("sponsor").style = "display:none;";
     }
