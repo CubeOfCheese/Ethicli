@@ -207,15 +207,15 @@ public class Business {
     this.overallScore = overallScore;
   }
 
-	public boolean isManuallyScored() {
-		return manuallyScored;
-	}
+  public boolean isManuallyScored() {
+    return manuallyScored;
+  }
 
-	public void setManuallyScored(boolean manuallyScored) {
-		this.manuallyScored = manuallyScored;
-	}
+  public void setManuallyScored(boolean manuallyScored) {
+    this.manuallyScored = manuallyScored;
+  }
 
-	public boolean isGreenPowerOrganizationWidePartner() {
+  public boolean isGreenPowerOrganizationWidePartner() {
     return greenPowerOrganizationWidePartner;
   }
 
@@ -609,8 +609,8 @@ public class Business {
     }
     if (update) {
     	if (!this.manuallyScored) {
-    		this.manuallyScored = business.isManuallyScored();
-	    }
+        this.manuallyScored = business.isManuallyScored();
+      }
       if (!this.greenPowerOrganizationWidePartner) {
         this.greenPowerOrganizationWidePartner = business.isGreenPowerOrganizationWidePartner();
       }
