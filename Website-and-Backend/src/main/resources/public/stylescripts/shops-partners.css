@@ -52,8 +52,7 @@
     bottom:0;
 }
 
-#shops #girlfriendCollective span img,
-#shops #tentree span img {
+#shops #girlfriendCollective span img {
     width: 100%;
     margin-top: -50%;
 }
@@ -107,9 +106,5 @@
     #shops #uncommonGoods span img,
     #shops #pela span img {
         margin-top: -20%;
-    }
-    
-    #shops #tentree span img {
-        margin-top: -30%;
     }
 }
