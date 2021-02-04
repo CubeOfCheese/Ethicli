@@ -72,12 +72,12 @@ body {
 
 /** Not a Shop **/
 
-#shopping, #notShopMessage, #shopDataUnavailable {
+#shopping, #lazyFeedback, #shopDataUnavailable {
     display: block;
     margin-right: auto;
 }
 
-#notShopMessage h2, #shopDataUnavailable h2 {
+#shopDataUnavailable h2 {
     font-size: 1.8em;
     line-height: 1.4em;
     margin-bottom: 16px;
@@ -85,7 +85,17 @@ body {
     color: #E07A5F;
 }
 
-#popupNotShop #notShopMessage h2 {
+h2.redTitle {
+    display: block;
+    margin-right: auto;
+    font-size: 1.8em;
+    line-height: 1.4em;
+    margin-bottom: 16px;
+    font-weight: 700;
+    color: #E07A5F;
+}
+
+#popupNotShop #lazyFeedback h2 {
     margin-top: -16px;
 }
 
@@ -93,29 +103,33 @@ body {
     margin-top: 16px;
 }
 
-#notShopMessage p, #shopDataUnavailable p, #optin p {
+#lazyFeedback p, #shopDataUnavailable p, #optin p {
     line-height: 1.4em;
 }
 
-#looksLikeShop {
+#submitLazyFeedback {
     margin-top: 16px;
     padding: 6px 8px;
     font-size: 12px;
 }
 
-#notShopMessage #notShopBeforeRequestMessage {
+#lazyFeedback #preMessage {
     display: block;
 }
 
-#notShopMessage #notShopAfterRequestMessage {
+#lazyFeedback #messageSucceeded, #lazyFeedback #messageFailed {
     display: none;
 }
 
-#notShopMessage.requestedShop #notShopBeforeRequestMessage {
+#lazyFeedback.succeeded #preMessage, #lazyFeedback.failed #preMessage {
     display: none;
 }
 
-#notShopMessage.requestedShop #notShopAfterRequestMessage {
+#lazyFeedback.succeeded #messageSucceeded {
+    display: block;
+}
+
+#lazyFeedback.failed #messageFailed {
     display: block;
 }
 

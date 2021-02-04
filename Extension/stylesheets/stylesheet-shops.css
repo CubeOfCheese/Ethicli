@@ -251,7 +251,14 @@ body#popupMain {
     margin-left: 14px;
 }
 
-#detailsButton, #requestProductButton {
+#lazyFeedback {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  margin-right: 0;
+}
+
+#detailsButton, #preMessage {
     align-self: flex-end;
     margin-right: 10px;
     padding: 6px;
@@ -259,33 +266,40 @@ body#popupMain {
     cursor: pointer;
 }
 
-#requestProduct {
+/* #detailsButton, #submitLazyFeedback {
+    align-self: flex-end;
+    margin-right: 10px;
+    padding: 6px;
+    font-size: 12px;
+    cursor: pointer;
+} */
+
+/* #lazyFeedback {
     display: flex;
     width: 250px;
     margin-top: 8px;
     padding: 6px 10px;
-}
+} */
 
-#requestProductButton {
-    padding: 6px 10px;
+#preMessage {
     margin: 0 0 0 auto;
 }
 
-#requestProductMessage {
+/* #requestProductMessage {
     font-size: 12px;
     line-height: 16px;
     text-align: center;
-}
+} */
 
-#requestProduct #requestProductMessage,
-#requestProduct.requestedProduct #requestProductButton {
+/* #requestProduct #submitLazyFeedback,
+#requestProduct.requestedProduct #submitLazyFeedback {
     display: none;
 }
 
 #requestProduct.requestedProduct #requestProductMessage,
-#requestProduct #requestProductButton {
+#requestProduct #submitLazyFeedback {
     display: block;
-}
+} */
 
 /** Sponsored **/
 

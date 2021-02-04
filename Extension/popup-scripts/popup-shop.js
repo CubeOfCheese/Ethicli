@@ -1,4 +1,5 @@
 import { getDomainWithoutSuffix } from "tldts-experimental";
+import { sendFeedback } from "../popup.js";
 
 const HEIGHT_POPUP_OVERALLSCORE = 160;
 const HEIGHT_POPUP_VIEWDETAILS = 36 + 42;
@@ -25,10 +26,9 @@ window.addEventListener("load", () => {
     }
   });
 
-  // --- Request Recommended Product --------------------------------------------------------------------------
-  document.getElementById("requestProductButton").onclick = () => {
-    document.getElementById("requestProduct").classList.add("requestedProduct");
-    // Requested Product Here
+  // --- Request Recommended Product ------------------------------------------------------------------
+  document.getElementById("submitLazyFeedback").onclick = () => {
+    sendFeedback("ProductRequest");
   };
 });
 
@@ -198,6 +198,7 @@ function loadSponsor(productName, ethicliScore) {
       document.getElementById("requestProductButton").style = "display:none";
     } else {
       document.getElementById("sponsor").style = "display:none;";
+      document.getElementById("requestProduct").style = "display:block;";
     }
   });
 }
@@ -222,7 +223,7 @@ function updateOverallToolTip(overallscore) {
     overalltip = "Fantastic score!";
     document.getElementById("overallScoreTooltip").style.background = "#C6D4C5";
     document.getElementById("overallScoreGroup").addEventListener("mouseenter", () => {
-      confetti.start(2000, 30);
+      // confetti.start(2000, 30);
     });
   } else {
     overalltip = "Something went wrong";

@@ -1,7 +1,8 @@
-// for popupNotShop.html
+import { sendFeedback } from "../popup.js";
+
 window.addEventListener("load", () => {
-  document.getElementById("notShopBeforeRequestMessage").onclick = () => {
-    document.getElementById("notShopMessage").classList.add("requestedShop");
+  document.getElementById("submitLazyFeedback").onclick = () => {
+    sendFeedback("ShouldBeShop");
     // Requested Shop Here
   };
 });

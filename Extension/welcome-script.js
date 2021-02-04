@@ -26,7 +26,7 @@ window.onload = () => {
         chrome.tabs.sendMessage(currentTab.id, { msgName: "reevaluatePage" }, () => {
           document.getElementById("optinAcceptedResult").style = "display:block;";
           document.getElementById("optinDeclinedResult").style = "display:none;";
-          confetti.start(1000, 150);
+          // confetti.start(1000, 150);
         });
       });
     });
@@ -97,7 +97,7 @@ window.onload = () => {
   }
 
   document.getElementById("confettiLogo").addEventListener("click", () => {
-    confetti.start(1000, 150);
+    // confetti.start(1000, 150);
   });
 
   $("#currentYear").text(new Date().getFullYear()); // updates copyright with current year
