@@ -1,7 +1,10 @@
 package com.appengine.springboot.advertisement;
 
-import com.appengine.springboot.Tools;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +12,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -24,7 +29,7 @@ public class AdvertisementService {
 
   public Advertisement getAdvertisementByProductTags(Map<String, Object> payload) throws IOException {
     final double WEIGHT_THRESHOLD = 0.75;
-    String[] productDescriptions = Tools.prepareForProductTagQuery(payload.get("productName").toString());
+    String[] productDescriptions = prepareForProductTagQuery(payload.get("productName").toString());
     List<Advertisement> masterAdvertisements = null;
     HashMap<String, Double> adMap = new HashMap<String, Double>();
     double currentCompanyScore = ((Number) payload.get("currentCompanyScore")).doubleValue();
@@ -44,14 +49,14 @@ public class AdvertisementService {
         for (int posPTIndex = 0; posPTIndex < masterAdvertisement.getProductTags().length; ++posPTIndex) {
           ProductTag positiveProductTag = masterAdvertisement.getProductTags()[posPTIndex];
           if (positiveProductTag.getTag().contains(productDescription)) {
-            weight += Tools.compareToProductTag(positiveProductTag, productDescription);
+            weight += compareToProductTag(positiveProductTag, productDescription);
           }
         }
         for (int negPtIndex = 0; masterAdvertisement.getNegativeProductTags() != null && negPtIndex < masterAdvertisement.getNegativeProductTags().length;
             ++negPtIndex) {
           ProductTag negativeProductTag = masterAdvertisement.getNegativeProductTags()[negPtIndex];
           if (negativeProductTag.getTag().contains(productDescription)) {
-            weight += Tools.compareToProductTag(negativeProductTag, productDescription);
+            weight += compareToProductTag(negativeProductTag, productDescription);
           }
         }
         if (weight != 0) {
@@ -126,4 +131,48 @@ public class AdvertisementService {
     }
     return advertisementRepository.insert(advertisements);
   }
+
+	public static String[] prepareForProductTagQuery(String input) throws IOException {
+		String[] inputToArray = input.toLowerCase().split(" ");
+		String inputCleaned = "";
+		for (int a = 0; a < inputToArray.length; ++a) {
+			if (inputToArray[a].length() > 2 && !isCommonWord(inputToArray[a])) {
+				inputCleaned += removePunctuation(inputToArray[a]) + " ";
+			}
+		}
+		return inputCleaned.split(" ");
+	}
+
+	public static String removePunctuation(String string) {
+		return string.replaceAll("[^a-zA-Z0-9]", "");
+	}
+
+	public static boolean isCommonWord(String word) throws IOException {
+		Resource resource = new ClassPathResource("Common Words");
+		InputStream file = resource.getInputStream();
+		BufferedReader br = null;
+		String commonWord = "";
+		String[] brLine;
+		try {
+			br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
+			while ((commonWord = br.readLine()) != null) {
+				if (commonWord.equals(word)) {
+					return true;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public static double compareToProductTag(ProductTag productTag, String descriptor) {
+		double sizeDifference = productTag.getTag().length() - descriptor.length();
+		if (sizeDifference <= 1
+			|| (sizeDifference == 2 && productTag.getTag().substring(productTag.getTag().length() - 2, productTag.getTag().length()).equals("es"))) {
+			return productTag.getWeight();
+		} else {
+			return productTag.getWeight() / sizeDifference;
+		}
+	}
 }

@@ -1,6 +1,5 @@
 package com.appengine.springboot.business;
 
-import com.appengine.springboot.Tools;
 import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +19,16 @@ public class BusinessService {
     return mongoOperations.find(query, Business.class);
   }
 
-  public Business getBusinessByWebsite(String companyName) throws IOException {
-    Business business = new Business();
-    if (Tools.validateURL(companyName)) {
-      List<Business> businessList = regexWebsite(companyName);
-      for (Business value : businessList) {
-        if (companyName.equals(value.getWebsite().split("\\.")[0])) {
-          business.update(value);
-          break;
-        }
-      }
-      business.calculate();
-    }
-    return business;
-  }
+	public Business getBusinessByWebsite(String companyName) throws IOException {
+		Business business = new Business();
+		List<Business> businessList = regexWebsite(companyName);
+		for (Business value : businessList) {
+			if (companyName.equals(value.getWebsite().split("\\.")[0])) {
+				business.update(value);
+				break;
+			}
+		}
+		business.calculate();
+		return business;
+	}
 }
