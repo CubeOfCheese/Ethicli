@@ -31,5 +31,9 @@
         "48": "icons/ethicli-48.png",
         "128": "icons/ethicli-128.png"
     },
+    "options_ui": {
+      "page": "views/options.html",
+      "open_in_tab": false
+    },
     "manifest_version": 2
 }
