@@ -62,7 +62,7 @@
                         <p th:if="${#strings.substring(business.overallScore,0,3) != '0.0'}">/10</p>
                     </div>
                     <div>
-                        <p><a th:href="${business.website}" target="_blank" th:text = "${business.website}"><em>Insert URL here</em></a></p>
+                        <p><a th:href="@{'http://' + ${business.website}}" target="_blank" th:text = "${business.website}"><em>Insert URL here</em></a></p>
                         <span th:if="${business.overallScoreDetails == '' and #strings.substring(business.overallScore,0,3) != '0.0'}">
                             <p>The overall score is calculated by averaging the <em>environmental</em>,
                             <em>labor</em>, <em>animal treatment</em>, and <em>social</em> statistics of each company, which is calculated and compared against news media.</p>
