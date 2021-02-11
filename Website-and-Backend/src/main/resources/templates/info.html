@@ -19,7 +19,10 @@
     <meta property="og:description" content="Ethicli suggests better products while you shop by scoring how the product affects our workers,
         planet, and community. Use our free browser extension to effortlessly shop from more ethical,
         green, and smaller businesses!">
-    <title th:text = "${business.name} + ' • Ethicli Score'">Ethicli • Ethical Shopping Browser Extension</title>
+    <title th:if="${business.name == ''}">Ethicli • Ethical Shopping Browser Extension</title>
+    <title th:unless="${business.name == ''}"  th:text = "${business.name} + ' • Ethicli Score'"></title>
+
+    <!-- <title th:text = "${business.name} + ' • Ethicli Score'">Ethicli • Ethical Shopping Browser Extension</title> -->
     <link rel="icon" href="../images/ethicli-logo.png">
     <link href="../stylescripts/reset.css" rel="stylesheet">
     <link href="../stylescripts/info-style.css" rel="stylesheet">
