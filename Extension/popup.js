@@ -120,7 +120,6 @@ export function sendFeedback(messageType, userEmail) {
             throw new Error("404");
           }
           document.getElementById("lazyFeedback").classList.add("succeeded"); // hide first div // showing second div
-          // confetti.start(1000, 60);
         })
         .catch((error) => {
           alert(error);
