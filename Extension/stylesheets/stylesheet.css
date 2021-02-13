@@ -87,10 +87,9 @@ body {
 
 h2.redTitle {
     display: block;
-    margin-right: auto;
+    margin: -16px auto 16px 0;
     font-size: 1.8em;
     line-height: 1.4em;
-    margin-bottom: 16px;
     font-weight: 700;
     color: #E07A5F;
 }
