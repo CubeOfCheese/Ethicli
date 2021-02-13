@@ -1,7 +1,8 @@
 body {
     font-family: sans-serif;
-    width: 250px;
+    width: 260px;
     padding: 36px;
+    margin: auto;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-weight: 400;
     background: #FFFCF2;

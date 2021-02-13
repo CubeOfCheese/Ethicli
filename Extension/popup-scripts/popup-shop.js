@@ -223,7 +223,7 @@ function updateOverallToolTip(overallscore) {
     overalltip = "Fantastic score!";
     document.getElementById("overallScoreTooltip").style.background = "#C6D4C5";
     document.getElementById("overallScoreGroup").addEventListener("mouseenter", () => {
-      // confetti.start(2000, 30);
+      confetti.start(2000, 30);
     });
   } else {
     overalltip = "Something went wrong";
