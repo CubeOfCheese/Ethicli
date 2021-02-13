@@ -8,7 +8,7 @@
     <link href="../stylesheets/stylesheet.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="../popup.js"></script>
-    <script src="../popup-scripts/popup-notshop.js"></script>
+    <script type="module" src="../popup-scripts/popup-notshop.js"></script>
 </head>
 
 <body style="height:136px;" id="popupNotShop">
@@ -45,9 +45,18 @@
     </div>
 
     <div id="extension">
-        <div id="notShopMessage">
-            <h2>This page is<br>not a shop.</h2>
-            <p>Please visit a shop page to check for a shop rating.</p>
+      <h2 class="redTitle">This page is<br>not a shop.</h2>
+        <div id="lazyFeedback">
+            <div id="preMessage">
+                <p>Please visit shop pages for ratings.</p>
+                <button id="submitLazyFeedback" title="Click me if this page seems like it should be a shop!">I think this is a shop</button>
+            </div>
+            <div id="messageSucceeded">
+              <p>Thank you! We'll take a look, and update this as soon as possible!</p>
+            </div>
+            <div id="messageFailed">
+              <p>Please try again, and if it still doesn't work, please send us an email at <a href="mailto:hello@ethicli.com?subject=Ethicli Inquiry" target="_blank">hello@ethicli.com</a> with your request!</p>
+            </div>
         </div>
     </div>
 </body>
