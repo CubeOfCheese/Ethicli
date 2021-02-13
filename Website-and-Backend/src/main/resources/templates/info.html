@@ -11,7 +11,7 @@
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:site" content="@Shop_Ethicli"/>
     <meta name="twitter:creator" content="@Shop_Ethicli"/>
-    <meta property="og:title" content="Ethicli • Ethical Shopping Browser Extension">
+    <meta property="og:title" th:content="${business.name} + ' • Ethicli Score'">
     <meta property="og:site_name" content="Ethicli">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ethicli.com/">
@@ -19,7 +19,10 @@
     <meta property="og:description" content="Ethicli suggests better products while you shop by scoring how the product affects our workers,
         planet, and community. Use our free browser extension to effortlessly shop from more ethical,
         green, and smaller businesses!">
-    <title>Ethicli • Ethical Shopping Browser Extension</title>
+    <title th:if="${business.name == ''}">Ethicli • Ethical Shopping Browser Extension</title>
+    <title th:unless="${business.name == ''}"  th:text = "${business.name} + ' • Ethicli Score'"></title>
+
+    <!-- <title th:text = "${business.name} + ' • Ethicli Score'">Ethicli • Ethical Shopping Browser Extension</title> -->
     <link rel="icon" href="../images/ethicli-logo.png">
     <link href="../stylescripts/reset.css" rel="stylesheet">
     <link href="../stylescripts/info-style.css" rel="stylesheet">
@@ -62,7 +65,7 @@
                         <p th:if="${#strings.substring(business.overallScore,0,3) != '0.0'}">/10</p>
                     </div>
                     <div>
-                        <p><a th:href="${business.website}" target="_blank" th:text = "${business.website}"><em>Insert URL here</em></a></p>
+                        <p><a th:href="@{'http://' + ${business.website}}" target="_blank" th:text = "${business.website}"><em>Insert URL here</em></a></p>
                         <span th:if="${business.overallScoreDetails == '' and #strings.substring(business.overallScore,0,3) != '0.0'}">
                             <p>The overall score is calculated by averaging the <em>environmental</em>,
                             <em>labor</em>, <em>animal treatment</em>, and <em>social</em> statistics of each company, which is calculated and compared against news media.</p>
