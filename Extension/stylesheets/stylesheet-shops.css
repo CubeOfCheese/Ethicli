@@ -259,47 +259,38 @@ body#popupMain {
 }
 
 #detailsButton, #preMessage {
+    display: block;
     align-self: flex-end;
-    margin-right: 10px;
     padding: 6px;
     font-size: 12px;
     cursor: pointer;
 }
 
-/* #detailsButton, #submitLazyFeedback {
+#detailsButton, #submitLazyFeedback {
     align-self: flex-end;
-    margin-right: 10px;
     padding: 6px;
     font-size: 12px;
     cursor: pointer;
-} */
+}
 
-/* #lazyFeedback {
-    display: flex;
-    width: 250px;
-    margin-top: 8px;
-    padding: 6px 10px;
-} */
+#lazyFeedback {
+    width: 100%;
+}
 
 #preMessage {
-    margin: 0 0 0 auto;
+    padding: 0;
 }
 
-/* #requestProductMessage {
-    font-size: 12px;
-    line-height: 16px;
+#preMessage button {
+    padding: 6px 10px;
+}
+
+#messageSucceeded p, #messageFailed p {
+    margin-top: 12px;
     text-align: center;
-} */
-
-/* #requestProduct #submitLazyFeedback,
-#requestProduct.requestedProduct #submitLazyFeedback {
-    display: none;
+    font-size: 13px;
 }
 
-#requestProduct.requestedProduct #requestProductMessage,
-#requestProduct #submitLazyFeedback {
-    display: block;
-} */
 
 /** Sponsored **/
 
