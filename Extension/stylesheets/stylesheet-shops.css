@@ -1,6 +1,6 @@
 /** General scoring and popup, confirmed that it's a shop **/
 
-body#popupMain {
+body {
     padding-bottom: 24px;
 }
 
@@ -12,7 +12,7 @@ body#popupMain {
 }
 
 #rating {
-    margin: 24px auto 16px 80px;
+    margin: 24px auto 16px 70px;
     width: 120px;
     height: 120px;
 }
@@ -30,7 +30,6 @@ body#popupMain {
 }
 
 #overallScoreGroup.showtip #overallScoreTooltip {
-    background: pink;
     display: block;
     position: absolute;
     top: 16px;
@@ -101,7 +100,7 @@ body#popupMain {
     flex-direction: column;
     align-items: flex-end;
     top: 36px;
-    left: -158px;
+    left: -164px;
     font-size: 11px;
     padding: 4px 6px;
 }
@@ -173,28 +172,28 @@ body#popupMain {
 
 /** Badge Overlay **/
 
-#popupMain.badgesExpanded {
+body.badgesExpanded {
     background: #c6d4c5;
 }
 
-#popupMain.badgesExpanded #detailsButton {
+body.badgesExpanded #detailsButton {
     background: #0A2342;
 }
 
-#popupMain.badgesExpanded #detailsButton:hover {
+body.badgesExpanded #detailsButton:hover {
     background: rgb(37, 69, 112);
 }
 
-#popupMain.badgesExpanded #scores {
+body.badgesExpanded #scores {
     opacity: 0;
 }
 
-#popupMain.badgesExpanded #badges {
+body.badgesExpanded #badges {
     display: flex;
     z-index: 1;
 }
 
-#popupMain.badgesExpanded #menuBacking {
+body.badgesExpanded #menuBacking {
     background: rgba(198, 212, 197, 0.75);
 }
 

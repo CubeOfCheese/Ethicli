@@ -1,5 +1,6 @@
 const HEIGHT_TUTORIAL = 600;
 const HEIGHT_MESSAGING = 600;
+const HEIGHT_MESSAGE_SENT = 360;
 
 
 window.addEventListener("load", () => {
@@ -9,17 +10,6 @@ window.addEventListener("load", () => {
 
   document.getElementById("menuBacking").addEventListener("click", () => {
     document.getElementById("menuPanel").classList.remove("menuClicked");
-  });
-
-  document.getElementById("somethingWrong").addEventListener("click", () => {
-    previousHeight = document.body.style.height;
-    document.getElementById("messaging").classList.add("show");
-    document.body.style = "height:" + HEIGHT_MESSAGING + "px;";
-    document.getElementById("menuPanel").classList.add("hide");
-    // SomethingWrong analytics event
-  });
-  document.getElementById("sendMessageButton").addEventListener("click", () => {
-    sendMessage(previousHeight);
   });
 
   if (document.getElementById("sitename") != null) {
@@ -83,9 +73,26 @@ window.addEventListener("load", () => {
 
   // --- Feedback ---------------------------------------------------------------------------
 
+  document.getElementById("reportIssue").addEventListener("click", () => {
+    previousHeight = document.body.style.height;
+    document.body.classList.add("messagingOpen");
+    document.body.style = "height:" + HEIGHT_MESSAGING + "px;";
+    document.getElementById("menuPanel").classList.add("hide");
+
+    document.getElementById("messagingForm").classList.remove("sendClicked");
+    document.getElementById("messageSubmitted").classList.remove("success");
+    document.getElementById("messageFailed").classList.remove("failed");
+    // reportIssue analytics event
+  });
+
+  document.getElementById("sendMessageButton").addEventListener("click", () => {
+    sendMessage(previousHeight);
+  });
+
   document.getElementById("closeMessaging").addEventListener("click", () => { // closes messaging system
-    document.getElementById("messaging").classList.remove("show");
     document.getElementById("menuPanel").classList.remove("hide");
+    document.body.classList.remove("messagingOpen");
+    document.body.style = "height:" + previousHeight;
   });
 
   document.getElementById("messagingReason").addEventListener("change", () => { // closes messaging system
@@ -135,6 +142,7 @@ function fadeLongURL() {
             mask-image: linear-gradient(to right, black 90%, transparent 100%)`;
   });
 }
+
 export function sendFeedback(messageType, userEmail) {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
@@ -195,9 +203,26 @@ function sendMessage(previousHeight) {
     };
     fetch(fetchUrlFeedback, fetchParams)
         .then(() => {
-          document.body.style = "height:" + previousHeight;
-          // display response then fade away @Linda this is all you
-          document.getElementById("messageSubmitted").style = "display:block;";
+          // throw new Error("Required");
+          document.body.style = "height:" + HEIGHT_MESSAGE_SENT + "px;";
+          document.getElementById("messagingForm").classList.add("sendClicked");
+          document.getElementById("messageSubmitted").classList.add("success");
+        })
+        .catch(() => { // styling error message
+          // const timeout = setTimeout(revertMainScreen(previousHeight), 10000); //Fading/ removing this doesn't work...
+          document.body.style = "height:" + HEIGHT_MESSAGE_SENT + "px;";
+          document.getElementById("messagingForm").classList.add("sendClicked");
+          document.getElementById("messageFailed").classList.add("failed");
         });
   });
+}
+
+function revertMainScreen(previousHeight) {
+  document.getElementById("menuPanel").classList.remove("menuClicked");
+  document.getElementById("menuPanel").classList.remove("hide");
+  document.getElementById("messagingForm").classList.remove("sendClicked");
+  document.getElementById("messageSubmitted").classList.remove("success");
+  document.getElementById("messageFailed").classList.remove("failed");
+  document.body.classList.remove("messagingOpen");
+  document.body.style = "height:" + previousHeight;
 }

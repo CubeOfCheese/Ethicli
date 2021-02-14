@@ -14,22 +14,21 @@
     <script type="module" src="../popup-scripts/popup-shop.js"></script>
 </head>
 
-<body style="height:350px;" id="popupMain">
+<body style="height:350px;" id="popupShop">
     <div>
         <p id="sitename">Shop: <span id="siteurlcontainer"><span id="siteurl"></span></span></p>
         <div id="menuPanel">
             <div id="menuBacking"></div>
-            <button class="tooltip" id="somethingWrong"><a id="sendEmail">Report an Issue</a></button>
+            <button class="tooltip" id="reportIssue"><a id="sendEmail">Report an Issue</a></button>
             <button id="visitWebsite"><a href="https://ethicli.com" target="_blank">Ethicli Website</a></button>
             <button><span id="watchTutorial">Watch Tutorial</span></button>
             <span id="messaging">
-                <span id="closeMessaging">x</span>
+                <h3>Report an Issue</h3>
                 <span id="messagingForm">
                     <form>
-                        <h3>Report an Issue</h3>
                         <p>If you leave your email, we will send you a personalized response.</p>
-                        <label for="messagingName">Your Name</label><input type="text" id="messagingName" name="messagingName">
-                        <label for="messagingEmail">Your Email</label><input type="email" id="messagingEmail" name="messagingEmail">
+                        <label for="messagingName">Your Name</label><input type="text" id="messagingName" name="messagingName" placeholder="Granny Smith">
+                        <label for="messagingEmail">Your Email</label><input type="email" id="messagingEmail" name="messagingEmail" placeholder="gsmith@ethicli.com">
                         <label for="messagingReason">Category<span class="requiredField"> *</span></label>
                         <select name="messagingReason" id="messagingReason" required>
                           <option disabled selected value> -- select an option -- </option>
@@ -38,20 +37,21 @@
                           <option value="Incorrect shop name">Incorrect shop name</option>
                           <option value="Other">Other</option>
                         </select>
-                        <label for="messageContent">Message<span class="requiredField"> *</span></label><textarea type="text" id="messageContent" name="messageContent" required></textarea>
+                        <label for="messageContent">Message<span class="requiredField"> *</span></label><textarea type="text" id="messageContent" name="messageContent" placeholder="There's something about this shop..." required></textarea>
                     </form>
                     <input id="sendMessageButton" type="submit" value="Send Message">
                 </span>
-                <span id="messageSubmitted" style="display:none">
-                    <h3>Thank you for your message!</h3>
+                <span id="messageSubmitted">
+                    <p>Thank you for your message!</p>
                     <p><span id="withemail">We will send an email to <span id="uemail"></span> and will get back to you as soon as possible. </span>Hope you have a good day!</p>
-                    <img src="../images/happyplantdude.svg" alt="Happy Plant Dude">
+                    <img src="../images/happyplantdude.svg" alt="Happy Plant Dude" id="plantdude">
                 </span>
-                <!-- <span id="messageFailed">
-                    <h3>Hmm... Something went wrong, and the message couldn't be sent.</h3>
+                <span id="messageFailed">
+                    <p>Hmm... Something went wrong, and the message couldn't be sent.</p>
                     <p>Please try again, and if it still doesn't work, please send us an email at <a href="mailto:hello@ethicli.com?subject=Ethicli Inquiry" target="_blank">hello@ethicli.com</a> with your request!</p>
-                    <img src="../images/sadplantdude.svg" alt="Sad Plant Guy" id="sadplantdude">
-                </span> -->
+                    <img src="../images/sadplantdude.svg" alt="Sad Plant Dude" id="sadplantdude">
+                </span>
+                <img id="closeMessaging" src="../images/cross.svg" alt="Exit Messaging">
             </span>
         </div>
 

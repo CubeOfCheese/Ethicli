@@ -57,14 +57,14 @@ body {
     cursor: pointer;
 }
 
-#menuPanel button#somethingWrong {
+#menuPanel button#reportIssue {
     margin-top: 36px;
     background: #E07A5F;
 }
 
 #menuPanel button {
     margin-top: 16px;
-    margin-right: -2px;
+    margin-right: 0px;
     z-index: 2;
     font-size: 12px;
     cursor: pointer;
@@ -198,7 +198,7 @@ button:hover {
     background: rgba(12, 123, 167, 0.8)
 }
 
-#menuPanel button#somethingWrong:hover {
+#menuPanel button#reportIssue:hover {
     background: rgba(224, 122, 95, 0.8);
 }
 
@@ -253,7 +253,7 @@ p {
     visibility: visible;
 }
 
-#subscoreTip, #somethingWrongTip {
+#subscoreTip, #reportIssueTip {
     position: absolute;
     width: 140px;
     font-size: 10px;
@@ -261,7 +261,7 @@ p {
     line-height: 1.2em;
 }
 
-#somethingWrongTip {
+#reportIssueTip {
     width: 130px;
     left: 0;
     z-index: 1;
