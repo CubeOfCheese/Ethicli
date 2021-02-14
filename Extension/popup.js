@@ -207,22 +207,26 @@ function sendMessage(previousHeight) {
           document.body.style = "height:" + HEIGHT_MESSAGE_SENT + "px;";
           document.getElementById("messagingForm").classList.add("sendClicked");
           document.getElementById("messageSubmitted").classList.add("success");
+          revertMainScreen(previousHeight);
         })
         .catch(() => { // styling error message
-          // const timeout = setTimeout(revertMainScreen(previousHeight), 10000); //Fading/ removing this doesn't work...
           document.body.style = "height:" + HEIGHT_MESSAGE_SENT + "px;";
           document.getElementById("messagingForm").classList.add("sendClicked");
           document.getElementById("messageFailed").classList.add("failed");
+          revertMainScreen(previousHeight);
         });
   });
 }
 
 function revertMainScreen(previousHeight) {
-  document.getElementById("menuPanel").classList.remove("menuClicked");
-  document.getElementById("menuPanel").classList.remove("hide");
-  document.getElementById("messagingForm").classList.remove("sendClicked");
-  document.getElementById("messageSubmitted").classList.remove("success");
-  document.getElementById("messageFailed").classList.remove("failed");
-  document.body.classList.remove("messagingOpen");
-  document.body.style = "height:" + previousHeight;
+  setTimeout(() => {
+    alert("aaa");
+    document.getElementById("menuPanel").classList.remove("menuClicked");
+    document.getElementById("menuPanel").classList.remove("hide");
+    document.getElementById("messagingForm").classList.remove("sendClicked");
+    document.getElementById("messageSubmitted").classList.remove("success");
+    document.getElementById("messageFailed").classList.remove("failed");
+    document.body.classList.remove("messagingOpen");
+    document.body.style = "height:" + previousHeight;
+  }, 3000);
 }

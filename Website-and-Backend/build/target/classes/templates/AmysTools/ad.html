@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ad Adder - Amy's Tools</title>
+    <link href="../stylescripts/reset.css" rel="stylesheet">
+    <link href="../AmysTools/ad-adder/stylesheet-ad.css" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <header><h1>🙆🏼‍♀️🛠 - Ad Adder</h1></header>
+
+        <form action="#" th:action="@{/Advertisement/add-desde-form}" th:object="${Advertisement}" method="POST">
+            <div id="companyGroup"> <!-- Main Company Info -->
+                <h2>Main Company Info</h2>
+                <label for="companyname">Company Name: <input th:field="*{companyName}" id="companyname" placeholder="Clean Bean Cafe" type="text" spellcheck="true" required></label>
+                <label for="companyurl">Company Website: <input th:field="*{website}" id="companyurl" placeholder="https://cbcafe.com" type="url" required></label>
+                <label for="companyscore">Company Score: <input th:field="*{companyScore}" id="companyscore" placeholder="8.0" type="number" step="0.01" required></label>
+            </div>
+
+            <div> <!-- Products -->
+                <h2>Product</h2>
+                <span class="productContainer">
+                    <div id="productgroup">
+                        <h3>Product <span id="numproducts">1</span></h3>
+                        <label for="productname">Product Name: <input th:field="*{productName}" id="productname" placeholder="Teracotta Mug" type="text" spellcheck="true" required></label>
+                        <label for="productprice">Price($): <input th:field="*{price}" id="productprice" placeholder="10" type="number" step="0.01" required></label>
+                        <label for="producturl">Product URL: <input th:field="*{productURL}" id="producturl" placeholder="https://cbcafe.com/merch" type="url" required></label>
+                        <label for="productImageUrl">Product Image: <input th:field="*{productImageURL}" id="productImageUrl" placeholder="https://cbcafe.com/mug.jpg" type="url" required></label>
+                        <div id="productUrlPreviewGroup"><img id="productUrlPreview" src=""  alt="Product Image Preview"></div>
+
+                        <span class="productGroupBottom">
+                            <span>
+                                <h4>Positive Product Tags</h4>
+                                <div id="productTagList" th:each="productTags, i: ${Advertisement.productTags}" class="productTagGroup">
+                                    <span id="pTag" class="positiveTag">
+                                        <span>
+                                            <label for="productTag">Tag: </label>
+                                            <input th:field="*{productTags[__${i.index}__].tag}" id="productTag" placeholder="legging" type="text" spellcheck="true" required>
+                                        </span>
+                                        <span>
+                                            <label for="productTagWeight">Weight: </label>
+                                            <input th:field="*{productTags[__${i.index}__].weight}" id="productTagWeight" placeholder="1" type="number" step="0.01" required>
+                                        </span>
+                                    </span>
+                                </div>
+                                <span id="changeTag">
+                                    <svg id="addTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
+                                    <svg id="deleteTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
+                                </span>
+                            </span>
+                            <span>
+                                <h4>Negative Product Tags</h4>
+                                <div id="negativeProductTagList" class="productTagGroup">
+                                    <span id="negPTag" class="negativeTag">
+                                        <span>
+                                            <label for="negativeProductTag">Tag: </label>
+                                            <input id="negativeProductTag" placeholder="legging" type="text" spellcheck="true">
+                                        </span>
+                                        <span>
+                                            <label for="negativeProductTagWeight">Weight: </label>
+                                            <input id="negativeProductTagWeight" placeholder="1" type="number" step="0.01">
+                                        </span>
+                                    </span>
+                                </div>
+                                <span id="negativeChangeTag">
+                                    <svg id="addNegativeTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path fill="#E07A5F" d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
+                                    <svg id="deleteNegativeTag" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path fill="#E07A5F" d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                </span>
+                <!-- <span id="changeProduct">
+                    <svg id="addProduct" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
+                    <svg id="deleteProduct" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
+                </span> -->
+            </div>
+
+            <!-- <div id="productsection"></div> -->
+
+            <input id="submit" type="submit"> <!-- Submit -->
+        </form>
+
+        <footer>
+        </footer>
+    </div>
+    <script src="../AmysTools/ad-adder/script-ad.js"></script>
+
+</body>
+
+</html>
