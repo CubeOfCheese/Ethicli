@@ -1,7 +1,8 @@
 import { getDomainWithoutSuffix } from "tldts-experimental";
+import { sendFeedback } from "../popup.js";
 
 const HEIGHT_POPUP_OVERALLSCORE = 160;
-const HEIGHT_POPUP_VIEWDETAILS = 36;
+const HEIGHT_POPUP_VIEWDETAILS = 36 + 42;
 const HEIGHT_POPUP_SUBSCORE = 42;
 const HEIGHT_POPUP_SPONSOR = 174;
 
@@ -24,6 +25,11 @@ window.addEventListener("load", () => {
       document.getElementById("badgeIcon").src = "images/badge.svg";
     }
   });
+
+  // --- Request Recommended Product ------------------------------------------------------------------
+  document.getElementById("submitLazyFeedback").onclick = () => {
+    sendFeedback("ProductRequest");
+  };
 });
 
 chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, (ratingResponse) => {
@@ -189,8 +195,10 @@ function loadSponsor(productName, ethicliScore) {
       document.getElementById("sponsorLink").addEventListener("click", () => {
         // AdClicked analytics event
       });
+      document.getElementById("requestProductButton").style = "display:none";
     } else {
       document.getElementById("sponsor").style = "display:none;";
+      document.getElementById("requestProduct").style = "display:block;";
     }
   });
 }

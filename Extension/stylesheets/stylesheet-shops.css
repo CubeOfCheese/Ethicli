@@ -8,6 +8,7 @@ body#popupMain {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-right: 0;
 }
 
 #rating {
@@ -251,10 +252,44 @@ body#popupMain {
     margin-left: 14px;
 }
 
-#detailsButton {
+#lazyFeedback {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  margin-right: 0;
+}
+
+#detailsButton, #preMessage {
+    display: block;
     align-self: flex-end;
     padding: 6px;
     font-size: 12px;
+    cursor: pointer;
+}
+
+#detailsButton, #submitLazyFeedback {
+    align-self: flex-end;
+    padding: 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#lazyFeedback {
+    width: 100%;
+}
+
+#preMessage {
+    padding: 0;
+}
+
+#preMessage button {
+    padding: 6px 10px;
+}
+
+#messageSucceeded p, #messageFailed p {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 13px;
 }
 
 

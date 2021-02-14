@@ -135,6 +135,38 @@ function fadeLongURL() {
             mask-image: linear-gradient(to right, black 90%, transparent 100%)`;
   });
 }
+export function sendFeedback(messageType, userEmail) {
+  const query = { active: true, currentWindow: true };
+  chrome.tabs.query(query, (tabs) => {
+    const currentTab = tabs[0];
+    const fetchUrlFeedback = "https://ethicli.com/feedback";
+    const fetchData = {
+      url: currentTab.url,
+      userEmail: userEmail,
+      messageType: messageType
+    };
+    const fetchParams = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(fetchData)
+    };
+    fetch(fetchUrlFeedback, fetchParams)
+        .then((response) => {
+          if (response.status !== 200) {
+            throw new Error("404");
+          }
+          document.getElementById("lazyFeedback").classList.add("succeeded"); // hide first div // showing second div
+        })
+        .catch((error) => {
+          alert(error);
+          document.getElementById("lazyFeedback").classList.add("failed"); // hide first div // showing third div
+          // "RatingRequestFailed - " + error.message analytics event
+        });
+  });
+  // ShopRequested analytics event
+}
 
 
 function sendMessage(previousHeight) {

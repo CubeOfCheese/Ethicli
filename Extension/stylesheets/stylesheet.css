@@ -2,6 +2,7 @@ body {
     font-family: sans-serif;
     width: 260px;
     padding: 36px;
+    margin: auto;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-weight: 400;
     background: #FFFCF2;
@@ -72,12 +73,12 @@ body {
 
 /** Not a Shop **/
 
-#shopping, #notShopMessage, #shopDataUnavailable {
+#shopping, #lazyFeedback, #shopDataUnavailable {
     display: block;
     margin-right: auto;
 }
 
-#notShopMessage h2, #shopDataUnavailable h2 {
+#shopDataUnavailable h2 {
     font-size: 1.8em;
     line-height: 1.4em;
     margin-bottom: 16px;
@@ -85,7 +86,16 @@ body {
     color: #E07A5F;
 }
 
-#popupNotShop #notShopMessage h2 {
+h2.redTitle {
+    display: block;
+    margin: -16px auto 16px 0;
+    font-size: 1.8em;
+    line-height: 1.4em;
+    font-weight: 700;
+    color: #E07A5F;
+}
+
+#popupNotShop #lazyFeedback h2 {
     margin-top: -16px;
 }
 
@@ -93,8 +103,34 @@ body {
     margin-top: 16px;
 }
 
-#notShopMessage p, #shopDataUnavailable p, #optin p {
+#lazyFeedback p, #shopDataUnavailable p, #optin p {
     line-height: 1.4em;
+}
+
+#submitLazyFeedback {
+    margin-top: 16px;
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
+#lazyFeedback #preMessage {
+    display: block;
+}
+
+#lazyFeedback #messageSucceeded, #lazyFeedback #messageFailed {
+    display: none;
+}
+
+#lazyFeedback.succeeded #preMessage, #lazyFeedback.failed #preMessage {
+    display: none;
+}
+
+#lazyFeedback.succeeded #messageSucceeded {
+    display: block;
+}
+
+#lazyFeedback.failed #messageFailed {
+    display: block;
 }
 
 /** Typography **/
