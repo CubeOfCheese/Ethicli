@@ -34,10 +34,6 @@ body.messagingOpen button {
     transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
 }
 
-#messaging.noShopName {
-    padding-top: 18px;
-}
-
 body.messagingOpen #messaging {
     opacity: 1;
     top: 0px;
@@ -176,10 +172,6 @@ body.messagingOpen #closeMessaging {
     min-height: 140px;
     resize: none;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
-}
-
-#messaging.noShopName textarea {
-    min-height: 186px;
 }
 
 input#sendMessageButton {
