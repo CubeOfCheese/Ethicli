@@ -192,6 +192,7 @@ input#sendMessageButton {
     background: #05668D;
     color: #FFFCF2;
     font-size: 12px;
+    cursor: pointer;
 }
 
 input#sendMessageButton:disabled,
