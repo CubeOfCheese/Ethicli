@@ -1,9 +1,7 @@
 const HEIGHT_TUTORIAL = 600;
 const HEIGHT_MESSAGING = 600;
-const HEIGHT_MESSAGE_ERROR = 320;
-const HEIGHT_MESSAGE_SENT = 280;
+const HEIGHT_MESSAGE_SENT = 320;
 const HEIGHT_MESSAGE_SENT_EMAIL = 40;
-const HEIGHT_SHOP_NAME = 40;
 
 
 window.addEventListener("load", () => {
@@ -264,15 +262,12 @@ function sendMessage() {
           } else {
             document.getElementById("withemail").classList.remove("hasEmail");
           }
-          if (!document.getElementById("messaging").classList.contains("noShopName")) {
-            responseHeight += HEIGHT_SHOP_NAME;
-          }
           document.body.style = "height:" + responseHeight + "px;";
 
           document.getElementById("sendMessageButton").disabled = true;
         })
         .catch(() => {
-          document.body.style = "height:" + HEIGHT_MESSAGE_ERROR + "px;";
+          document.body.style = "height:" + HEIGHT_MESSAGE_SENT + "px;";
           document.getElementById("messagingFormGroup").classList.add("sendClicked");
           document.getElementById("messageFailed").classList.add("failed");
         });

@@ -1,0 +1,11 @@
+#messaging {
+  padding-top: 18px;
+}
+
+#messageSubmitted #plantdude {
+  margin-top: 22px;
+}
+
+#messaging textarea {
+    min-height: 186px;
+}
