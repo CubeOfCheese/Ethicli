@@ -79,14 +79,10 @@ window.addEventListener("load", () => {
     document.body.style = "height:" + HEIGHT_MESSAGING + "px;";
     document.getElementById("menuPanel").classList.add("hide");
 
-    document.getElementById("messagingForm").classList.remove("sendClicked");
+    document.getElementById("messagingFormGroup").classList.remove("sendClicked");
     document.getElementById("messageSubmitted").classList.remove("success");
     document.getElementById("messageFailed").classList.remove("failed");
     // reportIssue analytics event
-  });
-
-  document.getElementById("sendMessageButton").addEventListener("click", () => {
-    sendMessage(previousHeight);
   });
 
   document.getElementById("closeMessaging").addEventListener("click", () => { // closes messaging system
@@ -95,8 +91,11 @@ window.addEventListener("load", () => {
     document.body.style = "height:" + previousHeight;
   });
 
-  document.getElementById("messagingReason").addEventListener("change", () => { // closes messaging system
-    const messagingReason = document.getElementById("messagingReason").value;
+  let messagingReason;
+  let messageContent;
+  let validated = false;
+  document.getElementById("messagingReason").addEventListener("change", () => { // updates messaging content
+    getMessagingValues();
     let messagePrefill;
     switch (messagingReason) {
       case "This should be a shop":
@@ -116,6 +115,39 @@ window.addEventListener("load", () => {
     }
     if (document.getElementById("messageContent").value === "") {
       document.getElementById("messageContent").value = messagePrefill;
+    }
+    validate();
+  });
+
+  document.getElementById("messagingReason").addEventListener("blur", () => {
+    validate();
+  });
+
+  document.getElementById("messageContent").addEventListener("blur", () => {
+    validate();
+  });
+
+  function getMessagingValues() {
+    messageContent = document.getElementById("messageContent").value;
+    messagingReason = document.getElementById("messagingReason").value;
+  }
+
+  function validate() {
+    getMessagingValues();
+    if ((messagingReason === "") || (messageContent === "")) {
+      document.getElementById("sendMessageButton").disabled = true;
+      document.getElementById("requiredError").style.display = "block";
+      validated = false;
+    } else {
+      document.getElementById("sendMessageButton").disabled = false;
+      document.getElementById("requiredError").style.display = "none";
+      validated = true;
+    }
+  }
+
+  document.getElementById("sendMessageButton").addEventListener("click", () => {
+    if (validated) {
+      sendMessage(previousHeight);
     }
   });
 
@@ -177,7 +209,7 @@ export function sendFeedback(messageType, userEmail) {
 }
 
 
-function sendMessage(previousHeight) {
+function sendMessage() {
   const userName = document.getElementById("messagingName").value;
   const userMessage = document.getElementById("messageContent").value;
   const userEmail = document.getElementById("messagingEmail").value;
@@ -203,30 +235,15 @@ function sendMessage(previousHeight) {
     };
     fetch(fetchUrlFeedback, fetchParams)
         .then(() => {
-          // throw new Error("Required");
           document.body.style = "height:" + HEIGHT_MESSAGE_SENT + "px;";
-          document.getElementById("messagingForm").classList.add("sendClicked");
+          document.getElementById("messagingFormGroup").classList.add("sendClicked");
           document.getElementById("messageSubmitted").classList.add("success");
-          revertMainScreen(previousHeight);
+          document.getElementById("sendMessageButton").disabled = true;
         })
-        .catch(() => { // styling error message
+        .catch(() => {
           document.body.style = "height:" + HEIGHT_MESSAGE_SENT + "px;";
-          document.getElementById("messagingForm").classList.add("sendClicked");
+          document.getElementById("messagingFormGroup").classList.add("sendClicked");
           document.getElementById("messageFailed").classList.add("failed");
-          revertMainScreen(previousHeight);
         });
   });
-}
-
-function revertMainScreen(previousHeight) {
-  setTimeout(() => {
-    alert("aaa");
-    document.getElementById("menuPanel").classList.remove("menuClicked");
-    document.getElementById("menuPanel").classList.remove("hide");
-    document.getElementById("messagingForm").classList.remove("sendClicked");
-    document.getElementById("messageSubmitted").classList.remove("success");
-    document.getElementById("messageFailed").classList.remove("failed");
-    document.body.classList.remove("messagingOpen");
-    document.body.style = "height:" + previousHeight;
-  }, 3000);
 }

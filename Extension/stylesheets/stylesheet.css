@@ -229,6 +229,13 @@ p {
     background: none;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 /** Images and ToolTip **/
 
 #shoppingBagImg {
