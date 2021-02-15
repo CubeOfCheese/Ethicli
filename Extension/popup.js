@@ -123,12 +123,13 @@ window.addEventListener("load", () => {
     validate();
   });
 
-  document.getElementById("messagingName").addEventListener("blur", () => {
-    validate();
-  });
-
   document.getElementById("messagingEmail").addEventListener("blur", () => {
-    validate();
+    const userEmail = document.getElementById("messagingEmail").value;
+    if ((userEmail !== "") && (userEmail !== undefined)) {
+      document.getElementById("withemail").classList.add("hasEmail");
+    } else {
+      document.getElementById("withemail").classList.remove("hasEmail");
+    }
   });
 
   document.getElementById("messagingReason").addEventListener("blur", () => {
@@ -154,13 +155,6 @@ window.addEventListener("load", () => {
       document.getElementById("sendMessageButton").disabled = false;
       document.getElementById("requiredError").style.display = "none";
       validated = true;
-    }
-
-    const userEmail = document.getElementById("messagingEmail").value;
-    if ((userEmail !== "") && (userEmail !== undefined)) {
-      document.getElementById("withemail").classList.add("hasEmail");
-    } else {
-      document.getElementById("withemail").classList.remove("hasEmail");
     }
   }
 
