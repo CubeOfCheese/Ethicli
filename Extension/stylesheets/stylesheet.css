@@ -59,7 +59,12 @@ body {
 
 #menuPanel button#reportIssue {
     margin-top: 36px;
+    padding: 4px 8px;
     background: #E07A5F;
+}
+
+#menuPanel button#reportIssue:hover {
+    background: rgba(224, 122, 95, 0.8);
 }
 
 #menuPanel button {
@@ -198,10 +203,6 @@ button:hover {
     background: rgba(12, 123, 167, 0.8)
 }
 
-#menuPanel button#reportIssue:hover {
-    background: rgba(224, 122, 95, 0.8);
-}
-
 button, button a {
     color: #FFFCF2;
     text-decoration: none;
@@ -258,21 +259,6 @@ button:focus {
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
-}
-
-#subscoreTip, #reportIssueTip {
-    position: absolute;
-    width: 140px;
-    font-size: 10px;
-    cursor: default;
-    line-height: 1.2em;
-}
-
-#reportIssueTip {
-    width: 130px;
-    left: 0;
-    z-index: 1;
-    font-size: 0.85em;
 }
 
 

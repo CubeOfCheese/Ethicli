@@ -127,6 +127,10 @@ body.messagingOpen #closeMessaging {
     
 }
 
+#messagingForm p {
+    font-size: 12px;
+}
+
 #withemail {
     display: none;
     padding-bottom: 30px;

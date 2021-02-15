@@ -207,6 +207,14 @@ body.badgesExpanded #menuBacking {
     align-self: flex-start;
 }
 
+#subscoreTip {
+    position: absolute;
+    width: 140px;
+    font-size: 10px;
+    cursor: default;
+    line-height: 1.2em;
+}
+
 #envSection, #laborSection, #animalSection, #socialSection {
     display: none;
 }
