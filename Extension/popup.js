@@ -1,6 +1,10 @@
 const HEIGHT_TUTORIAL = 600;
 const HEIGHT_MESSAGING = 600;
-const HEIGHT_MESSAGE_SENT = 360;
+const HEIGHT_MESSAGE_SENT_HAS_URL_HAS_EMAIL = 360;
+const HEIGHT_MESSAGE_SENT_HAS_URL_NO_EMAIL = 320;
+const HEIGHT_MESSAGE_SENT_NO_URL_HAS_EMAIL = 320;
+const HEIGHT_MESSAGE_SENT_NO_URL_NO_EMAIL = 280;
+const HEIGHT_MESSAGE_ERROR = 320;
 
 
 window.addEventListener("load", () => {
@@ -119,6 +123,14 @@ window.addEventListener("load", () => {
     validate();
   });
 
+  document.getElementById("messagingName").addEventListener("blur", () => {
+    validate();
+  });
+
+  document.getElementById("messagingEmail").addEventListener("blur", () => {
+    validate();
+  });
+
   document.getElementById("messagingReason").addEventListener("blur", () => {
     validate();
   });
@@ -143,12 +155,20 @@ window.addEventListener("load", () => {
       document.getElementById("requiredError").style.display = "none";
       validated = true;
     }
+
+    const userEmail = document.getElementById("messagingEmail").value;
+    if ((userEmail !== "") && (userEmail !== undefined)) {
+      document.getElementById("withemail").classList.add("hasEmail");
+    } else {
+      document.getElementById("withemail").classList.remove("hasEmail");
+    }
   }
 
   document.getElementById("sendMessageButton").addEventListener("click", () => {
     if (validated) {
       sendMessage(previousHeight);
     }
+    validated = false;
   });
 
   document.getElementById("visitWebsite").addEventListener("click", () => {
@@ -211,9 +231,9 @@ export function sendFeedback(messageType, userEmail) {
 
 function sendMessage() {
   const userName = document.getElementById("messagingName").value;
-  const userMessage = document.getElementById("messageContent").value;
   const userEmail = document.getElementById("messagingEmail").value;
   const userMessageReason = document.getElementById("messagingReason").value;
+  const userMessage = document.getElementById("messageContent").value;
 
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
@@ -223,8 +243,8 @@ function sendMessage() {
       url: currentTab.url,
       userName: userName,
       userEmail: userEmail,
-      message: userMessage,
-      messageType: userMessageReason
+      messageType: userMessageReason,
+      message: userMessage
     };
     const fetchParams = {
       method: "POST",
@@ -235,13 +255,29 @@ function sendMessage() {
     };
     fetch(fetchUrlFeedback, fetchParams)
         .then(() => {
-          document.body.style = "height:" + HEIGHT_MESSAGE_SENT + "px;";
           document.getElementById("messagingFormGroup").classList.add("sendClicked");
           document.getElementById("messageSubmitted").classList.add("success");
+
+          if (document.getElementById("withemail").classList.contains("hasEmail")) {
+            if (document.getElementById("messaging").classList.contains("noURL")) {
+              document.body.style = "height:" + HEIGHT_MESSAGE_SENT_NO_URL_HAS_EMAIL + "px;"; // No URL, has email
+            } else {
+              document.body.style = "height:" + HEIGHT_MESSAGE_SENT_HAS_URL_HAS_EMAIL + "px;"; // Has URL, has email
+            }
+            document.getElementById("uemail").innerText = userEmail;
+          } else {
+            if (document.getElementById("messaging").classList.contains("noURL")) {
+              document.body.style = "height:" + HEIGHT_MESSAGE_SENT_NO_URL_NO_EMAIL + "px;"; // No URL, no email
+            } else {
+              document.body.style = "height:" + HEIGHT_MESSAGE_SENT_HAS_URL_NO_EMAIL + "px;"; // Has URL, no email
+            }
+            document.getElementById("withemail").classList.remove("hasEmail");
+          }
+
           document.getElementById("sendMessageButton").disabled = true;
         })
         .catch(() => {
-          document.body.style = "height:" + HEIGHT_MESSAGE_SENT + "px;";
+          document.body.style = "height:" + HEIGHT_MESSAGE_ERROR + "px;";
           document.getElementById("messagingFormGroup").classList.add("sendClicked");
           document.getElementById("messageFailed").classList.add("failed");
         });

@@ -127,6 +127,20 @@ body.messagingOpen #closeMessaging {
     
 }
 
+#withemail {
+    display: none;
+    padding-bottom: 30px;
+}
+
+#withemail.hasEmail {
+    display: inline;
+    padding-bottom: 0;
+}
+
+#uemail {
+    font-weight: 600;
+}
+
 #messaging a {
     color: #05668D;
 }
