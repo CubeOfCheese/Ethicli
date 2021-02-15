@@ -34,7 +34,7 @@ body.messagingOpen button {
     transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
 }
 
-#messaging.noURL {
+#messaging.noShopName {
     padding-top: 18px;
 }
 
@@ -178,7 +178,7 @@ body.messagingOpen #closeMessaging {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
-#messaging.noURL textarea {
+#messaging.noShopName textarea {
     min-height: 186px;
 }
 

@@ -1,10 +1,9 @@
 const HEIGHT_TUTORIAL = 600;
 const HEIGHT_MESSAGING = 600;
-const HEIGHT_MESSAGE_SENT_HAS_URL_HAS_EMAIL = 360;
-const HEIGHT_MESSAGE_SENT_HAS_URL_NO_EMAIL = 320;
-const HEIGHT_MESSAGE_SENT_NO_URL_HAS_EMAIL = 320;
-const HEIGHT_MESSAGE_SENT_NO_URL_NO_EMAIL = 280;
 const HEIGHT_MESSAGE_ERROR = 320;
+const HEIGHT_MESSAGE_SENT = 280;
+const HEIGHT_MESSAGE_SENT_EMAIL = 40;
+const HEIGHT_SHOP_NAME = 40;
 
 
 window.addEventListener("load", () => {
@@ -221,7 +220,6 @@ export function sendFeedback(messageType, userEmail) {
           document.getElementById("lazyFeedback").classList.add("succeeded"); // hide first div // showing second div
         })
         .catch((error) => {
-          alert(error);
           document.getElementById("lazyFeedback").classList.add("failed"); // hide first div // showing third div
           // "RatingRequestFailed - " + error.message analytics event
         });
@@ -259,21 +257,17 @@ function sendMessage() {
           document.getElementById("messagingFormGroup").classList.add("sendClicked");
           document.getElementById("messageSubmitted").classList.add("success");
 
+          let responseHeight = HEIGHT_MESSAGE_SENT;
           if (document.getElementById("withemail").classList.contains("hasEmail")) {
-            if (document.getElementById("messaging").classList.contains("noURL")) {
-              document.body.style = "height:" + HEIGHT_MESSAGE_SENT_NO_URL_HAS_EMAIL + "px;"; // No URL, has email
-            } else {
-              document.body.style = "height:" + HEIGHT_MESSAGE_SENT_HAS_URL_HAS_EMAIL + "px;"; // Has URL, has email
-            }
+            responseHeight += HEIGHT_MESSAGE_SENT_EMAIL;
             document.getElementById("uemail").innerText = userEmail;
           } else {
-            if (document.getElementById("messaging").classList.contains("noURL")) {
-              document.body.style = "height:" + HEIGHT_MESSAGE_SENT_NO_URL_NO_EMAIL + "px;"; // No URL, no email
-            } else {
-              document.body.style = "height:" + HEIGHT_MESSAGE_SENT_HAS_URL_NO_EMAIL + "px;"; // Has URL, no email
-            }
             document.getElementById("withemail").classList.remove("hasEmail");
           }
+          if (!document.getElementById("messaging").classList.contains("noShopName")) {
+            responseHeight += HEIGHT_SHOP_NAME;
+          }
+          document.body.style = "height:" + responseHeight + "px;";
 
           document.getElementById("sendMessageButton").disabled = true;
         })
