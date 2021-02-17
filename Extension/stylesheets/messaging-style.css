@@ -124,7 +124,9 @@ body.messagingOpen #closeMessaging {
 
 #messaging p {
     line-height: 16px;
-    
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 
 #messagingForm p {
@@ -212,7 +214,7 @@ input#sendMessageButton[disabled]{
     color: #89a387;
     opacity: 1;
 }
-  
+
 #messaging :-ms-input-placeholder, ::-ms-input-placeholder {
     color: #89a387;
 }
