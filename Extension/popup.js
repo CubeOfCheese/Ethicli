@@ -169,13 +169,6 @@ window.addEventListener("load", () => {
   });
 });
 
-document.getElementById("reportIssue").onmouseover = () => {
-  document.getElementById("reportIssueTip").style.left = (event.clientX - 30) + "px";
-  document.getElementById("reportIssueTip").style.top = (event.clientY - 30) + "px";
-};
-
-// --- Fade Long URL ---------------------------------------------------------------------------
-
 function fadeLongURL() {
   document.getElementById("siteurl").addEventListener("mouseover", () => {
     const SHOPNAME = document.getElementById("siteurl").innerHTML;
