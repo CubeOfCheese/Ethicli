@@ -85,7 +85,7 @@
     width: 90px;
     height: 90px;
     margin: 20px 0 0 84px;
-    animation: plantguymove 1s;
+    animation: plantdudemove 1s;
 }
 
 @keyframes shoppingMove {
@@ -93,7 +93,7 @@
     to { margin: 24px 0 0 16px; }
 }
 
-@keyframes plantguymove {
+@keyframes plantdudemove {
     from { margin: 200px 0 0 84px; }
     to { margin: 20px 0 0 84px; }
 }

@@ -57,14 +57,19 @@ body {
     cursor: pointer;
 }
 
-#menuPanel button#somethingWrong {
+#menuPanel button#reportIssue {
     margin-top: 36px;
+    padding: 4px 8px;
     background: #E07A5F;
+}
+
+#menuPanel button#reportIssue:hover {
+    background: rgba(224, 122, 95, 0.8);
 }
 
 #menuPanel button {
     margin-top: 16px;
-    margin-right: -2px;
+    margin-right: 0px;
     z-index: 2;
     font-size: 12px;
     cursor: pointer;
@@ -198,10 +203,6 @@ button:hover {
     background: rgba(12, 123, 167, 0.8)
 }
 
-#menuPanel button#somethingWrong:hover {
-    background: rgba(224, 122, 95, 0.8);
-}
-
 button, button a {
     color: #FFFCF2;
     text-decoration: none;
@@ -229,6 +230,13 @@ p {
     background: none;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 /** Images and ToolTip **/
 
 #shoppingBagImg {
@@ -251,21 +259,6 @@ p {
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
-}
-
-#subscoreTip, #somethingWrongTip {
-    position: absolute;
-    width: 140px;
-    font-size: 10px;
-    cursor: default;
-    line-height: 1.2em;
-}
-
-#somethingWrongTip {
-    width: 130px;
-    left: 0;
-    z-index: 1;
-    font-size: 0.85em;
 }
 
 

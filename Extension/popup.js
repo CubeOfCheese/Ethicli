@@ -1,4 +1,10 @@
 const HEIGHT_TUTORIAL = 600;
+const HEIGHT_MESSAGING = 600;
+const HEIGHT_MESSAGE_ERROR = 320;
+const HEIGHT_MESSAGE_SENT = 280;
+const HEIGHT_MESSAGE_SENT_EMAIL = 50;
+const HEIGHT_SHOP_NAME = 40;
+
 
 window.addEventListener("load", () => {
   document.getElementById("menu").addEventListener("click", () => {
@@ -8,12 +14,6 @@ window.addEventListener("load", () => {
   document.getElementById("menuBacking").addEventListener("click", () => {
     document.getElementById("menuPanel").classList.remove("menuClicked");
   });
-
-  document.getElementById("somethingWrong").addEventListener("click", () => {
-    somethingWrong();
-    // SomethingWrong analytics event
-  });
-
 
   if (document.getElementById("sitename") != null) {
     fadeLongURL();
@@ -74,6 +74,96 @@ window.addEventListener("load", () => {
     }
   }
 
+  // --- Feedback ---------------------------------------------------------------------------
+
+  document.getElementById("reportIssue").addEventListener("click", () => {
+    previousHeight = document.body.style.height;
+    document.body.classList.add("messagingOpen");
+    document.body.style = "height:" + HEIGHT_MESSAGING + "px;";
+    document.getElementById("menuPanel").classList.add("hide");
+
+    document.getElementById("messagingFormGroup").classList.remove("sendClicked");
+    document.getElementById("messageSubmitted").classList.remove("success");
+    document.getElementById("messageFailed").classList.remove("failed");
+    // reportIssue analytics event
+  });
+
+  document.getElementById("closeMessaging").addEventListener("click", () => { // closes messaging system
+    document.getElementById("menuPanel").classList.remove("hide");
+    document.body.classList.remove("messagingOpen");
+    document.body.style = "height:" + previousHeight;
+  });
+
+  let messagingReason;
+  let messageContent;
+  let validated = false;
+  document.getElementById("messagingReason").addEventListener("change", () => { // updates messaging content
+    getMessagingValues();
+    let messagePrefill;
+    switch (messagingReason) {
+      case "Incorrect shop name":
+        messagePrefill = "Incorrect shop name";
+        break;
+      case "Inaccurate Score":
+        messagePrefill = "I'm confused/disagree with this score";
+        break;
+      case "This is not a shop":
+        messagePrefill = "This website is not a shop";
+        break;
+      case "Other":
+        messagePrefill = "";
+        break;
+      default:
+        messagePrefill = "";
+    }
+    if (document.getElementById("messageContent").value === "") {
+      document.getElementById("messageContent").value = messagePrefill;
+    }
+    validate();
+  });
+
+  document.getElementById("messagingEmail").addEventListener("blur", () => {
+    const userEmail = document.getElementById("messagingEmail").value;
+    if ((userEmail !== "") && (userEmail !== undefined)) {
+      document.getElementById("withemail").classList.add("hasEmail");
+    } else {
+      document.getElementById("withemail").classList.remove("hasEmail");
+    }
+  });
+
+  document.getElementById("messagingReason").addEventListener("blur", () => {
+    validate();
+  });
+
+  document.getElementById("messageContent").addEventListener("blur", () => {
+    validate();
+  });
+
+  function getMessagingValues() {
+    messageContent = document.getElementById("messageContent").value;
+    messagingReason = document.getElementById("messagingReason").value;
+  }
+
+  function validate() {
+    getMessagingValues();
+    if ((messagingReason === "") || (messageContent === "")) {
+      document.getElementById("sendMessageButton").disabled = true;
+      document.getElementById("requiredError").style.display = "block";
+      validated = false;
+    } else {
+      document.getElementById("sendMessageButton").disabled = false;
+      document.getElementById("requiredError").style.display = "none";
+      validated = true;
+    }
+  }
+
+  document.getElementById("sendMessageButton").addEventListener("click", () => {
+    if (validated) {
+      sendMessage();
+    }
+    validated = false;
+  });
+
   document.getElementById("visitWebsite").addEventListener("click", () => {
     // VisitedWebsite analytics event
   });
@@ -97,6 +187,7 @@ function fadeLongURL() {
             mask-image: linear-gradient(to right, black 90%, transparent 100%)`;
   });
 }
+
 export function sendFeedback(messageType, userEmail) {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
@@ -122,7 +213,6 @@ export function sendFeedback(messageType, userEmail) {
           document.getElementById("lazyFeedback").classList.add("succeeded"); // hide first div // showing second div
         })
         .catch((error) => {
-          alert(error);
           document.getElementById("lazyFeedback").classList.add("failed"); // hide first div // showing third div
           // "RatingRequestFailed - " + error.message analytics event
         });
@@ -130,13 +220,23 @@ export function sendFeedback(messageType, userEmail) {
   // ShopRequested analytics event
 }
 
-function somethingWrong() {
+
+function sendMessage() {
+  const userName = document.getElementById("messagingName").value;
+  const userEmail = document.getElementById("messagingEmail").value;
+  const userMessageReason = document.getElementById("messagingReason").value;
+  const userMessage = document.getElementById("messageContent").value;
+
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
     const fetchUrlFeedback = "https://ethicli.com/feedback";
     const fetchData = {
-      url: currentTab.url
+      url: currentTab.url,
+      userName: userName,
+      userEmail: userEmail,
+      messageType: userMessageReason,
+      message: userMessage
     };
     const fetchParams = {
       method: "POST",
@@ -145,19 +245,29 @@ function somethingWrong() {
       },
       body: JSON.stringify(fetchData)
     };
-    fetch(fetchUrlFeedback, fetchParams);
+    fetch(fetchUrlFeedback, fetchParams)
+        .then(() => {
+          document.getElementById("messagingFormGroup").classList.add("sendClicked");
+          document.getElementById("messageSubmitted").classList.add("success");
 
-    // Pulls and sets email
-    document.getElementById("sendEmail").href = sendEmail();
+          let responseHeight = HEIGHT_MESSAGE_SENT;
+          if (document.getElementById("withemail").classList.contains("hasEmail")) {
+            responseHeight += HEIGHT_MESSAGE_SENT_EMAIL;
+            document.getElementById("uemail").innerText = userEmail;
+          } else {
+            document.getElementById("withemail").classList.remove("hasEmail");
+          }
+          if (!document.getElementById("messaging").classList.contains("noShopName")) {
+            responseHeight += HEIGHT_SHOP_NAME;
+          }
+          document.body.style = "height:" + responseHeight + "px;";
 
-    function sendEmail() {
-      const emailUrl = "mailto:hello@ethicli.com?subject=Error%20With%20Current%20Website%20&body=Error%20with%20the%20following%20page:%20"
-        + currentTab.url + "%0d%0aPlease%20let%20us%20know%20what%20is%20wrong%20below.";
-      chrome.tabs.create({ url: emailUrl }, (tab) => {
-        setTimeout(() => {
-          chrome.tabs.remove(tab.id);
-        }, 500);
-      });
-    }
+          document.getElementById("sendMessageButton").disabled = true;
+        })
+        .catch(() => {
+          document.body.style = "height:" + HEIGHT_MESSAGE_ERROR + "px;";
+          document.getElementById("messagingFormGroup").classList.add("sendClicked");
+          document.getElementById("messageFailed").classList.add("failed");
+        });
   });
 }
