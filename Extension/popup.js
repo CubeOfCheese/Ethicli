@@ -101,14 +101,14 @@ window.addEventListener("load", () => {
     getMessagingValues();
     let messagePrefill;
     switch (messagingReason) {
-      case "This should be a shop":
-        messagePrefill = "This is a shop page but isn't recognized";
-        break;
-      case "No shop rating":
-        messagePrefill = "I would like to see a rating for this shop";
-        break;
       case "Incorrect shop name":
         messagePrefill = "Incorrect shop name";
+        break;
+      case "Inaccurate Score":
+        messagePrefill = "I'm confused/disagree with this score";
+        break;
+      case "This is not a shop":
+        messagePrefill = "This website is not a shop";
         break;
       case "Other":
         messagePrefill = "";
@@ -159,7 +159,7 @@ window.addEventListener("load", () => {
 
   document.getElementById("sendMessageButton").addEventListener("click", () => {
     if (validated) {
-      sendMessage(previousHeight);
+      sendMessage();
     }
     validated = false;
   });
