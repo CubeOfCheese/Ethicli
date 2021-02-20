@@ -195,10 +195,10 @@ function loadSponsor(productName, ethicliScore) {
       document.getElementById("sponsorLink").addEventListener("click", () => {
         // AdClicked analytics event
       });
-      document.getElementById("requestProductButton").style = "display:none";
+      document.getElementById("submitLazyFeedback").style = "display:none";
     } else {
       document.getElementById("sponsor").style = "display:none;";
-      document.getElementById("requestProduct").style = "display:block;";
+      document.getElementById("lazyFeedback").style = "display:block;";
     }
   });
 }
