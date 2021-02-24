@@ -27,7 +27,10 @@ function reloadExt(request, sender) {
 
     const companyName = getDomainWithoutSuffix(sender.tab.url);
 
-    const blocklist = [ "google", "bing", "yahoo", "baidu", "aol", "duckduckgo", "yandex", "ecosia" ];
+    // Feb 23 2021
+    // etsy is included because we don't have a way to prevent matching of etsy with etsy.com/exampleShop
+    // so etsy is awarded badges that should actually be attributed to exampleShop
+    const blocklist = [ "google", "bing", "yahoo", "baidu", "aol", "duckduckgo", "yandex", "ecosia", "etsy", "youtube", "facebook" ];
     let isBlocklisted;
     let ethicliBadgeScore;
     for (let b = 0; b < blocklist.length; b++) {
