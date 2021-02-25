@@ -1,5 +1,5 @@
 import { getDomainWithoutSuffix } from "tldts-experimental";
-import { sendFeedback } from "../popup.js";
+import { sendFeedback } from "../popup-scripts/all-popups.js";
 
 const HEIGHT_POPUP_OVERALLSCORE = 160;
 const HEIGHT_POPUP_VIEWDETAILS = 36 + 42;
