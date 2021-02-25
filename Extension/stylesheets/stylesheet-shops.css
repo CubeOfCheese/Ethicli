@@ -287,6 +287,9 @@ body.badgesExpanded #menuBacking {
 
 #preMessage {
     padding: 0;
+    right: 6px;
+    display: block;
+    position: absolute;
 }
 
 #preMessage button {
