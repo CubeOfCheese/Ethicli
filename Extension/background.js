@@ -58,7 +58,7 @@ function reloadExt(request, sender) {
             chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: currentTab.id });
             // Background-NoRating analytics event
           } else {
-            chrome.browserAction.setPopup({ popup: "views/popup.html", tabId: currentTab.id });
+            chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: currentTab.id });
             // Background-HasRating analytics event
           }
           chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
