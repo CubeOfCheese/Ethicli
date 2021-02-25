@@ -275,9 +275,6 @@ body.badgesExpanded #menuBacking {
 }
 
 #detailsButton, #submitLazyFeedback {
-    right: 6px;
-    display: block;
-    position: absolute;
     align-self: flex-end;
     padding: 6px;
     font-size: 12px;
@@ -290,6 +287,9 @@ body.badgesExpanded #menuBacking {
 
 #preMessage {
     padding: 0;
+    right: 6px;
+    display: block;
+    position: absolute;
 }
 
 #preMessage button {
