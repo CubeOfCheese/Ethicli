@@ -1,4 +1,4 @@
-import { sendFeedback } from "../popup.js";
+import { sendFeedback } from "../popup-scripts/all-popups.js";
 
 const HEIGHT_NORATING_BADGES = 136;
 const HEIGHT_NORATING_REQUEST = 283;

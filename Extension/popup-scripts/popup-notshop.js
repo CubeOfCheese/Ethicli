@@ -1,4 +1,4 @@
-import { sendFeedback } from "../popup.js";
+import { sendFeedback } from "../popup-scripts/all-popups.js";
 
 window.addEventListener("load", () => {
   document.getElementById("submitLazyFeedback").onclick = () => {
