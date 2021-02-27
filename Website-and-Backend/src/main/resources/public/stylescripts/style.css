@@ -207,7 +207,7 @@ nav .container {
     position: fixed;
     display: flex;
     align-items: flex-start;
-    top: 36px;
+    top: 42px;
     height: 48px;
 }
 
@@ -215,9 +215,10 @@ nav a {
     display: block;
     border-radius: 100px;
     margin-left: 16px;
-    padding: 16px;
+    padding: 12px;
     background: #102340;
     color: #FFFCF2;
+    font-size: 14px;
 }
 
 nav a:hover {
@@ -232,7 +233,7 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     position: relative;
-    top: -10px;
+    top: -16px;
     height: 0;
     overflow: hidden;
     opacity: 0;
@@ -361,7 +362,8 @@ footer aside {
 }
 
 footer a {
-    margin: 0 16px 8px 0;
+    margin: 0 16px 12px 0;
+    font-size: 14px;
 }
 
 footer .container div:last-of-type {
@@ -379,6 +381,7 @@ footer .container div:last-of-type a {
 }
 
 footer p {
+    font-size: 14px;
     margin-top: 16px;
 }
 
@@ -535,6 +538,7 @@ h4 {
 }
 
 p, ul {
+    font-size: 14px;
     line-height: 1.5em;
     margin-bottom: 16px;
 }
@@ -575,7 +579,7 @@ em {
     font-weight: 700;
 }
 
-.readmore:hover, #backToTop:hover, .featuredButton:hover {
+.readmore:hover, #backToTop:hover, .featuredButton:hover, #pitchdeck:hover {
     opacity: 0.8;
 }
 
@@ -607,13 +611,17 @@ button {
     color: #102340;
 }
 
-.featuredButton {
+.featuredButton, #pitchdeck {
     display: inline-block;
     margin-top: 16px;
     padding: 12px 16px;
     border-radius: 100px;
     background: #D27F65;
     color: #FEFCF2;
+}
+
+#pitchdeck {
+    padding: 8px 12px;
 }
 
 #howToUse p, #news a {
@@ -639,7 +647,7 @@ button {
 #logo {
     position: absolute;
     top: 236px;
-    left: 22px;
+    left: 28px;
     background: none;
     margin: 0;
     padding: 0;
@@ -706,6 +714,7 @@ button {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        top: 36px;
     }
     #navlinks a {
         display: none;
