@@ -110,6 +110,9 @@ window.addEventListener("load", () => {
       case "This is not a shop":
         messagePrefill = "This website is not a shop";
         break;
+      case "Inaccurate product suggestion":
+        messagePrefill = "The ethical product alternative on this page wasn't what I was shopping for.";
+        break;
       case "Other":
         messagePrefill = "";
         break;
