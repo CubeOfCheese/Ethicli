@@ -12,12 +12,13 @@
     background: #C9D4C6;
     padding: 24px 24px 48px 24px;
     border-radius: 20px;
-    width: 48.5%;
+    width: 31%;
     font-size: 14px;
+    margin-right: auto;
 }
 
-#shops article:nth-child(odd),
-#partners article:nth-child(odd){
+#shops article:nth-child(3n),
+#partners article:nth-child(3n){
     margin-right: 2%;
 }
 
@@ -38,12 +39,7 @@
     overflow: hidden;
 }
 
-#shops article span img {
-    width: 100%;
-    margin-top: -20%;
-}
-
-#partners article span img {
+#shops article span img, #partners article span img {
     width: 100%;
     margin-top: -50%;
     position:absolute;
@@ -56,10 +52,6 @@
     width: 100%;
     margin-top: -50%;
 }
- 
-#shops #uncommonGoods span img {
-    margin-top: 0;
-} 
 
 #shops .readmore a,
 #partners .readmore a {
@@ -80,7 +72,7 @@
     #partners section {
         flex-direction: column;
     }
-    #index #shops article {
+    #shops article {
         width: 100%;
         margin-bottom: 24px;
     }
@@ -92,19 +84,5 @@
     #shops article span,
     #partners article span {
         height: 200px;
-    }
-    #shops #madeTrade span img {
-        margin-top: -30%;
-    }
-    #shops #uncommonGoods span img {
-        margin-top: -50%;
-    }
-}
-
-@media screen and (max-width: 450px) {
-    #shops #madeTrade span img, 
-    #shops #uncommonGoods span img,
-    #shops #pela span img {
-        margin-top: -20%;
     }
 }
