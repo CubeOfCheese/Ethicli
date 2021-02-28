@@ -1,0 +1,522 @@
+@import url('https://fonts.googleapis.com/css2?family=Laila:wght@700&family=Roboto&display=swap');
+
+body {
+  font-family: sans-serif;
+  justify-content: center;
+  background: #0A2342;
+  font-family: 'Roboto', sans-serif;
+}
+
+body > div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 960px;
+  margin: auto;
+}
+
+#hero{
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  z-index: -2;
+  opacity: 0.5;
+}
+
+.container {
+  position: relative;
+  margin: auto;
+  max-width: 960px;
+  padding: 81px 30px;
+}
+
+/*** Header ********************************************************************************/
+
+header {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  padding: 60px;
+  width: 100vw;
+  height: 360px;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+header h1 {
+  margin-bottom: 40px;
+  color: #FFFCF2;
+  font-family: 'Laila', serif;
+  font-size: 58px;
+  line-height: 72px;
+}
+
+header p {
+  color: #c6d4c5;
+  line-height: 24px;
+}
+
+/*** Nav **************************************************************/
+
+nav {
+  position: fixed;
+  width: 100vw;
+  z-index: 3;
+  height: 0;
+}
+
+nav .container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 960px;
+  padding: 0 30px;
+}
+
+#navlinks {
+  position: fixed;
+  right: 30px;
+  margin-right: 0;
+  display: flex;
+  align-items: flex-start;
+  top: 36px;
+  height: 48px;
+}
+
+nav a {
+  display: block;
+  border-radius: 100px;
+  margin-left: 16px;
+  padding: 16px;
+  text-decoration: none;
+  background: #102340;
+  color: #FFFCF2;
+}
+
+nav a:hover{
+  background: #2B6589;
+}
+
+#triplebar {
+  display: none;
+}
+
+.submenu {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: -10px;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+  transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+.submenu.submenuClicked {
+  top: 0;
+  height: 200px;
+  opacity: 1;
+  transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+  transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+.submenu a {
+  position: relative;
+  margin-top: 20px;
+  padding: 12px;
+  text-align: end;
+  margin-left: auto;
+}
+
+.dropdownIcon.dropped {
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+#logo {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
+#logo img {
+  width: 50px;
+  margin: 0;
+  background: none;
+}
+
+#logo img:hover {
+  opacity: 0.8;
+}
+
+/*** Calendar ********************************************************************************/
+
+#calendar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px;
+}
+
+/*** Days ********************************************************************************/
+
+.day {
+  width: 180px;
+  height: 180px;
+  margin: 0 20px 40px 20px;
+  text-align: center;
+  background-image: url("plantdudes/happyplantdude.png");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+  transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+.day:hover {
+  background-repeat: no-repeat;
+  transition: all 300ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+  transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+  -webkit-animation: wiggle 0.5s infinite;
+	-moz-animation: wiggle 0.5s infinite;
+	animation: wiggle 0.5s infinite;
+}
+
+.day h3 {
+  text-align: center;
+  margin-top: 45%;
+  color: #FFFCF2;
+  font-family: 'Laila', serif;
+  transition: all 300ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+  transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+.day:hover h3 {
+  display: none;
+}
+
+.day.lockedDay:hover h3 {
+  display: block;
+  opacity: 0.5;
+}
+
+/*** Popup ********************************************************************************/
+
+#popup {
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  top: 16vh;
+  right: 10vw;
+  margin-left: 10vw;
+  padding: 30px;
+  border-radius: 20px;
+  background: #89a387;
+  width: 80vw;
+  height: 80vh;
+  overflow: scroll;
+}
+
+#popupLocked {
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  top: 30vh;
+  right: 30vw;
+  margin-left: 10vw;
+  padding: 30px;
+  border-radius: 20px;
+  background: #05668D;
+  width: 40vw;
+  min-height: 120px;
+  text-align: center;
+}
+
+#popup.show, #popupLocked.show {
+  display: flex;
+}
+
+#popup p {
+  font-family: 'Laila', serif;
+  margin-bottom: 24px;
+  color: #102340;
+  line-height: 24px;
+}
+
+#popupLocked p {
+  color: #c6d4c5;
+  line-height: 24px;
+}
+
+#popupLink, #popupLocked h3 {
+  text-decoration: none;
+  margin-right: auto;
+  font-family: 'Laila', serif;
+  font-size: 18px;
+  color: #FFFCF2;
+}
+
+#popupLink:hover, .closePopup:hover, #popupLocked .closePopup:hover, #popupName:hover, #popupSocialURL:hover, #popupSocialURL2:hover {
+  color: #c6d4c5;
+}
+
+#popupPreview {
+  width: 100%;
+  min-height: 400px;
+  border-radius: 20px;
+}
+
+.closePopup {
+  font-family: 'Laila', serif;
+  position: fixed;
+  top: 16vh;
+  right: 10vw;
+  margin: 16px 16px 0 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #89a38780;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#popupLocked .closePopup {
+  top: 30vh;
+  right: 30vw;
+  margin: 16px 16px 0 0;
+  background: none;
+  color: #89a387;
+}
+
+.downloadEthicli {
+  display: block;
+  border-radius: 100px;
+  margin: 16px auto auto auto;
+  padding: 8px 12px;
+  text-decoration: none;
+  background: #102340;
+  color: #c6d4c5;
+}
+
+.downloadEthicli:hover {
+  background: #10234080;
+}
+
+#ogplantdude {
+  position: fixed;
+  width: 100px;
+  left: -10vw;
+  top: 200px;
+  opacity: 0;
+  transform: rotate(-50deg);
+  transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+  transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+#ogplantdude.show {
+  left: 5vw;
+  top: 100px;
+  opacity: 1;
+  transform: rotate(20deg);
+  cursor: pointer;
+}
+
+#ogplantdude:hover {
+  -webkit-animation: wiggle 0.5s infinite;
+	-moz-animation: wiggle 0.5s infinite;
+	animation: wiggle 0.5s infinite;
+}
+
+/*** Typography ********************************************************************************/
+
+#popupLocked h3 {
+  margin-right: 0;
+  margin-bottom: 16px;
+}
+
+a, #popup a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#popupName, #popupSocialURL, #popupSocialURL2 {
+  color: #2B6589;
+  font-size: 16px;
+}
+
+.popupNotice {
+  color: #FFFCF2;
+}
+
+::selection {
+  background: #2B6589;
+  color: #FFFCF2;
+}
+
+/*** Animations ********************************************************************************/
+
+/* safari and chrome */
+@-webkit-keyframes wiggle {
+	0% {-webkit-transform:rotate(4deg);}
+	50% {-webkit-transform:rotate(-4deg);}
+	100% {-webkit-transform:rotate(4deg);}
+}
+
+/* firefox */
+@-moz-keyframes wiggle {
+	0% {-moz-transform:rotate(4deg);}
+	50% {-moz-transform:rotate(-4deg);}
+	100% {-moz-transform:rotate(4deg);}
+}
+
+/* anyone brave enough to implement the ideal method */
+@keyframes wiggle {
+	0% {transform:rotate(4deg);}
+	50% {transform:rotate(-4deg);}
+	100% {transform:rotate(4deg);}
+}
+
+/*** Snow ********************************************************************************/
+
+#toggleSnow {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-size: 14px;
+  color: #89a387;
+}
+
+#snowman {
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+  transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+#snowman.off {
+  right: 16px;
+}
+
+/*** Socials Sharing *********************************************************************/
+
+#shareToSocials {
+  position: fixed;
+  bottom: 16px;
+  left: 8px;
+}
+
+#shareToSocials p {
+  display: block;
+  position: absolute;
+  top: -124px;
+  left: -90px;
+  width: 200px;
+  color: #89a387;
+  transform: rotate(-90deg);
+  font-size: 14px;
+}
+
+.shareBtnLink svg {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.shareBtnLink {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.sharebtn {
+  background: #05668D;
+  fill: #c6d4c5;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.sharebtn:hover {
+  opacity: 0.6;
+  -webkit-animation: wiggle 0.5s infinite;
+	-moz-animation: wiggle 0.5s infinite;
+	animation: wiggle 0.5s infinite;
+}
+
+
+/*** Queries ********************************************************************************/
+
+@media screen and (max-width: 1160px) {
+  #ogplantdude {
+    left: 105vw;
+    top: 350px;
+    transform: rotate(10deg);
+  }
+  
+  #ogplantdude.show {
+    left: 85vw;
+    top: 400px;
+    transform: rotate(-20deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #triplebar {
+      display: block;
+  }
+  #navlinks {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+  }
+  #navlinks a {
+      display: none;
+      margin-top: 16px;
+  }
+  #navlinks.navClicked a {
+      display: block;
+  }
+  .break2 {
+      display: none;
+  }
+  #popupLocked {
+    right: 10vw;
+    width: 80vw;
+  }
+
+  #popupLocked .closePopup {
+    right: 10vw;
+    margin: 16px 16px 0 0;
+  }
+  header h1 {
+    font-size: 40px;
+    line-height: 48px;
+    margin-bottom: 20px;
+  }
+  header p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  footer {
+      padding-bottom: 54px;
+  }
+  #termsBar {
+      display: none;
+  }
+  .break {
+      display: inline;
+  }
+  #shareToSocials p {
+    color: #c6d4c5;
+  }
+}
