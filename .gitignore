@@ -1,6 +1,6 @@
 Extension/target
 ExtensionBuild
-Website-and-Backend/target
+Backend/target
 *.DS_Store
 Extension/env.js
 *.zip
