@@ -1,1 +1,5 @@
-/views/*.html              /views/:splat 200!
+/stylescripts/* /stylescripts/:splat 200!
+/images/* /images/:splat 200!
+/documents/* /documents/:splat 200!
+/countdown/* /countdown/:splat 200!
+/* /views/:splat 200!
