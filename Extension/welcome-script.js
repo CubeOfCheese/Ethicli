@@ -112,5 +112,5 @@ window.onload = () => {
     confetti.start(1000, 150);
   });
 
-  $("#currentYear").text(new Date().getFullYear()); // updates copyright with current year
+  document.getElementById("currentYear").innerText = new Date().getFullYear(); // updates copyright with current year
 };
