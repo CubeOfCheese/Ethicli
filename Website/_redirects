@@ -1,5 +1,6 @@
 /stylescripts/* /stylescripts/:splat 200!
 /images/* /images/:splat 200!
 /documents/* /documents/:splat 200!
+/countdown   /events/countdown 200!
 /countdown/* /countdown/:splat 200!
 /* /views/:splat 200!
