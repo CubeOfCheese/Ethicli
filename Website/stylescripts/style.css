@@ -579,7 +579,7 @@ em {
     font-weight: 700;
 }
 
-.readmore:hover, #backToTop:hover, .featuredButton:hover, #pitchdeck:hover {
+.readmore:hover, #backToTop:hover, .featuredButton:hover {
     opacity: 0.8;
 }
 
@@ -611,17 +611,13 @@ button {
     color: #102340;
 }
 
-.featuredButton, #pitchdeck {
+.featuredButton {
     display: inline-block;
     margin-top: 16px;
     padding: 12px 16px;
     border-radius: 100px;
     background: #D27F65;
     color: #FEFCF2;
-}
-
-#pitchdeck {
-    padding: 8px 12px;
 }
 
 #howToUse p, #news a {
