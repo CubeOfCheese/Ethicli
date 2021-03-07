@@ -60,7 +60,7 @@ function reloadExt(request, sender) {
       return;
     }
 
-    const url = "https://ethicli.com/score/" + companyName;
+    const url = "https://info.ethicli.com/score/" + companyName;
     fetch(url, { method: "GET" })
         .then((response) => response.json()).then((jsonResponse) => {
           ethicliStats = jsonResponse;

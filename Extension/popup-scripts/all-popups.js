@@ -195,7 +195,7 @@ export function sendFeedback(messageType, userEmail) {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
-    const fetchUrlFeedback = "https://ethicli.com/feedback";
+    const fetchUrlFeedback = "https://info.ethicli.com/feedback";
     const fetchData = {
       url: currentTab.url,
       userEmail: userEmail,
@@ -233,7 +233,7 @@ function sendMessage() {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
-    const fetchUrlFeedback = "https://ethicli.com/feedback";
+    const fetchUrlFeedback = "https://info.ethicli.com/feedback";
     const fetchData = {
       url: currentTab.url,
       userName: userName,

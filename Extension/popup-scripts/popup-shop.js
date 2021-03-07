@@ -155,7 +155,7 @@ function loadExtension(ethicliStats) {
     const companyName = getDomainWithoutSuffix(currentTab.url);
 
     const infoLink = document.createElement("a");
-    infoLink.href = "https://ethicli.com/info/" + companyName;
+    infoLink.href = "https://info.ethicli.com/info/" + companyName;
     infoLink.target = "_blank";
     infoLink.textContent = "View Details";
     document.getElementById("detailsButton").append(infoLink);
@@ -173,7 +173,7 @@ function loadSponsor(productName, ethicliScore) {
     "productName": productName,
     "currentCompanyScore": ethicliScore
   };
-  fetch("https://ethicli.com/Advertisement/getByProductTags", {
+  fetch("https://info.ethicli.com/Advertisement/getByProductTags", {
     "method": "PUT",
     "headers": {
       "Content-Type": "application/json",
