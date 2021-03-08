@@ -105,7 +105,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     color: #FFFCF2;
 }
 
-#countdownPrompt {
+#plantdudeNotice {
     position: fixed;
     right: -40px;
     top: 120px;
@@ -114,7 +114,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
 }
 
-#countdownPrompt.hide {
+#plantdudeNotice.hide {
     right: -300px;
 }
 
@@ -125,11 +125,11 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
 }
 
-#countdownPrompt.hide #ogplantdude {
+#plantdudeNotice.hide #ogplantdude {
     transform: rotate(20deg);
 }
 
-#countdownPrompt p {
+#plantdudeNotice p {
     display: block;
 	position: relative;
     background: #FEFCF2;
@@ -144,7 +144,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     hyphens: none;
 }
 
-#countdownPrompt p:after {
+#plantdudeNotice p:after {
     content: '';
 	position: absolute;
 	right: 0;
@@ -763,5 +763,8 @@ button {
     }
     .break {
         display: inline;
+    }
+    .dropdownMenu {
+        display: none;
     }
 }
