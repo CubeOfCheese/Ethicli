@@ -326,12 +326,6 @@ header {
     margin-bottom: 60px;
 }
 
-#uninstallform, #uninstallform iframe {
-    justify-content: center;
-    min-height: 1160px;
-    height: 100%;
-}
-
 #optinButtonGroup {
     display: flex;
 }
