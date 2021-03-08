@@ -1,6 +1,6 @@
 window.onload = () => {
   // --- General Styling --------------------------------------------------------------------------
-  document.getElementById("dropdownMenu").addEventListener("click", () => {
+  document.getElementById("dropdownMenu").addEventListener("mouseover", () => {
     document.getElementById("dropdownIcon").classList.toggle("dropped");
     document.getElementById("submenu").classList.toggle("submenuClicked");
   });

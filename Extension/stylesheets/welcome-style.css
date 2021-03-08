@@ -9,6 +9,22 @@ body {
     font-family: 'Roboto', sans-serif;
     background: #8EA289;
     color: #102340;
+    overflow: overlay;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: #FEFCF280;
+    padding: 0 4px;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0000;
 }
 
 header, nav, footer {
@@ -55,9 +71,10 @@ nav a {
     display: block;
     border-radius: 100px;
     margin-left: 16px;
-    padding: 16px;
+    padding: 12px;
     background: #102340;
     color: #FFFCF2;
+    font-size: 14px;
 }
 
 nav a:hover {
@@ -143,12 +160,17 @@ footer aside {
     flex-direction: column;
 }
 
+.socials {
+    margin-top: -4px;
+}
+
 .socials li {
     margin: 0 16px 5px 0;
 }
 
 footer a {
-    margin: 0 16px 8px 0;
+    margin: 0 16px 12px 0;
+    font-size: 14px;
 }
 
 footer .container div:last-of-type {
@@ -234,6 +256,7 @@ h4 {
 }
 
 p, ul {
+    font-size: 14px;
     line-height: 1.5em;
     margin-bottom: 16px;
 }
