@@ -105,7 +105,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     color: #FFFCF2;
 }
 
-#countdownPrompt {
+#plantdudeNotice {
     position: fixed;
     right: -40px;
     top: 120px;
@@ -114,7 +114,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
 }
 
-#countdownPrompt.hide {
+#plantdudeNotice.hide {
     right: -300px;
 }
 
@@ -125,11 +125,11 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
 }
 
-#countdownPrompt.hide #ogplantdude {
+#plantdudeNotice.hide #ogplantdude {
     transform: rotate(20deg);
 }
 
-#countdownPrompt p {
+#plantdudeNotice p {
     display: block;
 	position: relative;
     background: #FEFCF2;
@@ -144,7 +144,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     hyphens: none;
 }
 
-#countdownPrompt p:after {
+#plantdudeNotice p:after {
     content: '';
 	position: absolute;
 	right: 0;
@@ -283,7 +283,7 @@ header {
     min-height: 768px;
 }
 
-#privacy header, #ads header, #shops header, #partners header, #faq header, #press header, #uninstall header {
+#ads header, #privacy header, #shops header, #partners header, #faq header, #press header, #uninstall header {
     min-height: 200px;
     padding-top: 24px;
 }
@@ -444,14 +444,6 @@ footer p {
     font-size: 14px;
 }
 
-/*** Advertise on Ethicli *********************************************/
-
-#ads .basicbody .container iframe {
-    width: 100%;
-    height: 1100px;
-}
-
-
 /*** Mailing List *****************************************************/
 
 form {
@@ -581,7 +573,7 @@ em {
     font-weight: 700;
 }
 
-.readmore:hover, #backToTop:hover, .featuredButton:hover, #pitchdeck:hover {
+.readmore:hover, #backToTop:hover, .featuredButton:hover {
     opacity: 0.8;
 }
 
@@ -613,17 +605,13 @@ button {
     color: #102340;
 }
 
-.featuredButton, #pitchdeck {
+.featuredButton {
     display: inline-block;
     margin-top: 16px;
     padding: 12px 16px;
     border-radius: 100px;
     background: #D27F65;
     color: #FEFCF2;
-}
-
-#pitchdeck {
-    padding: 8px 12px;
 }
 
 #howToUse p, #news a {
@@ -769,5 +757,8 @@ button {
     }
     .break {
         display: inline;
+    }
+    .dropdownMenu {
+        display: none;
     }
 }

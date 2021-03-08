@@ -92,7 +92,7 @@ $(document).ready(function() {
 
   dropdown();
   function dropdown() {
-    $(".dropdownMenu").click(function() {
+    $(".dropdownMenu").hover(function() {
       $(".dropdownIcon").toggleClass("dropped");
       $(".submenu").toggleClass("submenuClicked");
     });
