@@ -547,14 +547,9 @@ p, ul {
     margin-bottom: 16px;
 }
 
-#privacy .basicbody p, #privacy .basicbody ul li {
-    font-size: 0.85em;
-}
-
-#privacy .basicbody ul li {
+.basicbody ul li {
     list-style-type: circle;
     line-height: 1.5em;
-    opacity: 0.6;
 }
 
 .disclaimer {

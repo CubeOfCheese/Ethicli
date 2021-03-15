@@ -26,6 +26,11 @@ header {
     height: 100%;
 }
 
+.basicbody ul li {
+    list-style-type: circle;
+    line-height: 1.5em;
+}
+
 /*** Queries *****************************************************/
 
 @media screen and (max-width: 1300px) {
@@ -55,5 +60,8 @@ header {
     #advertiseForm,
     #advertiseForm iframe {
         min-height: 2200px;
+    }
+    .break2 {
+        display: inline;
     }
 }
