@@ -1,3 +1,5 @@
+@import "reset.css"; 
+
 html {
     scroll-behavior: smooth;
     -webkit-hyphens: auto;
@@ -225,6 +227,10 @@ nav a:hover {
     background: #2B6589;
 }
 
+.dropdownMenu {
+    margin-right: -8px;
+}
+
 #triplebar {
     display: none;
 }
@@ -283,7 +289,7 @@ header {
     min-height: 768px;
 }
 
-#privacy header, #shops header, #partners header, #faq header, #press header, #uninstall header {
+#ads header, #privacy header, #shops header, #partners header, #faq header, #press header, #uninstall header {
     min-height: 200px;
     padding-top: 24px;
 }
@@ -308,14 +314,19 @@ header {
     background: #00213f;
 }
 
+#featured {
+    background: #C9D4C6;
+}
+
+#advertiseNotice {
+    background: #C9D4C6;
+    overflow: hidden;
+}
+
 #news {
     background-image: url("../images/background-news.jpg");
     background-position: center;
     background-size: cover;
-}
-
-#featured {
-    background: #C9D4C6;
 }
 
 .basicbody {
@@ -324,12 +335,6 @@ header {
 
 .basicbody section {
     margin-bottom: 60px;
-}
-
-#uninstallform, #uninstallform iframe {
-    justify-content: center;
-    min-height: 1160px;
-    height: 100%;
 }
 
 #optinButtonGroup {
@@ -408,7 +413,6 @@ footer p {
     right: 30px;
     font-size: 0.85em;
 }
-
 
 /*** News and Featured Sections *****************************************************/
 
@@ -543,14 +547,9 @@ p, ul {
     margin-bottom: 16px;
 }
 
-#privacy .basicbody p, #privacy .basicbody ul li {
-    font-size: 0.85em;
-}
-
-#privacy .basicbody ul li {
+.basicbody ul li {
     list-style-type: circle;
     line-height: 1.5em;
-    opacity: 0.6;
 }
 
 .disclaimer {
@@ -666,6 +665,16 @@ button {
     margin-top: 30px;
 }
 
+#advertiseNotice img {
+    position: absolute;
+    width: 316px;
+    bottom: 72px;
+    right: 30px;
+    border-radius: 20px;
+    transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
 #minutepitch {
     margin: 30px auto;
     width: 100%;
@@ -701,6 +710,15 @@ button {
 }
 
 /*** Queries *****************************************************/
+
+@media screen and (max-width: 960px) {
+    #advertiseNotice img {
+       bottom: 1000px;
+    }
+    #advertiseNotice .half article {
+        width: 100%;
+    }
+}
 
 @media screen and (max-width: 768px) {
     #triplebar {

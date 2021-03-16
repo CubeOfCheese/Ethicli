@@ -17,8 +17,9 @@
     bottom: 80px;
 }
 
-#uninstallform iframe {
-    /* justify-content: space-around; */
+#uninstallForm, #uninstallForm iframe {
+    justify-content: center;
+    min-height: 1160px;
     width: 100%;
     height: 100%;
 }

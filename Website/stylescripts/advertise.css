@@ -1,0 +1,67 @@
+header {
+    overflow: hidden;
+}
+
+#shoppingBags img {
+    position: absolute;
+    width: 380px;
+    bottom: -100px;
+    right: -100px;
+    transform: rotate(-15deg);
+    transition: all 1000ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+#shoppingBags img:last-child {
+    transform: rotate(10deg);
+    width: 250px;
+    bottom: -80px;
+    left: -50px;
+}
+
+#advertiseForm,
+#advertiseForm iframe {
+    justify-content: center;
+    min-height: 2000px;
+    width: 100%;
+    height: 100%;
+}
+
+.basicbody ul li {
+    list-style-type: circle;
+    line-height: 1.5em;
+}
+
+/*** Queries *****************************************************/
+
+@media screen and (max-width: 1300px) {
+    #shoppingBags img {
+        width: 280px;
+        bottom: -50px;
+        right: -50px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #shoppingBags img {
+        width: 250px;
+        bottom: -50px;
+        right: -50px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    #shoppingBags img,
+    #shoppingBags img:last-child {
+        bottom: -800px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #advertiseForm,
+    #advertiseForm iframe {
+        min-height: 2200px;
+    }
+    .break2 {
+        display: inline;
+    }
+}

@@ -1,0 +1,7 @@
+#privacy .basicbody p, #privacy .basicbody ul li {
+    font-size: 0.85em;
+}
+
+#privacy .basicbody ul li {
+    opacity: 0.6;
+}
