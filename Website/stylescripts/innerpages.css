@@ -20,9 +20,9 @@ header {
 }
 
 #betatest #headerImages img {
-    width: 200px;
+    width: 220px;
     bottom: -20px;
-    right: -20px;
+    right: -10px;
 }
 
 #betatest #headerImages img:last-child {
