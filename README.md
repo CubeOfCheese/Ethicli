@@ -25,6 +25,8 @@ Facebook: @Ethicli
 
 Twitter: @Shop_Ethicli
 
+TikTok: @ethicli
+
 LinkedIn: https://www.linkedin.com/company/ethicli
 
 Blog: https://team-ethicli.medium.com/
