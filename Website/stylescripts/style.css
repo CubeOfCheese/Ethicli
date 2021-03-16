@@ -714,7 +714,6 @@ button {
 @media screen and (max-width: 960px) {
     #advertiseNotice img {
        bottom: 1000px;
-       /* transition: none; */
     }
     #advertiseNotice .half article {
         width: 100%;
