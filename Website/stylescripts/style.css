@@ -287,11 +287,12 @@ nav a:hover {
 header {
     background: #C9D4C6;
     min-height: 768px;
-}
-
-#ads header, #privacy header, #shops header, #partners header, #faq header, #press header, #uninstall header {
     min-height: 200px;
     padding-top: 24px;
+}
+
+#index header {
+    min-height: 768px;
 }
 
 #headerInfo {
