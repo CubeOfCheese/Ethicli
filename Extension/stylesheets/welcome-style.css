@@ -1,3 +1,5 @@
+@import "reset.css"; 
+
 html {
     scroll-behavior: smooth;
     -webkit-hyphens: auto;
@@ -10,6 +12,22 @@ body {
     font-family: 'Roboto', sans-serif;
     background: #8EA289;
     color: #102340;
+    overflow: overlay;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FEFCF280;
+    padding: 0 4px;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0000;
 }
 
 header, nav, footer {
@@ -71,9 +89,10 @@ nav a {
     display: block;
     border-radius: 100px;
     margin-left: 16px;
-    padding: 16px;
+    padding: 12px;
     background: #102340;
     color: #FFFCF2;
+    font-size: 14px;
 }
 
 nav a:hover {
@@ -177,12 +196,16 @@ footer aside {
     flex-direction: column;
 }
 
+.socials {
+    margin-top: -4px;
+}
+
 .socials li {
     margin: 0 16px 8px 0;
 }
 
 footer a {
-    margin: 0 16px 16px 0;
+    margin: 0 16px 12px 0;
     font-size: 14px;
 }
 
@@ -268,7 +291,8 @@ h4 {
     font-weight: 500;
 }
 
-p, ul, label {
+p, ul {
+    font-size: 14px;
     line-height: 1.5em;
     margin-bottom: 16px;
     font-size: 14px;
@@ -362,31 +386,31 @@ button {
     height: 0;
     width: 0;
 }
-  
+
 .checkmark {
     height: 16px;
     width: 16px;
     border-radius: 2px;
     background-color: #D27F65;
 }
-  
+
 .switch:hover input ~ .checkmark {
     background-color: #f0a38c;
 }
-  
+
 .switch input:checked ~ .checkmark {
     background-color: #70856b;
 }
-  
+
 .checkmark:after {
     content: "";
     display: none;
 }
-  
+
 .switch input:checked ~ .checkmark:after {
     display: block;
 }
-  
+
 .switch .checkmark:after {
     margin-left: 5px;
     width: 4px;
@@ -399,7 +423,7 @@ button {
 }
 
 .switchAnalyticsDescription {
-    margin-right: 8px;   
+    margin-right: 8px;
 }
 
 /*** General Queries *****************************************************/
@@ -518,7 +542,7 @@ button {
 
 #watchTutorial, #optinDeclined, #optinAccepted{
     display: block;
-    padding: 8px 12px; 
+    padding: 8px 12px;
     background: #00213f;
     margin: 0 auto 24px auto;
     border-radius: 100px;
@@ -580,7 +604,7 @@ button {
 }
 
 #tutorialBack, #tutorialNext, #tutorialBack::selection, #tutorialNext::selection {
-    padding: 4px 8px; 
+    padding: 4px 8px;
     border-radius: 100px;
     background: #f0a38c;
     color: #FEFCF2;

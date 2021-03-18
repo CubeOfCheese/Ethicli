@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <title>Ethicli</title>
-    <link href="../stylesheets/reset.css" rel="stylesheet">
     <link href="../stylesheets/stylesheet.css" rel="stylesheet">
+    <link href="../stylesheets/messaging-style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <script type="module" src="../popup.js"></script>
+    <script type="module" src="../popup-scripts/all-popups.js"></script>
     <script type="module" src="../popup-scripts/popup-notshop.js"></script>
 </head>
 
@@ -15,13 +15,41 @@
     <div>
         <div id="menuPanel">
             <div id="menuBacking"></div>
-            <button class="tooltip" id="somethingWrong">
-                <a id="sendEmail" target="_blank">Something Looks Wrong</a>
-                <span class="tooltiptext" id="somethingWrongTip">If a new tab doesn’t open after pressing this button,
-                    please tell us the issue at hello@ethicli.com instead.</span>
-            </button>
+            <button id="reportIssue">Report an Issue</button>
             <button id="visitWebsite"><a href="https://ethicli.com" target="_blank">Ethicli Website</a></button>
             <button><span id="watchTutorial">Watch Tutorial</span></button>
+            <span id="messaging" class="noShopName">
+                <h3>Report an Issue</h3>
+                <span id="messagingFormGroup">
+                    <form id="messagingForm">
+                        <p>Let us know if you're having trouble! The current url will be sent with your message.</p>
+                        <label for="messagingName">Your Name</label><input type="text" id="messagingName" name="messagingName" placeholder="Granny Smith">
+                        <label for="messagingEmail">Your Email</label><input type="email" id="messagingEmail" name="messagingEmail" placeholder="gsmith@ethicli.com">
+                        <label for="messagingReason">Category<span class="requiredField"> *</span></label>
+                        <select name="messagingReason" id="messagingReason" required>
+                          <option disabled selected value> -- select an option -- </option>
+                          <option value="Incorrect shop name">Incorrect shop name</option>
+                          <option value="Inaccurate Score">Inaccurate score</option>
+                          <option value="This is not a shop">This is not a shop</option>
+                          <option value="Inaccurate product suggestion">Inaccurate product suggestion</option>
+                          <option value="Other">Other</option>
+                        </select>
+                        <label for="messageContent">Message<span class="requiredField"> *</span></label><textarea type="text" id="messageContent" name="messageContent" placeholder="There's something about this shop..." required></textarea>
+                    </form>
+                    <input id="sendMessageButton" type="submit" value="Send Message" disabled=true>
+                    <p id="requiredError">Please fill out required fields</p>
+                </span>
+                <span id="messageSubmitted">
+                    <p>Thank you for your message!</p>
+                    <p><span id="withemail">We will send an email to <span id="uemail"></span> and will get back to you as soon as possible. </span>Hope you have a good day!</p>
+                    <img src="../images/happyplantdude.svg" alt="Happy Plant Dude" id="plantdude">
+                </span>
+                <span id="messageFailed">
+                    <p>Hmm... Something went wrong, and the message couldn't be sent.</p>
+                    <p>Please try again, and if it still doesn't work, please send us an email at <a href="mailto:hello@ethicli.com?subject=Ethicli Inquiry" target="_blank">hello@ethicli.com</a> with your request!</p>
+                    <img src="../images/sadplantdude.svg" alt="Sad Plant Dude" id="sadplantdude">
+                </span>
+            </span>
         </div>
 
         <div id="tutorial">
@@ -42,12 +70,22 @@
         </div>
 
         <img src="../images/menu.svg" alt="Menu" height="24" width="24" id="menu">
+        <img id="closeMessaging" src="../images/cross.svg" alt="Exit Messaging">
     </div>
 
     <div id="extension">
-        <div id="notShopMessage">
-            <h2>This page is<br>not a shop.</h2>
-            <p>Please visit a shop page to check for a shop rating.</p>
+      <h2 class="redTitle">This page is<br>not a shop.</h2>
+        <div id="lazyFeedback">
+            <div id="preMessage">
+                <p>Please visit shop pages for ratings.</p>
+                <button id="submitLazyFeedback" title="Click me if this page seems like it should be a shop!">I think this is a shop</button>
+            </div>
+            <div id="messageSucceeded">
+              <p>Thank you! We'll take a look, and update this as soon as possible!</p>
+            </div>
+            <div id="messageFailed">
+              <p>Please try again, and if it still doesn't work, please send us an email at <a href="mailto:hello@ethicli.com?subject=Ethicli Inquiry" target="_blank">hello@ethicli.com</a> with your request!</p>
+            </div>
         </div>
     </div>
 </body>

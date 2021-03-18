@@ -63,7 +63,7 @@
 
 #shopDataUnavailable h2 {
     padding-top: 16px;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 #shopDataUnavailable #hasBadge h2 {
@@ -85,7 +85,7 @@
     width: 90px;
     height: 90px;
     margin: 20px 0 0 84px;
-    animation: plantguymove 1s;
+    animation: plantdudemove 1s;
 }
 
 @keyframes shoppingMove {
@@ -93,7 +93,7 @@
     to { margin: 24px 0 0 16px; }
 }
 
-@keyframes plantguymove {
+@keyframes plantdudemove {
     from { margin: 200px 0 0 84px; }
     to { margin: 20px 0 0 84px; }
 }
@@ -122,7 +122,7 @@
     background: #c6d4c5cc;
 }
 
-#emailrequestgroup input:focus, #requestrating:focus {
+#emailrequestgroup input:focus, #submitLazyFeedback:focus {
     outline:none;
     background: #c6d4c588;
 }
@@ -136,7 +136,7 @@
     color: #FFFCF2;
 }
 
-#requestrating {
+#submitLazyFeedback {
     margin-top: 24px;
     font-size: 12px;
     padding: 4px 8px;
@@ -179,10 +179,10 @@ h3 {
     line-height: 20px;
 }
 
-#ratingPreRequest, #ratingPostRequest.requestsubmitted, #messageFailed.failed {
+#preMessage, #messageSucceeded.requestsubmitted, #messageFailed.failed {
     display: block;
 }
 
-#ratingPostRequest, #ratingPreRequest.requestsubmitted, #ratingPreRequest.failed, #messageFailed {
+#messageSucceeded, #preMessage.requestsubmitted, #preMessage.failed, #messageFailed {
     display: none;
 }

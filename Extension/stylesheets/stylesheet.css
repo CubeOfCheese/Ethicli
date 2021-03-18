@@ -1,7 +1,10 @@
+@import "reset.css"; 
+
 body {
     font-family: sans-serif;
     width: 260px;
     padding: 36px;
+    margin: auto;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-weight: 400;
     background: #FFFCF2;
@@ -56,14 +59,19 @@ body {
     cursor: pointer;
 }
 
-#menuPanel button#somethingWrong {
+#menuPanel button#reportIssue {
     margin-top: 36px;
+    padding: 4px 8px;
     background: #E07A5F;
+}
+
+#menuPanel button#reportIssue:hover {
+    background: rgba(224, 122, 95, 0.8);
 }
 
 #menuPanel button {
     margin-top: 16px;
-    margin-right: -2px;
+    margin-right: 0px;
     z-index: 2;
     font-size: 12px;
     cursor: pointer;
@@ -72,12 +80,12 @@ body {
 
 /** Not a Shop **/
 
-#shopping, #notShopMessage, #shopDataUnavailable {
+#shopping, #lazyFeedback, #shopDataUnavailable {
     display: block;
     margin-right: auto;
 }
 
-#notShopMessage h2, #shopDataUnavailable h2 {
+#shopDataUnavailable h2 {
     font-size: 1.8em;
     line-height: 1.4em;
     margin-bottom: 16px;
@@ -85,7 +93,16 @@ body {
     color: #E07A5F;
 }
 
-#popupNotShop #notShopMessage h2 {
+h2.redTitle {
+    display: block;
+    margin: -16px auto 16px 0;
+    font-size: 1.8em;
+    line-height: 1.4em;
+    font-weight: 700;
+    color: #E07A5F;
+}
+
+#popupNotShop #lazyFeedback h2 {
     margin-top: -16px;
 }
 
@@ -93,8 +110,34 @@ body {
     margin-top: 16px;
 }
 
-#notShopMessage p, #shopDataUnavailable p, #optin p {
+#lazyFeedback p, #shopDataUnavailable p, #optin p {
     line-height: 1.4em;
+}
+
+#submitLazyFeedback {
+    margin-top: 16px;
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
+#lazyFeedback #preMessage {
+    display: block;
+}
+
+#lazyFeedback #messageSucceeded, #lazyFeedback #messageFailed {
+    display: none;
+}
+
+#lazyFeedback.succeeded #preMessage, #lazyFeedback.failed #preMessage {
+    display: none;
+}
+
+#lazyFeedback.succeeded #messageSucceeded {
+    display: block;
+}
+
+#lazyFeedback.failed #messageFailed {
+    display: block;
 }
 
 /** Typography **/
@@ -162,10 +205,6 @@ button:hover {
     background: rgba(12, 123, 167, 0.8)
 }
 
-#menuPanel button#somethingWrong:hover {
-    background: rgba(224, 122, 95, 0.8);
-}
-
 button, button a {
     color: #FFFCF2;
     text-decoration: none;
@@ -193,6 +232,13 @@ p {
     background: none;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 /** Images and ToolTip **/
 
 #shoppingBagImg {
@@ -215,21 +261,6 @@ p {
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
-}
-
-#subscoreTip, #somethingWrongTip {
-    position: absolute;
-    width: 140px;
-    font-size: 10px;
-    cursor: default;
-    line-height: 1.2em;
-}
-
-#somethingWrongTip {
-    width: 130px;
-    left: 0;
-    z-index: 1;
-    font-size: 0.85em;
 }
 
 

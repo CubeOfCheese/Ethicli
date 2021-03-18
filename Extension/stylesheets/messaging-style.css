@@ -1,0 +1,265 @@
+
+body.messagingOpen {
+    padding: 0 36px;
+}
+
+body.messagingOpen #menuBacking {
+    background: #FFFCF2;
+}
+
+body.messagingOpen button {
+    display: none;
+}
+
+#messaging {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 600px;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    padding-top: 60px;
+    background: #FFFCF2;
+    z-index: 5;
+
+    -webkit-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -webkit-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+#messaging.noShopName {
+    padding-top: 18px;
+}
+
+body.messagingOpen #messaging {
+    opacity: 1;
+    top: 0px;
+    -webkit-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -webkit-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+#messaging form {
+    display: flex;
+    flex-direction: column;
+}
+
+body.messagingOpen #menu {
+    display: none;
+}
+
+#messaging form {
+    margin-right: 10px;
+    width: inherit;
+}
+
+#messagingFormGroup.sendClicked {
+    display: none;
+}
+
+#messaging ::selection {
+    background: #89a387;
+    color: #FFFCF2;
+}
+
+#closeMessaging {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 28px;
+    padding: 10px;
+    color: #E07A5F;
+    font-size: 34px;
+    font-weight: 600;
+    z-index: 2;
+    opacity: 0;
+}
+
+body.messagingOpen #closeMessaging {
+    display: block;
+    opacity: 1;
+    -webkit-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -webkit-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -moz-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    -o-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+    transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
+}
+
+#messageContent {
+    max-width: 200px;
+    max-height: 180px;
+}
+
+.requiredField {
+    margin-left: 2px;
+    font-weight: 600;
+    color: #E07A5F;
+}
+
+/** Typography **/
+
+#messaging h3 {
+    font-size: 1.8em;
+    line-height: 1.4em;
+    margin-bottom: 16px;
+    font-weight: 700;
+    color: #E07A5F;
+    text-align: left;
+}
+
+#messaging p {
+    line-height: 16px;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+#messagingForm p {
+    font-size: 12px;
+}
+
+#withemail {
+    display: none;
+    padding-bottom: 30px;
+}
+
+#withemail.hasEmail {
+    display: inline;
+    padding-bottom: 0;
+}
+
+#uemail {
+    font-weight: 600;
+}
+
+#messaging a {
+    color: #05668D;
+}
+
+#messaging a:hover {
+    color: #E07A5F;
+}
+
+#messaging label {
+    display: flex;
+    margin: 20px 0 8px 0;
+    font-size: 12px;
+    font-weight: 600;
+    width: 100%;
+}
+
+#messaging input, #messaging select, #messaging textarea {
+    display: block;
+    min-width: 250px;
+    padding: 4px;
+    border: none;
+    border-radius: 8px;
+    background: #c6d4c5;
+    color: #05668D;
+    font-size: 14px;
+}
+
+#messaging textarea {
+    min-height: 140px;
+    resize: none;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+#messaging.noShopName textarea {
+    min-height: 186px;
+}
+
+input#sendMessageButton {
+    justify-self: flex-end;
+    min-width: 0;
+    width: auto;
+    margin: 16px 8px 0 auto;
+    padding: 6px 10px;
+    border-radius: 100px;
+    background: #05668D;
+    color: #FFFCF2;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+input#sendMessageButton:disabled,
+input#sendMessageButton[disabled]{
+    background: #c6d4c5;
+}
+
+#requiredError {
+    display: none;
+    position: fixed;
+    bottom: 28px;
+    color: #E07A5F;
+    font-size: 12px;
+}
+
+#messaging ::placeholder {
+    color: #89a387;
+    opacity: 1;
+}
+
+#messaging :-ms-input-placeholder, ::-ms-input-placeholder {
+    color: #89a387;
+}
+
+/** Message Submitted **/
+
+#messageSubmitted, #messageFailed {
+    display: none;
+}
+
+#messageSubmitted.success, #messageFailed.failed {
+    display: block;
+}
+
+#messageSubmitted p, #messageFailed p {
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+#plantdude {
+    width: 120px;
+    height: 120px;
+    margin: 0 0 0 74px;
+    animation: plantdudehappy 1.5s;
+}
+
+#sadplantdude {
+    width: 90px;
+    height: 90px;
+    margin: 8px 0 0 84px;
+    animation: sadplantdude 1.2s;
+}
+
+@keyframes plantdudehappy {
+    0% { margin: 200px 0 0 74px; }
+    50% { margin: 0 0 0 74px; transform: rotate(0deg); }
+
+    60% { transform: rotate(5deg); }
+    70% { transform: rotate(-5deg); }
+    80% { transform: rotate(5deg); }
+    90% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes sadplantdude {
+    from { margin: 200px 0 0 84px; }
+    to { margin: 8px 0 0 84px; }
+}

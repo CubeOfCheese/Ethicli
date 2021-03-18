@@ -1,10 +1,10 @@
 import { getDomainWithoutSuffix } from "tldts-experimental";
-// for popup.html
+import { sendFeedback } from "../popup-scripts/all-popups.js";
 import mixpanel from "mixpanel-browser";
 mixpanel.init("db3fa3fa397bb591b339887d12b1c13e", { api_host: "https://api.mixpanel.com" });
 
 const HEIGHT_POPUP_OVERALLSCORE = 160;
-const HEIGHT_POPUP_VIEWDETAILS = 36;
+const HEIGHT_POPUP_VIEWDETAILS = 36 + 42;
 const HEIGHT_POPUP_SUBSCORE = 42;
 const HEIGHT_POPUP_SPONSOR = 174;
 
@@ -27,6 +27,11 @@ window.addEventListener("load", () => {
       document.getElementById("badgeIcon").src = "images/badge.svg";
     }
   });
+
+  // --- Request Recommended Product ------------------------------------------------------------------
+  document.getElementById("submitLazyFeedback").onclick = () => {
+    sendFeedback("ProductRequest");
+  };
 });
 
 chrome.runtime.sendMessage({ msgName: "whatsMainRating?" }, (ratingResponse) => {
@@ -152,7 +157,7 @@ function loadExtension(ethicliStats) {
     const companyName = getDomainWithoutSuffix(currentTab.url);
 
     const infoLink = document.createElement("a");
-    infoLink.href = "https://ethicli.com/info/" + companyName;
+    infoLink.href = "https://info.ethicli.com/info/" + companyName;
     infoLink.target = "_blank";
     infoLink.textContent = "View Details";
     document.getElementById("detailsButton").append(infoLink);
@@ -170,7 +175,7 @@ function loadSponsor(productName, ethicliScore) {
     "productName": productName,
     "currentCompanyScore": ethicliScore
   };
-  fetch("https://ethicli.com/Advertisement/getByProductTags", {
+  fetch("https://info.ethicli.com/Advertisement/getByProductTags", {
     "method": "PUT",
     "headers": {
       "Content-Type": "application/json",
@@ -192,8 +197,10 @@ function loadSponsor(productName, ethicliScore) {
       document.getElementById("sponsorLink").addEventListener("click", () => {
         // AdClicked analytics event
       });
+      document.getElementById("submitLazyFeedback").style = "display:none";
     } else {
       document.getElementById("sponsor").style = "display:none;";
+      document.getElementById("lazyFeedback").style = "display:block;";
     }
   });
 }

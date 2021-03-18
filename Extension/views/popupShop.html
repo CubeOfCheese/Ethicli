@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ethicli</title>
+    <link href="../stylesheets/stylesheet.css" rel="stylesheet">
+    <link href="../stylesheets/stylesheet-shops.css" rel="stylesheet">
+    <link href="../stylesheets/messaging-style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="../popup-scripts/all-popups.js"></script>
+    <script src="../popup-scripts/confetti.js" rel="text/javascript"></script>
+    <script type="module" src="../popup-scripts/popup-shop.js"></script>
+</head>
+
+<body style="height:350px;" id="popupShop">
+    <div>
+        <p id="sitename">Shop: <span id="siteurlcontainer"><span id="siteurl"></span></span></p>
+        <div id="menuPanel">
+            <div id="menuBacking"></div>
+            <button id="reportIssue">Report an Issue</button>
+            <button id="visitWebsite"><a href="https://ethicli.com" target="_blank">Ethicli Website</a></button>
+            <button><span id="watchTutorial">Watch Tutorial</span></button>
+            <span id="messaging">
+                <h3>Report an Issue</h3>
+                <span id="messagingFormGroup">
+                    <form id="messagingForm">
+                        <p>Let us know if you're having trouble! The current url will be sent with your message.</p>
+                        <label for="messagingName">Your Name</label><input type="text" id="messagingName" name="messagingName" placeholder="Granny Smith">
+                        <label for="messagingEmail">Your Email</label><input type="email" id="messagingEmail" name="messagingEmail" placeholder="gsmith@ethicli.com">
+                        <label for="messagingReason">Category<span class="requiredField"> *</span></label>
+                        <select name="messagingReason" id="messagingReason" required>
+                          <option disabled selected value> -- select an option -- </option>
+                          <option value="Incorrect shop name">Incorrect shop name</option>
+                          <option value="Inaccurate Score">Inaccurate score</option>
+                          <option value="This is not a shop">This is not a shop</option>
+                          <option value="Inaccurate product suggestion">Inaccurate product suggestion</option>
+                          <option value="Other">Other</option>
+                        </select>
+                        <label for="messageContent">Message<span class="requiredField"> *</span></label><textarea type="text" id="messageContent" name="messageContent" placeholder="There's something about this shop..." required></textarea>
+                    </form>
+                    <input id="sendMessageButton" type="submit" value="Send Message" disabled=true>
+                    <p id="requiredError">Please fill out required fields</p>
+                </span>
+                <span id="messageSubmitted">
+                    <p>Thank you for your message!</p>
+                    <p><span id="withemail">We will send an email to <span id="uemail"></span> and will get back to you as soon as possible. </span>Hope you have a good day!</p>
+                    <img src="../images/happyplantdude.svg" alt="Happy Plant Dude" id="plantdude">
+                </span>
+                <span id="messageFailed">
+                    <p>Hmm... Something went wrong, and the message couldn't be sent.</p>
+                    <p>Please try again, and if it still doesn't work, please send us an email at <a href="mailto:hello@ethicli.com?subject=Ethicli Inquiry" target="_blank">hello@ethicli.com</a> with your request!</p>
+                    <img src="../images/sadplantdude.svg" alt="Sad Plant Dude" id="sadplantdude">
+                </span>
+            </span>
+        </div>
+
+        <div id="tutorial">
+            <div id="tutorialScreens">
+                <img src="../images/tutorial/tutorial1.jpg" alt="Tutorial 1" id="tutorial1">
+                <img src="../images/tutorial/tutorial2.jpg" alt="Tutorial 2" id="tutorial2">
+                <img src="../images/tutorial/tutorial3.jpg" alt="Tutorial 3" id="tutorial3">
+                <img src="../images/tutorial/tutorial4.jpg" alt="Tutorial 4" id="tutorial4">
+                <img src="../images/tutorial/tutorial5.jpg" alt="Tutorial 5" id="tutorial5">
+                <img src="../images/tutorial/tutorial6.jpg" alt="Tutorial 6" id="tutorial6">
+                <img src="../images/tutorial/tutorial7.jpg" alt="Tutorial 7" id="tutorial7">
+            </div>
+
+            <div id="tutorialNavigation">
+                <p id="tutorialBack">Back</p>
+                <p id="tutorialNext">Next</p>
+            </div>
+        </div>
+
+        <img src="../images/menu.svg" alt="Menu" height="24" width="24" id="menu">
+        <img id="closeMessaging" src="../images/cross.svg" alt="Exit Messaging">
+    </div>
+
+    <div id="extension">
+        <div id="shopping">
+            <div id="rating">
+                <div id="overallScoreGroup">
+                    <h2 id="overallScore"></h2>
+                    <p>/10</p>
+                    <span id="overallScoreTooltip"></span>
+                </div>
+                <h6 id="badgeDisplayer" class="tooltip">
+                    <span>
+                        <img id="badgeIcon" src="../images/badge.svg" alt="Badge Icon">
+                        <span id="numBadges"></span>
+                    </span>
+                    <span id="badgeDisplayerTooltip" class="tooltiptext">Click to view expanded badges</span>
+                </h6>
+                <div id="badges">
+                    <h6 id="bluesign" class="tooltip">
+                        <a href="https://www.bluesign.com" target="_blank">BlueSign</a>
+                        <span class="tooltiptext">BlueSign Certified</span>
+                    </h6>
+                    <h6 id="bcorp" class="tooltip">
+                        <a href="https://bcorporation.net/" target="_blank">BCorp</a>
+                        <span class="tooltiptext">BCorp Certified</span></h6>
+                    <h6 id="blackowned" class="tooltip">
+                        <a href="https://data.world/ethicli/black-owned-businesses" target="_blank">Black-Owned</a>
+                        <span class="tooltiptext">Black-Owned Business</span>
+                    </h6>
+                    <h6 id="blmsupport" class="tooltip">
+                        <a href="https://data.world/ethicli/financial-contributions-companies-supporting-blm" target="_blank">Anti-Racism</a>
+                        <span class="tooltiptext">Donates to Anti-Racism Organizations</span>
+                    </h6>
+                    <h6 id="vegan" class="tooltip">
+                        <a href="https://vegan.org/companies-using-our-logo/" target="_blank">Vegan</a>
+                        <span class="tooltiptext">Has a vegan.org certification</span>
+                    </h6>
+                    <h6 id="leapingbunny" class="tooltip">
+                        <a href="https://www.leapingbunny.org/guide/brands" target="_blank">Leaping Bunny</a>
+                        <span class="tooltiptext">Cruelty-free certification from Leaping Bunny</span>
+                    </h6>
+                </div>
+            </div>
+            <div id="scores" class="tooltip">
+                <div class="label" id="envSection">
+                    <p>Environmental Impact</p>
+                    <div>
+                        <span>
+                        <span class="scorebar"></span>
+                        <span class="scorebarFill" id="envScoreBar"></span>
+                        </span>
+                        <p><span id="envScore"></span> /10</p>
+                    </div>
+                </div>
+                <div class="label" id="laborSection">
+                    <p>Labor Practices</p>
+                    <div>
+                        <span>
+                        <span class="scorebar"></span>
+                        <span class="scorebarFill" id="laborScoreBar"></span>
+                        </span>
+                        <p><span id="laborScore"></span> /10</p>
+                    </div>
+                </div>
+                <div class="label" id="animalSection">
+                    <p>Animal Welfare</p>
+                    <div>
+                        <span>
+                        <span class="scorebar"></span>
+                        <span class="scorebarFill" id="animalScoreBar"></span>
+                        </span>
+                        <p><span id="animalScore"></span> /10</p>
+                    </div>
+                </div>
+                <div class="label" id="socialSection">
+                    <p>Social Involvement</p>
+                    <div>
+                        <span>
+                        <span class="scorebar"></span>
+                        <span class="scorebarFill" id="socialScoreBar"></span>
+                        </span>
+                        <p><span id="socialScore"></span> /10</p>
+                    </div>
+                </div>
+                <p id="noSubscore" style="display:none;">No subscores at this time.</p>
+                <span class="tooltiptext" id="subscoreTip">Scores calculated in these sectors contribute to
+                    the Overall Score, but may not average out to the Overall Score since we are also factoring in
+                    other datasets.
+                </span>
+            </div>
+            <button id="detailsButton" title="Read about how this business is scored!"></button>
+            <div id="lazyFeedback">
+                <div id="preMessage">
+                  <button id="submitLazyFeedback" title="Click me you'd like a product suggestion recommended to you">Request recommended product</button>
+                </div>
+                <div id="messageSucceeded">
+                  <p>Thank you!<br>We'll add suggestions as soon as possible!</p>
+                </div>
+                <div id="messageFailed">
+                  <p>Please try again, and if it still doesn't work, please send us an email at <a href="mailto:hello@ethicli.com?subject=Ethicli Inquiry" target="_blank">hello@ethicli.com</a> with your request!</p>
+                </div>
+            </div>
+
+            <div id="sponsor" class="singleSponsor">
+                <div>
+                    <button id="left"><p>&lt;</p></button>
+                    <div id="sponsorGroup">
+                        <img alt="Sponsored Image" id="sponsorImg">
+                        <a href="#" id="sponsorLink" target="_blank">
+                            <span id="sponsorPriceGroup">$<span id="sponsorPrice"></span></span>
+                            <p id="sponsorRating"></p>
+                            <div id="sponsordesc">
+                                <span id="sponsorProductName"></span>
+                                <span id="sponsorCompany"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <button id="right"><p>&gt;</p></button>
+                </div>
+                <p id="sponsorLabel">Suggested Product</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
