@@ -39,7 +39,7 @@ header {
 }
 
 #advertiseForm {
-    min-height: 2000px;
+    min-height: 1860px;
 }
 
 #betaTestForm {
@@ -80,7 +80,7 @@ header {
 
 @media screen and (max-width: 600px) {
     #advertiseForm {
-        min-height: 2200px;
+        min-height: 1960px;
     }
     #betaTestForm {
         min-height: 1400px;
