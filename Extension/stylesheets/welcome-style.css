@@ -172,7 +172,7 @@ footer aside {
 
 footer a {
     margin: 0 16px 12px 0;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 footer .container div:last-of-type {
@@ -258,7 +258,7 @@ h4 {
 }
 
 p, ul {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.5em;
     margin-bottom: 16px;
 }
@@ -450,7 +450,7 @@ button {
     margin: 0 auto 24px auto;
     border-radius: 100px;
     color: #FEFCF2;
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
 }
 

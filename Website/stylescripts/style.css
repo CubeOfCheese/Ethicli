@@ -141,7 +141,7 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
     padding: 8px;
     max-width: 100px;
     line-height: 16px;
-    font-size: 14px;
+    font-size: 15px;
     text-align: center;
     hyphens: none;
 }
@@ -369,7 +369,7 @@ footer aside {
 
 footer a {
     margin: 0 16px 12px 0;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 footer .container div:last-of-type {
@@ -387,7 +387,7 @@ footer .container div:last-of-type a {
 }
 
 footer p {
-    font-size: 14px;
+    font-size: 15px;
     margin-top: 16px;
 }
 
@@ -432,7 +432,6 @@ footer p {
 
 #news article {
     width: 31%;
-    font-size: 14px;
 }
 
 #featured article {
@@ -452,7 +451,7 @@ footer p {
     padding: 8px 10px;
     background: rgba(142, 162, 137, 0.8);
     color: #FFFCF2;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 /*** Mailing List *****************************************************/
@@ -543,7 +542,7 @@ h4 {
 }
 
 p, ul {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.5em;
     margin-bottom: 16px;
 }
