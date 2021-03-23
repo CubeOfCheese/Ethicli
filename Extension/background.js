@@ -91,7 +91,7 @@ function reloadExt(request, sender) {
             chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: currentTab.id });
             mixpanel.track("Background-NoRating");
           } else {
-            chrome.browserAction.setPopup({ popup: "views/popup.html", tabId: currentTab.id });
+            chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: currentTab.id });
             mixpanel.track("Background-HasRating");
           }
           chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
