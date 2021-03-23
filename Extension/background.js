@@ -89,10 +89,20 @@ function reloadExt(request, sender) {
           if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
             ethicliBadgeScore = "";
             chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: currentTab.id });
-            mixpanel.track("Background-NoRating");
+            mixpanel.track(
+                "Visit shop",
+                {
+                  "Has score": false,
+                  "Shop words": request.shopWords
+                });
           } else {
             chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: currentTab.id });
-            mixpanel.track("Background-HasRating");
+            mixpanel.track(
+                "Visit shop",
+                {
+                  "Has score": true,
+                  "Shop words": request.shopWords
+                });
           }
           chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
         });

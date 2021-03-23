@@ -56,7 +56,7 @@ window.addEventListener("load", () => {
       document.getElementById("tutorialScreens").style = "display:none";
       document.getElementById("tutorialNavigation").style = "display:none";
     }
-    mixpanel.track("TutorialViewed");
+    mixpanel.track("View tutorial");
   });
 
   let idname = "tutorial1";
@@ -104,7 +104,6 @@ window.addEventListener("load", () => {
     document.getElementById("messagingFormGroup").classList.remove("sendClicked");
     document.getElementById("messageSubmitted").classList.remove("success");
     document.getElementById("messageFailed").classList.remove("failed");
-    mixpanel.track("Report Issue");
   });
 
   document.getElementById("closeMessaging").addEventListener("click", () => { // closes messaging system
@@ -187,7 +186,7 @@ window.addEventListener("load", () => {
   });
 
   document.getElementById("visitWebsite").addEventListener("click", () => {
-    mixpanel.track("VisitedWebsite");
+    mixpanel.track("Visit ethicli website");
   });
 });
 
@@ -239,7 +238,6 @@ export function sendFeedback(messageType, userEmail) {
           // "RatingRequestFailed - " + error.message analytics event
         });
   });
-  // ShopRequested analytics event
 }
 
 
