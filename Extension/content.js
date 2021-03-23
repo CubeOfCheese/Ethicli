@@ -149,7 +149,6 @@ function pageEval() {
     /shipping information/i,
     /shipping policy/i,
     /shop all/i,
-    /shop by */i,
     /shop bestsellers/i,
     /shop by category/i,
     /shop by categories/i,
