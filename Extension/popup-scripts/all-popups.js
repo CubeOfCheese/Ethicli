@@ -1,3 +1,22 @@
+import mixpanel from "mixpanel-browser";
+mixpanel.init("db3fa3fa397bb591b339887d12b1c13e",
+    { api_host: "https://api.mixpanel.com",
+      ip: false,
+      property_blacklist: [
+        "$city",
+        "$region",
+        "mp_country_code",
+        "$os",
+        "$browser_version",
+        "$current_url",
+        "$initial_referring_domain",
+        "$initial_referrer",
+        "$referrer",
+        "$search_engine"
+      ]
+    }
+);
+
 const HEIGHT_TUTORIAL = 600;
 const HEIGHT_MESSAGING = 600;
 const HEIGHT_MESSAGE_ERROR = 320;
@@ -37,7 +56,7 @@ window.addEventListener("load", () => {
       document.getElementById("tutorialScreens").style = "display:none";
       document.getElementById("tutorialNavigation").style = "display:none";
     }
-    // TutorialViewed analytics event
+    mixpanel.track("TutorialViewed");
   });
 
   let idname = "tutorial1";
@@ -85,7 +104,7 @@ window.addEventListener("load", () => {
     document.getElementById("messagingFormGroup").classList.remove("sendClicked");
     document.getElementById("messageSubmitted").classList.remove("success");
     document.getElementById("messageFailed").classList.remove("failed");
-    // reportIssue analytics event
+    mixpanel.track("Report Issue");
   });
 
   document.getElementById("closeMessaging").addEventListener("click", () => { // closes messaging system
@@ -168,7 +187,7 @@ window.addEventListener("load", () => {
   });
 
   document.getElementById("visitWebsite").addEventListener("click", () => {
-    // VisitedWebsite analytics event
+    mixpanel.track("VisitedWebsite");
   });
 });
 
