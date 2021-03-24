@@ -1,23 +1,8 @@
+import config from "../config/config.js";
 import { getDomainWithoutSuffix } from "tldts-experimental";
 import { sendFeedback } from "../popup-scripts/all-popups.js";
 import mixpanel from "mixpanel-browser";
-mixpanel.init("db3fa3fa397bb591b339887d12b1c13e",
-    { api_host: "https://api.mixpanel.com",
-      ip: false,
-      property_blacklist: [
-        "$city",
-        "$region",
-        "mp_country_code",
-        "$os",
-        "$browser_version",
-        "$current_url",
-        "$initial_referring_domain",
-        "$initial_referrer",
-        "$referrer",
-        "$search_engine"
-      ]
-    }
-);
+mixpanel.init(config.mixpanel_code, config.mixpanel_config);
 
 const HEIGHT_POPUP_OVERALLSCORE = 160;
 const HEIGHT_POPUP_VIEWDETAILS = 36 + 42;
@@ -186,7 +171,7 @@ function loadExtension(ethicliStats) {
 }
 
 function loadSponsor(productName, ethicliScore) {
-  const authString = "<username>:<password>";
+  const authString = config.username + ":" + config.password;
   const data = {
     "productName": productName,
     "currentCompanyScore": ethicliScore
