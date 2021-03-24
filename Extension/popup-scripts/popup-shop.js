@@ -194,27 +194,23 @@ function loadSponsor(productName, ethicliScore) {
       document.getElementById("sponsorImg").src = adToDisplay.productImageURL;
       const fullheight = document.body.style.height.slice(0, -2) + HEIGHT_POPUP_SPONSOR;
       document.body.style = "height:" + fullheight + "px;";
-      mixpanel.track(
-          "View ad",
-          {
-            "Price": adToDisplay.price,
-            "Score": adToDisplay.companyScore,
-            "Score Differential": adToDisplay.companyScore - ethicliScore,
-            "Product Name": adToDisplay.productName,
-            "Shop Name": adToDisplay.companyName,
-            "Image URL": adToDisplay.productURL
-          });
+      mixpanel.track("View ad", {
+        "Price": adToDisplay.price,
+        "Score": adToDisplay.companyScore,
+        "Score Differential": adToDisplay.companyScore - ethicliScore,
+        "Product Name": adToDisplay.productName,
+        "Shop Name": adToDisplay.companyName,
+        "Image URL": adToDisplay.productURL
+      });
       document.getElementById("sponsorLink").addEventListener("click", () => {
-        mixpanel.track(
-            "Click ad",
-            {
-              "Price": adToDisplay.price,
-              "Score": adToDisplay.companyScore,
-              "Score Differential": adToDisplay.companyScore - ethicliScore,
-              "Product Name": adToDisplay.productName,
-              "Shop Name": adToDisplay.companyName,
-              "Image URL": adToDisplay.productURL
-            });
+        mixpanel.track("Click ad", {
+          "Price": adToDisplay.price,
+          "Score": adToDisplay.companyScore,
+          "Score Differential": adToDisplay.companyScore - ethicliScore,
+          "Product Name": adToDisplay.productName,
+          "Shop Name": adToDisplay.companyName,
+          "Image URL": adToDisplay.productURL
+        });
       });
       document.getElementById("submitLazyFeedback").style = "display:none";
     } else {
@@ -256,12 +252,9 @@ function updateOverallToolTip(overallscore) {
 const query = { active: true, currentWindow: true };
 chrome.tabs.query(query, (tabs) => {
   const currentTab = tabs[0];
-  mixpanel.track(
-      "Open popup",
-      {
-        "Is Shop": true,
-        "Has Score": true,
-        "Shop URL": currentTab.url
-      }
-  );
+  mixpanel.track("Open popup", {
+    "Is Shop": true,
+    "Has Score": true,
+    "Shop URL": currentTab.url
+  });
 });

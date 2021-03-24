@@ -65,12 +65,9 @@ function loadExtension(ethicliStats) {
 const query = { active: true, currentWindow: true };
 chrome.tabs.query(query, (tabs) => {
   const currentTab = tabs[0];
-  mixpanel.track(
-      "Open popup",
-      {
-        "Is Shop": true,
-        "Has Score": false,
-        "Shop URL": currentTab.url
-      }
-  );
+  mixpanel.track("Open popup", {
+    "Is Shop": true,
+    "Has Score": false,
+    "Shop URL": currentTab.url
+  });
 });

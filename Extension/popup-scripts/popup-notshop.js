@@ -9,10 +9,7 @@ window.addEventListener("load", () => {
   };
 });
 
-mixpanel.track(
-    "Open popup",
-    {
-      "Is Shop": false,
-      "Has Score": false,
-    }
-);
+mixpanel.track("Open popup", {
+  "Is Shop": false,
+  "Has Score": false,
+});
