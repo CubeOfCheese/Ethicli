@@ -160,6 +160,7 @@ header {
 #optinButtonGroup {
     display: flex;
     flex-direction: column;
+    max-width: 50%;
 }
 
 #optinButtonGroup span {
@@ -369,6 +370,7 @@ button {
 
 .switch {
     display: flex;
+    margin-bottom: 16px;
 }
 
 .switch input {
@@ -427,6 +429,11 @@ button {
 }
 
 /*** General Queries *****************************************************/
+@media screen and (max-width: 960px) {
+    #optinButtonGroup, .switch {
+        max-width: 100%;
+    }
+}
 
 @media screen and (max-width: 768px) {
     #triplebar {
@@ -569,12 +576,8 @@ button {
 }
 
 @keyframes slideUp {
-    0% {
-        transform: translateY(100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0); }
 }
 
 #tutorialHome #shoppingbag {

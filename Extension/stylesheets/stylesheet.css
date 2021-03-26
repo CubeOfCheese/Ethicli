@@ -1,7 +1,6 @@
 @import "./reset.css"; 
 
 body {
-    font-family: sans-serif;
     width: 260px;
     padding: 36px;
     margin: auto;
