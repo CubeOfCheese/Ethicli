@@ -2,14 +2,17 @@
 <html>
   <head>
     <title>Ethicli Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="../stylesheets/reset.css" rel="stylesheet">
-    <link href="../stylesheets/stylesheet.css" rel="stylesheet">
+    <link href="../stylesheets/stylesheet-options.css" rel="stylesheet">
   </head>
   <body>
-    <span class="switch">
-        <label for="analyticsToggle">Send anonymous usage analytics to help improve Ethicli</label>
+    <label class="switch" for="analyticsToggle">
+        <span class="switchAnalyticsDescription">Send anonymous usage analytics to help improve Ethicli</span>
         <input type="checkbox" id="analyticsToggle" checked>
-    </span>
+        <span class="checkmark"></span>
+    </label>
+    <img id="plantdude" src="../images/plantdude.svg" alt="Plant Dude">
     <script type="module" src="../options.js"></script>
   </body>
 </html>
