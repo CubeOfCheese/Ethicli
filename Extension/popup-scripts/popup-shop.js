@@ -199,8 +199,7 @@ function loadSponsor(productName, ethicliScore) {
         "Score": adToDisplay.companyScore,
         "Score Differential": adToDisplay.companyScore - ethicliScore,
         "Product Name": adToDisplay.productName,
-        "Shop Name": adToDisplay.companyName,
-        "Image URL": adToDisplay.productURL
+        "Shop Name": adToDisplay.companyName
       });
       document.getElementById("sponsorLink").addEventListener("click", () => {
         mixpanel.track("Click ad", {
@@ -208,8 +207,7 @@ function loadSponsor(productName, ethicliScore) {
           "Score": adToDisplay.companyScore,
           "Score Differential": adToDisplay.companyScore - ethicliScore,
           "Product Name": adToDisplay.productName,
-          "Shop Name": adToDisplay.companyName,
-          "Image URL": adToDisplay.productURL
+          "Shop Name": adToDisplay.companyName
         });
       });
       document.getElementById("submitLazyFeedback").style = "display:none";
