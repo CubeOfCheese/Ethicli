@@ -1,4 +1,7 @@
+import config from "../config/config.js";
 import { sendFeedback } from "../popup-scripts/all-popups.js";
+import mixpanel from "mixpanel-browser";
+mixpanel.init(config.mixpanel_code, config.mixpanel_config);
 
 const HEIGHT_NORATING_BADGES = 136;
 const HEIGHT_NORATING_REQUEST = 283;
@@ -59,4 +62,12 @@ function loadExtension(ethicliStats) {
   document.body.style = "height:" + fullheight + "px;";
 }
 
-// Opened-NoRating analytics event
+const query = { active: true, currentWindow: true };
+chrome.tabs.query(query, (tabs) => {
+  const currentTab = tabs[0];
+  mixpanel.track("Open popup", {
+    "Is Shop": true,
+    "Has Score": false,
+    "Shop URL": currentTab.url
+  });
+});

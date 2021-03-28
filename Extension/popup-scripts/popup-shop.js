@@ -1,5 +1,8 @@
+import config from "../config/config.js";
 import { getDomainWithoutSuffix } from "tldts-experimental";
 import { sendFeedback } from "../popup-scripts/all-popups.js";
+import mixpanel from "mixpanel-browser";
+mixpanel.init(config.mixpanel_code, config.mixpanel_config);
 
 const HEIGHT_POPUP_OVERALLSCORE = 160;
 const HEIGHT_POPUP_VIEWDETAILS = 36 + 42;
@@ -160,7 +163,7 @@ function loadExtension(ethicliStats) {
     infoLink.textContent = "View Details";
     document.getElementById("detailsButton").append(infoLink);
     document.getElementById("detailsButton").addEventListener("click", () => {
-      // ViewDetailsClicked analytics event
+      mixpanel.track("Click view details");
     });
   });
 
@@ -168,7 +171,7 @@ function loadExtension(ethicliStats) {
 }
 
 function loadSponsor(productName, ethicliScore) {
-  const authString = "<username>:<password>";
+  const authString = config.username + ":" + config.password;
   const data = {
     "productName": productName,
     "currentCompanyScore": ethicliScore
@@ -191,9 +194,21 @@ function loadSponsor(productName, ethicliScore) {
       document.getElementById("sponsorImg").src = adToDisplay.productImageURL;
       const fullheight = document.body.style.height.slice(0, -2) + HEIGHT_POPUP_SPONSOR;
       document.body.style = "height:" + fullheight + "px;";
-      // AdDisplayed analytics event
+      mixpanel.track("View ad", {
+        "Price": adToDisplay.price,
+        "Score": adToDisplay.companyScore,
+        "Score Differential": adToDisplay.companyScore - ethicliScore,
+        "Product Name": adToDisplay.productName,
+        "Shop Name": adToDisplay.companyName
+      });
       document.getElementById("sponsorLink").addEventListener("click", () => {
-        // AdClicked analytics event
+        mixpanel.track("Click ad", {
+          "Price": adToDisplay.price,
+          "Score": adToDisplay.companyScore,
+          "Score Differential": adToDisplay.companyScore - ethicliScore,
+          "Product Name": adToDisplay.productName,
+          "Shop Name": adToDisplay.companyName
+        });
       });
       document.getElementById("submitLazyFeedback").style = "display:none";
     } else {
@@ -232,4 +247,12 @@ function updateOverallToolTip(overallscore) {
   document.getElementById("overallScoreTooltip").innerText = overalltip;
 }
 
-// Opened-ShopHasRating analytics event
+const query = { active: true, currentWindow: true };
+chrome.tabs.query(query, (tabs) => {
+  const currentTab = tabs[0];
+  mixpanel.track("Open popup", {
+    "Is Shop": true,
+    "Has Score": true,
+    "Shop URL": currentTab.url
+  });
+});

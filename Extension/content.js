@@ -149,7 +149,6 @@ function pageEval() {
     /shipping information/i,
     /shipping policy/i,
     /shop all/i,
-    /shop by */i,
     /shop bestsellers/i,
     /shop by category/i,
     /shop by categories/i,
@@ -176,16 +175,16 @@ function pageEval() {
     /upcoming sales/i
   ];
 
-  let wordTracker = 0;
+  const presentShopWords = [];
   for (let i = 0; i < shopWords.length; i++) {
     const inArray = shopWords[i].test(dom);
     if (inArray) { // if words are present, add values.
-      wordTracker += 1;
+      presentShopWords.push(shopWords[i].toString());
     }
   }
 
-  if (wordTracker > 0) { // if there's at least one shopWord present
-    chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: true });
+  if (presentShopWords.length > 0) { // if there's at least one shopWord present
+    chrome.runtime.sendMessage({ msgName: "PageEvaluated", shoppingPage: true, shopWords: presentShopWords });
     identifyProduct();
     isShoppingPage = true;
   } else {

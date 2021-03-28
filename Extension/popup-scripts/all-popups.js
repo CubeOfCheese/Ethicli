@@ -1,3 +1,7 @@
+import config from "../config/config.js";
+import mixpanel from "mixpanel-browser";
+mixpanel.init(config.mixpanel_code, config.mixpanel_config);
+
 const HEIGHT_TUTORIAL = 600;
 const HEIGHT_MESSAGING = 600;
 const HEIGHT_MESSAGE_ERROR = 320;
@@ -37,7 +41,7 @@ window.addEventListener("load", () => {
       document.getElementById("tutorialScreens").style = "display:none";
       document.getElementById("tutorialNavigation").style = "display:none";
     }
-    // TutorialViewed analytics event
+    mixpanel.track("View tutorial");
   });
 
   let idname = "tutorial1";
@@ -85,7 +89,6 @@ window.addEventListener("load", () => {
     document.getElementById("messagingFormGroup").classList.remove("sendClicked");
     document.getElementById("messageSubmitted").classList.remove("success");
     document.getElementById("messageFailed").classList.remove("failed");
-    // reportIssue analytics event
   });
 
   document.getElementById("closeMessaging").addEventListener("click", () => { // closes messaging system
@@ -168,7 +171,7 @@ window.addEventListener("load", () => {
   });
 
   document.getElementById("visitWebsite").addEventListener("click", () => {
-    // VisitedWebsite analytics event
+    mixpanel.track("Visit ethicli website");
   });
 });
 
@@ -220,7 +223,6 @@ export function sendFeedback(messageType, userEmail) {
           // "RatingRequestFailed - " + error.message analytics event
         });
   });
-  // ShopRequested analytics event
 }
 
 

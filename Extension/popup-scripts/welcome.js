@@ -1,3 +1,7 @@
+import config from "../config/config.js";
+import mixpanel from "mixpanel-browser";
+mixpanel.init(config.mixpanel_code, config.mixpanel_config);
+
 window.onload = () => {
   // --- General Styling --------------------------------------------------------------------------
   document.getElementById("dropdownMenu").addEventListener("mouseover", () => {
@@ -38,6 +42,15 @@ window.onload = () => {
       document.getElementById("optinDeclinedResult").style = "display:block;";
     });
   });
+
+  document.getElementById("analyticsToggle").addEventListener("click", () => {
+    if (document.getElementById("analyticsToggle").checked) {
+      mixpanel.opt_in_tracking();
+    } else {
+      mixpanel.opt_out_tracking();
+    }
+  });
+
 
   // --- Tutorial --------------------------------------------------------------------------
   let startTutorial = false;
@@ -96,9 +109,10 @@ window.onload = () => {
     }
   }
 
+  confetti.start(1000, 150);
   document.getElementById("confettiLogo").addEventListener("click", () => {
-    // confetti.start(1000, 150);
+    confetti.start(1000, 150);
   });
 
-  $("#currentYear").text(new Date().getFullYear()); // updates copyright with current year
+  document.getElementById("currentYear").innerText = new Date().getFullYear(); // updates copyright with current year
 };

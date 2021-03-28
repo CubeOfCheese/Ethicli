@@ -1,4 +1,7 @@
+import config from "../config/config.js";
 import { getDomainWithoutSuffix } from "tldts-experimental";
+import mixpanel from "mixpanel-browser";
+mixpanel.init(config.mixpanel_code, config.mixpanel_config);
 
 chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
 
@@ -69,10 +72,16 @@ function reloadExt(request, sender) {
           if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
             ethicliBadgeScore = "";
             chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: currentTab.id });
-            // Background-NoRating analytics event
+            mixpanel.track("Visit shop", {
+              "Has score": false,
+              "Shop words": request.shopWords
+            });
           } else {
             chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: currentTab.id });
-            // Background-HasRating analytics event
+            mixpanel.track("Visit shop", {
+              "Has score": true,
+              "Shop words": request.shopWords
+            });
           }
           chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
         });
