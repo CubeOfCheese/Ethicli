@@ -109,8 +109,9 @@ window.onload = () => {
     }
   }
 
+  confetti.start(1000, 150);
   document.getElementById("confettiLogo").addEventListener("click", () => {
-    // confetti.start(1000, 150);
+    confetti.start(1000, 150);
   });
 
   document.getElementById("currentYear").innerText = new Date().getFullYear(); // updates copyright with current year
