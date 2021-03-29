@@ -291,7 +291,7 @@ header {
     padding-top: 24px;
 }
 
-#index header {
+#index header, #error header {
     min-height: 768px;
 }
 

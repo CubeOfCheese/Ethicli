@@ -117,5 +117,10 @@ $(document).ready(function() {
     alert("Our mailing list isn't available yet, but thank you for considering to subscribe!");
   });
 
+  $(function() { // Load Nav and Footer
+    $("#nav").load("../components/nav.html");
+    $("#footer").load("../components/footer.html");
+    $("#footer_404").load("./components/footer.html");
+  });
   $("#currentYear").text(new Date().getFullYear()); // updates copyright with current year
 });
