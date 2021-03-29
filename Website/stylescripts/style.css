@@ -293,7 +293,7 @@ header {
 }
 
 #index header, #error header {
-    min-height: 768px;
+    min-height: 740px;
 }
 
 #headerInfo {
