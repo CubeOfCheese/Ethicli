@@ -1,0 +1,133 @@
+<div class="container">
+    <a href="/" id="logo"><img src="../images/ethicli-logo.png" alt="Extension image in Header"></a>
+    <div id="navlinks">
+        <img src="../images/menu.svg" alt="triplebar" height="50" width="50" id="triplebar">
+        <a href="/shops">Shops</a>
+        <a href="/faq">FAQ</a>
+        <a href="/about">About Us</a>
+        <div class="dropdownMenu">
+            <a>Download <span class="dropdownIcon">▾</span></a>
+            <div class="submenu">
+                <a href="https://chrome.google.com/webstore/detail/ethicli/pkbciefpddgopoopoffffnnfobiofagl" target="_blank">Chrome</a>
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/ethicli" target="_blank">Firefox</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(window).scroll(function() {
+        if ($(window).width() > 768 && $(window).width() <= 800) {
+        if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 2700)) {
+            darkNav();
+        } else {
+            lightNav();
+        }
+        } else if ($(window).width() > 800 && $(window).width() <= 850) {
+        if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 2720)) {
+            darkNav();
+        } else {
+            lightNav();
+        }
+        } else if ($(window).width() > 850) {
+        if (($(this).scrollTop() < 730) || ($(this).scrollTop() > 2860)) {
+            darkNav();
+        } else {
+            lightNav();
+        }
+        } else {
+        $("#index #navlinks a").css({
+            "background": "#8EA289",
+            "color": "#FFFCF2"
+        });
+        $("#index #navlinks a").on("mouseover", function() {
+            $(this).css({
+            "background": "#2B6589",
+            "color": "#FFFCF2"
+            });
+        });
+        $("#index #navlinks a").on("mouseleave", function() {
+            $(this).css({
+            "background": "#8EA289",
+            "color": "#FFFCF2"
+            });
+        });
+        }
+
+        function darkNav() {
+        $("#index #navlinks a").css({
+            "background": "#102340",
+            "color": "#FEFCF3"
+        });
+        $("#index #navlinks a").on("mouseover", function() {
+            $(this).css({
+            "background": "#2B6589",
+            "color": "#FFFCF2"
+            });
+        });
+        $("#index #navlinks a").on("mouseleave", function() {
+            $(this).css({
+            "background": "#102340",
+            "color": "#FEFCF3"
+            });
+        });
+        }
+
+        function lightNav() {
+        $("#index #navlinks a").css({
+            "background": "#C9D4C6",
+            "color": "#102340"
+        });
+        $("#index #navlinks a").on("mouseover", function() {
+            $(this).css({
+            "background": "#2B6589",
+            "color": "#FFFCF2"
+            });
+        });
+        $("#index #navlinks a").on("mouseleave", function() {
+            $(this).css({
+            "background": "#C9D4C6",
+            "color": "#102340"
+            });
+        });
+        }
+        showPlantDude();
+    });
+
+    showPlantDude();
+    function showPlantDude() {
+        if ($(window).width() < 768) {
+        $("#countdownPrompt").addClass("hide");
+        } else {
+        if (($(this).scrollTop() > 600)) {
+            $("#countdownPrompt").addClass("hide");
+        } else {
+            $("#countdownPrompt").removeClass("hide");
+        }
+        }
+    }
+
+    dropdown();
+    function dropdown() {
+        $(".dropdownMenu").hover(function() {
+        $(".dropdownIcon").toggleClass("dropped");
+        $(".submenu").toggleClass("submenuClicked");
+        });
+    }
+
+    $(window).bind("resize", function() {
+        if ($(this).width() > 768) {
+        $("#navlinks").removeClass("navClicked");
+        $(".submenu").removeClass("submenuClicked");
+        $(".dropdownIcon").removeClass("dropped");
+        }
+        showPlantDude();
+    }).trigger("resize");
+
+    mobileNav(); // allows menu to toggle when starting at a mobile size
+    function mobileNav() { // create mobile menu toggle to show navigation links
+        $("#triplebar").click(function() {
+        $("#navlinks").toggleClass("navClicked");
+        });
+    }
+</script>
