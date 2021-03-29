@@ -649,13 +649,13 @@ button {
     padding: 0;
 }
 
-#logo img {
+#logo {
     width: 50px;
     margin: 0;
     background: none;
 }
 
-#logo img:hover {
+#logo:hover {
     opacity: 0.8;
 }
 

@@ -1,5 +1,5 @@
 <div class="container">
-    <a href="/" id="logo"><img src="../images/ethicli-logo.png" alt="Extension image in Header"></a>
+    <a href="/"><img id="logo" src="../images/ethicli-logo.png" alt="Extension image in Header"></a>
     <div id="navlinks">
         <img src="../images/menu.svg" alt="triplebar" height="50" width="50" id="triplebar">
         <a href="/shops">Shops</a>
@@ -105,6 +105,10 @@
             $("#countdownPrompt").removeClass("hide");
         }
         }
+    }
+
+    if($('#error').length){ //shows logo correctly on 404
+        $("#logo").attr("src", "./images/ethicli-logo.png");
     }
 
     dropdown();
