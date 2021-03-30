@@ -233,6 +233,7 @@ nav a:hover {
 
 #triplebar {
     display: none;
+    cursor: pointer;
 }
 
 .submenu {
@@ -291,8 +292,8 @@ header {
     padding-top: 24px;
 }
 
-#index header {
-    min-height: 768px;
+#index header, #error header {
+    min-height: 740px;
 }
 
 #headerInfo {
@@ -648,13 +649,13 @@ button {
     padding: 0;
 }
 
-#logo img {
+#logo {
     width: 50px;
     margin: 0;
     background: none;
 }
 
-#logo img:hover {
+#logo:hover {
     opacity: 0.8;
 }
 
