@@ -189,19 +189,19 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
 }
 
 .dropdownMenu > a {
-    -webkit-animation: timedWobble 10s infinite;
-    -moz-animation: timedWobble 10s infinite;
-    animation: timedWobble 10s infinite;
+    -webkit-animation: timedWobble 15s infinite;
+    -moz-animation: timedWobble 15s infinite;
+    animation: timedWobble 15s infinite;
 }
 
 @keyframes timedWobble {
     0% { transform: translateX(0%); } 
     94% { transform: translateX(0%); } 
-    95% { transform: translateX(-5%) rotate(-2.5deg); } 
-    96% { transform: translateX(4%) rotate(2deg); } 
-    97% { transform: translateX(-3%) rotate(-1.5deg); } 
-    98% { transform: translateX(2%) rotate(1deg); }
-    99% { transform: translateX(-1%) rotate(-0.5deg); }
+    95% { transform: translateX(-2.5%) rotate(-2.5deg); } 
+    96% { transform: translateX(2%) rotate(2deg); } 
+    97% { transform: translateX(-1.5%) rotate(-1.5deg); } 
+    98% { transform: translateX(1%) rotate(1deg); }
+    99% { transform: translateX(-0.5%) rotate(-0.5deg); }
     100% { transform: translateX(0%); } 
  } 
 
