@@ -468,9 +468,13 @@ a.readmore {
     margin: 0;
     border-radius: 100px;
     padding: 8px 10px;
-    background: rgba(142, 162, 137, 0.8);
+    background: #2B6589;
     color: #FFFCF2;
     font-size: 15px;
+}
+
+#featured a.readmore {
+    background: #8EA289;
 }
 
 /*** Mailing List *****************************************************/
