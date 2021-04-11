@@ -188,6 +188,23 @@ header, nav, #intro, #howToUse, #news, #featured, footer {
 	100% {transform:rotate(-18deg);}
 }
 
+.dropdownMenu > a {
+    -webkit-animation: timedWobble 15s infinite;
+    -moz-animation: timedWobble 15s infinite;
+    animation: timedWobble 15s infinite;
+}
+
+@keyframes timedWobble {
+    0% { transform: translateX(0%); } 
+    94% { transform: translateX(0%); } 
+    95% { transform: translateX(-2.5%) rotate(-2.5deg); } 
+    96% { transform: translateX(2%) rotate(2deg); } 
+    97% { transform: translateX(-1.5%) rotate(-1.5deg); } 
+    98% { transform: translateX(1%) rotate(1deg); }
+    99% { transform: translateX(-0.5%) rotate(-0.5deg); }
+    100% { transform: translateX(0%); } 
+ } 
+
 /*** Nav **************************************************************/
 
 nav {
@@ -426,13 +443,17 @@ footer p {
 #news article, #featured article {
     position: relative;
     background: #FFFCF2;
-    padding: 24px 24px 48px 24px;
+    padding: 24px 24px 58px 24px;
     border-radius: 20px;
     width: 49%;
 }
 
+#news section {
+    flex-wrap: wrap;
+}
+
 #news article {
-    width: 31%;
+    margin-bottom: 20px;
 }
 
 #featured article {
@@ -440,19 +461,20 @@ footer p {
     background: rgba(16, 35, 64, 0.5);
 }
 
-.readmore {
+a.readmore {
     position: absolute;
     bottom: 24px;
     right: 24px;
-    margin-bottom: 0;
-}
-
-.readmore a, #news .readmore a {
+    margin: 0;
     border-radius: 100px;
     padding: 8px 10px;
-    background: rgba(142, 162, 137, 0.8);
+    background: #2B6589;
     color: #FFFCF2;
     font-size: 15px;
+}
+
+#featured a.readmore {
+    background: #8EA289;
 }
 
 /*** Mailing List *****************************************************/
@@ -579,7 +601,7 @@ em {
     font-weight: 700;
 }
 
-.readmore:hover, #backToTop:hover, .featuredButton:hover {
+a.readmore:hover, #backToTop:hover, .featuredButton:hover {
     opacity: 0.8;
 }
 
@@ -620,15 +642,15 @@ button {
     color: #FEFCF2;
 }
 
-#howToUse p, #news a {
+#howToUse p {
     color: #8EA289;
 }
 
-.colorLGreen, #intro p, #howToUse h3, #featured p, #featured form h3, footer p, footer a:hover {
+.colorLGreen, #intro p, #howToUse h3, #featured p, #featured h3 a:hover, footer p, footer a:hover {
     color: #C9D4C6;
 }
 
-.colorCream, nav a:hover, .featuredButton:hover, #featured h3, .readmore:hover a, footer a {
+.colorCream, nav a:hover, .featuredButton:hover, #featured h3 a, a.readmore, footer a {
     color: #FEFCF2;
 }
 
