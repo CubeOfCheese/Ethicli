@@ -66,6 +66,11 @@ public class Router {
     return "info";
   }
 
+  @RequestMapping(value = "/amys-tools")
+  public String getAmyTools() {
+    return "AmysTools/index";
+  }
+
   @RequestMapping(value = "/amys-tools/ad-adder")
   public String getAmyToolsAd(Model model) {
     Advertisement Advertisement = new Advertisement();
