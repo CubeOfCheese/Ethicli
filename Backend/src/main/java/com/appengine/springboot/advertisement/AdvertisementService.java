@@ -152,7 +152,6 @@ public class AdvertisementService {
 		InputStream file = resource.getInputStream();
 		BufferedReader br = null;
 		String commonWord = "";
-		String[] brLine;
 		try {
 			br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
 			while ((commonWord = br.readLine()) != null) {
