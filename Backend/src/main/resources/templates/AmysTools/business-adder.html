@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Business Adder - Amy's Tools</title>
+    <link href="../stylescripts/reset.css" rel="stylesheet">
+    <link href="../AmysTools/business-adder/stylesheet-business.css" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <header><h1><a href="/amys-tools">🙆🏼‍♀️🛠</a> - Business Adder</h1></header>
+
+        <form action="#" th:action="@{/Business/add-desde-form}" th:object="${business}" method="POST">
+            <div id="companyGroup"> <!-- Main Company Info -->
+                <h2>Main Company Info</h2>
+                <label for="name">Company Name: <input th:field="*{name}" id="name" placeholder="Clean Bean Cafe" type="text" spellcheck="true" required></label>
+                <p>Website url must be in the following format: example.com/</p>
+                <label for="website">Company Website: <input th:field="*{website}" id="website" placeholder="cbcafe.com/" type="text" pattern=".*/" required></label>
+                <label for="companyType">Company Type: <input th:field="*{companyType}" id="companyType" placeholder="Cosmetics" type="text"></label>
+                <label for="country">Country: <input th:field="*{country}" id="country" placeholder="Spain" type="text"></label>
+            </div>
+
+            <div id="companyGroup"> <!-- Main Company Info -->
+              <h2>Score</h2>
+              <label for="environmentScore">Environment Score: <input th:field="*{environmentScore}" id="environmentScore" placeholder="Clean Bean Cafe" type="number" step="0.01"></label>
+              <label for="animalsScore">Animal Score: <input th:field="*{animalsScore}" id="animalsScore" placeholder="Clean Bean Cafe" type="number" step="0.01"></label>
+              <label for="laborScore">Labor Score: <input th:field="*{laborScore}" id="laborScore" placeholder="Clean Bean Cafe" type="number" step="0.01"></label>
+              <label for="socialScore">Social Score: <input th:field="*{socialScore}" id="socialScore" placeholder="Clean Bean Cafe" type="number" step="0.01"></label>
+            </div>
+
+            <label for="overallScoreDetails">Score Details: <textarea th:field="*{overallScoreDetails}" id="overallScoreDetails" placeholder="They're the best!" spellcheck="true"></textarea></label>
+
+            <span>
+                <h4>Environment Score Sources</h4>
+                <div id="environmentSourceList" th:each="environmentScoreSource, i: ${business.environmentScoreSource}" class="ScoreSourceGroup">
+                  <input class="environmentScoreSource" th:field="*{environmentScoreSource[__${i.index}__]}" placeholder="https://example.com" type="url" spellcheck="true">
+                </div>
+                <span class="changeSourceCount">
+                    <svg id="addEnvironmentSource" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
+                    <svg id="deleteEnvironmentSource" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
+                </span>
+            </span>
+            <span>
+                <h4>Animal Score Sources</h4>
+                <div id="animalSourceList" th:each="animalScoreSource, i: ${business.animalScoreSource}" class="ScoreSourceGroup">
+                  <input class="animalScoreSource" th:field="*{animalScoreSource[__${i.index}__]}" placeholder="https://example.com" type="url" spellcheck="true">
+                </div>
+                <span class="changeSourceCount">
+                    <svg id="addAnimalSource" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
+                    <svg id="deleteAnimalSource" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
+                </span>
+            </span>
+            <span>
+                <h4>Labor Score Sources</h4>
+                <div id="laborSourceList" th:each="laborScoreSource, i: ${business.laborScoreSource}" class="ScoreSourceGroup">
+                  <input class="laborScoreSource" th:field="*{laborScoreSource[__${i.index}__]}" placeholder="https://example.com" type="url" spellcheck="true">
+                </div>
+                <span class="changeSourceCount">
+                    <svg id="addLaborSource" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
+                    <svg id="deleteLaborSource" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
+                </span>
+            </span>
+            <span>
+                <h4>Social Score Sources</h4>
+                <div id="socialSourceList" th:each="socialScoreSource, i: ${business.socialScoreSource}" class="ScoreSourceGroup">
+                  <input class="socialScoreSource" th:field="*{socialScoreSource[__${i.index}__]}" placeholder="https://example.com" type="url" spellcheck="true">
+                </div>
+                <span class="changeSourceCount">
+                    <svg id="addSocialSource" xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 30" x="0px" y="0px"><title>add</title><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm5-8a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z"/></svg>
+                    <svg id="deleteSocialSource" xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 24 30"><title>subtract</title><path d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18Zm5-8a1,1,0,0,1-1,1H6A1,1,0,1,1,6,9h8A1,1,0,0,1,15,10Z"/></svg>
+                </span>
+            </span>
+            <input id="submit" type="submit"> <!-- Submit -->
+        </form>
+
+        <footer>
+        </footer>
+    </div>
+    <script src="../AmysTools/business-adder/business-adder.js"></script>
+
+</body>
+
+</html>

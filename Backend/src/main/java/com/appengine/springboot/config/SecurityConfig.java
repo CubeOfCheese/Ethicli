@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .hasRole("USER")
         // ADMIN Role Access:
         .antMatchers(
-            "/amys-tools/ad-adder",
+            "/amys-tools/",
             "/Advertisement/getAll",
             "/Advertisement/add",
             "/Advertisement/addAll",
