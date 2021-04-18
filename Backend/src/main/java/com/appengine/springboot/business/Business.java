@@ -1026,11 +1026,9 @@ public class Business {
 
   public void calculate() {
     if (overallScore != 0) {
-      System.out.println("overallScore already calculated");
       return;
     }
     if (!this.manuallyScored) {
-      System.out.println("not manually scored");
       calculateAnimalScore();
       calculateEnvironmentScore();
       calculateSocialScore();
