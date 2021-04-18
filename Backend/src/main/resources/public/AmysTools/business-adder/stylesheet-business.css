@@ -1,116 +1,46 @@
-body {
+#subscoreGroup label:last-child {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#subscoreGroup label:last-child textarea {
+  margin-top: 8px;
+  width: 100%;
   font-family: sans-serif;
 }
 
-div {
+/** Score Sources **/
+
+#scoreSources > span {
+  width: 100%;
   position: relative;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 16px;
+  padding-right: 80px;
 }
 
-#companyGroup label {
-  max-width: 360px;
+#scoreSources > span h4 {
+ margin-bottom: 4px;
+ font-size: 14px;
 }
 
-/** Form **/
-
-header, form, footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#scoreSources > span input {
+ margin-bottom: 8px;
 }
 
-form > div {
-  width: 100%;
-  max-width: 960px;
-  padding: 30px 30px;
-  border-top: 1px solid #888;
-  align-items: center;
-}
-
-form > div:last-of-type {
-  margin-bottom: 0;
-  border-bottom: 1px solid #888;
-}
-
-form label {
-  display: flex;
-  margin-bottom: 8px;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 14px;
-}
-
-form label input {
-  min-width: 210px;
-  margin-left: 20px;
-}
-
-.productContainer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
-  max-width: 960px;
-  width: 100%;
-  /* Will be implemented in the future */
-  /* overflow: scroll; */
-}
-
-.productContainer > div { /* AKA #productgroup */
-  position: relative;
-  margin: 20px;
-  padding: 24px;
-  border: 1px solid #888;
-  border-radius: 8px;
-}
-
-.productGroupBottom {
-  display: flex;
-  flex-direction: column;
-}
-
-.productGroupBottom > span {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.productGroupBottom > span:last-of-type {
-  margin-top: 30px;
-  color: #E07A5F;
-}
-
-.productGroupBottom > span:last-of-type .productTagGroup > span {
-  border: 1px solid #E07A5F;
+#scoreSources > span .changeSourceCount {
+  position: absolute;
+  top: -2px;
+  right: 0;
 }
 
 /** Tags **/
 
-.productTagGroup {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-right: 100px;
-}
-
-.changeSourceCount, .changeSourceCount svg,
-#negativechangeSourceCount, #negativechangeSourceCount svg,
-#changeProduct, #changeProduct svg{
+.changeSourceCount svg,
+#negativechangeSourceCount svg {
   width: 30px;
   margin-left: 14px;
   padding: 0;
   border: none;
-}
-
-#changeProduct {
-  position: relative;
-  right: 20px;
-  width: 80px;
-  display: flex;
-  justify-content: space-between;
 }
 
 .changeSourceCount, #negativechangeSourceCount{
@@ -120,88 +50,4 @@ form label input {
   justify-content: space-between;
   margin-top: 16px;
   right: 24px;
-}
-
-.productTagGroup > span {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 16px;
-  padding: 8px 8px 0px 8px;
-  border: 1px solid #888;
-  border-radius: 8px;
-}
-
-.productTagGroup > span label {
-  display: flex;
-  width: auto;
-}
-
-.productTagGroup > span label input {
-  min-width: 0px;
-  width: 60px;
-  margin-left: 10px;
-}
-
-#productTag, #negativeProductTag {
-  min-width: 100px;
-  margin-right: 10px;
-}
-
-#productTag, #negativeProductTag,
-#productTagWeight, #negativeProductTagWeight {
-  margin: 0 8px 8px 8px;
-}
-
-#submit {
-  margin: 60px auto;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px;
-  background: #333;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-
-/** Typography **/
-
-h1 {
-  margin: 60px 0;
-  font-weight: 600;
-  font-size: 28px;
-}
-
-h2 {
-  margin-bottom: 24px;
-  font-weight: 600;
-  font-size: 20px;
-}
-
-h3 {
-  margin-bottom: 16px;
-  font-weight: 600;
-  font-size: 18px;
-}
-
-.productGroupBottom h4 {
-  margin-right: 16px;
-}
-
-#addProduct:hover, #deleteProduct:hover,
-#addNegativeTag:hover, #deleteNegativeTag:hover,
-#addTag:hover, #deleteTag:hover, #submit:hover {
-  opacity: 0.5;
-}
-
-::placeholder {
-  opacity: 0.6;
-}
-
-::selection {
-  background-color: #333;
-  color: #fff;
 }
