@@ -1,0 +1,52 @@
+#subscoreGroup label:last-child {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#subscoreGroup label:last-child textarea {
+  margin-top: 8px;
+  width: 100%;
+  font-family: sans-serif;
+}
+
+/** Score Sources **/
+
+#scoreSources > span {
+  width: 100%;
+  position: relative;
+  margin-bottom: 16px;
+  padding-right: 80px;
+}
+
+#scoreSources > span h4 {
+ margin-bottom: 4px;
+ font-size: 14px;
+}
+
+#scoreSources > span input {
+ margin-bottom: 8px;
+}
+
+#scoreSources > span .changeSourceCount {
+  position: absolute;
+  top: -2px;
+  right: 0;
+}
+
+/** Tags **/
+
+.changeSourceCount svg {
+  width: 30px;
+  margin-left: 14px;
+  padding: 0;
+  border: none;
+}
+
+.changeSourceCount {
+  position: absolute;
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  right: 24px;
+}

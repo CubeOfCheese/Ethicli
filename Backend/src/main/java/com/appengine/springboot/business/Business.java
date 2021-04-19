@@ -1025,34 +1025,37 @@ public class Business {
   }
 
   public void calculate() {
-    if (this.overallScore == 0) {
+    if (overallScore != 0) {
+      return;
+    }
+    if (!this.manuallyScored) {
       calculateAnimalScore();
       calculateEnvironmentScore();
       calculateSocialScore();
       calculateLaborScore();
-      // Overall Score
-      double overallImpactScore = 0;
-      int overallImpactFactors = 0;
-      if (this.environmentScore != 0) {
-        ++overallImpactFactors;
-        overallImpactScore += this.environmentScore;
-      }
-      if (this.laborScore != 0) {
-        ++overallImpactFactors;
-        overallImpactScore += this.laborScore;
-      }
-      if (this.socialScore != 0) {
-        ++overallImpactFactors;
-        overallImpactScore += this.socialScore;
-      }
-      if (this.animalsScore != 0) {
-        ++overallImpactFactors;
-        overallImpactScore += this.animalsScore;
-      }
-      if (overallImpactScore != 0) {
-        this.overallScore = overallImpactScore / overallImpactFactors;
-      }
-      this.overallScore = Math.min(this.overallScore, 10);
     }
+    // Overall Score
+    double overallImpactScore = 0;
+    int overallImpactFactors = 0;
+    if (this.environmentScore != 0) {
+      ++overallImpactFactors;
+      overallImpactScore += this.environmentScore;
+    }
+    if (this.laborScore != 0) {
+      ++overallImpactFactors;
+      overallImpactScore += this.laborScore;
+    }
+    if (this.socialScore != 0) {
+      ++overallImpactFactors;
+      overallImpactScore += this.socialScore;
+    }
+    if (this.animalsScore != 0) {
+      ++overallImpactFactors;
+      overallImpactScore += this.animalsScore;
+    }
+    if (overallImpactScore != 0) {
+      this.overallScore = overallImpactScore / overallImpactFactors;
+    }
+    this.overallScore = Math.min(this.overallScore, 10);
   }
 }

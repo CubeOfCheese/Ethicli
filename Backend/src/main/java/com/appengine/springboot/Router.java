@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.appengine.springboot.advertisement.Advertisement;
+import com.appengine.springboot.business.Business;
 
 @Controller
 public class Router {
@@ -66,10 +67,22 @@ public class Router {
     return "info";
   }
 
+  @RequestMapping(value = "/amys-tools")
+  public String getAmyTools() {
+    return "AmysTools/index";
+  }
+
   @RequestMapping(value = "/amys-tools/ad-adder")
   public String getAmyToolsAd(Model model) {
     Advertisement Advertisement = new Advertisement();
-		model.addAttribute("Advertisement", Advertisement);
+    model.addAttribute("Advertisement", Advertisement);
     return "AmysTools/ad";
+  }
+
+  @RequestMapping(value = "/amys-tools/business-adder")
+  public String getAmyToolsBusiness(Model model) {
+    Business business = new Business();
+    model.addAttribute("business", business);
+    return "AmysTools/business-adder";
   }
 }
