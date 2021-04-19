@@ -62,29 +62,28 @@ function duplicateSource(originalSource) {
     default:
   }
   const clone = originalSource.cloneNode(true);
-  clone.id = originalSource.className + index;
   clone.name = originalSource.className + "[" + index + "]";
   originalSource.parentNode.appendChild(clone);
 }
 
 function deleteSource(sourceList) {
-  switch (sourceList.id) {
-    case "environmentSourceList":
-      environmentSourceIndex--;
-      break;
-    case "animalSourceList":
-      animalSourceIndex--;
-      break;
-    case "laborSourceList":
-      laborSourceIndex--;
-      break;
-    case "socialSourceList":
-      socialSourceIndex--;
-      break;
-    default:
-  }
   const lastSource = sourceList.lastChild;
   if (document.getElementsByClassName(lastSource.className).length > 1) {
+    switch (sourceList.id) {
+      case "environmentSourceList":
+        environmentSourceIndex--;
+        break;
+      case "animalSourceList":
+        animalSourceIndex--;
+        break;
+      case "laborSourceList":
+        laborSourceIndex--;
+        break;
+      case "socialSourceList":
+        socialSourceIndex--;
+        break;
+      default:
+    }
     lastSource.remove();
   }
 }
