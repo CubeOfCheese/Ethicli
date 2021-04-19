@@ -35,15 +35,14 @@
 
 /** Tags **/
 
-.changeSourceCount svg,
-#negativechangeSourceCount svg {
+.changeSourceCount svg {
   width: 30px;
   margin-left: 14px;
   padding: 0;
   border: none;
 }
 
-.changeSourceCount, #negativechangeSourceCount{
+.changeSourceCount {
   position: absolute;
   width: 80px;
   display: flex;
