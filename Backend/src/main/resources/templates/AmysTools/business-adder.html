@@ -16,7 +16,7 @@
             <div id="companyGroup"> <!-- Main Company Info -->
                 <h2>Main Company Info</h2>
                 <label for="name">Company Name: <input th:field="*{name}" id="name" placeholder="Clean Bean Cafe" type="text" spellcheck="true" required></label>
-                <p class="warning">Website url must be in the following format: example.com/</p>
+                <p class="warning">Leave out 'http(s)://www.' When applying url. Ex: company.com/</p>
                 <label for="website">Company Website: <input th:field="*{website}" id="website" placeholder="cbcafe.com/" type="text" pattern=".*/" required></label>
                 <label for="companyType">Company Type: <input th:field="*{companyType}" id="companyType" placeholder="Cosmetics" type="text"></label>
                 <label for="country">Country: <input th:field="*{country}" id="country" placeholder="Spain" type="text"></label>
