@@ -75,7 +75,7 @@ public class Router {
   @RequestMapping(value = "/amys-tools/ad-adder")
   public String getAmyToolsAd(Model model) {
     Advertisement Advertisement = new Advertisement();
-		model.addAttribute("Advertisement", Advertisement);
+    model.addAttribute("Advertisement", Advertisement);
     return "AmysTools/ad";
   }
 
