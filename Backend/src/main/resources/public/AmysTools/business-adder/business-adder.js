@@ -36,7 +36,6 @@ function start() {
     duplicateSource(originalSocialSource);
   });
   document.getElementById("deleteSocialSource").addEventListener("click", () => {
-    console.log(socialSourceList);
     deleteSource(socialSourceList);
   });
 }
