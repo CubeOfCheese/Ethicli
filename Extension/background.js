@@ -8,22 +8,22 @@ chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
 let ethicliStats;
 let productName;
 
-function notShop(currentTab) {
-  chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTab.id });
-  chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
-  chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
+function notShop(currentTabId) {
+  chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTabId });
+  chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTabId });
+  chrome.browserAction.setBadgeText({ text: "", tabId: currentTabId });
 }
 
 function reloadExt(request, sender) {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
-    const currentTab = tabs[0];
 
+    const currentTabId = tabs[0].id;
     if (!request.shoppingPage) {
-      notShop(currentTab);
+      notShop(currentTabId);
       return;
     }
-    chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTab.id });
+    chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTabId });
 
     const companyName = getDomainWithoutSuffix(sender.tab.url);
 
@@ -56,7 +56,7 @@ function reloadExt(request, sender) {
       }
     }
     if (isBlocklisted) {
-      notShop(currentTab);
+      notShop(currentTabId);
       return;
     }
 
@@ -68,19 +68,19 @@ function reloadExt(request, sender) {
 
           if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
             ethicliBadgeScore = "";
-            chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: currentTab.id });
+            chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: currentTabId });
             mixpanel.track("Visit shop", {
               "Has score": false,
               "Shop words": request.shopWords
             });
           } else {
-            chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: currentTab.id });
+            chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: currentTabId });
             mixpanel.track("Visit shop", {
               "Has score": true,
               "Shop words": request.shopWords
             });
           }
-          chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTab.id });
+          chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTabId });
         });
   });
 }
@@ -137,10 +137,10 @@ chrome.tabs.onActivated.addListener(() => {
 chrome.tabs.onCreated.addListener(() => {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
-    const currentTab = tabs[0];
-    chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTab.id });
-    chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
-    chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
+    const currentTabId = tabs[0].id;
+    chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTabId });
+    chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTabId });
+    chrome.browserAction.setBadgeText({ text: "", tabId: currentTabId });
   });
 });
 
