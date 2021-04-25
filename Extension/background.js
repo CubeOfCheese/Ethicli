@@ -5,12 +5,10 @@ mixpanel.init(config.mixpanel_code, config.mixpanel_config);
 
 chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
 
-let isShoppingPage;
 let ethicliStats;
 let productName;
 
 function notShop(currentTab) {
-  isShoppingPage = false;
   chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTab.id });
   chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
   chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
@@ -26,7 +24,6 @@ function reloadExt(request, sender) {
       return;
     }
     chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTab.id });
-    isShoppingPage = true;
 
     const companyName = getDomainWithoutSuffix(sender.tab.url);
 
@@ -90,9 +87,6 @@ function reloadExt(request, sender) {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   switch (request.msgName) {
-    case "isShoppingPage?":
-      sendResponse({ shoppingPage: isShoppingPage });
-      break;
     case "whatsMainRating?":
       sendResponse({ ethicliStats: ethicliStats });
       break;
@@ -123,12 +117,11 @@ chrome.tabs.onActivated.addListener(() => {
       // On first page visit, response is null. This function is only supposed to run after the first visit anyway,
       // so this just gets rid of an error that didn't actually break anything
       if (response) {
-        isShoppingPage = response.isShoppingPage;
         // currentTab.url is null for new tab pages when first opened
         // and equal to "chrome://newtab/" when navigated to from another tab.
-        if (isShoppingPage && currentTab.url && (currentTab.url !== "chrome://newtab/")) {
+        if (response.isShoppingPage && currentTab.url && (currentTab.url !== "chrome://newtab/")) {
           // data should only be retrieved for actual pages that are shopping pages
-          chrome.tabs.sendMessage(tabs[0].id, { msgName: "productIdentified?" }, (response) => {
+          chrome.tabs.sendMessage(currentTab.id, { msgName: "productIdentified?" }, (response) => {
             productName = response.productName;
           });
           const request = { msgName: "PageEvaluated", shoppingPage: true };
