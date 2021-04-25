@@ -14,7 +14,7 @@ function reevaluatePage() {
 }
 
 function pageEval() {
-  const dom = document.getElementsByTagName("html")[0].innerHTML;
+  const dom = document.getElementsByTagName("body")[0].innerHTML;
   const shopWords = [
     /add-to-basket/i,
     /addtocartBtn/i,
@@ -34,25 +34,22 @@ function pageEval() {
     /product-detail__details/i,
     /product-detail__images/i,
     /product-gallery/i,
-    /product-gallery*/i,
     /product-grid__content/i,
     /product-grid__container/i,
     /product-grid__image/i,
     /product-grid__intro/i,
     /product-grid__item/i,
     /product-grid__link/i,
-    /product-grid*/i,
-    /ProductGrid__Wrapper*/i,
+    /product-grid/i,
+    /ProductGrid__Wrapper/i,
     /product-grid-wider-exp/i,
     /product-image/i,
-    /product-image*/i,
     /product-image-container/i,
     /product--image-container/i,
     /product-image-photo/i,
     /product-image-wrapper/i,
     /product-image__link/i,
     /product-images/i,
-    /product-images*/i,
     /product-images-container/i,
     /product-info/i,
     /product-info-block/i,
@@ -60,20 +57,17 @@ function pageEval() {
     /productitem_imagewrapper/i,
     /product-item-info/i,
     /product-list/i,
-    /product-list*/i,
-    /product-listing*/i,
+    /product-listing/i,
     /product-listing__content/i,
     /product-listing-item__wrapper/i,
     /product-listing__wrapper/i,
     /productlistwrapper/i,
     /product-name/i,
     /product-options/i,
-    /product-options*/i,
     /product-options-wrapper/i,
     /product-page/i,
     /product-price/i,
     /product-primary/i,
-    /product-primary*/i,
     /product-primary-image/i,
     /product-slider/i,
     /product-slider-container/i,
@@ -85,16 +79,13 @@ function pageEval() {
     /product-view/i,
     /product-wrapper/i,
     /pvproduct/i,
-    /pvproduct*/i,
     /return-policy/i,
     /return_policy/i,
     /shopcart/i,
     /shopcontent/i,
     /shop-module/i,
     /shopify-section/i,
-    /shopify-section*/i,
     /"shopping"/i,
-    /"shopping*"/i,
     /shopping-bag-empty/i,
     /shopping-window/i,
     /soldout-image/i,
@@ -104,7 +95,6 @@ function pageEval() {
     /add to cart/i,
     /bought this/i,
     /browse products/i,
-    /browse products*/i,
     /buy it now/i,
     /buy this now/i,
     /buy now/i,
@@ -115,7 +105,6 @@ function pageEval() {
     /find a store/i,
     /free shipping/i,
     /get free shipping/i,
-    /get free shipping*/i,
     /in stock/i,
     /online order/i,
     /online ordering/i,
@@ -141,8 +130,8 @@ function pageEval() {
     /returns &amp; repairs/i,
     /same day delivery/i,
     /secure checkout/i,
-    /shipping &*/i,
-    /shipping &amp;*/i,
+    /shipping &/i,
+    /shipping &amp;/i,
     /shipping & returns/i,
     /shipping &amp; returns/i,
     /shipping info/i,
@@ -160,25 +149,26 @@ function pageEval() {
     /shop collection/i,
     /shop collections/i,
     /shop now/i,
-    /shop now*/i,
     /shop our bestsellers/i,
     /shop popular/i,
     /shop popular categories/i,
     /shop product/i,
-    /shop product*/i,
     /shop product range/i,
     /shop the collection/i,
     /shopping options/i,
     /ssl secure checkout/i,
     /track order/i,
     /track your order/i,
-    /upcoming sales/i
+    /upcoming sales/i,
+    /woocommerce-product-gallery/i
   ];
+  const scriptElement = /<script.*?script>/gm;
+  dom = dom.replace(scriptElement, "");
 
   const presentShopWords = [];
   for (let i = 0; i < shopWords.length; i++) {
-    const inArray = shopWords[i].test(dom);
-    if (inArray) { // if words are present, add values.
+    const present = shopWords[i].test(dom);
+    if (present) {
       presentShopWords.push(shopWords[i].toString());
     }
   }
