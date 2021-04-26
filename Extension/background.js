@@ -13,75 +13,112 @@ function notShop(currentTabId) {
   chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTabId });
   chrome.browserAction.setBadgeText({ text: "", tabId: currentTabId });
 }
-
+// use sender.tab.id for everything instead of currenttabid?
 function reloadExt(request, sender) {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
-
+    console.log("reloadExt" + new Date().getUTCSeconds() + " " + new Date().getMilliseconds());
     const currentTabId = tabs[0].id;
+    console.log(sender.tab);
+    console.log("^sender tab");
+    console.log(currentTabId + " " + sender.tab.url);
+    console.log(request.shoppingPage);
     if (!request.shoppingPage) {
-      notShop(currentTabId);
+      notShop(sender.tab.id);
       return;
     }
-    chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: currentTabId });
-
-    const companyName = getDomainWithoutSuffix(sender.tab.url);
-
-    // Feb 23 2021
-    // etsy is included because we don't have a way to prevent matching of etsy with etsy.com/exampleShop
-    // so etsy is awarded badges that should actually be attributed to exampleShop
-    const blocklist = [
-      "google",
-      "bing",
-      "yahoo",
-      "baidu",
-      "aol",
-      "duckduckgo",
-      "yandex",
-      "ecosia",
-      "etsy",
-      "youtube",
-      "facebook",
-      "instagram"
-    ];
-    let isBlocklisted;
-    let ethicliBadgeScore;
-    for (let b = 0; b < blocklist.length; b++) {
-      if (companyName.includes(blocklist[b])) {
-        ethicliBadgeScore = "";
-        isBlocklisted = true;
-        break;
-      } else {
-        isBlocklisted = false;
+    chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: sender.tab.id });
+    // TODO: retrieve from storage and set popup. If not found, then make api call
+    chrome.storage.local.get([ sender.tab.id.toString() ], (jsonResponse) => {
+      if (chrome.runtime.lastError) {
+        console.log("beep boop error");
       }
-    }
-    if (isBlocklisted) {
-      notShop(currentTabId);
-      return;
-    }
+      if (jsonResponse[sender.tab.id]) {
+        jsonResponse = jsonResponse[sender.tab.id];
+        console.log("found in storage");
+        ethicliStats = jsonResponse;
+        let ethicliBadgeScore = Math.round(jsonResponse.overallScore);
+        console.log(jsonResponse.overallScore);
+        if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
+          ethicliBadgeScore = "";
+          chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: sender.tab.id });
+          mixpanel.track("Visit shop", {
+            "Has score": false,
+            "Shop words": request.shopWords
+          });
+        } else {
+          console.log("Visit shop" + new Date().getUTCSeconds() + " " + new Date().getMilliseconds());
+          chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: sender.tab.id });
+          chrome.storage.local.set({ [sender.tab.id]: jsonResponse });
+          mixpanel.track("Visit shop", {
+            "Has score": true,
+            "Shop words": request.shopWords
+          });
+        }
+        chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: sender.tab.id });
+      } else {
+        console.log("not found in storage");
+        const companyName = getDomainWithoutSuffix(sender.tab.url);
 
-    const url = "https://info.ethicli.com/score/" + companyName;
-    fetch(url, { method: "GET" })
-        .then((response) => response.json()).then((jsonResponse) => {
-          ethicliStats = jsonResponse;
-          ethicliBadgeScore = Math.round(jsonResponse.overallScore);
-
-          if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
+        // Feb 23 2021
+        // etsy is included because we don't have a way to prevent matching of etsy with etsy.com/exampleShop
+        // so etsy is awarded badges that should actually be attributed to exampleShop
+        const blocklist = [
+          "google",
+          "bing",
+          "yahoo",
+          "baidu",
+          "aol",
+          "duckduckgo",
+          "yandex",
+          "ecosia",
+          "etsy",
+          "youtube",
+          "facebook",
+          "instagram"
+        ];
+        let isBlocklisted;
+        let ethicliBadgeScore;
+        for (let b = 0; b < blocklist.length; b++) {
+          if (companyName.includes(blocklist[b])) {
             ethicliBadgeScore = "";
-            chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: currentTabId });
-            mixpanel.track("Visit shop", {
-              "Has score": false,
-              "Shop words": request.shopWords
-            });
+            isBlocklisted = true;
+            break;
           } else {
-            chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: currentTabId });
-            mixpanel.track("Visit shop", {
-              "Has score": true,
-              "Shop words": request.shopWords
-            });
+            isBlocklisted = false;
           }
-          chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: currentTabId });
-        });
+        }
+        if (isBlocklisted) {
+          notShop(sender.tab.id);
+          return;
+        }
+
+        const url = "https://info.ethicli.com/score/" + companyName;
+        fetch(url, { method: "GET" })
+            .then((response) => response.json()).then((jsonResponse) => {
+              ethicliStats = jsonResponse;
+              ethicliBadgeScore = Math.round(jsonResponse.overallScore);
+
+              if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
+                ethicliBadgeScore = "";
+                chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: sender.tab.id });
+                mixpanel.track("Visit shop", {
+                  "Has score": false,
+                  "Shop words": request.shopWords
+                });
+              } else {
+                console.log("Visit shop" + new Date().getUTCSeconds() + " " + new Date().getMilliseconds());
+                chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: sender.tab.id });
+                chrome.storage.local.set({ [sender.tab.id.toString()]: jsonResponse }, () => console.log("stored!"));
+                mixpanel.track("Visit shop", {
+                  "Has score": true,
+                  "Shop words": request.shopWords
+                });
+              }
+              chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: sender.tab.id });
+            });
+      }
+    });
   });
 }
 
@@ -144,13 +181,13 @@ chrome.tabs.onCreated.addListener(() => {
   });
 });
 
-chrome.tabs.onUpdated.addListener(() => {
-  const query = { active: true, currentWindow: true };
-  chrome.tabs.query(query, (tabs) => {
-    const currentTab = tabs[0];
-    chrome.tabs.sendMessage(currentTab.id, { msgName: "reevaluatePage" });
-  });
-});
+// chrome.tabs.onUpdated.addListener(() => {
+//   const query = { active: true, currentWindow: true };
+//   chrome.tabs.query(query, (tabs) => {
+//     const currentTab = tabs[0];
+//     chrome.tabs.sendMessage(currentTab.id, { msgName: "reevaluatePage" });
+//   });
+// });
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason !== "install") {
