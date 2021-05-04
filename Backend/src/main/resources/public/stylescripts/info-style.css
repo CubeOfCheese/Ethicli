@@ -68,6 +68,10 @@ nav .container {
     height: 48px;
 }
 
+#logo {
+    top: 236px;
+}
+
 nav a {
     display: block;
     border-radius: 100px;
