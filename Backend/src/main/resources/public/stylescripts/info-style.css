@@ -103,14 +103,7 @@ nav a:hover {
     height: 0;
     overflow: hidden;
     opacity: 0;
-    -webkit-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
-    -moz-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
-    -o-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
     transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
-
-    -webkit-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
-    -moz-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
-    -o-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
     transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
 }
 
@@ -118,14 +111,7 @@ nav a:hover {
     top: 0;
     height: 200px;
     opacity: 1;
-    -webkit-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
-    -moz-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
-    -o-transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
     transition: all 500ms cubic-bezier(0.500, 0.025, 0.500, 1.000);
-
-    -webkit-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
-    -moz-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
-    -o-transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
     transition-timing-function: cubic-bezier(0.500, 0.025, 0.500, 1.000);
 }
 
