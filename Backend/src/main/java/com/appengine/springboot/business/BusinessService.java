@@ -32,11 +32,20 @@ public class BusinessService {
         break;
       }
     }
-    if (business.getOverallScore() == 0) {  // All scores were previously set to 0 by default except for manual scores
+    // All scores were previously set to 0 by default except for manual scores
+    if (business.getOverallScore() == 0
+      || (business.getEnvironmentScore() == 0 && business.getLaborScore() == 0 && business.getSocialScore() == 0 && business.getAnimalsScore() == 0)) {
       business.calculate();
+
+      Update updatedFields = new Update();
+      updatedFields.set("overallScore", business.getOverallScore());
+      updatedFields.set("laborScore", business.getLaborScore());
+      updatedFields.set("socialScore", business.getSocialScore());
+      updatedFields.set("environmentScore", business.getEnvironmentScore());
+      updatedFields.set("animalsScore", business.getAnimalsScore());
       mongoOperations.updateFirst(
           new Query().addCriteria(Criteria.where("_id").is(business.getId())),
-          new Update().set("overallScore", business.getOverallScore()),
+          updatedFields,
           Business.class);
     }
     return business;

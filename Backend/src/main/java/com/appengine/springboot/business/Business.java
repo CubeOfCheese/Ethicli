@@ -1025,7 +1025,7 @@ public class Business {
   }
 
   public void calculate() {
-    if (overallScore != 0) {
+    if (overallScore != 0 && (this.environmentScore != 0 || this.laborScore != 0 || this.socialScore != 0 || this.animalsScore != 0)) {
       return;
     }
     if (!this.manuallyScored) {
