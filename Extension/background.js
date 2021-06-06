@@ -8,12 +8,12 @@ chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
 let ethicliStats;
 let productName;
 
-function notShop(currentTabId) {
-  chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTabId });
-  chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTabId });
-  chrome.browserAction.setBadgeText({ text: "", tabId: currentTabId });
+function notShop(currentTab) {
+  chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTab.id });
+  chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
+  chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
 }
-// use sender.tab.id for everything instead of currenttabid?
+
 function reloadExt(request, sender) {
   // console.log("reloadExt" + new Date().getUTCSeconds() + " " + new Date().getMilliseconds());
   // console.log(sender.tab);
@@ -26,16 +26,12 @@ function reloadExt(request, sender) {
   console.log("supposedly is shop");
   // TODO: retrieve from storage and set popup. If not found, then make api call
   chrome.storage.local.get([ sender.tab.id.toString() ], (jsonResponse) => {
-    // if (chrome.runtime.lastError) {
-    //   console.log("beep boop error");
-    // }
-    if (jsonResponse[sender.tab.id]) {
-      jsonResponse = jsonResponse[sender.tab.id];
+    if (jsonResponse[sender.tab.id]) { // check storage
+      ethicliStats = jsonResponse[sender.tab.id];
       console.log("found in storage");
-      ethicliStats = jsonResponse;
-      let ethicliBadgeScore = Math.round(jsonResponse.overallScore);
-      console.log(jsonResponse.overallScore);
-      if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
+      let ethicliBadgeScore = Math.round(ethicliStats.overallScore);
+      console.log(ethicliStats.overallScore);
+      if ((isNaN(ethicliStats.overallScore)) || (ethicliBadgeScore === 0)) { // why use ethicliBadgeScore here?
         ethicliBadgeScore = "";
         chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: sender.tab.id });
         mixpanel.track("Visit shop", {
@@ -52,7 +48,7 @@ function reloadExt(request, sender) {
         });
       }
       chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: sender.tab.id });
-    } else {
+    } else { // not found in storage
       console.log("not found in storage");
       const companyName = getDomainWithoutSuffix(sender.tab.url);
 
@@ -170,10 +166,10 @@ chrome.tabs.onActivated.addListener(() => {
 chrome.tabs.onCreated.addListener(() => {
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
-    const currentTabId = tabs[0].id;
-    chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTabId });
-    chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTabId });
-    chrome.browserAction.setBadgeText({ text: "", tabId: currentTabId });
+    const currentTab = tabs[0];
+    chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTab.id });
+    chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
+    chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
   });
 });
 
