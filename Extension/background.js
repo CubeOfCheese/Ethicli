@@ -1,5 +1,5 @@
 import config from "../config/config.js";
-import { getDomainWithoutSuffix } from "tldts-experimental";
+import { getDomainWithoutSuffix, getDomain } from "tldts-experimental";
 import mixpanel from "mixpanel-browser";
 mixpanel.init(config.mixpanel_code, config.mixpanel_config);
 
@@ -39,7 +39,7 @@ function reloadExt(request, sender) {
   }
 
   chrome.storage.local.get([ sender.tab.id.toString() ], (jsonResponse) => {
-    if (jsonResponse[sender.tab.id]) { // check storage
+    if (jsonResponse[sender.tab.id] && getDomain(sender.tab.url) === jsonResponse[sender.tab.id].website.split("/")[0]) { // check storage
       ethicliStats = jsonResponse[sender.tab.id];
       let ethicliBadgeScore = Math.round(ethicliStats.overallScore);
       if ((isNaN(ethicliStats.overallScore)) || (ethicliBadgeScore === 0)) { // why use ethicliBadgeScore here?
