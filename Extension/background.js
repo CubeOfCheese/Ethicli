@@ -33,29 +33,19 @@ function notShop(currentTab) {
 }
 
 function reloadExt(request, sender) {
-  // console.log("reloadExt" + new Date().getUTCSeconds() + " " + new Date().getMilliseconds());
-  // console.log(sender.tab);
-  // console.log("^sender tab");
-  // console.log(request.shoppingPage);
   if (!request.shoppingPage) {
     notShop(sender.tab.id);
     return;
   }
-  console.log("supposedly is shop");
-  console.log(sender.tab.id);
-  console.log(sender.tab.url);
+
   chrome.storage.local.get([ sender.tab.id.toString() ], (jsonResponse) => {
     if (jsonResponse[sender.tab.id]) { // check storage
       ethicliStats = jsonResponse[sender.tab.id];
-      console.log("found in storage");
       let ethicliBadgeScore = Math.round(ethicliStats.overallScore);
-      console.log(ethicliStats);
-      console.log(ethicliStats.overallScore);
       if ((isNaN(ethicliStats.overallScore)) || (ethicliBadgeScore === 0)) { // why use ethicliBadgeScore here?
         ethicliBadgeScore = "";
         chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: sender.tab.id });
       } else {
-        console.log("Visit shop" + new Date().getUTCSeconds() + " " + new Date().getMilliseconds());
         chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: sender.tab.id });
       }
       chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: sender.tab.id });
@@ -63,7 +53,6 @@ function reloadExt(request, sender) {
       return;
     }
     // not found in storage
-    console.log("not found in storage");
     const companyName = getDomainWithoutSuffix(sender.tab.url);
 
     let ethicliBadgeScore;
@@ -72,11 +61,9 @@ function reloadExt(request, sender) {
       if (companyName.includes(blocklist[b])) {
         ethicliBadgeScore = "";
         notShop(sender.tab.id);
-        console.log("blocklisted");
         return;
       }
     }
-    console.log("blocklist did not work");
 
     const url = "https://info.ethicli.com/score/" + companyName;
     fetch(url, { method: "GET" })
@@ -92,9 +79,8 @@ function reloadExt(request, sender) {
               "Shop words": request.shopWords
             });
           } else {
-            console.log("Visit shop" + new Date().getUTCSeconds() + " " + new Date().getMilliseconds());
             chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: sender.tab.id });
-            chrome.storage.local.set({ [sender.tab.id.toString()]: jsonResponse }, () => console.log("stored!"));
+            chrome.storage.local.set({ [sender.tab.id.toString()]: jsonResponse });
             mixpanel.track("Visit shop", {
               "Has score": true,
               "Shop words": request.shopWords
@@ -102,7 +88,6 @@ function reloadExt(request, sender) {
           }
           chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: sender.tab.id });
         });
-    console.log("oop lets change the icon lol");
     chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: sender.tab.id });
   });
 }
@@ -132,7 +117,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 chrome.tabs.onActivated.addListener(() => { // tab switch
-  console.log("onActivated");
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
