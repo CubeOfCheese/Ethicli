@@ -8,6 +8,24 @@ chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" } });
 let ethicliStats;
 let productName;
 
+// Feb 23 2021
+// etsy is included because we don't have a way to prevent matching of etsy with etsy.com/exampleShop
+// so etsy is awarded badges that should actually be attributed to exampleShop
+const blocklist = [
+  "google",
+  "bing",
+  "yahoo",
+  "baidu",
+  "aol",
+  "duckduckgo",
+  "yandex",
+  "ecosia",
+  "etsy",
+  "youtube",
+  "facebook",
+  "instagram"
+];
+
 function notShop(currentTab) {
   chrome.browserAction.setPopup({ popup: "views/popupNotShop.html", tabId: currentTab.id });
   chrome.browserAction.setIcon({ path: { "16": "icons/grey-16.png" }, tabId: currentTab.id });
@@ -24,99 +42,74 @@ function reloadExt(request, sender) {
     return;
   }
   console.log("supposedly is shop");
-  // TODO: retrieve from storage and set popup. If not found, then make api call
+  console.log(sender.tab.id);
+  console.log(sender.tab.url);
   chrome.storage.local.get([ sender.tab.id.toString() ], (jsonResponse) => {
     if (jsonResponse[sender.tab.id]) { // check storage
       ethicliStats = jsonResponse[sender.tab.id];
       console.log("found in storage");
       let ethicliBadgeScore = Math.round(ethicliStats.overallScore);
+      console.log(ethicliStats);
       console.log(ethicliStats.overallScore);
       if ((isNaN(ethicliStats.overallScore)) || (ethicliBadgeScore === 0)) { // why use ethicliBadgeScore here?
         ethicliBadgeScore = "";
         chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: sender.tab.id });
-        mixpanel.track("Visit shop", {
-          "Has score": false,
-          "Shop words": request.shopWords
-        });
       } else {
         console.log("Visit shop" + new Date().getUTCSeconds() + " " + new Date().getMilliseconds());
         chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: sender.tab.id });
-        chrome.storage.local.set({ [sender.tab.id]: jsonResponse });
-        mixpanel.track("Visit shop", {
-          "Has score": true,
-          "Shop words": request.shopWords
-        });
       }
+      chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: sender.tab.id });
       chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: sender.tab.id });
-    } else { // not found in storage
-      console.log("not found in storage");
-      const companyName = getDomainWithoutSuffix(sender.tab.url);
+      return;
+    }
+    // not found in storage
+    console.log("not found in storage");
+    const companyName = getDomainWithoutSuffix(sender.tab.url);
 
-      // Feb 23 2021
-      // etsy is included because we don't have a way to prevent matching of etsy with etsy.com/exampleShop
-      // so etsy is awarded badges that should actually be attributed to exampleShop
-      const blocklist = [
-        "google",
-        "bing",
-        "yahoo",
-        "baidu",
-        "aol",
-        "duckduckgo",
-        "yandex",
-        "ecosia",
-        "etsy",
-        "youtube",
-        "facebook",
-        "instagram"
-      ];
-      let isBlocklisted;
-      let ethicliBadgeScore;
-      for (let b = 0; b < blocklist.length; b++) {
-        if (companyName.includes(blocklist[b])) {
-          ethicliBadgeScore = "";
-          isBlocklisted = true;
-          break;
-        } else {
-          isBlocklisted = false;
-        }
-      }
-      if (isBlocklisted) {
+    let ethicliBadgeScore;
+
+    for (let b = 0; b < blocklist.length; b++) {
+      if (companyName.includes(blocklist[b])) {
+        ethicliBadgeScore = "";
         notShop(sender.tab.id);
+        console.log("blocklisted");
         return;
       }
-
-      const url = "https://info.ethicli.com/score/" + companyName;
-      fetch(url, { method: "GET" })
-          .then((response) => response.json()).then((jsonResponse) => {
-            ethicliStats = jsonResponse;
-            ethicliBadgeScore = Math.round(jsonResponse.overallScore);
-
-            if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
-              ethicliBadgeScore = "";
-              chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: sender.tab.id });
-              mixpanel.track("Visit shop", {
-                "Has score": false,
-                "Shop words": request.shopWords
-              });
-            } else {
-              console.log("Visit shop" + new Date().getUTCSeconds() + " " + new Date().getMilliseconds());
-              chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: sender.tab.id });
-              chrome.storage.local.set({ [sender.tab.id.toString()]: jsonResponse }, () => console.log("stored!"));
-              mixpanel.track("Visit shop", {
-                "Has score": true,
-                "Shop words": request.shopWords
-              });
-            }
-            chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: sender.tab.id });
-          });
     }
+    console.log("blocklist did not work");
+
+    const url = "https://info.ethicli.com/score/" + companyName;
+    fetch(url, { method: "GET" })
+        .then((response) => response.json()).then((jsonResponse) => {
+          ethicliStats = jsonResponse;
+          ethicliBadgeScore = Math.round(jsonResponse.overallScore);
+
+          if ((isNaN(jsonResponse.overallScore)) || (ethicliBadgeScore === 0)) {
+            ethicliBadgeScore = "";
+            chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: sender.tab.id });
+            mixpanel.track("Visit shop", {
+              "Has score": false,
+              "Shop words": request.shopWords
+            });
+          } else {
+            console.log("Visit shop" + new Date().getUTCSeconds() + " " + new Date().getMilliseconds());
+            chrome.browserAction.setPopup({ popup: "views/popupShop.html", tabId: sender.tab.id });
+            chrome.storage.local.set({ [sender.tab.id.toString()]: jsonResponse }, () => console.log("stored!"));
+            mixpanel.track("Visit shop", {
+              "Has score": true,
+              "Shop words": request.shopWords
+            });
+          }
+          chrome.browserAction.setBadgeText({ text: ethicliBadgeScore.toString(), tabId: sender.tab.id });
+        });
+    console.log("oop lets change the icon lol");
+    chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: sender.tab.id });
   });
-  chrome.browserAction.setIcon({ path: { "16": "icons/ethicli-16.png" }, tabId: sender.tab.id });
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   switch (request.msgName) {
-    case "whatsMainRating?":
+    case "whatsMainRating?": // needs to be refactored. Using global ethicliStats variable is causing the quick tab switch bug
       sendResponse({ ethicliStats: ethicliStats });
       break;
     case "productIdentified?":
@@ -138,7 +131,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-chrome.tabs.onActivated.addListener(() => {
+chrome.tabs.onActivated.addListener(() => { // tab switch
+  console.log("onActivated");
   const query = { active: true, currentWindow: true };
   chrome.tabs.query(query, (tabs) => {
     const currentTab = tabs[0];
@@ -156,6 +150,7 @@ chrome.tabs.onActivated.addListener(() => {
           const request = { msgName: "PageEvaluated", shoppingPage: true };
           const sender = { tab: { url: "" } };
           sender.tab.url = currentTab.url;
+          sender.tab.id = currentTab.id;
           reloadExt(request, sender);
         }
       }
@@ -172,14 +167,6 @@ chrome.tabs.onCreated.addListener(() => {
     chrome.browserAction.setBadgeText({ text: "", tabId: currentTab.id });
   });
 });
-
-// chrome.tabs.onUpdated.addListener(() => {
-//   const query = { active: true, currentWindow: true };
-//   chrome.tabs.query(query, (tabs) => {
-//     const currentTab = tabs[0];
-//     chrome.tabs.sendMessage(currentTab.id, { msgName: "reevaluatePage" });
-//   });
-// });
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason !== "install") {

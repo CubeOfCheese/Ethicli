@@ -15,10 +15,7 @@
         "default_popup": "views/popupNotShop.html",
         "default_title": "Ethicli",
         "default_icon": {
-            "16": "icons/ethicli-16.png",
-            "32": "icons/ethicli-32.png",
-            "48": "icons/ethicli-48.png",
-            "128": "icons/ethicli-128.png"
+            "16": "icons/grey-16.png"
         }
     },
     "permissions": [
