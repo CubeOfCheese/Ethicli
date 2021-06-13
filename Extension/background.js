@@ -42,7 +42,7 @@ function reloadExt(request, sender) {
     if (jsonResponse[sender.tab.id] && getDomain(sender.tab.url) === jsonResponse[sender.tab.id].website.split("/")[0]) { // check storage
       ethicliStats = jsonResponse[sender.tab.id];
       let ethicliBadgeScore = Math.round(ethicliStats.overallScore);
-      if ((isNaN(ethicliStats.overallScore)) || (ethicliBadgeScore === 0)) { // why use ethicliBadgeScore here?
+      if ((isNaN(ethicliStats.overallScore)) || (ethicliBadgeScore === 0)) {
         ethicliBadgeScore = "";
         chrome.browserAction.setPopup({ popup: "views/popupNoRating.html", tabId: sender.tab.id });
       } else {
