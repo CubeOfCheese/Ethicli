@@ -1,4 +1,3 @@
-baseURL = "http://ethicli.com/blog/"
+baseURL = "http://ethicli.com/blog"
 languageCode = "en-us"
-title = "Blog Ethicli"
-theme = "ananke"
+title = "My New Hugo Site"
